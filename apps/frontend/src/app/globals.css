@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+    --color-brand-primary: #ff983e;
+    --color-brand-menugray: #f5f8fa;
+    --color-brand-buttongray: #e4eaed;
+}
+
+body {
+    font-family: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,77 +1,20 @@
-## Alpha Demo
+# Alpha Demo
 
-The cmu housing project is hosted at https://cmuhousing.com, however it is currently in alpha and lacks functionality in many regards. Take it as a demo of what the site will appear like, not an MVP.
+The CMU Housing project is hosted at https://cmuhousing.com, however it is currently in alpha and lacks functionality in many regards. Take it as a demo of what the site will appear like, not an MVP.
 
-## Getting Started
+### Getting Started
 
-First, make sure you have docker installed
+This project is split into the frontend ([`/apps/frontend`](./apps/frontend/README.md)) and the backend ([`/apps/backend/`](./apps/backend/README.md)). The instructions for running each component can be found in their README files.
 
-**Installing Docker (Ubuntu/WSL)**
+### Etiquette
 
-Follow the most up to date instructions at [Docker's Official Installation Page for Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+Before pushing code, it is required that you lint and format it to ensure proper format and consistancy. You can do this with the following commands in the root directory of this project (where this README is located).
 
-Or alternatively run the following snippet bellow (from the installation page)
+```sh
+# You only need to do this once to install required packages
+bun install
 
-1. Set up Docker's `apt` repository.
+bun run lint
 
-```bash
-# Add Docker's official GPG key:
-sudo apt update
-sudo apt install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
-sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-
-sudo apt-get update
+bun run format
 ```
-
-2. Install the Docker packages.
-   ```console
-   $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-   ```
-
-3. Verify that the installation is successful by running the `hello-world` image:
-
-   ```console
-   $ sudo docker run hello-world
-   ```
-
-   This command downloads a test image and runs it in a container. When the
-   container runs, it prints a confirmation message and exits.
-
-4. You may also need to add user to the docker group to get the correct permissions to run the program
-
-   ```console
-   $ sudo usermod -aG docker ${USER}
-   ```
-   
-   Then restart your terminal
-
-## Running the app for production
-If docker is set up correctly, you can start the app by running run_local.sh
-```
-chmod a+x ./run_local.sh
-./run_local.sh
-```
-Note you only have to run 'chmod' the first time you run 'run_local'
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Running the app for development
-If you are developing the app, we recommend you run dev_run_local.sh
-```
-chmod a+x ./dev_run_local.sh
-./dev_run_local.sh
-```
-
-'dev_run_local' is a wrapper of 'npm run dev' which runs much quicker and allows 
-changes to render instantly when saving the project

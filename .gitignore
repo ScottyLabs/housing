@@ -9,6 +9,9 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+/*/node_modules
+node_modules
+/*/dist
 
 # testing
 /coverage
@@ -46,3 +49,14 @@ next-env.d.ts
 # .lock files
 bun.lock
 pnpm-lock.yaml
+
+# Devenv
+.devenv*
+devenv.local.nix
+devenv.local.yaml
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
