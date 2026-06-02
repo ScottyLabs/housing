@@ -76,7 +76,7 @@ body:
         - label: bug
         - label: enhancement
         - label: chore
-        - label: good first issue
+        - label: beginner friendly
         - label: documentation
         - label: wontfix
     validations:
