@@ -1,9 +1,11 @@
-import { Routes, Route } from "react-router-dom";
-import { BuildingProvider } from "@/components/BuildingContext";
-import Navbar from "@/components/Navbar";
-import Home from "@/app/page";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import BuildingOptions from "@/app/building-options/page";
 import NotFound from "@/app/not-found";
+import Home from "@/app/page";
+import { BuildingProvider } from "@/components/BuildingContext";
+import Navbar from "@/components/Navbar";
+import BuildingDetails from "./components/BuildingDetails";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -26,13 +28,20 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+    const location = useLocation();
+    useEffect(() => {
+        window.scroll({ top: 0 });
+    }, []);
     return (
         <AppLayout>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/building-options" element={<BuildingOptions />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
+            <div key={location.pathname}>
+                <Routes location={location}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/building-options" element={<BuildingOptions />} />
+                    <Route path="/building/:id" element={<BuildingDetails />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </div>
         </AppLayout>
     );
 }

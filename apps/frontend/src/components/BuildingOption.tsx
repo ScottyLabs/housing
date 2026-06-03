@@ -1,4 +1,5 @@
-import { Building } from "./BuildingContext";
+import { Link } from "react-router-dom";
+import type { Building } from "./BuildingContext";
 
 export default function BuildingOption({
     building,
@@ -10,14 +11,15 @@ export default function BuildingOption({
     height: number;
 }) {
     return (
-        <div className="relative overflow-hidden rounded-[18px]" style={{ width: width, height: height }}>
-            <img
-                src={building.image}
-                alt={building.name}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-            <div
-                className="
+        <Link to={`/building/${building.id}`}>
+            <div className="relative overflow-hidden rounded-[18px]" style={{ width: width, height: height }}>
+                <img
+                    src={building.image}
+                    alt={building.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                <div
+                    className="
                     absolute 
                     inset-x-0 
                     bottom-0 
@@ -27,10 +29,10 @@ export default function BuildingOption({
                     to-transparent
                     pointer-events-none
                 "
-            />
+                />
 
-            <div
-                className="
+                <div
+                    className="
                     absolute 
                     bottom-0 
                     left-0 
@@ -41,8 +43,9 @@ export default function BuildingOption({
                     text-[24px]
                     font-semibold
                 ">
-                {building.name}
+                    {building.name}
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }

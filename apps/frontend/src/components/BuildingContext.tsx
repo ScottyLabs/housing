@@ -6,7 +6,14 @@ export interface Building {
     id: string;
     name: string;
     image: string;
+    photoGallery: BuildingImage[];
     tags: string[];
+    rooms: string[];
+    bathrooms: BathroomInfo;
+    closeBuildings: string;
+    AC: ACInfo;
+    kitchen: string;
+    lounge: string;
 }
 export interface Tag {
     id: string;
@@ -14,6 +21,18 @@ export interface Tag {
     icon: string;
 }
 
+type BathroomInfo = {
+    type: string;
+    details: string;
+};
+type ACInfo = {
+    available: boolean;
+    details: string;
+};
+type BuildingImage = {
+    link: string;
+    description: string;
+};
 interface BuildingContextType {
     buildings: Building[];
     tags: Tag[];
