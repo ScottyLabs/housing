@@ -1,12 +1,20 @@
 # CMUHousing
 
-The CMU Housing project is hosted at https://cmuhousing.com, however it is currently in alpha and lacks functionality in many regards. Take it as a demo of what the site will appear like, not an MVP.
+The CMU Housing project hosted at <https://cmuhousing.com> serves as the obvious choice for CMU students to look for Housing. Search for the perfect dorm, explore ratings and reviews from real students, and find your roommate all in one website.
+
+<!--TODO: ## Features-->
+
+<!--TODO: ## Project Overview-->
 
 ## Getting Started
 
 ### Prerequisites
 
 - [Bun](https://bun.com/docs/installation) - JavaScript runtime and package manager
+
+### Setup
+
+For detailed setup instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Initial Setup
 
@@ -34,11 +42,6 @@ Click on the localhost link in the terminal output to see the website!
 
 There is no backend at the moment. Instructions will be updated here once it is added!
 
-## Etiquette
+## Contributing
 
-Before pushing code, it is required that you lint and format it to ensure proper format and consistency. You can do this with the following commands in the root directory of this project (where this README is located).
-
-```sh
-bun run lint
-bun run format
-```
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before you contribute to this project!
