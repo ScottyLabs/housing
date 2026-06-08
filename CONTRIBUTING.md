@@ -2,6 +2,10 @@
 
 Thank you for your interest in contributing to CMUHousing! This guide will help you get started.
 
+## Setup Coderg/Github
+
+ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scottylabs/codeberg-setup/) to setup their codeberg in order to commit (Although Github is optional on the docs it isn't optional in this project). This allows your commits to be veried and signed.
+
 ## How to Contribute
 
 1. **Fork the repository** or create a new branch if you have write access
@@ -16,8 +20,24 @@ Thank you for your interest in contributing to CMUHousing! This guide will help 
 3. **Make your changes** following the code style and conventions
 4. **Test your changes** locally by running the project. See [README.md](README.md) for more instructions on running the project.
 5. **Commit using conventional commits** (see below)
+
+   ```bash
+   git add .
+   # then
+   git commit -m "Your commit message"
+   ```
+
 6. **Push to your fork** or branch
-7. **Open a Pull Request** with a clear description of your changes
+
+   ```bash
+   # if first branch push
+   git push --set-upstream origin your-branch-name
+
+   # otherwise
+   git push
+   ```
+
+7. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting your branch on [GitHub](https://github.com/ScottyLabs/cmuhousing/tree/main).
 
 ## Conventional Commits
 
@@ -74,6 +94,8 @@ Before you commit and open a pull request, make sure to:
 To understand current priorities, roadmap, and ongoing work:
 
 - Visit the [CMUHousing Development project](https://github.com/orgs/ScottyLabs/projects/29)
+  - Pick an issue from the board and assign it to yourself.
+  - Use Priority and Size labels to choose based on what you can handle in a timely fashion.
 - If you cannot access the board, ask a maintainer to add you to the ScottyLabs organization.
 
 ## Need Help?
@@ -86,7 +108,7 @@ If you have questions or need help:
 
 Project Resources
 
-- [Figma](https://www.figma.com/design/jxjhX4m6xj4PSZOizoaXHd/CMU-Housing/)
+- [Figma](https://www.figma.com/design/jxjhX4m6xj4PSZOizoaXHd/CMU-Housing)
 - [React Docs](https://react.dev/reference/react)
 - [CBP Docs and Meeting Minutes](https://docs.google.com/document/d/1-P8JLaKZ7PBhJOtMzQoG8pInUbNH-Cfx1wHNx3zs_as/edit)
 - [ScottyLabs Tech Docs](https://docs.scottylabs.org/)
