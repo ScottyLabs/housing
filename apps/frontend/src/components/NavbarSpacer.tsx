@@ -8,9 +8,9 @@ export default function NavbarSpacer({
     pathname: string;
 }) {
     return (
-        <div className="flex h-[47px] w-[9px] items-center justify-center">
+        <div className="flex h-16 w-2 items-center justify-center">
             <div
-                className={`h-[18px] w-[0px] border-black/20 border-1 rounded-full
+                className={`h-10 w-0 border-black/20 border-1 rounded-full
                                 ${pathname === left_nbr_path || pathname === right_nbr_path ? "hidden" : ""}`}
             />
         </div>

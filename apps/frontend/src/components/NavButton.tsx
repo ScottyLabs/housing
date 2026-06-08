@@ -18,9 +18,9 @@ export default function NavButton({
                 p-3 flex rounded-2xl transition-colors duration-200 items-center justify-center
                 ${isActive ? "bg-brand-primary text-white" : "hover:bg-gray-100"}
             `}>
-            <div className="flex gap-2 items-center text-lg h-full">
+            <div className="flex min-w-full gap-2 items-center text-xs whitespace-normal lg:text-sm">
                 <img src={icon} alt={`${name} Icon`} className={isActive ? "brightness-0 invert" : "brightness-100"} />
-                {name}
+                <div className="hidden md:block">{name}</div>
             </div>
         </Link>
     );

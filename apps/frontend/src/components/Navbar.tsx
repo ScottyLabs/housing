@@ -7,15 +7,18 @@ export default function Navbar() {
     const pathname = location.pathname;
 
     return (
-        <div className="overflow-x-auto w-full">
-            <div className="flex items-center justify-between min-w-[1600px] h-[100px] px-[26px] whitespace-nowrap">
-                <Link to="/" className="relative min-w-[168px] min-h-[28px]">
-                    <img src="/logo.svg" alt="CMU Housing" className="w-[168px] h-[28px]" />
+        <div className="w-full">
+            <div className="flex items-center h-24 whitespace-nowrap">
+                <Link
+                    to="/"
+                    className="px-6 py-3 gap-2 min-w-max relative rounded-2xl flex items-center cursor-pointer transition-colors duration-200 hover:bg-gray-100">
+                    <img src="/cmuhousingdog.svg" alt="CMU Housing" className="w-10 h-10" />
+                    <div className="hidden lg:block">
+                        <img src="/logo.svg" alt="CMU Housing" className="relative w-42 h-8 top-1" />
+                    </div>
                 </Link>
 
-                <div className="flex gap-[16px] items-center">
-                    <NavButton href="/" name="Home" icon="/home.svg" isActive={pathname === "/"} />
-                    <NavbarSpacer left_nbr_path="/" right_nbr_path="/building-options" pathname={pathname} />
+                <div className="flex flex-1 items-center justify-between mx-10 sm:mx-22 lg:mx-24">
                     <NavButton
                         href="/building-options"
                         name="All Building Options"
@@ -43,19 +46,18 @@ export default function Navbar() {
                         isActive={pathname === "/roommates"}
                     />
                 </div>
-
-                <div className="flex gap-[14px] items-center">
+                <div className="flex gap-1 items-center mx-2 ">
                     {/* TODO: add share link */}
                     <Link
                         to="/"
-                        className="py-3 px-6 h-full rounded-2xl border select-none cursor-pointer transition-colors duration-200 bg-brand-menugray hover:bg-gray-200 border-black/10">
-                        <div className="flex gap-2 items-center h-full">
-                            <img src="/share.svg" alt="Share Icon" className="brightness-100" />
-                            <p className="text-lg">Share with friends!</p>
+                        className="py-3 px-3 h-full rounded-2xl border select-none cursor-pointer transition-colors duration-200 bg-brand-menugray hover:bg-gray-200 border-black/10">
+                        <div className="flex gap-2 items-center whitespace-normal h-full text-xs">
+                            <img src="/share.svg" alt="Share Icon" className="brightness-100 min-w-max" />
+                            <div className="whitespace-normal hidden lg:block">Share with friends!</div>
                         </div>
                     </Link>
-                    <Link to="/profile">
-                        <img src="/profile.svg" alt="profile" className="rounded-full w-[52px] h-[52px]" />
+                    <Link to="/profile" className="min-w-max">
+                        <img src="/profile.svg" alt="profile" className="rounded-full w-10 h-10  mx-2" />
                     </Link>
                 </div>
             </div>
