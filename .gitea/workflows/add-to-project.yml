@@ -6,7 +6,7 @@ on:
 
 jobs:
   label-and-board:
-    runs-on: ghcr.io/catthehacker/ubuntu:act-latest
+    runs-on: codeberg-small
 
     env:
       CODEBERG_API: https://codeberg.org/api/v1
