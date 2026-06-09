@@ -6,12 +6,12 @@ on:
 
 jobs:
   label-and-board:
-    runs-on: ubuntu-latest
+    runs-on: docker.io/node:lts-bookworm
 
     env:
       CODEBERG_API: https://codeberg.org/api/v1
       REPO_OWNER: "ScottyLabs"
-      REPO_NAME:  "gostmeaper"
+      REPO_NAME:  "housing"
 
     steps:
       # Parse fields from the issue body 
@@ -28,9 +28,9 @@ jobs:
               return match ? match[1].trim() : '';
             };
 
-            const size = extract('Size');
+            const size     = extract('Size');
             const priority = extract('Priority');
-            const status = extract('Status');
+            const status   = extract('Status');
 
             // Parse checked checkboxes from the Labels section
             const labelBlock = extract('Labels');
@@ -41,22 +41,22 @@ jobs:
                   .map(l => l.replace(/- \[x\]\s*/i, '').trim())
               : [];
 
-            core.setOutput('size', size);
+            core.setOutput('size',     size);
             core.setOutput('priority', priority);
-            core.setOutput('status', status);
-            core.setOutput('labels', JSON.stringify(selectedLabels));
+            core.setOutput('status',   status);
+            core.setOutput('labels',   JSON.stringify(selectedLabels));
 
             core.info(`Parsed → size=${size} priority=${priority} status=${status}`);
             core.info(`Category labels: ${selectedLabels.join(', ') || '(none)'}`);
 
-      # Apply flat labels to the issue 
+      # Apply flat labels to the issue
       - name: Apply labels to issue
         env:
           FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
-          SIZE: ${{ steps.parse.outputs.size }}
-          PRIORITY: ${{ steps.parse.outputs.priority }}
-          STATUS: ${{ steps.parse.outputs.status }}
+          SIZE:       ${{ steps.parse.outputs.size }}
+          PRIORITY:   ${{ steps.parse.outputs.priority }}
+          STATUS:     ${{ steps.parse.outputs.status }}
           CAT_LABELS: ${{ steps.parse.outputs.labels }}
         run: |
           set -euo pipefail
@@ -64,9 +64,9 @@ jobs:
           labels=()
 
           # Flat labels — no prefix, just the value itself
-          [ -n "$SIZE" ] && labels+=("$SIZE")
+          [ -n "$SIZE" ]     && labels+=("$SIZE")
           [ -n "$PRIORITY" ] && labels+=("$PRIORITY")
-          [ -n "$STATUS" ] && labels+=("$STATUS")
+          [ -n "$STATUS" ]   && labels+=("$STATUS")
 
           # Category labels from checkboxes (bug, enhancement, etc.)
           while IFS= read -r lbl; do
