@@ -6,7 +6,7 @@ on:
 
 jobs:
   label-and-board:
-    runs-on: docker.io/node:lts-bookworm
+    runs-on: ghcr.io/catthehacker/ubuntu:act-latest
 
     env:
       CODEBERG_API: https://codeberg.org/api/v1
