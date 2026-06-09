@@ -1,0 +1,89 @@
+name: Label issue fields on open
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label-and-board:
+    runs-on: ubuntu-latest
+
+    env:
+      CODEBERG_API: https://codeberg.org/api/v1
+      REPO_OWNER: "ScottyLabs"
+      REPO_NAME:  "gostmeaper"
+
+    steps:
+      # Parse fields from the issue body 
+      - name: Parse issue body fields
+        id: parse
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+
+            const extract = (label) => {
+              const regex = new RegExp(`### ${label}\\s*\\n([^#]+)`);
+              const match = body.match(regex);
+              return match ? match[1].trim() : '';
+            };
+
+            const size = extract('Size');
+            const priority = extract('Priority');
+            const status = extract('Status');
+
+            // Parse checked checkboxes from the Labels section
+            const labelBlock = extract('Labels');
+            const selectedLabels = labelBlock
+              ? labelBlock
+                  .split('\n')
+                  .filter(l => /- \[x\]/i.test(l))
+                  .map(l => l.replace(/- \[x\]\s*/i, '').trim())
+              : [];
+
+            core.setOutput('size', size);
+            core.setOutput('priority', priority);
+            core.setOutput('status', status);
+            core.setOutput('labels', JSON.stringify(selectedLabels));
+
+            core.info(`Parsed → size=${size} priority=${priority} status=${status}`);
+            core.info(`Category labels: ${selectedLabels.join(', ') || '(none)'}`);
+
+      # Apply flat labels to the issue 
+      - name: Apply labels to issue
+        env:
+          FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          SIZE: ${{ steps.parse.outputs.size }}
+          PRIORITY: ${{ steps.parse.outputs.priority }}
+          STATUS: ${{ steps.parse.outputs.status }}
+          CAT_LABELS: ${{ steps.parse.outputs.labels }}
+        run: |
+          set -euo pipefail
+
+          labels=()
+
+          # Flat labels — no prefix, just the value itself
+          [ -n "$SIZE" ] && labels+=("$SIZE")
+          [ -n "$PRIORITY" ] && labels+=("$PRIORITY")
+          [ -n "$STATUS" ] && labels+=("$STATUS")
+
+          # Category labels from checkboxes (bug, enhancement, etc.)
+          while IFS= read -r lbl; do
+            [ -n "$lbl" ] && labels+=("$lbl")
+          done < <(echo "$CAT_LABELS" | jq -r '.[]')
+
+          if [ ${#labels[@]} -eq 0 ]; then
+            echo "No labels to apply — skipping."
+            exit 0
+          fi
+
+          payload=$(printf '%s\n' "${labels[@]}" | jq -Rsc 'split("\n") | map(select(length > 0)) | {labels: .}')
+          echo "Applying labels: $payload"
+
+          curl -fsSL \
+            -X POST \
+            -H "Authorization: token $FORGE_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$payload" \
+            "$CODEBERG_API/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER/labels"

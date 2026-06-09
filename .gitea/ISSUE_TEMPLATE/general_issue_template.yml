@@ -1,6 +1,6 @@
 ---
-name: Task (general)
-description: (general) Standard CMUHousing Development issue
+name: Task (General)
+description: (General) Standard issue for general access
 title: "[BRIEF DESCRIPTION]"
 labels: ["needs-triage"]
 body:
@@ -12,13 +12,15 @@ body:
     id: request
     attributes:
       label: Description
-      description: What is this issue trying to accomplish and why? If applicable where does the project stand right now?
+      description: What is this issue trying to accomplish and why? If applicable,
+        where does the project stand right now?
       placeholder: "e.g. The transition between the about and help page stutters randomly. Fix this bug if possible."
     validations:
       required: true
+
   - type: markdown
     attributes:
       value: |
         ### Help & Resources
-        - [README](https://github.com/ScottyLabs/cmuhousing/blob/main/README.md)
-        - [Contributing Guidelines](https://github.com/ScottyLabs/cmuhousing/blob/main/CONTRIBUTING.md)
+        - [README](../../blob/main/README.md)
+        - [Contributing Guidelines](../../blob/main/CONTRIBUTING.md)
