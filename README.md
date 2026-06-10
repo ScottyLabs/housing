@@ -14,7 +14,7 @@ The CMU Housing project hosted at <https://cmuhousing.com> serves as the obvious
 
 ### Setup
 
-For detailed setup instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
+For detailed setup instructions, see [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 ### Initial Setup
 
@@ -44,4 +44,4 @@ There is no backend at the moment. Instructions will be updated here once it is 
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) before you contribute to this project!
+Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) before you contribute to this project!
