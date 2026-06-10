@@ -18,9 +18,10 @@ body:
     validations:
       required: true
 
-  - type: markdown
+  - type: textarea
     attributes:
+      label: Help & Resources
+      description: Don't edit this
       value: |
-        ### Help & Resources
-        - [README](../../blob/main/README.md)
-        - [Contributing Guidelines](../../blob/main/CONTRIBUTING.md)
+        - [README](../../ScottyLabs/housing/src/branch/main/README.md)
+        - [Contributing Guidelines](../../ScottyLabs/housing/src/branch/main/CONTRIBUTING.md)
