@@ -11,10 +11,9 @@ jobs:
     env:
       CODEBERG_API: https://codeberg.org/api/v1
       REPO_OWNER: "ScottyLabs"
-      REPO_NAME:  "housing"
+      REPO_NAME: "housing"
 
     steps:
-      # Parse fields and apply labels
       - name: Parse and label issue
         env:
           FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
@@ -23,38 +22,49 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Extract the value under a ### Heading (first non-empty line after it)
+          # Write body to a temp file to avoid quoting/newline issues
+          echo "$ISSUE_BODY" > /tmp/issue_body.txt
+          cat /tmp/issue_body.txt
+
+          # Extract the value under a ### Heading — grabs the first non-blank
+          # line after the heading, skipping blank lines and "_No response_"
           extract() {
-            echo "$ISSUE_BODY" | awk "/^### $1/{found=1; next} found && /\S/{print; exit} found && /^###/{exit}" 
+            awk "/^### $1/{found=1; next}
+                 found && /^###/{exit}
+                 found && /^\s*$/{next}
+                 found && /^_No response_/{exit}
+                 found && /\S/{print; exit}" /tmp/issue_body.txt \
+            | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
           }
 
           SIZE=$(extract "Size")
           PRIORITY=$(extract "Priority")
           STATUS=$(extract "Status")
 
-          echo "Parsed → size=$SIZE priority=$PRIORITY status=$STATUS"
+          echo "Parsed → size='$SIZE' priority='$PRIORITY' status='$STATUS'"
 
-          # Parse checked checkboxes: lines matching "- [x] label"
-          LABEL_BLOCK=$(echo "$ISSUE_BODY" | awk '/^### Labels?/{found=1; next} found && /^###/{exit} found{print}')
-          mapfile -t CAT_LABELS < <(echo "$LABEL_BLOCK" | grep -iE '^\s*- \[x\]' | sed -E 's/^\s*- \[x\]\s*//i' | xargs)
+          # Parse checked checkboxes under ### Label
+          # Forgejo renders checked boxes as "- [x] label name"
+          CHECKED=$(awk '/^### Label/{found=1; next} found && /^###/{exit} found && /- \[x\]/i{print}' /tmp/issue_body.txt \
+            | sed -E 's/^[[:space:]]*- \[[xX]\][[:space:]]*//')
 
-          echo "Category labels: ${CAT_LABELS[*]:-none}"
+          echo "Checked labels: '$CHECKED'"
 
-          # Build the labels array
+          # Build labels array
           labels=()
           [ -n "$SIZE" ] && labels+=("$SIZE")
           [ -n "$PRIORITY" ] && labels+=("$PRIORITY")
           [ -n "$STATUS" ] && labels+=("$STATUS")
-          for lbl in "${CAT_LABELS[@]}"; do
+          while IFS= read -r lbl; do
+            lbl=$(echo "$lbl" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             [ -n "$lbl" ] && labels+=("$lbl")
-          done
+          done <<< "$CHECKED"
 
           if [ ${#labels[@]} -eq 0 ]; then
             echo "No labels to apply — skipping."
             exit 0
           fi
 
-          # Build JSON payload and apply labels
           payload=$(printf '%s\n' "${labels[@]}" | jq -Rsc 'split("\n") | map(select(length > 0)) | {labels: .}')
           echo "Applying labels: $payload"
 
@@ -64,3 +74,28 @@ jobs:
             -H "Content-Type: application/json" \
             -d "$payload" \
             "$CODEBERG_API/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER/labels"
+
+      # Clean up issue body
+      - name: Clean up issue body
+        env:
+          FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+
+          # Keep only the content before ### Size
+          cleaned=$(awk '/^### Size/{exit} {print}' /tmp/issue_body.txt | sed 's/[[:space:]]*$//')
+
+          # Strip trailing blank lines
+          cleaned=$(echo "$cleaned" | sed -e 's/[[:space:]]*$//' | awk 'BEGIN{blank=0} /^$/{blank++; next} {for(i=0;i<blank;i++) print ""; blank=0; print}')
+
+          payload=$(jq -n --arg body "$cleaned" '{"body": $body}')
+
+          curl -fsSL \
+            -X PATCH \
+            -H "Authorization: token $FORGE_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$payload" \
+            "$CODEBERG_API/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
+
+          echo "Issue body cleaned up."

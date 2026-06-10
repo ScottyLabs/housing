@@ -24,4 +24,4 @@ body:
       description: Don't edit this
       value: |
         - [README](../../ScottyLabs/housing/src/branch/main/README.md)
-        - [Contributing Guidelines](../../ScottyLabs/housing/src/branch/main/CONTRIBUTING.md)
+        - [Contributing Guidelines](../../ScottyLabs/housing/src/branch/main/docs/CONTRIBUTING.md)
