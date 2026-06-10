@@ -1,10 +1,14 @@
+---
+title: Contributing
+---
+
 # Contributing to CMUHousing
 
 Thank you for your interest in contributing to CMUHousing! This guide will help you get started.
 
-## Setup Coderg/Github
+## Setup Codeberg
 
-ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scottylabs/codeberg-setup/) to setup their codeberg in order to commit (Although Github is optional on the docs it isn't optional in this project). This allows your commits to be veried and signed.
+ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scottylabs/codeberg-setup/) to setup their codeberg in order to commit. CMUHousing developers also should add themselves to the cmuhousing team using [these instructions](https://docs.scottylabs.org/governance/adding-yourself-to-a-team/). This allows your commits to be verified and signed.
 
 ## How to Contribute
 
