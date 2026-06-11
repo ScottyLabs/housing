@@ -1,6 +1,6 @@
 secretspec:
   enable: true
-  provider: vault://secrets2.scottylabs.org/secret
+  provider: dotenv://.env
   profile: dev
 
 inputs:
@@ -8,8 +8,3 @@ inputs:
     url: git+https://codeberg.org/ScottyLabs/devenv
   treefmt-nix:
     url: github:numtide/treefmt-nix
-  git-hooks:
-    url: github:cachix/git-hooks.nix
-    inputs:
-      nixpkgs:
-        follows: nixpkgs

@@ -5,11 +5,8 @@
   scottylabs = {
     enable = true;
     project.name = "cmu-housing";
-
     secrets.enable = true;
-
-    deno.enable = true;
-    deno.react.enable = true;
+    claude.enable = false;
 
     kennel.sites.frontend = {
       spa = true;
@@ -19,10 +16,22 @@
 
   cachix.enable = false;
 
+  treefmt.config.settings.global.excludes = [
+    "apps/frontend/**"
+    "docs/**"
+  ];
+
+  languages.javascript = {
+    enable = true;
+    npm.enable = true;
+  };
+
   processes.frontend = {
     exec = "npm run dev -- --host";
     cwd = "./apps/frontend";
   };
 
-  env.VAULT_ADDR = "https://secrets2.scottylabs.org";
+  enterShell = ''
+    [ -f .env ] || touch .env
+  '';
 }
