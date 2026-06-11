@@ -48,28 +48,6 @@ export default function Slider() {
                     />
                 )}
             </div>
-
-            <style jsx>{`
-                .slider::-webkit-slider-thumb {
-                    -webkit-appearance: none;
-                    appearance: none;
-                    height: 22.6px;
-                    width: 22.6px;
-                    border-radius: 50%;
-                    background: var(--color-brand-primary);
-                    cursor: pointer;
-                    border: 0px;
-                }
-
-                .slider::-moz-range-thumb {
-                    height: 22.6px;
-                    width: 22.6px;
-                    border-radius: 50%;
-                    background: var(--color-brand-primary);
-                    cursor: pointer;
-                    border: 0px;
-                }
-            `}</style>
         </div>
     );
 }

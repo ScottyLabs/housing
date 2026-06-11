@@ -10,3 +10,23 @@
 body {
     font-family: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 22.6px;
+    width: 22.6px;
+    border-radius: 50%;
+    background: var(--color-brand-primary);
+    cursor: pointer;
+    border: 0;
+}
+
+.slider::-moz-range-thumb {
+    height: 22.6px;
+    width: 22.6px;
+    border-radius: 50%;
+    background: var(--color-brand-primary);
+    cursor: pointer;
+    border: 0;
+}

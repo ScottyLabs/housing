@@ -15,14 +15,12 @@
 
   outputs = { self, nixpkgs, devenv, ... } @ inputs:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
+      allSystems = linuxSystems ++ [ "aarch64-darwin" "x86_64-darwin" ];
+      forAllLinux = nixpkgs.lib.genAttrs linuxSystems;
+      forAllSystems = nixpkgs.lib.genAttrs allSystems;
     in
     {
-      packages = forAllSystems (system: {
-        devenv = devenv.packages.${system}.devenv;
-      });
-
       devShells = forAllSystems (
         system:
         let
@@ -31,13 +29,31 @@
         {
           default = devenv.lib.mkShell {
             inherit inputs pkgs;
-            modules = [
-              {
-                languages.javascript.enable = true;
-                languages.javascript.npm.enable = true;
-              }
-            ];
+            modules = [ ./devenv.nix ];
           };
+        }
+      );
+
+      packages = forAllLinux (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          frontend = pkgs.buildNpmPackage {
+            pname = "cmu-housing-frontend";
+            version = "0.1.0";
+            src = ./apps/frontend;
+            npmDepsHash = "sha256-fbzY2WVu9v8bLjavqt0e9NL/GE46TD7DRHsGKN/MwV8=";
+            npmBuildScript = "build";
+            installPhase = ''
+              mkdir -p $out
+              cp -r dist/* $out/
+            '';
+          };
+
+          devenv = devenv.packages.${system}.devenv;
+          default = self.packages.${system}.frontend;
         }
       );
     };

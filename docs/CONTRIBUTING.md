@@ -76,13 +76,29 @@ You will also need git installed.
 
 <!--TODO: ## Database Setup  -->
 
+## Local Development
+
+Prerequisites: [devenv](https://devenv.sh) and [direnv](https://direnv.net/).
+
+```sh
+cd housing
+direnv allow
+devenv up   # starts the frontend dev server on port 3000
+```
+
+If secretspec complains about the vault provider locally, use:
+
+```sh
+SECRETSPEC_PROVIDER=dotenv://.env devenv shell
+```
+
 ## Before Submitting
 
 Before you commit and open a pull request, make sure to:
 
-- Run `bun lint` and fix any errors/warnings
-- Run `bun format` to format your code
-- Test locally with your changes
+- Run `npm run lint` in `apps/frontend` and fix any errors/warnings
+- Run `npm run format` from the repo root to format your code
+- Test locally with your changes (`devenv up` or `npm run dev` in `apps/frontend`)
 - Ensure your commits follow conventional commit format
 - Update documentation if you added/changed features
 
