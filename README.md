@@ -6,7 +6,7 @@ Production is hosted on [Kennel](https://codeberg.org/ScottyLabs/kennel):
 
 - https://housing-frontend-main.scottylabs.net
 - https://cmuhousing.scottylabs.org
-- https://cmuhousing.com (DNS cutover pending)
+- https://cmuhousing.com ([DNS cutover pending](docs/DEPLOYMENT.md))
 
 ## Getting Started
 
