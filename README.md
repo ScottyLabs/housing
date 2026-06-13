@@ -21,7 +21,6 @@ For detailed setup instructions, see [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 ```sh
 direnv allow
-cd apps/frontend && npm install
 ```
 
 ### Running the Frontend

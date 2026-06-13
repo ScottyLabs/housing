@@ -1,4 +1,23 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
+
+let
+  denoPackages = pkgs.callPackage ./nix/deno-package.nix { };
+
+  cleanJsSrc = path:
+    lib.cleanSourceWith {
+      src = path;
+      filter = p: _t:
+        let base = baseNameOf p;
+        in !(builtins.elem base [
+          "node_modules"
+          "package-lock.json"
+          "dist"
+        ]);
+    };
+
+  # Pin on x86_64-linux after the first Kennel build prints "got: sha256-...".
+  denoDepsHash = lib.fakeHash;
+in
 {
   imports = [ inputs.scottylabs.devenvModules.default ];
 
@@ -7,6 +26,8 @@
     project.name = "cmu-housing";
     secrets.enable = true;
     claude.enable = false;
+    deno.enable = true;
+    deno.react.enable = true;
 
     kennel.sites.frontend = {
       spa = true;
@@ -21,13 +42,21 @@
     "docs/**"
   ];
 
-  languages.javascript = {
-    enable = true;
-    npm.enable = true;
+  outputs.frontend = denoPackages.mkDenoViteFrontend {
+    pname = "frontend";
+    src = cleanJsSrc ./apps/frontend;
+    depsHash = denoDepsHash;
   };
 
+  git-hooks.hooks.oxlint.settings.allow = [
+    "restriction"
+    "style"
+    "pedantic"
+    "nursery"
+  ];
+
   processes.frontend = {
-    exec = "npm run dev -- --host";
+    exec = "deno install && deno run dev --host";
     cwd = "./apps/frontend";
   };
 
