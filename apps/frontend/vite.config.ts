@@ -1,18 +1,18 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+import { defineConfig } from "vite";
+
+const srcDir = new URL("./src", import.meta.url).pathname;
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "./src")
+            "@": srcDir
         }
     },
     server: {
-        port: 3000,
-        open: true
+        port: 3000
     },
     build: {
         outDir: "dist",

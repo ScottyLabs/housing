@@ -1,0 +1,7 @@
+{
+  "nodeModulesDir": "auto",
+  "tasks": {
+    "dev": "vite --host",
+    "build": "vite build"
+  }
+}

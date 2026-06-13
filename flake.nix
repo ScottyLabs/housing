@@ -13,11 +13,9 @@
     devenv.url = "github:cachix/devenv";
   };
 
-  outputs = { self, nixpkgs, devenv, ... } @ inputs:
+  outputs = { nixpkgs, devenv, ... } @ inputs:
     let
-      linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
-      allSystems = linuxSystems ++ [ "aarch64-darwin" "x86_64-darwin" ];
-      forAllLinux = nixpkgs.lib.genAttrs linuxSystems;
+      allSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs allSystems;
     in
     {
@@ -31,29 +29,6 @@
             inherit inputs pkgs;
             modules = [ ./devenv.nix ];
           };
-        }
-      );
-
-      packages = forAllLinux (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
-          frontend = pkgs.buildNpmPackage {
-            pname = "cmu-housing-frontend";
-            version = "0.1.0";
-            src = ./apps/frontend;
-            npmDepsHash = "sha256-fbzY2WVu9v8bLjavqt0e9NL/GE46TD7DRHsGKN/MwV8=";
-            npmBuildScript = "build";
-            installPhase = ''
-              mkdir -p $out
-              cp -r dist/* $out/
-            '';
-          };
-
-          devenv = devenv.packages.${system}.devenv;
-          default = self.packages.${system}.frontend;
         }
       );
     };
