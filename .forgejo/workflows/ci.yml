@@ -5,17 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
-  checks:
-    runs-on: docker
-    steps:
-      - name: Checkout
-        uses: https://code.forgejo.org/actions/checkout@v6
   checks:
     runs-on: docker
     steps:
