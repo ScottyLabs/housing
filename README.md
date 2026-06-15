@@ -14,6 +14,7 @@ Production also deploys via [Kennel](https://codeberg.org/ScottyLabs/kennel) to 
 
 - [devenv](https://devenv.sh)
 - [direnv](https://direnv.net/)
+- [Deno](https://docs.deno.com/runtime/getting_started/installation/)
 
 ### Setup
 
