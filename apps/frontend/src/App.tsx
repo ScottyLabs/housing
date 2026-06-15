@@ -31,7 +31,7 @@ export default function App() {
     const location = useLocation();
     useEffect(() => {
         window.scroll({ top: 0 });
-    }, []);
+    }, [location.pathname]);
     return (
         <AppLayout>
             <div key={location.pathname}>
