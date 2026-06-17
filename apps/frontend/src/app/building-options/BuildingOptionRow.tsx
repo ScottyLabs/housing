@@ -1,6 +1,6 @@
-import TaggedBuildingOption from "./TaggedBuildingOption";
-import { Building } from "@/components/BuildingContext";
 import { Link } from "react-router-dom";
+import type { Building } from "../../components/BuildingContext.tsx";
+import TaggedBuildingOption from "./TaggedBuildingOption.tsx";
 
 export default function BuildingOptionRow({
   title,
