@@ -1,10 +1,9 @@
-import FilterHeader from "./FilterHeader";
-import { SelectOption } from "@/components/DropdownButton";
-import DropdownButton from "@/components/DropdownButton";
 import { useState } from "react";
-import { Building, useBuildings } from "@/components/BuildingContext";
-import Slider from "@/components/Slider";
-import Checkbox from "@/components/Checkbox";
+import { type Building, useBuildings } from "../../components/BuildingContext.tsx";
+import Checkbox from "../../components/Checkbox.tsx";
+import DropdownButton, { type SelectOption } from "../../components/DropdownButton.tsx";
+import Slider from "../../components/Slider.tsx";
+import FilterHeader from "./FilterHeader.tsx";
 
 export default function BuildingFilter() {
   const [isOpen, setIsOpen] = useState(true);
@@ -25,13 +24,17 @@ export default function BuildingFilter() {
         <div className="flex-1 flex flex-col overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-[385px] h-[83vh]">
           <div className="flex items-center justify-between w-full flex-shrink-0 pt-[31px] pb-[24px] px-5">
             <h2 className="font-semibold text-[24px] leading-none">Filter by...</h2>
-            <div className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+            <button
+              type="button"
+              className="cursor-pointer bg-transparent border-none p-0"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <img
                 src="/hide-sidebar-v2.svg"
                 alt="hide sidebar"
                 className="w-[22.4px] h-[22.4px]"
               />
-            </div>
+            </button>
           </div>
           <div className="flex-1 overflow-y-auto px-[24px] pb-[24px]">
             <div className="flex flex-col gap-[38px] items-center sm:items-start">
@@ -87,9 +90,13 @@ export default function BuildingFilter() {
       )}
       {!isOpen && (
         <div className="flex-1 flex flex-col gap-[20px] overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-[75px] h-[83vh] py-6 items-center">
-          <div className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <button
+            type="button"
+            className="cursor-pointer bg-transparent border-none p-0"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             <img src="/hide-sidebar-v2.svg" alt="hide sidebar" className="w-[22.4px] h-[22.4px]" />
-          </div>
+          </button>
           <img src="/distance.svg" alt="distance from" className="w-[38.4px] h-[38.4px]" />
           <img src="/atmosphere.svg" alt="atmosphere" className="w-[38.4px] h-[38.4px]" />
           <img src="/accomadations.svg" alt="accomadations" className="w-[38.4px] h-[38.4px]" />
