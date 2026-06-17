@@ -21,7 +21,7 @@ export default function BuildingFilter() {
   return (
     <div className="pb-10">
       {isOpen && (
-        <div className="flex-1 flex flex-col overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-[385px] h-[83vh]">
+        <div className="flex-1 flex flex-col overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-[385px]">
           <div className="flex items-center justify-between w-full flex-shrink-0 pt-[31px] pb-[24px] px-5">
             <h2 className="font-semibold text-[24px] leading-none">Filter by...</h2>
             <button
@@ -89,7 +89,7 @@ export default function BuildingFilter() {
         </div>
       )}
       {!isOpen && (
-        <div className="flex-1 flex flex-col gap-[20px] overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-[75px] h-[83vh] py-6 items-center">
+        <div className="flex-1 flex flex-col gap-[20px] overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-[75px] py-6 items-center">
           <button
             type="button"
             className="cursor-pointer bg-transparent border-none p-0"
