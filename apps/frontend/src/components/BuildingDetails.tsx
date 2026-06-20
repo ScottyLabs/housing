@@ -259,25 +259,41 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 const roomTypePlans = building.floorPlanGallery.filter(p => !isFloorEntry(p.description));
                 const floorPlans   = building.floorPlanGallery.filter(p =>  isFloorEntry(p.description));
 
+                const roomTypeIcon = (desc: string): string | null => {
+                    const d = desc.toLowerCase();
+                    if (d.includes("triple")) return "/unsorted-icons/room type/trad triple.svg";
+                    if (d.includes("double")) return "/unsorted-icons/room type/trad double.svg";
+                    if (d.includes("single")) return "/unsorted-icons/room type/trad single.svg";
+                    return null;
+                };
+
                 const SubGrid = ({ items, label }: { items: GalleryItem[]; label: string }) =>
                     items.length === 0 ? null : (
                         <div className="space-y-2">
                             <div className="text-[14px] font-semibold text-black/50 uppercase tracking-wide px-1">{label}</div>
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
-                                {items.map((plan, i) => (
-                                    <div
-                                        key={plan.link}
-                                        className="flex flex-col cursor-pointer group bg-white rounded-xl p-2 shadow-sm border border-black/5 transition-shadow hover:shadow-md"
-                                        onClick={() => setLightbox({ items, index: i })}
-                                    >
-                                        <img
-                                            src={plan.link}
-                                            alt={plan.description}
-                                            className="w-full rounded-lg border border-gray-200 transition-opacity group-hover:opacity-80"
-                                        />
-                                        <div className="text-center text-[14px] pt-2 pb-1">{plan.description}</div>
-                                    </div>
-                                ))}
+                                {items.map((plan, i) => {
+                                    const icon = roomTypeIcon(plan.description);
+                                    return (
+                                        <div
+                                            key={plan.link}
+                                            className="flex flex-col cursor-pointer group bg-white rounded-xl p-2 shadow-sm border border-black/5 transition-shadow hover:shadow-md"
+                                            onClick={() => setLightbox({ items, index: i })}
+                                        >
+                                            <img
+                                                src={plan.link}
+                                                alt={plan.description}
+                                                className="w-full rounded-lg border border-gray-200 transition-opacity group-hover:opacity-80"
+                                            />
+                                            <div className="flex items-center justify-center gap-1.5 pt-2 pb-1">
+                                                {icon && (
+                                                    <img src={icon} alt="" width={18} height={18} className="w-[18px] h-[18px] flex-shrink-0" />
+                                                )}
+                                                <span className="text-center text-[14px]">{plan.description}</span>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     );
