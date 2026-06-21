@@ -299,6 +299,17 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                                                 )}
                                                 <span className="font-semibold text-[16px]">{plan.description}</span>
                                             </div>
+                                            {plan.virtualTourLink && (
+                                                <a
+                                                    href={plan.virtualTourLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="block w-full text-center text-white text-[14px] bg-brand-primary hover:opacity-90 transition-opacity rounded-lg py-1.5 mt-1 mb-1"
+                                                >
+                                                    Virtual Tour
+                                                </a>
+                                            )}
                                         </div>
                                     );
                                 })}
