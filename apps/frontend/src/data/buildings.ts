@@ -29,12 +29,14 @@ export const buildings = [
             {
                 link: "/floor-plans/etower/etower_traditional-single_floor-plan.png",
                 description: "Traditional Single",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-morewood-etower-traditional-single-x24/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-etower-traditional-single-x24/fullscreen/"
             },
             {
                 link: "/floor-plans/etower/etower_traditional-double_floor-plan.png",
                 description: "Traditional Double",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-morewood-etower-traditional-double/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-etower-traditional-double/fullscreen/"
             },
             {
                 link: "/floor-plans/etower/morewood-e-third-floor.png",
@@ -95,7 +97,8 @@ export const buildings = [
             {
                 link: "/floor-plans/stever/stever_traditional-double_floor-plan.png",
                 description: "Traditional Double",
-                virtualTourLink: "https://www.vividmediavirtualtours.com/3d-model/cmu-stever-house-standard-layout/fullscreen/"
+                virtualTourLink:
+                    "https://www.vividmediavirtualtours.com/3d-model/cmu-stever-house-standard-layout/fullscreen/"
             },
             {
                 link: "/floor-plans/stever/stever-first-floor.png",
@@ -156,12 +159,14 @@ export const buildings = [
             {
                 link: "/floor-plans/boss/boss_semi-suite-single_floor-plan.png",
                 description: "Semi-Suite Single",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
             },
             {
                 link: "/floor-plans/boss/boss_semi-suite-double_floor-plan.png",
                 description: "Semi-Suite Double",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
             },
             {
                 link: "/floor-plans/boss/boss_groundfloor.png",
@@ -300,7 +305,8 @@ export const buildings = [
             {
                 link: "/floor-plans/donner/donner_traditional-double_floor-plan.png",
                 description: "Traditional Double",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-donner-traditional-double-standard/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-donner-traditional-double-standard/fullscreen/"
             },
             {
                 link: "/floor-plans/donner/donner_traditional-triple_floor-plan.png",
@@ -379,12 +385,14 @@ export const buildings = [
             {
                 link: "/floor-plans/henderson/henderson_semi-suite-single_floor-plan.png",
                 description: "Semi-Suite Single",
-                virtualTourLink: "https://www.vividmediavirtualtours.com/3d-model/cmu-henderson-house-semi-suite-rooms-x00-x02/fullscreen/"
+                virtualTourLink:
+                    "https://www.vividmediavirtualtours.com/3d-model/cmu-henderson-house-semi-suite-rooms-x00-x02/fullscreen/"
             },
             {
                 link: "/floor-plans/henderson/henderson_semi-suite-double_floor-plan.png",
                 description: "Semi-Suite Double",
-                virtualTourLink: "https://www.vividmediavirtualtours.com/3d-model/cmu-henderson-house-semi-suite-rooms-x04-x06/fullscreen/"
+                virtualTourLink:
+                    "https://www.vividmediavirtualtours.com/3d-model/cmu-henderson-house-semi-suite-rooms-x04-x06/fullscreen/"
             },
             {
                 link: "/floor-plans/henderson/henderson-ground-floor-floor-plan.png",
@@ -454,7 +462,8 @@ export const buildings = [
             {
                 link: "/floor-plans/mcgill/mcgill-semi-suite-single-example.png",
                 description: "Semi-Suite Single",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-mcgill-semi-suite-x01-x02-x04/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mcgill-semi-suite-x01-x02-x04/fullscreen/"
             },
             {
                 link: "/floor-plans/mcgill/mcgill-semi-suite-double-example.png",
@@ -521,17 +530,20 @@ export const buildings = [
             {
                 link: "/floor-plans/morewood/morewood-gardens_semi-suite-single_floor-plan.png",
                 description: "Semi-Suite Single",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-single-x03/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-single-x03/fullscreen/"
             },
             {
                 link: "/floor-plans/morewood/morewood-gardens_semi-suite-double_floor-plan.png",
                 description: "Semi-Suite Double",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-doubles-x05-x07/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-doubles-x05-x07/fullscreen/"
             },
             {
                 link: "/floor-plans/morewood/morewood-gardens_semi-suite-triple_floor-plan.png",
                 description: "Semi-Suite Triple",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-triple-x01/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-triple-x01/fullscreen/"
             },
             {
                 link: "/floor-plans/morewood/morewood-gardens-first-floor-floor-plan.png",
@@ -624,27 +636,32 @@ export const buildings = [
             {
                 link: "/floor-plans/mudge/mudge_traditional-single_floor-plan.png",
                 description: "Traditional Single",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a301-traditional-single/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a301-traditional-single/fullscreen/"
             },
             {
                 link: "/floor-plans/mudge/mudge_traditional-double_floor-plan.png",
                 description: "Traditional Double",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a302-traditional-double/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a302-traditional-double/fullscreen/"
             },
             {
                 link: "/floor-plans/mudge/mudge_traditional-triple_floor-plan.png",
                 description: "Traditional Triple",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a216-traditional-triple/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a216-traditional-triple/fullscreen/"
             },
             {
                 link: "/floor-plans/mudge/mudge_semi-suite-single_floor-plan.png",
                 description: "Semi-Suite Single",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a101-semi-suite-single/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a101-semi-suite-single/fullscreen/"
             },
             {
                 link: "/floor-plans/mudge/mudge_semi-suite-double_floor-plan.png",
                 description: "Semi-Suite Double",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-mudge-btower-semi-suite-doubles-standard-2/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-btower-semi-suite-doubles-standard-2/fullscreen/"
             },
             {
                 link: "/floor-plans/mudge/mudge_semi-suite-quad_floor-plan.png",
@@ -760,7 +777,8 @@ export const buildings = [
             {
                 link: "/floor-plans/fifth/residence-on-fifth-typical-apartment-floor-plan.png",
                 description: "Typical Apartment",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-residence-on-fifth-m105-apt-triple/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-residence-on-fifth-m105-apt-triple/fullscreen/"
             },
             {
                 link: "/floor-plans/fifth/residence-on-fifth---mezzanine.png",
@@ -964,12 +982,14 @@ export const buildings = [
             {
                 link: "/floor-plans/hamerschlag/hamerschlag_traditional-single_floor-plan.png",
                 description: "Traditional Single",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-hamerschlag-house-traditional-single/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-hamerschlag-house-traditional-single/fullscreen/"
             },
             {
                 link: "/floor-plans/hamerschlag/hamerschlag_traditional-double_floor-plan.png",
                 description: "Traditional Double",
-                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-hamerschlag-house-traditional-double/fullscreen/"
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-hamerschlag-house-traditional-double/fullscreen/"
             },
             {
                 link: "/floor-plans/hamerschlag/hamerschlag-first-floor.png",

@@ -10,7 +10,10 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
     const [lightbox, setLightbox] = useState<{ items: GalleryItem[]; index: number } | null>(null);
 
     const closeLightbox = useCallback(() => setLightbox(null), []);
-    const prev = useCallback(() => setLightbox((lb) => lb && { ...lb, index: (lb.index - 1 + lb.items.length) % lb.items.length }), []);
+    const prev = useCallback(
+        () => setLightbox((lb) => lb && { ...lb, index: (lb.index - 1 + lb.items.length) % lb.items.length }),
+        []
+    );
     const next = useCallback(() => setLightbox((lb) => lb && { ...lb, index: (lb.index + 1) % lb.items.length }), []);
 
     useEffect(() => {
@@ -240,8 +243,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                         <div
                             key={image.link}
                             className="flex flex-col items-center cursor-pointer group"
-                            onClick={() => setLightbox({ items: building.photoGallery, index: i })}
-                        >
+                            onClick={() => setLightbox({ items: building.photoGallery, index: i })}>
                             <img
                                 src={image.link}
                                 alt={image.description}
@@ -252,150 +254,184 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                     ))}
                 </div>
             </div>
-            {building.floorPlanGallery.length > 0 && (() => {
-                const isFloorEntry = (desc: string) =>
-                    /floor|level|tower|mezzanine/i.test(desc);
+            {building.floorPlanGallery.length > 0 &&
+                (() => {
+                    const isFloorEntry = (desc: string) => /floor|level|tower|mezzanine/i.test(desc);
 
-                const roomTypePlans = building.floorPlanGallery.filter(p => !isFloorEntry(p.description));
-                const floorPlans   = building.floorPlanGallery.filter(p =>  isFloorEntry(p.description));
+                    const roomTypePlans = building.floorPlanGallery.filter((p) => !isFloorEntry(p.description));
+                    const floorPlans = building.floorPlanGallery.filter((p) => isFloorEntry(p.description));
 
-                const roomTypeIcon = (desc: string): string | null => {
-                    const d = desc.toLowerCase();
-                    if (d.includes("triple")) return "/unsorted-icons/room type/trad triple.svg";
-                    if (d.includes("double")) return "/unsorted-icons/room type/trad double.svg";
-                    if (d.includes("single")) return "/unsorted-icons/room type/trad single.svg";
-                    return null;
-                };
+                    const roomTypeIcon = (desc: string): string | null => {
+                        const d = desc.toLowerCase();
+                        if (d.includes("triple")) return "/unsorted-icons/room type/trad triple.svg";
+                        if (d.includes("double")) return "/unsorted-icons/room type/trad double.svg";
+                        if (d.includes("single")) return "/unsorted-icons/room type/trad single.svg";
+                        return null;
+                    };
 
-                const SubGrid = ({ items, label, gridClass }: { items: GalleryItem[]; label: string; gridClass: string }) =>
-                    items.length === 0 ? null : (
-                        <div className="space-y-2">
-                            <div className="font-semibold text-[16px] px-1">{label}</div>
-                            <div className={`grid grid-cols-1 gap-4 ${gridClass}`}>
-                                {items.map((plan, i) => {
-                                    const icon = roomTypeIcon(plan.description);
-                                    return (
-                                        <div
-                                            key={plan.link}
-                                            className="flex flex-col cursor-pointer group bg-white rounded-xl p-2 shadow-sm border border-black/5 transition-shadow hover:shadow-md"
-                                            onClick={() => setLightbox({ items, index: i })}
-                                        >
-                                            <div className="relative">
-                                                <img
-                                                    src={plan.link}
-                                                    alt={plan.description}
-                                                    className="w-full rounded-lg border border-gray-200 transition-opacity group-hover:opacity-80"
-                                                />
-                                                <div className="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center border border-gray-300">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                        <path d="M11 3 L17 3 Q21 3 21 7 L21 13" />
-                                                        <path d="M13 21 L7 21 Q3 21 3 17 L3 11" />
-                                                    </svg>
+                    const SubGrid = ({
+                        items,
+                        label,
+                        gridClass
+                    }: {
+                        items: GalleryItem[];
+                        label: string;
+                        gridClass: string;
+                    }) =>
+                        items.length === 0 ? null : (
+                            <div className="space-y-2">
+                                <div className="font-semibold text-[16px] px-1">{label}</div>
+                                <div className={`grid grid-cols-1 gap-4 ${gridClass}`}>
+                                    {items.map((plan, i) => {
+                                        const icon = roomTypeIcon(plan.description);
+                                        return (
+                                            <div
+                                                key={plan.link}
+                                                className="flex flex-col cursor-pointer group bg-white rounded-xl p-2 shadow-sm border border-black/5 transition-shadow hover:shadow-md"
+                                                onClick={() => setLightbox({ items, index: i })}>
+                                                <div className="relative">
+                                                    <img
+                                                        src={plan.link}
+                                                        alt={plan.description}
+                                                        className="w-full rounded-lg border border-gray-200 transition-opacity group-hover:opacity-80"
+                                                    />
+                                                    <div className="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center border border-gray-300">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="13"
+                                                            height="13"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="black"
+                                                            strokeWidth="2.5"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round">
+                                                            <path d="M11 3 L17 3 Q21 3 21 7 L21 13" />
+                                                            <path d="M13 21 L7 21 Q3 21 3 17 L3 11" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="flex items-center gap-1.5 pt-2 pb-1">
-                                                {icon && (
-                                                    <img src={icon} alt="" width={18} height={18} className="w-[18px] h-[18px] flex-shrink-0" />
+                                                <div className="flex items-center gap-1.5 pt-2 pb-1">
+                                                    {icon && (
+                                                        <img
+                                                            src={icon}
+                                                            alt=""
+                                                            width={18}
+                                                            height={18}
+                                                            className="w-[18px] h-[18px] flex-shrink-0"
+                                                        />
+                                                    )}
+                                                    <span className="font-semibold text-[16px]">
+                                                        {plan.description}
+                                                    </span>
+                                                </div>
+                                                {plan.virtualTourLink && (
+                                                    <a
+                                                        href={plan.virtualTourLink}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        onClick={(e) => e.stopPropagation()}
+                                                        className="block w-full text-center text-white text-[14px] bg-brand-primary hover:opacity-90 transition-opacity rounded-lg py-1.5 mt-1 mb-1">
+                                                        Virtual Tour
+                                                    </a>
                                                 )}
-                                                <span className="font-semibold text-[16px]">{plan.description}</span>
                                             </div>
-                                            {plan.virtualTourLink && (
-                                                <a
-                                                    href={plan.virtualTourLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    onClick={(e) => e.stopPropagation()}
-                                                    className="block w-full text-center text-white text-[14px] bg-brand-primary hover:opacity-90 transition-opacity rounded-lg py-1.5 mt-1 mb-1"
-                                                >
-                                                    Virtual Tour
-                                                </a>
-                                            )}
-                                        </div>
-                                    );
-                                })}
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </div>
+                        );
+
+                    return (
+                        <>
+                            <div className="flex gap-3 pt-2.5 items-center">
+                                <img
+                                    src={"/floorplans.svg"}
+                                    alt={"floorplans"}
+                                    width={36}
+                                    height={36}
+                                    className="w-9 h-9"
+                                />
+                                <div className="h-fit">
+                                    <h1 className="font-semibold text-[20px] flex-shrink-0">Floor Plans</h1>
+                                </div>
+                            </div>
+                            <div className="flex-1 text-[16px] pt-2.5 pb-2.5 px-2.5 rounded-2xl bg-brand-menugray border border-black/10 space-y-6">
+                                <SubGrid
+                                    items={roomTypePlans}
+                                    label="Room Types"
+                                    gridClass="sm:grid-cols-2 md:grid-cols-3"
+                                />
+                                <SubGrid items={floorPlans} label="Floors" gridClass="sm:grid-cols-2" />
+                            </div>
+                        </>
                     );
-
-                return (
-                    <>
-                        <div className="flex gap-3 pt-2.5 items-center">
-                            <img src={"/floorplans.svg"} alt={"floorplans"} width={36} height={36} className="w-9 h-9" />
-                            <div className="h-fit">
-                                <h1 className="font-semibold text-[20px] flex-shrink-0">Floor Plans</h1>
-                            </div>
-                        </div>
-                        <div className="flex-1 text-[16px] pt-2.5 pb-2.5 px-2.5 rounded-2xl bg-brand-menugray border border-black/10 space-y-6">
-                            <SubGrid items={roomTypePlans} label="Room Types" gridClass="sm:grid-cols-2 md:grid-cols-3" />
-                            <SubGrid items={floorPlans}    label="Floors"     gridClass="sm:grid-cols-2" />
-                        </div>
-                    </>
-                );
-            })()}
-
+                })()}
 
             {/* ── Lightbox ── */}
-            {lightbox && (() => {
-                const item = lightbox.items[lightbox.index];
-                const hasMultiple = lightbox.items.length > 1;
-                return (
-                    <div
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-                        onClick={closeLightbox}
-                    >
-                        {/* prev */}
-                        {hasMultiple && (
-                            <button
-                                className="absolute left-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
-                                onClick={(e) => { e.stopPropagation(); prev(); }}
-                                aria-label="Previous"
-                            >
-                                ‹
-                            </button>
-                        )}
-
-                        {/* image card */}
+            {lightbox &&
+                (() => {
+                    const item = lightbox.items[lightbox.index];
+                    const hasMultiple = lightbox.items.length > 1;
+                    return (
                         <div
-                            className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center gap-3"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <img
-                                src={item.link}
-                                alt={item.description}
-                                className="max-w-[90vw] max-h-[80vh] rounded-2xl object-contain shadow-2xl"
-                            />
-                            <div className="text-white text-[15px]">
-                                {item.description}
-                                {hasMultiple && (
-                                    <span className="ml-2 text-white/50 text-[13px]">
-                                        {lightbox.index + 1} / {lightbox.items.length}
-                                    </span>
-                                )}
+                            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+                            onClick={closeLightbox}>
+                            {/* prev */}
+                            {hasMultiple && (
+                                <button
+                                    className="absolute left-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        prev();
+                                    }}
+                                    aria-label="Previous">
+                                    ‹
+                                </button>
+                            )}
+
+                            {/* image card */}
+                            <div
+                                className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center gap-3"
+                                onClick={(e) => e.stopPropagation()}>
+                                <img
+                                    src={item.link}
+                                    alt={item.description}
+                                    className="max-w-[90vw] max-h-[80vh] rounded-2xl object-contain shadow-2xl"
+                                />
+                                <div className="text-white text-[15px]">
+                                    {item.description}
+                                    {hasMultiple && (
+                                        <span className="ml-2 text-white/50 text-[13px]">
+                                            {lightbox.index + 1} / {lightbox.items.length}
+                                        </span>
+                                    )}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* next */}
-                        {hasMultiple && (
+                            {/* next */}
+                            {hasMultiple && (
+                                <button
+                                    className="absolute right-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        next();
+                                    }}
+                                    aria-label="Next">
+                                    ›
+                                </button>
+                            )}
+
+                            {/* close */}
                             <button
-                                className="absolute right-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
-                                onClick={(e) => { e.stopPropagation(); next(); }}
-                                aria-label="Next"
-                            >
-                                ›
+                                className="absolute top-4 right-4 text-white text-2xl px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
+                                onClick={closeLightbox}
+                                aria-label="Close">
+                                ✕
                             </button>
-                        )}
-
-                        {/* close */}
-                        <button
-                            className="absolute top-4 right-4 text-white text-2xl px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
-                            onClick={closeLightbox}
-                            aria-label="Close"
-                        >
-                            ✕
-                        </button>
-                    </div>
-                );
-            })()}
+                        </div>
+                    );
+                })()}
         </div>
     );
 }
