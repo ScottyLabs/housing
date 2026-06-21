@@ -267,11 +267,11 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                     return null;
                 };
 
-                const SubGrid = ({ items, label }: { items: GalleryItem[]; label: string }) =>
+                const SubGrid = ({ items, label, gridClass }: { items: GalleryItem[]; label: string; gridClass: string }) =>
                     items.length === 0 ? null : (
                         <div className="space-y-2">
                             <div className="font-semibold text-[16px] px-1">{label}</div>
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+                            <div className={`grid grid-cols-1 gap-4 ${gridClass}`}>
                                 {items.map((plan, i) => {
                                     const icon = roomTypeIcon(plan.description);
                                     return (
@@ -307,8 +307,8 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                             </div>
                         </div>
                         <div className="flex-1 text-[16px] pt-2.5 pb-2.5 px-2.5 rounded-2xl bg-brand-menugray border border-black/10 space-y-6">
-                            <SubGrid items={roomTypePlans} label="Room Types" />
-                            <SubGrid items={floorPlans}    label="Floors" />
+                            <SubGrid items={roomTypePlans} label="Room Types" gridClass="sm:grid-cols-2 md:grid-cols-3" />
+                            <SubGrid items={floorPlans}    label="Floors"     gridClass="sm:grid-cols-2" />
                         </div>
                     </>
                 );
