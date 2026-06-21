@@ -280,11 +280,19 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                                             className="flex flex-col cursor-pointer group bg-white rounded-xl p-2 shadow-sm border border-black/5 transition-shadow hover:shadow-md"
                                             onClick={() => setLightbox({ items, index: i })}
                                         >
-                                            <img
-                                                src={plan.link}
-                                                alt={plan.description}
-                                                className="w-full rounded-lg border border-gray-200 transition-opacity group-hover:opacity-80"
-                                            />
+                                            <div className="relative">
+                                                <img
+                                                    src={plan.link}
+                                                    alt={plan.description}
+                                                    className="w-full rounded-lg border border-gray-200 transition-opacity group-hover:opacity-80"
+                                                />
+                                                <div className="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center border border-gray-300">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                        <path d="M11 3 L17 3 Q21 3 21 7 L21 13" />
+                                                        <path d="M13 21 L7 21 Q3 21 3 17 L3 11" />
+                                                    </svg>
+                                                </div>
+                                            </div>
                                             <div className="flex items-center gap-1.5 pt-2 pb-1">
                                                 {icon && (
                                                     <img src={icon} alt="" width={18} height={18} className="w-[18px] h-[18px] flex-shrink-0" />
