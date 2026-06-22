@@ -386,7 +386,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                                         prev();
                                     }}
                                     aria-label="Previous">
-                                    ‹
+                                    &lt;
                                 </button>
                             )}
 
@@ -418,7 +418,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                                         next();
                                     }}
                                     aria-label="Next">
-                                    ›
+                                    &gt;
                                 </button>
                             )}
 
