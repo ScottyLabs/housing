@@ -25,6 +25,40 @@ export const buildings = [
                 description: "Traditional Triple (Another view)"
             }
         ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/etower/etower_traditional-single_floor-plan.png",
+                description: "Traditional Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-etower-traditional-single-x24/fullscreen/"
+            },
+            {
+                link: "/floor-plans/etower/etower_traditional-double_floor-plan.png",
+                description: "Traditional Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-etower-traditional-double/fullscreen/"
+            },
+            {
+                link: "/floor-plans/etower/morewood-e-third-floor.png",
+                description: "Third Floor"
+            },
+            {
+                link: "/floor-plans/etower/morewood-e-fourth-floor.png",
+                description: "Fourth Floor"
+            },
+            {
+                link: "/floor-plans/etower/morewood-e-fifth-floor.png",
+                description: "Fifth Floor"
+            },
+            {
+                link: "/floor-plans/etower/morewood-e-sixth-floor.png",
+                description: "Sixth Floor"
+            },
+            {
+                link: "/floor-plans/etower/morewood-e-seventh-floor.png",
+                description: "Seventh Floor"
+            }
+        ],
         tags: [],
         rooms: ["tradSingle", "tradDouble"],
         bathrooms: { type: "Communal", details: "bathrooms shared per floor (single sex)" },
@@ -59,6 +93,34 @@ export const buildings = [
                 description: "Laundry Room"
             }
         ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/stever/stever_traditional-double_floor-plan.png",
+                description: "Traditional Double",
+                virtualTourLink:
+                    "https://www.vividmediavirtualtours.com/3d-model/cmu-stever-house-standard-layout/fullscreen/"
+            },
+            {
+                link: "/floor-plans/stever/stever-first-floor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/stever/stever-second-floor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/stever/stever-third-floor.png",
+                description: "Third Floor"
+            },
+            {
+                link: "/floor-plans/stever/stever-fourth-floor.png",
+                description: "Fourth Floor"
+            },
+            {
+                link: "/floor-plans/stever/stever-fifth-floor.png",
+                description: "Fifth Floor"
+            }
+        ],
         tags: [],
         rooms: ["tradDouble"],
         bathrooms: { type: "Communal", details: "bathrooms per wing" },
@@ -91,6 +153,36 @@ export const buildings = [
             {
                 link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Boss/Boss_community_lounge-min.jpg",
                 description: "Community Lounge"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/boss/boss_semi-suite-single_floor-plan.png",
+                description: "Semi-Suite Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
+            },
+            {
+                link: "/floor-plans/boss/boss_semi-suite-double_floor-plan.png",
+                description: "Semi-Suite Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
+            },
+            {
+                link: "/floor-plans/boss/boss_groundfloor.png",
+                description: "Ground Floor"
+            },
+            {
+                link: "/floor-plans/boss/boss_firstfloor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/boss/boss_secondfloor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/boss/boss_thirdfloor.png",
+                description: "Third Floor"
             }
         ],
         tags: [],
@@ -139,6 +231,24 @@ export const buildings = [
                 description: "Bathroom (another view)"
             }
         ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/clyde/clyde_lowerlevel.png",
+                description: "Lower Level"
+            },
+            {
+                link: "/floor-plans/clyde/clyde_firstfloor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/clyde/clyde_secondfloor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/clyde/clyde_thirdfloor.png",
+                description: "Third Floor"
+            }
+        ],
         tags: [],
         rooms: [],
         bathrooms: { type: "Private", details: "bathrooms are private" },
@@ -184,6 +294,40 @@ export const buildings = [
             {
                 link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Donner/Donner%20standard%20triple-min.JPG",
                 description: "Traditional Triple (another view)"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/donner/donner_traditional-single_floor-plan.png",
+                description: "Traditional Single",
+                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-donner-traditional-single/fullscreen/"
+            },
+            {
+                link: "/floor-plans/donner/donner_traditional-double_floor-plan.png",
+                description: "Traditional Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-donner-traditional-double-standard/fullscreen/"
+            },
+            {
+                link: "/floor-plans/donner/donner_traditional-triple_floor-plan.png",
+                description: "Traditional Triple",
+                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-donner-traditional-triple/fullscreen/"
+            },
+            {
+                link: "/floor-plans/donner/donner_groundfloor.png",
+                description: "Ground Floor"
+            },
+            {
+                link: "/floor-plans/donner/donner_firstfloor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/donner/donner_secondfloor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/donner/donner_thirdfloor.png",
+                description: "Third Floor"
             }
         ],
         tags: ["noKitchen", "limitedAC"],
@@ -237,6 +381,36 @@ export const buildings = [
                 description: "Laundry Room"
             }
         ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/henderson/henderson_semi-suite-single_floor-plan.png",
+                description: "Semi-Suite Single",
+                virtualTourLink:
+                    "https://www.vividmediavirtualtours.com/3d-model/cmu-henderson-house-semi-suite-rooms-x00-x02/fullscreen/"
+            },
+            {
+                link: "/floor-plans/henderson/henderson_semi-suite-double_floor-plan.png",
+                description: "Semi-Suite Double",
+                virtualTourLink:
+                    "https://www.vividmediavirtualtours.com/3d-model/cmu-henderson-house-semi-suite-rooms-x04-x06/fullscreen/"
+            },
+            {
+                link: "/floor-plans/henderson/henderson-ground-floor-floor-plan.png",
+                description: "Ground Floor"
+            },
+            {
+                link: "/floor-plans/henderson/henderson-first-floor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/henderson/henderson-second-floor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/henderson/henderson-third-floor.png",
+                description: "Third Floor"
+            }
+        ],
         tags: ["noKitchen"],
         rooms: ["semiSuiteSingle", "semiSuiteDouble"],
         bathrooms: { type: "Private", details: "CHONKR bathrooms (or so I've heard)" },
@@ -284,6 +458,35 @@ export const buildings = [
                 description: "Laundry Room"
             }
         ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/mcgill/mcgill-semi-suite-single-example.png",
+                description: "Semi-Suite Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mcgill-semi-suite-x01-x02-x04/fullscreen/"
+            },
+            {
+                link: "/floor-plans/mcgill/mcgill-semi-suite-double-example.png",
+                description: "Semi-Suite Double",
+                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-mcgill-semi-suite-x07-x08/fullscreen/"
+            },
+            {
+                link: "/floor-plans/mcgill/mcgill_groundfloor.png",
+                description: "Ground Floor"
+            },
+            {
+                link: "/floor-plans/mcgill/mcgill-first-floor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/mcgill/mcgill-second-floor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/mcgill/mcgill-third-floor.png",
+                description: "Third Floor"
+            }
+        ],
         tags: ["noKitchen", "noCentralAC"],
         rooms: ["semiSuiteSingle", "semiSuiteDouble"],
         bathrooms: { type: "Private", details: "bathroom shared with a suite" },
@@ -321,6 +524,54 @@ export const buildings = [
             {
                 link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/MorewoodGardens/MWG%20community%20lounge%20-%20another%20view-min.JPG",
                 description: "Community Lounge"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/morewood/morewood-gardens_semi-suite-single_floor-plan.png",
+                description: "Semi-Suite Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-single-x03/fullscreen/"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens_semi-suite-double_floor-plan.png",
+                description: "Semi-Suite Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-doubles-x05-x07/fullscreen/"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens_semi-suite-triple_floor-plan.png",
+                description: "Semi-Suite Triple",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-morewood-gardens-semi-suite-triple-x01/fullscreen/"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens-first-floor-floor-plan.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens-second-floor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens-third-floor.png",
+                description: "Third Floor"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens-fourth-floor.png",
+                description: "Fourth Floor"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens-fifth-floor.png",
+                description: "Fifth Floor"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens-sixth-floor.png",
+                description: "Sixth Floor"
+            },
+            {
+                link: "/floor-plans/morewood/morewood-gardens-seventh-floor.png",
+                description: "Seventh Floor"
             }
         ],
         tags: ["noKitchen"],
@@ -379,6 +630,86 @@ export const buildings = [
             {
                 link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Mudge/Mudge%20apartment%20patio-min.JPG",
                 description: "Patio"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/mudge/mudge_traditional-single_floor-plan.png",
+                description: "Traditional Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a301-traditional-single/fullscreen/"
+            },
+            {
+                link: "/floor-plans/mudge/mudge_traditional-double_floor-plan.png",
+                description: "Traditional Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a302-traditional-double/fullscreen/"
+            },
+            {
+                link: "/floor-plans/mudge/mudge_traditional-triple_floor-plan.png",
+                description: "Traditional Triple",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a216-traditional-triple/fullscreen/"
+            },
+            {
+                link: "/floor-plans/mudge/mudge_semi-suite-single_floor-plan.png",
+                description: "Semi-Suite Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-a101-semi-suite-single/fullscreen/"
+            },
+            {
+                link: "/floor-plans/mudge/mudge_semi-suite-double_floor-plan.png",
+                description: "Semi-Suite Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-mudge-btower-semi-suite-doubles-standard-2/fullscreen/"
+            },
+            {
+                link: "/floor-plans/mudge/mudge_semi-suite-quad_floor-plan.png",
+                description: "Semi-Suite Quad"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-a-tower---first-floor.png",
+                description: "A Tower First Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-a-tower---second-floor.png",
+                description: "A Tower Second Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-a-tower---third-floor.png",
+                description: "A Tower Third Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-b-tower---ground-floor.png",
+                description: "B Tower Ground Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-b-tower---first-floor.png",
+                description: "B Tower First Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-b-tower---second-floor.png",
+                description: "B Tower Second Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-b-tower---third-floor.png",
+                description: "B Tower Third Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-c-tower---ground-floor.png",
+                description: "C Tower Ground Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-c-tower---first-floor.png",
+                description: "C Tower First Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-c-tower---second-floor.png",
+                description: "C Tower Second Floor"
+            },
+            {
+                link: "/floor-plans/mudge/mudge-c-tower---third-floor.png",
+                description: "C Tower Third Floor"
             }
         ],
         tags: ["noKitchen"],
@@ -442,6 +773,30 @@ export const buildings = [
                 description: "Laundry Room"
             }
         ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/fifth/residence-on-fifth-typical-apartment-floor-plan.png",
+                description: "Typical Apartment",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-residence-on-fifth-m105-apt-triple/fullscreen/"
+            },
+            {
+                link: "/floor-plans/fifth/residence-on-fifth---mezzanine.png",
+                description: "Mezzanine"
+            },
+            {
+                link: "/floor-plans/fifth/residence-on-fifth---third-floor.png",
+                description: "Third Floor"
+            },
+            {
+                link: "/floor-plans/fifth/residence-on-fifth---fourth-floor.png",
+                description: "Fourth Floor"
+            },
+            {
+                link: "/floor-plans/fifth/residence-on-fifth---fifth-floor.png",
+                description: "Fifth Floor"
+            }
+        ],
         tags: ["gymAccess"],
         rooms: [],
         bathrooms: { type: "Private", details: "bathrooms are private" },
@@ -479,6 +834,34 @@ export const buildings = [
             {
                 link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Scobell/Scobell%20laundry%20room-min.JPG",
                 description: "Laundry Room"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/scobell/scobell_traditional-single_floor-plan.png",
+                description: "Traditional Single",
+                virtualTourLink: "https://www.vividmediavirtualtours.com/3d-model/cmu-scobell-house-x00/fullscreen/"
+            },
+            {
+                link: "/floor-plans/scobell/scobell_traditional-double_floor-plan.png",
+                description: "Traditional Double",
+                virtualTourLink: "https://www.vividmediavirtualtours.com/3d-model/cmu-scobell-house-x07/fullscreen/"
+            },
+            {
+                link: "/floor-plans/scobell/scobell-house-ground-floor.png",
+                description: "Ground Floor"
+            },
+            {
+                link: "/floor-plans/scobell/scobell-house-first-floor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/scobell/scobell-house-second-floor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/scobell/scobell-house-third-floor.png",
+                description: "Third Floor"
             }
         ],
         tags: ["girlsOnly"],
@@ -522,6 +905,30 @@ export const buildings = [
             {
                 link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Welch/Welch%20laundry%20room-min.JPG",
                 description: "Laundry Room"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/welch/welch_semi-suite-single_floor-plan.png",
+                description: "Semi-Suite Single",
+                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-welch-semi-suite-x04-x06/fullscreen/"
+            },
+            {
+                link: "/floor-plans/welch/welch_semi-suite-double_floor-plan.png",
+                description: "Semi-Suite Double",
+                virtualTourLink: "https://www.tours.vividmediany.com/3d-model/cmu-welch-semi-suite-x05-x07/fullscreen/"
+            },
+            {
+                link: "/floor-plans/welch/welch-first-floor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/welch/welch-second-floor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/welch/welch-third-floor.png",
+                description: "Third Floor"
             }
         ],
         tags: ["lgbtqInclusive"],
@@ -569,6 +976,32 @@ export const buildings = [
             {
                 link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Hamerschlag/hamerschlag-study-room-1_700x500px.png",
                 description: "Study Room (another view)"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/hamerschlag/hamerschlag_traditional-single_floor-plan.png",
+                description: "Traditional Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-hamerschlag-house-traditional-single/fullscreen/"
+            },
+            {
+                link: "/floor-plans/hamerschlag/hamerschlag_traditional-double_floor-plan.png",
+                description: "Traditional Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-hamerschlag-house-traditional-double/fullscreen/"
+            },
+            {
+                link: "/floor-plans/hamerschlag/hamerschlag-first-floor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/hamerschlag/hamerschlag-second-floor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/hamerschlag/hamerschlag-third-floor.png",
+                description: "Third Floor"
             }
         ],
         tags: [],

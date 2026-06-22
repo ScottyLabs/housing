@@ -7,6 +7,7 @@ export interface Building {
     name: string;
     image: string;
     photoGallery: BuildingImage[];
+    floorPlanGallery: FloorPlanItem[];
     tags: string[];
     rooms: string[];
     bathrooms: BathroomInfo;
@@ -32,6 +33,11 @@ type ACInfo = {
 type BuildingImage = {
     link: string;
     description: string;
+};
+type FloorPlanItem = {
+    link: string;
+    description: string;
+    virtualTourLink?: string;
 };
 interface BuildingContextType {
     buildings: Building[];
