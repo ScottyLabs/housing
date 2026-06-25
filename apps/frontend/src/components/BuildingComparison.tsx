@@ -16,8 +16,8 @@ export default function BuildingComparison({building}: {building: Building;}) {
     };
 
     return (
-        <div className="px-[15px] pb-[24px] pt-[15px]">
-            <div className="flex flex-col gap-2 w-[280px]">
+        <div className="px-[15px] pb-[24px] pt-[15px] h-[100rem]">
+            <div className="flex flex-col gap-2 w-[280px] h-screen grid grid-rows-[15%_7%_7%_30%_20%_15%_12%]">
                 <img
                     src={selectedBuilding.image}
                     alt={selectedBuilding.name}
