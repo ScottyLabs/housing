@@ -14,7 +14,7 @@ export default function Navbar() {
         <div className="w-full">
             <div className="flex items-center h-24 whitespace-nowrap">
                 <Link
-                    to="/"
+                    to="/home"
                     className="px-6 py-3 gap-2 min-w-max relative rounded-2xl flex items-center cursor-pointer transition-colors duration-200 hover:bg-gray-100">
                     <img src="/cmuhousingdog.svg" alt="CMU Housing" className="w-10 h-10" />
                     <div className="hidden lg:block">
@@ -54,9 +54,9 @@ export default function Navbar() {
                     {/* TODO: add share link */}
                     <div className="relative">
                         <button
-                        type="button"
-                        onClick={() => setIsShareOpen(true)}
-                        className="py-3 px-3 h-full rounded-2xl border select-none cursor-pointer transition-colors duration-200 bg-brand-menugray hover:bg-gray-200 border-black/10">
+                            type="button"
+                            onClick={() => setIsShareOpen(true)}
+                            className="py-3 px-3 h-full rounded-2xl border select-none cursor-pointer transition-colors duration-200 bg-brand-menugray hover:bg-gray-200 border-black/10">
                             <div className="flex gap-2 items-center whitespace-normal h-full text-xs">
                                 <img src="/share.svg" alt="Share Icon" className="brightness-100 min-w-max" />
                                 <div className="whitespace-normal hidden lg:block">Share with friends!</div>
