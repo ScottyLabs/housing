@@ -9,26 +9,59 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     devenv.url = "github:cachix/devenv";
+    scottylabs = {
+      url = "git+https://codeberg.org/ScottyLabs/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, devenv, ... } @ inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , devenv
+    , scottylabs
+    , ...
+    }:
     let
-      allSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
-      forAllSystems = nixpkgs.lib.genAttrs allSystems;
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      devShells = forAllSystems (
+      packages = forAllSystems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          helpers = scottylabs.mkLib pkgs;
+
+          frontend = helpers.buildDenoTask {
+            src = ./apps/frontend;
+            pname = "housing-frontend";
+            version = "0.1.0";
+          };
+
+          backend =
+            (helpers.buildDenoTask {
+              src = ./apps/backend;
+              pname = "housing-backend";
+              entrypoint = "src/index.ts";
+              compile = true;
+            }).overrideAttrs
+              (old: {
+                nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
+                postInstall = ''
+                  wrapProgram $out/bin/housing-backend --set STATIC_DIR ${frontend}
+                '';
+              });
         in
         {
-          default = devenv.lib.mkShell {
-            inherit inputs pkgs;
-            modules = [ ./devenv.nix ];
-          };
+          inherit frontend backend;
+          default = self.packages.${system}.backend;
+          devenv = devenv.packages.${system}.devenv;
         }
       );
     };
