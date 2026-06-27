@@ -24,17 +24,15 @@ For detailed setup instructions, see [CONTRIBUTING.md](docs/CONTRIBUTING.md).
 direnv allow
 ```
 
-### Running the Frontend
+### Running the Frontend & Backend
+
+Both the frontend and backend are run via devenv, using the following command.
 
 ```sh
 devenv up
 ```
 
-Click on the localhost link in the terminal output to see the website!
-
-### Running the Backend
-
-There is no backend at the moment. Instructions will be updated here once it is added!
+The backend is proxied through the Vite development server and can be accessed at http://localhost:3000 during development. The backend should not be accessed directly, as all paths prefixed with `/api` will be routed to the backend.
 
 ## Contributing
 

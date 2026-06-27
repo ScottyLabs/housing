@@ -16,7 +16,6 @@ For ScottyLabs Org Member setup instructions, see [CONTRIBUTING.md](CONTRIBUTING
 ```sh
 cd housing
 direnv allow
-cd apps/frontend && npm install
 ```
 
 ## Running the Frontend
@@ -24,16 +23,9 @@ cd apps/frontend && npm install
 ```sh
 # From the repo root
 devenv up
-
-# Or manually
-cd apps/frontend && npm run dev
 ```
 
-Click on the localhost link in the terminal output to see the website!
-
-## Running the Backend
-
-There is no backend at the moment. Instructions will be updated here once it is added!
+The backend is proxied through the Vite development server and can be accessed at http://localhost:3000 during development. The backend should not be accessed directly, as all paths prefixed with `/api` will be routed to the backend.
 
 ## Deployment
 
@@ -49,5 +41,5 @@ Validate locally before pushing:
 
 ```sh
 SECRETSPEC_PROVIDER=dotenv://.env devenv build scottylabs.kennel.config
-nix build .#packages.x86_64-linux.frontend
+nix build
 ```
