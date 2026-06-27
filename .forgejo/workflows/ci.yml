@@ -13,17 +13,50 @@ jobs:
       - name: Checkout
         uses: https://code.forgejo.org/actions/checkout@v6
 
-      - name: Setup Deno
-        uses: https://github.com/denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
-          cache: true
-          cache-dependency-path: apps/frontend/deno.lock
+      - name: Install Nix
+        uses: https://github.com/cachix/install-nix-action@v31
 
-      - name: Install dependencies
-        working-directory: apps/frontend
-        run: deno install --frozen
+      - name: Install devenv
+        run: nix profile install --accept-flake-config nixpkgs#devenv
 
-      - name: Build
-        working-directory: apps/frontend
-        run: deno run build
+      - name: Format
+        run: devenv shell -- treefmt --fail-on-change --no-cache
+
+      - name: Lint
+        run: devenv shell -- oxlint --deny correctness
+
+      - name: Install frontend dependencies
+        shell: devenv shell bash -- -e {0}
+        run: |
+          cd apps/frontend
+          deno install --frozen
+
+      - name: Type check frontend
+        shell: devenv shell bash -- -e {0}
+        run: |
+          cd apps/frontend
+          deno check src/
+
+      - name: Build frontend
+        shell: devenv shell bash -- -e {0}
+        run: |
+          cd apps/frontend
+          deno task build
+
+      - name: Install backend dependencies
+        shell: devenv shell bash -- -e {0}
+        run: |
+          cd apps/backend
+          deno install --frozen
+
+      - name: Type check backend
+        shell: devenv shell bash -- -e {0}
+        run: |
+          cd apps/backend
+          deno check src/
+
+      - name: Build backend
+        shell: devenv shell bash -- -e {0}
+        run: |
+          cd apps/backend
+          deno task build
