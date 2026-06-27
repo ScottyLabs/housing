@@ -3,14 +3,6 @@
     "version": "0.0.0",
     "private": true,
     "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "docker-build": "docker build -t cmu-housing .",
-        "docker-run": "docker run -p 3000:3000 cmu-housing",
-        "docker": "npm run docker-build && npm run docker-run",
-        "build": "tsc && vite build",
-        "preview": "vite preview"
-    },
     "dependencies": {
         "react": "19.1.0",
         "react-dom": "19.1.0",
