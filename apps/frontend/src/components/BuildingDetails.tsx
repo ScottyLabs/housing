@@ -6,7 +6,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
     const { id } = useParams();
     const building: Building = useBuildingById(buildingID ?? id ?? "");
 
-    type GalleryItem = { link: string; description: string };
+    type GalleryItem = { link: string; description: string; virtualTourLink?: string };
     const [lightbox, setLightbox] = useState<{ items: GalleryItem[]; index: number } | null>(null);
 
     const closeLightbox = useCallback(() => setLightbox(null), []);
