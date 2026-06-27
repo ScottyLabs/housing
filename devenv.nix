@@ -48,13 +48,6 @@ in
     depsHash = denoDepsHash;
   };
 
-  git-hooks.hooks.oxlint.settings.allow = [
-    "restriction"
-    "style"
-    "pedantic"
-    "nursery"
-  ];
-
   processes.frontend = {
     exec = "deno install && deno run dev --host";
     cwd = "./apps/frontend";
