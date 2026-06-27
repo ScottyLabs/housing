@@ -8,8 +8,7 @@ body:
     id: objective
     attributes:
       label: Overall Objective
-      description:
-        What is this issue trying to accomplish and why? If applicable,
+      description: What is this issue trying to accomplish and why? If applicable,
         where does the project stand right now?
       placeholder: e.g. Users currently see stale data because the cache isn't
         invalidated on update. This issue fixes that.
@@ -20,8 +19,7 @@ body:
     id: approach
     attributes:
       label: Suggested Approach
-      description:
-        What might be a good direction to go down or what might be good
+      description: What might be a good direction to go down or what might be good
         resources/ideas to start from
       placeholder: |
         1. Use X to do Y
