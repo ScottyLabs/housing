@@ -1,8 +1,12 @@
+import React from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavButton from "./NavButton";
 import NavbarSpacer from "./NavbarSpacer";
+import ShareDropdown from "./ShareDropdown";
 
 export default function Navbar() {
+    const [isShareOpen, setIsShareOpen] = useState(false);
     const location = useLocation();
     const pathname = location.pathname;
 
@@ -48,14 +52,18 @@ export default function Navbar() {
                 </div>
                 <div className="flex gap-1 items-center mx-2 ">
                     {/* TODO: add share link */}
-                    <Link
-                        to="/"
+                    <div className="relative">
+                        <button
+                        type="button"
+                        onClick={() => setIsShareOpen(true)}
                         className="py-3 px-3 h-full rounded-2xl border select-none cursor-pointer transition-colors duration-200 bg-brand-menugray hover:bg-gray-200 border-black/10">
-                        <div className="flex gap-2 items-center whitespace-normal h-full text-xs">
-                            <img src="/share.svg" alt="Share Icon" className="brightness-100 min-w-max" />
-                            <div className="whitespace-normal hidden lg:block">Share with friends!</div>
-                        </div>
-                    </Link>
+                            <div className="flex gap-2 items-center whitespace-normal h-full text-xs">
+                                <img src="/share.svg" alt="Share Icon" className="brightness-100 min-w-max" />
+                                <div className="whitespace-normal hidden lg:block">Share with friends!</div>
+                            </div>
+                        </button>
+                        <ShareDropdown isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
+                    </div>
                     <Link to="/profile" className="min-w-max">
                         <img src="/profile.svg" alt="profile" className="rounded-full w-10 h-10  mx-2" />
                     </Link>
