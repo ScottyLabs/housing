@@ -12,99 +12,100 @@ import {
 } from "drizzle-orm/pg-core";
 
 // Enums
-
-// TODO: Replace placeholder values with the real status options
-export const roommateStatusEnum = pgEnum("roommate_status", [
-  "searching",
-  "committed",
-  "inactive",
-]);
+const roommateStatusEnum = pgEnum("roommate_status", ["searching", "committed", "inactive"]);
 
 // Tables
 
 export const userTable = pgTable("user", {
+  andrewId: text("andrew_id"),
+  createdTime: timestamp("created_time"),
   id: serial("id").primaryKey(),
   name: text("name"),
-  andrewId: text("andrew_id"),
   oidcSubject: text("oidc_subject"),
-  createdTime: timestamp("created_time"),
 });
 
-
 export const userPreferencesTable = pgTable("user_preferences", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull().references(() => userTable.id),
-  preferredGenderHousing: text("preferred_gender_housing"),
-  year: text("year"),
-  major: text("major"),
-  cookingFrequency: integer("cooking_frequency"),               // 1–5
-  gymFrequency: integer("gym_frequency"),                       // 1–5
-  productiveAroundOthers: integer("productive_around_others"),  // 1–5
-  needsAloneTime: integer("needs_alone_time"),                  // 1–5
-  socialFrequency: integer("social_frequency"),                 // 1–5
-  goals: text("goals").array(),
   accommodations: text("accommodations").array(),
+  cookingFrequency: integer("cooking_frequency"),
+  goals: text("goals").array(),
+  gymFrequency: integer("gym_frequency"),
+  id: serial("id").primaryKey(),
+  major: text("major"),
+  needsAloneTime: integer("needs_alone_time"),
   preferredAmenities: text("preferred_amenities").array(),
+  preferredGenderHousing: text("preferred_gender_housing"),
+  productiveAroundOthers: integer("productive_around_others"),
+  socialFrequency: integer("social_frequency"),
   updatedAt: timestamp("updated_at"),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => userTable.id),
+  year: text("year"),
 });
 
 export const roommateProfileTable = pgTable("roommate_profile", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull().references(() => userTable.id),
-  isVisible: boolean("is_visible"),
-  status: roommateStatusEnum("status"),
-  committed: boolean("committed"),
-  whereFrom: text("where_from"),
-  school: text("school"),
-  intendedMajor: text("intended_major"),
-  preferredRoommateSchool: text("preferred_roommate_school"),
-  assignedSex: text("assigned_sex"),
-  pronouns: text("pronouns"),
-  bathroomPreference: text("bathroom_preference"),
-  wakeTime: text("wake_time"),
-  sleepTime: text("sleep_time"),
-  snores: boolean("snores"),
-  morningPrepTime: text("morning_prep_time"),
-  preferredShowerTime: text("preferred_shower_time"),
-  neatness: integer("neatness"),                    // 1–5
-  volumePreference: integer("volume_preference"),   // 1–5
-  socialEnergy: integer("social_energy"),           // 1–5
-  partyFrequency: integer("party_frequency"),       // 1–5
   alcohol: boolean("alcohol"),
+  assignedSex: text("assigned_sex"),
+  bathroomPreference: text("bathroom_preference"),
+  committed: boolean("committed"),
   drugs: boolean("drugs"),
   extras: json("extras"),
+  id: serial("id").primaryKey(),
+  intendedMajor: text("intended_major"),
+  isVisible: boolean("is_visible"),
+  morningPrepTime: text("morning_prep_time"),
+  neatness: integer("neatness"),
+  partyFrequency: integer("party_frequency"),
+  preferredRoommateSchool: text("preferred_roommate_school"),
+  preferredShowerTime: text("preferred_shower_time"),
+  pronouns: text("pronouns"),
+  school: text("school"),
+  sleepTime: text("sleep_time"),
+  snores: boolean("snores"),
+  socialEnergy: integer("social_energy"),
+  status: roommateStatusEnum("status"),
   updatedAt: timestamp("updated_at"),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => userTable.id),
+  volumePreference: integer("volume_preference"),
+  wakeTime: text("wake_time"),
+  whereFrom: text("where_from"),
 });
 
 export const dormTable = pgTable("dorm", {
-  id: serial("id").primaryKey(),
-  name: text("name"),
-  imageUrl: text("image_url"),
+  acDetails: text("ac_details"),
+  bathroomDetails: text("bathroom_details"),
+  bathroomType: text("bathroom_type"),
   closeBuildings: text("close_buildings").array(),
   hasAc: boolean("has_ac"),
-  acDetails: text("ac_details"),
+  id: serial("id").primaryKey(),
+  imageUrl: text("image_url"),
   kitchenDescription: text("kitchen_description"),
-  loungeDescription: text("lounge_description"),
-  bathroomType: text("bathroom_type"),
-  bathroomDetails: text("bathroom_details"),
-  roomTypes: text("room_types").array(),
-  tags: text("tags").array(),
-  photoGallery: json("photo_gallery"),
   latitude: numeric("latitude"),
   longitude: numeric("longitude"),
+  loungeDescription: text("lounge_description"),
+  name: text("name"),
+  photoGallery: json("photo_gallery"),
+  roomTypes: text("room_types").array(),
+  tags: text("tags").array(),
   updatedAt: timestamp("updated_at"),
 });
 
 export const reviewTable = pgTable("review", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull().references(() => userTable.id),
-  dormId: integer("dorm_id").notNull().references(() => dormTable.id),
   body: text("body"),
-  ratingOverall: integer("rating_overall"),           // 1–5
-  ratingAmenities: integer("rating_amenities"),       // 1–5
-  ratingRoomQuality: integer("rating_room_quality"),  // 1–5
-  ratingAtmosphere: integer("rating_atmosphere"),     // 1–5
-  livedYear: text("lived_year"),
+  dormId: integer("dorm_id")
+    .notNull()
+    .references(() => dormTable.id),
+  id: serial("id").primaryKey(),
   livedTerm: text("lived_term"),
+  livedYear: text("lived_year"),
+  ratingAmenities: integer("rating_amenities"),
+  ratingAtmosphere: integer("rating_atmosphere"),
+  ratingOverall: integer("rating_overall"),
+  ratingRoomQuality: integer("rating_room_quality"),
   submittedAt: timestamp("submitted_at"),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => userTable.id),
 });
