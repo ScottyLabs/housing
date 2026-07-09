@@ -37,6 +37,7 @@ export default function BuildingFilter() {
                                     options={buildlingOptions}
                                     onChangeAction={handleDistanceFromChange}
                                     value={distanceFromValue}
+                                    subtitle="First Year Housing"
                                 />
                             </div>
 

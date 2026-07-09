@@ -11,7 +11,7 @@ export default function LaunchPage() {
 
                 <div className="mt-[30px] flex flex-col gap-4 sm:flex-row sm:gap-5">
                     <Link
-                        to="/home"
+                        to="/survey"
                         className="flex h-[56px] w-full items-center justify-center rounded-[13px] bg-brand-primary text-[18px] font-medium text-white transition-colors hover:bg-[#f1872c] sm:w-[321px]">
                         Get personalized results
                     </Link>

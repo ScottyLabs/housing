@@ -9,12 +9,14 @@ export default function DropdownButton({
     options,
     placeholder = "Select an option",
     onChangeAction,
-    value
+    value,
+    subtitle
 }: {
     options: SelectOption[];
     placeholder?: string;
     onChangeAction: (value: string) => void;
     value: string;
+    subtitle?: string;
 }) {
     const [isOpen, setIsOpen] = useState(false);
     const selectedOption = options.find((opt) => opt.value === value);
@@ -65,7 +67,7 @@ export default function DropdownButton({
                     <span className="font-semibold text-[18px] leading-none">
                         {selectedOption ? selectedOption.label : placeholder}
                     </span>
-                    <span className="text-[12px] text-gray-500 leading-none">First Year Housing</span>
+                    {subtitle && <span className="text-[12px] text-gray-500 leading-none">{subtitle}</span>}
                 </div>
                 <img src="/dropdown-closed.svg" alt="dropdown closed" className="w-[14px] h-[8px]" />
             </div>
