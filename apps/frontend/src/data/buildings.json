@@ -1011,5 +1011,69 @@ export const buildings = [
         AC: { available: true, details: "yes, should have AC" },
         kitchen: "Yes, there is a kitchen",
         lounge: "1st floor schlounge and study room on each floor in each tower"
+    },
+    {
+        id: "maggiemo",
+        name: "Maggie Mo",
+        image: "https://www.cmu.edu/housing/images/hero-images/mma-900x600-min.jpg",
+        photoGallery: [
+            {
+                link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Boss/Boss_single2.jpg",
+                description: "Semi-Suite Single"
+            },
+            {
+                link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Boss/Boss_double-min.jpg",
+                description: "Semi-Suite Double"
+            },
+            {
+                link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Boss/Boss_bathroom-min.jpg",
+                description: "Bathroom"
+            },
+            {
+                link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Boss/Boss_community_kitchen-min.jpg",
+                description: "Community Kitchens"
+            },
+            {
+                link: "https://www.cmu.edu/housing/our-communities/housing-images-tours/Boss/Boss_community_lounge-min.jpg",
+                description: "Community Lounge"
+            }
+        ],
+        floorPlanGallery: [
+            {
+                link: "/floor-plans/boss/boss_semi-suite-single_floor-plan.png",
+                description: "Semi-Suite Single",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
+            },
+            {
+                link: "/floor-plans/boss/boss_semi-suite-double_floor-plan.png",
+                description: "Semi-Suite Double",
+                virtualTourLink:
+                    "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
+            },
+            {
+                link: "/floor-plans/boss/boss_groundfloor.png",
+                description: "Ground Floor"
+            },
+            {
+                link: "/floor-plans/boss/boss_firstfloor.png",
+                description: "First Floor"
+            },
+            {
+                link: "/floor-plans/boss/boss_secondfloor.png",
+                description: "Second Floor"
+            },
+            {
+                link: "/floor-plans/boss/boss_thirdfloor.png",
+                description: "Third Floor"
+            }
+        ],
+        tags: [],
+        rooms: ["semiSuiteSingle", "semiSuiteDouble"],
+        bathrooms: { type: "Private", details: "bathrooms shared with a suite" },
+        closeBuildings: "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson",
+        AC: { available: true, details: "yes, AC is available" },
+        kitchen: "Yes, needs more info",
+        lounge: "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
     }
 ];
