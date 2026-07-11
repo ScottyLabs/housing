@@ -18,7 +18,7 @@ export default function BuildingColumn({
             <img
                 src={building.image}
                 alt={building.name}
-                style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "18px" }}
+                style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "18px" }}
             />
 
             <DropdownButton options={buildingOptions} onChangeAction={onChangeAction} value={building.id} />
