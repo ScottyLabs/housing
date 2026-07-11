@@ -20,7 +20,7 @@ export default function Home() {
     return (
         <div className="px-[15px] pb-[24px] pt-[15px] overflow-x-auto">
             <div
-                className="grid gap-x-4 gap-y-2"
+                className="grid gap-x-4 gap-y-2 justify-center min-w-full w-max mx-auto"
                 style={{
                     gridAutoFlow: "column",
                     gridTemplateRows: "repeat(7, auto)",
