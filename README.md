@@ -4,9 +4,9 @@ The CMU Housing project hosted at <https://cmuhousing.com> serves as the obvious
 
 Production also deploys via [Kennel](https://codeberg.org/ScottyLabs/kennel) to https://cmuhousing.scottylabs.org.
 
-<!--TODO: ## Features-->
+<!--TODO: ## Features -->
 
-<!--TODO: ## Project Overview-->
+<!--TODO: ## Project Overview -->
 
 ## Getting Started
 

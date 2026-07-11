@@ -1,7 +1,10 @@
 {
   "tasks": {
     "dev": "deno run --allow-all src/index.ts",
-    "build": "deno compile --frozen --no-check --allow-all --cached-only --include src --include drizzle --output dist/bin/housing-backend src/index.ts"
+    "build": "deno compile --frozen --no-check --allow-all --cached-only --include src --include drizzle --output dist/bin/housing-backend src/index.ts",
+    "db:generate": "deno run --allow-all npm:drizzle-kit generate",
+    "db:migrate": "deno run --allow-all src/db/migrations.ts",
+    "db:studio": "deno run --allow-all npm:drizzle-kit studio"
   },
   "imports": {
     "@elysia/static": "npm:@elysia/static@^1.4.11",
