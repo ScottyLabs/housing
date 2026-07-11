@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Building, useBuildings } from "@/components/BuildingContext";
 import BuildingColumn from "@/components/BuildingComparison";
 
+const MAX_BUILDINGS = 4;
+
 export default function Home() {
     const buildings: Building[] = useBuildings();
     const [ids, setIds] = useState<string[]>(() => buildings.slice(0, 2).map((b) => b.id));
@@ -31,7 +33,7 @@ export default function Home() {
                     return b && <BuildingColumn key={`${id}-${i}`} building={b} onChangeAction={handleChange(i)} />;
                 })}
 
-                {ids.length < buildings.length && (
+                {ids.length < MAX_BUILDINGS && (
                     <button
                         onClick={addColumn}
                         style={{ gridRow: "1 / 3" }}
