@@ -15,7 +15,7 @@ function SliderRow({ icon, question }: { icon: string; question: string }) {
     return (
         <div className="flex items-start gap-[18px]">
             <img src={icon} alt="" aria-hidden="true" className="h-12 w-12 flex-shrink-0" />
-            <div className="flex w-full max-w-[589px] flex-col gap-3">
+            <div className="flex flex-1 flex-col gap-3">
                 <span className="text-[18px] font-medium leading-none">{question}</span>
                 <div className="flex items-center gap-[14px]">
                     <span className="whitespace-nowrap text-[18px] font-medium">Rarely</span>

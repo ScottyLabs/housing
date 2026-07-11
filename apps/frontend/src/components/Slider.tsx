@@ -4,7 +4,11 @@ export default function Slider({ min = 1, max = 10, showTicks = false }: { min?:
     const [value, setValue] = useState(Math.floor((min + max) / 2));
     const percent = ((value - min) / (max - min)) * 100;
 
-    const ticks = showTicks ? Array.from({ length: max - min - 1 }, (_, i) => ((i + 1) / (max - min)) * 100) : [];
+    const ticks = showTicks
+        ? Array.from({ length: max - min - 1 }, (_, i) => min + 1 + i)
+              .filter((step) => step !== value)
+              .map((step) => ((step - min) / (max - min)) * 100)
+        : [];
 
     return (
         <div className="flex flex-col h-[23px] justify-center">
