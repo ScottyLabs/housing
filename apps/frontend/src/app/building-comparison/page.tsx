@@ -28,7 +28,7 @@ export default function Home() {
                 }}>
                 {ids.map((id, i) => {
                     const b = getBuilding(id);
-                    return b && <BuildingColumn key={id} building={b} onChangeAction={handleChange(i)} />;
+                    return b && <BuildingColumn key={`${id}-${i}`} building={b} onChangeAction={handleChange(i)} />;
                 })}
 
                 {ids.length < buildings.length && (
