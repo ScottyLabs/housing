@@ -4,10 +4,16 @@ export default function Slider({ min = 1, max = 10, showTicks = false }: { min?:
     const [value, setValue] = useState(Math.floor((min + max) / 2));
     const percent = ((value - min) / (max - min)) * 100;
 
+    const THUMB_SIZE = 22.6;
+
+    function getTickPosition(percent: number) {
+        return `calc(${percent}% + ${(0.5 - percent / 100) * THUMB_SIZE}px)`;
+    }
+
     const ticks = showTicks
         ? Array.from({ length: max - min - 1 }, (_, i) => min + 1 + i)
               .filter((step) => step !== value)
-              .map((step) => ((step - min) / (max - min)) * 100)
+              .map((step) => getTickPosition(((step - min) / (max - min)) * 100))
         : [];
 
     return (
@@ -29,21 +35,19 @@ export default function Slider({ min = 1, max = 10, showTicks = false }: { min?:
                     }}
                 />
 
-                {/* Interior step markers */}
                 {ticks.map((left) => (
                     <div
                         key={left}
                         className="absolute w-[10px] h-[10px] bg-white rounded-full pointer-events-none"
                         style={{
                             border: `2px solid var(--color-brand-primary)`,
-                            left: `${left}%`,
+                            left,
                             top: "50%",
                             transform: "translate(-50%, -50%)"
                         }}
                     />
                 ))}
 
-                {/* Left endpoint circle - only visible when value > min */}
                 {value > min && (
                     <div
                         className="absolute w-[13.55px] h-[13.55px] bg-white rounded-full pointer-events-none"
@@ -56,7 +60,6 @@ export default function Slider({ min = 1, max = 10, showTicks = false }: { min?:
                     />
                 )}
 
-                {/* Right endpoint circle - only visible when value < max */}
                 {value < max && (
                     <div
                         className="absolute w-[13.55px] h-[13.55px] bg-white rounded-full pointer-events-none"
