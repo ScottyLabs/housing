@@ -33,6 +33,13 @@ const app = new Elysia().use(api);
 
 if (staticDir) {
   app.use(staticPlugin({ assets: staticDir, prefix: "/" }));
+  // @elysia/static only serves files that exist on disk; client-side routes
+  // (e.g. /building/boss) have no matching file, so fall back to index.html.
+  app.get("*", () =>
+    Deno.readTextFile(`${staticDir}/index.html`).then(
+      (html) => new Response(html, { headers: { "content-type": "text/html" } }),
+    ),
+  );
 } else {
   logger.warn("STATIC_DIR environment variable is not set. Frontend will not be served.");
   logger.warn(
