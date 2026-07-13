@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -20,6 +20,6 @@
       appUrl = "http://localhost:3000";
     };
 
-    kennel.services.backend.customDomain = "cmudorms.com";
+    kennel.services.backend.customDomain = "cmuhousing.com";
   };
 }
