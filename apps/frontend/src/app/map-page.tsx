@@ -10,9 +10,10 @@ export default function MapPage() {
                     <iframe
                         src="/housingmap.svg"
                         title="Housing map"
-                        width="1165" 
+                        width="1165"
                         height="1016"
-                        className="rounded-2xl border overflow-hidden"
+                        scrolling="no"
+                        className="rounded-2xl border"
                     />
                 </div>
             </div>
