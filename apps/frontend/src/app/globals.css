@@ -2,31 +2,31 @@
 @import "tailwindcss";
 
 @theme {
-    --color-brand-primary: #ff983e;
-    --color-brand-menugray: #f5f8fa;
-    --color-brand-buttongray: #e4eaed;
+  --color-brand-primary: #ff983e;
+  --color-brand-menugray: #f5f8fa;
+  --color-brand-buttongray: #e4eaed;
 }
 
 body {
-    font-family: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 22.6px;
-    width: 22.6px;
-    border-radius: 50%;
-    background: var(--color-brand-primary);
-    cursor: pointer;
-    border: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22.6px;
+  width: 22.6px;
+  border-radius: 50%;
+  background: var(--color-brand-primary);
+  cursor: pointer;
+  border: 0;
 }
 
 .slider::-moz-range-thumb {
-    height: 22.6px;
-    width: 22.6px;
-    border-radius: 50%;
-    background: var(--color-brand-primary);
-    cursor: pointer;
-    border: 0;
+  height: 22.6px;
+  width: 22.6px;
+  border-radius: 50%;
+  background: var(--color-brand-primary);
+  cursor: pointer;
+  border: 0;
 }

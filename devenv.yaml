@@ -1,11 +1,21 @@
 secretspec:
   enable: true
-  provider: dotenv://.env
+  provider: vault://secrets2.scottylabs.org/secret
   profile: dev
 
 inputs:
+  nixpkgs:
+    url: github:nixos/nixpkgs/nixos-unstable
   scottylabs:
     url: git+https://codeberg.org/ScottyLabs/devenv
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
+  rust-overlay:
+    url: github:oxalica/rust-overlay
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
   treefmt-nix:
     url: github:numtide/treefmt-nix
   git-hooks:
