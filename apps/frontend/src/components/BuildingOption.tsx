@@ -14,7 +14,7 @@ export default function BuildingOption({
         <Link to={`/building/${building.id}`}>
             <div className="relative overflow-hidden rounded-[18px]" style={{ width: width, height: height }}>
                 <img
-                    src={building.image}
+                    src={building.media.mainImage}
                     alt={building.name}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />

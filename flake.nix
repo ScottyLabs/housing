@@ -18,11 +18,12 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , devenv
-    , scottylabs
-    , ...
+    {
+      self,
+      nixpkgs,
+      devenv,
+      scottylabs,
+      ...
     }:
     let
       systems = [

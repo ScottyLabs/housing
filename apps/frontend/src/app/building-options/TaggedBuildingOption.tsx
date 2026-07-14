@@ -1,16 +1,18 @@
 import { Building, useBuildingTagsMap } from "@/components/BuildingContext";
 import BuildingOption from "@/components/BuildingOption";
+import { deriveTags } from "@/data/tags";
 
 export default function TaggedBuildingOption({ building }: { building: Building }) {
     const tagMap = useBuildingTagsMap();
+    const tagIds = deriveTags(building);
 
     return (
         <div className="flex flex-col gap-[20px]">
             <BuildingOption building={building} width={320} height={220} />
             <>
-                {building.tags.length > 0 && (
+                {tagIds.length > 0 && (
                     <div className="flex flex-col gap-[18px]">
-                        {building.tags
+                        {tagIds
                             .map((id) => {
                                 const someTag = tagMap.get(id);
                                 if (someTag === undefined) {
