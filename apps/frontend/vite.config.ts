@@ -5,24 +5,24 @@ const srcDir = new URL("./src", import.meta.url).pathname;
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
-    resolve: {
-        alias: {
-            "@": srcDir
-        }
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": srcDir,
     },
-    server: {
-        port: 3000,
-            proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
+  },
+  server: {
+    port: 3000,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001",
         changeOrigin: true,
         secure: false,
       },
     },
-    },
-    build: {
-        outDir: "dist",
-        sourcemap: true
-    }
+  },
+  build: {
+    outDir: "dist",
+    sourcemap: true,
+  },
 });
