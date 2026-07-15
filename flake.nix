@@ -18,6 +18,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       scottylabs,
       ...
