@@ -2,61 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, staging, dev]
   pull_request:
-    branches: [main]
 
 jobs:
-  checks:
-    runs-on: docker
-    steps:
-      - name: Checkout
-        uses: https://code.forgejo.org/actions/checkout@v6
-
-      - name: Install Nix
-        uses: https://github.com/cachix/install-nix-action@v31
-
-      - name: Install devenv
-        run: nix profile install --accept-flake-config nixpkgs#devenv
-
-      - name: Format
-        run: devenv shell -- treefmt --fail-on-change --no-cache
-
-      - name: Lint
-        run: devenv shell -- oxlint --deny correctness
-
-      - name: Install frontend dependencies
-        shell: devenv shell bash -- -e {0}
-        run: |
-          cd apps/frontend
-          deno install --frozen
-
-      - name: Type check frontend
-        shell: devenv shell bash -- -e {0}
-        run: |
-          cd apps/frontend
-          deno check src/
-
-      - name: Build frontend
-        shell: devenv shell bash -- -e {0}
-        run: |
-          cd apps/frontend
-          deno task build
-
-      - name: Install backend dependencies
-        shell: devenv shell bash -- -e {0}
-        run: |
-          cd apps/backend
-          deno install --frozen
-
-      - name: Type check backend
-        shell: devenv shell bash -- -e {0}
-        run: |
-          cd apps/backend
-          deno check src/
-
-      - name: Build backend
-        shell: devenv shell bash -- -e {0}
-        run: |
-          cd apps/backend
-          deno task build
+  check:
+    uses: ScottyLabs/devenv/.forgejo/workflows/ci.yml@main
+    secrets: inherit

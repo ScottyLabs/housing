@@ -33,6 +33,15 @@ const app = new Elysia().use(api);
 
 if (staticDir) {
   app.use(staticPlugin({ assets: staticDir, prefix: "/" }));
+
+  const indexHtml = await Deno.readTextFile(`${staticDir}/index.html`);
+  app.onError(({ code, path }) => {
+    if (code === "NOT_FOUND" && !path.startsWith("/api")) {
+      return new Response(indexHtml, {
+        headers: { "content-type": "text/html; charset=utf-8" },
+      });
+    }
+  });
 } else {
   logger.warn("STATIC_DIR environment variable is not set. Frontend will not be served.");
   logger.warn(
