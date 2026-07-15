@@ -1,47 +1,47 @@
 export enum RoomType {
-    TradSingle = "tradSingle",
-    TradDouble = "tradDouble",
-    TradTriple = "tradTriple",
-    SemiSuiteSingle = "semiSuiteSingle",
-    SemiSuiteDouble = "semiSuiteDouble",
-    SemiSuiteTriple = "semiSuiteTriple",
-    SemiSuiteQuad = "semiSuiteQuad",
-    ApartmentTriple = "aptTriple",
-    StudioApartmentSingle = "studioAptSingle",
-    StudioApartmentDouble = "studioAptDouble"
+    TradSingle,
+    TradDouble,
+    TradTriple,
+    SemiSuiteSingle,
+    SemiSuiteDouble,
+    SemiSuiteTriple,
+    SemiSuiteQuad,
+    ApartmentTriple,
+    StudioApartmentSingle,
+    StudioApartmentDouble
 }
 
 export enum BathroomType {
-    Communal = "communal",
-    SharedSuite = "sharedSuite",
-    Private = "private"
+    Communal,
+    SharedSuite,
+    Private
 }
 
 export enum ACLevel {
-    None = "none",
-    ByNecessity = "byNecessity",
-    Window = "window",
-    Central = "central"
+    None,
+    ByNecessity,
+    Window,
+    Central
 }
 
 export enum LaundryLocation {
-    None = "none",
-    Basement = "basement",
-    EachFloor = "eachFloor",
-    InUnit = "inUnit"
+    None,
+    Basement,
+    EachFloor,
+    InUnit
 }
 
 export enum KitchenScope {
-    None = "none",
-    Shared = "shared",
-    InUnit = "inUnit"
+    None,
+    Shared,
+    InUnit
 }
 
 export enum GenderHousing {
-    CoEd = "coed",
-    WomenOnly = "womenOnly",
-    MenOnly = "menOnly",
-    GenderInclusive = "genderInclusive"
+    CoEd,
+    WomenOnly,
+    MenOnly,
+    GenderInclusive
 }
 
 export interface Bathrooms {

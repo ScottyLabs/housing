@@ -39,22 +39,64 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.tours.vividmediany.com/3d-model/cmu-morewood-etower-traditional-double/fullscreen/"
                 },
-                { "link": "/floor-plans/etower/morewood-e-third-floor.png", "description": "Third Floor", "category": "floor" },
-                { "link": "/floor-plans/etower/morewood-e-fourth-floor.png", "description": "Fourth Floor", "category": "floor" },
-                { "link": "/floor-plans/etower/morewood-e-fifth-floor.png", "description": "Fifth Floor", "category": "floor" },
-                { "link": "/floor-plans/etower/morewood-e-sixth-floor.png", "description": "Sixth Floor", "category": "floor" },
-                { "link": "/floor-plans/etower/morewood-e-seventh-floor.png", "description": "Seventh Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/etower/morewood-e-third-floor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/etower/morewood-e-fourth-floor.png",
+                    "description": "Fourth Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/etower/morewood-e-fifth-floor.png",
+                    "description": "Fifth Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/etower/morewood-e-sixth-floor.png",
+                    "description": "Sixth Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/etower/morewood-e-seventh-floor.png",
+                    "description": "Seventh Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["tradSingle", "tradDouble"],
-            "bathrooms": { "types": ["communal"], "details": "bathrooms shared per floor (single sex)" },
-            "ac": { "level": "byNecessity", "details": "AC by neccesity only with accomodations" },
-            "kitchen": { "scope": "shared", "details": "only a small kitchen" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
-            "commonAreas": { "hasLounge": true, "details": "1 large lounge per floor with TV" },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "roomTypes": [
+                0,
+                1
+            ],
+            "bathrooms": {
+                "types": [
+                    0
+                ],
+                "details": "bathrooms shared per floor (single sex)"
+            },
+            "ac": {
+                "level": 1,
+                "details": "AC by neccesity only with accomodations"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "only a small kitchen"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "1 large lounge per floor with TV"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -102,25 +144,63 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.vividmediavirtualtours.com/3d-model/cmu-stever-house-standard-layout/fullscreen/"
                 },
-                { "link": "/floor-plans/stever/stever-first-floor.png", "description": "First Floor", "category": "floor" },
-                { "link": "/floor-plans/stever/stever-second-floor.png", "description": "Second Floor", "category": "floor" },
-                { "link": "/floor-plans/stever/stever-third-floor.png", "description": "Third Floor", "category": "floor" },
-                { "link": "/floor-plans/stever/stever-fourth-floor.png", "description": "Fourth Floor", "category": "floor" },
-                { "link": "/floor-plans/stever/stever-fifth-floor.png", "description": "Fifth Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/stever/stever-first-floor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/stever/stever-second-floor.png",
+                    "description": "Second Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/stever/stever-third-floor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/stever/stever-fourth-floor.png",
+                    "description": "Fourth Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/stever/stever-fifth-floor.png",
+                    "description": "Fifth Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["tradDouble"],
-            "bathrooms": { "types": ["communal"], "details": "bathrooms per wing" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "Kitchen and dining room" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
+            "roomTypes": [
+                1
+            ],
+            "bathrooms": {
+                "types": [
+                    0
+                ],
+                "details": "bathrooms per wing"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "Kitchen and dining room"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
             "commonAreas": {
                 "hasLounge": true,
                 "details": "reading room, study rooms, recreation area with ping-pong, pool table, and TV"
             },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -174,24 +254,59 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
                 },
-                { "link": "/floor-plans/boss/boss_groundfloor.png", "description": "Ground Floor", "category": "floor" },
-                { "link": "/floor-plans/boss/boss_firstfloor.png", "description": "First Floor", "category": "floor" },
-                { "link": "/floor-plans/boss/boss_secondfloor.png", "description": "Second Floor", "category": "floor" },
-                { "link": "/floor-plans/boss/boss_thirdfloor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/boss/boss_groundfloor.png",
+                    "description": "Ground Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/boss/boss_firstfloor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/boss/boss_secondfloor.png",
+                    "description": "Second Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/boss/boss_thirdfloor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["semiSuiteSingle", "semiSuiteDouble"],
-            "bathrooms": { "types": ["sharedSuite"], "details": "bathrooms shared with a suite" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "Yes, needs more info" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
+            "roomTypes": [
+                3,
+                4
+            ],
+            "bathrooms": {
+                "types": [
+                    1
+                ],
+                "details": "bathrooms shared with a suite"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "Yes, needs more info"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
             "commonAreas": {
                 "hasLounge": true,
                 "details": "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
             },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -201,7 +316,13 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
+            "closeBuildings": [
+                "donner",
+                "hamerschlag",
+                "welch",
+                "scobell",
+                "henderson"
+            ],
             "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson"
         }
     },
@@ -245,24 +366,58 @@
                 }
             ],
             "floorPlans": [
-                { "link": "/floor-plans/clyde/clyde_lowerlevel.png", "description": "Lower Level", "category": "floor" },
-                { "link": "/floor-plans/clyde/clyde_firstfloor.png", "description": "First Floor", "category": "floor" },
-                { "link": "/floor-plans/clyde/clyde_secondfloor.png", "description": "Second Floor", "category": "floor" },
-                { "link": "/floor-plans/clyde/clyde_thirdfloor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/clyde/clyde_lowerlevel.png",
+                    "description": "Lower Level",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/clyde/clyde_firstfloor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/clyde/clyde_secondfloor.png",
+                    "description": "Second Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/clyde/clyde_thirdfloor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["studioAptDouble"],
-            "bathrooms": { "types": ["private"], "details": "bathrooms are private" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
+            "roomTypes": [
+                9
+            ],
+            "bathrooms": {
+                "types": [
+                    2
+                ],
+                "details": "bathrooms are private"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
             "kitchen": {
-                "scope": "inUnit",
+                "scope": 2,
                 "details": "Each studio has its own kitchenette, fridge, and bathroom, and there is communal kitchen"
             },
-            "laundry": { "location": "basement", "details": "near lower level, per floor plan" },
-            "commonAreas": { "hasLounge": true, "details": "TV room/parlor, fitness area, study lounge, other common areas" },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "laundry": {
+                "location": 1,
+                "details": "near lower level, per floor plan"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "TV room/parlor, fitness area, study lounge, other common areas"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -334,24 +489,60 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.tours.vividmediany.com/3d-model/cmu-donner-traditional-triple/fullscreen/"
                 },
-                { "link": "/floor-plans/donner/donner_groundfloor.png", "description": "Ground Floor", "category": "floor" },
-                { "link": "/floor-plans/donner/donner_firstfloor.png", "description": "First Floor", "category": "floor" },
-                { "link": "/floor-plans/donner/donner_secondfloor.png", "description": "Second Floor", "category": "floor" },
-                { "link": "/floor-plans/donner/donner_thirdfloor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/donner/donner_groundfloor.png",
+                    "description": "Ground Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/donner/donner_firstfloor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/donner/donner_secondfloor.png",
+                    "description": "Second Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/donner/donner_thirdfloor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["tradSingle", "tradDouble", "tradTriple"],
-            "bathrooms": { "types": ["communal"], "details": "bathrooms shared on floor" },
+            "roomTypes": [
+                0,
+                1,
+                2
+            ],
+            "bathrooms": {
+                "types": [
+                    0
+                ],
+                "details": "bathrooms shared on floor"
+            },
             "ac": {
-                "level": "byNecessity",
+                "level": 1,
                 "details": "No, AC by necessity/triple or if you're lucky you'll get a room w/ AC"
             },
-            "kitchen": { "scope": "shared", "details": "Public kitchen and dining area" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
-            "commonAreas": { "hasLounge": true, "details": "One lounge on first floor with tv, and games room in the basement" },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "kitchen": {
+                "scope": 1,
+                "details": "Public kitchen and dining area"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "One lounge on first floor with tv, and games room in the basement"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -426,24 +617,54 @@
                     "description": "Ground Floor",
                     "category": "floor"
                 },
-                { "link": "/floor-plans/henderson/henderson-first-floor.png", "description": "First Floor", "category": "floor" },
+                {
+                    "link": "/floor-plans/henderson/henderson-first-floor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
                 {
                     "link": "/floor-plans/henderson/henderson-second-floor.png",
                     "description": "Second Floor",
                     "category": "floor"
                 },
-                { "link": "/floor-plans/henderson/henderson-third-floor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/henderson/henderson-third-floor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["semiSuiteSingle", "semiSuiteDouble"],
-            "bathrooms": { "types": ["sharedSuite"], "details": "CHONKR bathrooms (or so I've heard)" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "kitchen?" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
-            "commonAreas": { "hasLounge": true, "details": "wellness room and leaky study room" },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "roomTypes": [
+                3,
+                4
+            ],
+            "bathrooms": {
+                "types": [
+                    1
+                ],
+                "details": "CHONKR bathrooms (or so I've heard)"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "kitchen?"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "wellness room and leaky study room"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -453,7 +674,14 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "boss", "mcgill"],
+            "closeBuildings": [
+                "donner",
+                "hamerschlag",
+                "welch",
+                "scobell",
+                "boss",
+                "mcgill"
+            ],
             "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Boss/McGill"
         }
     },
@@ -509,24 +737,59 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.tours.vividmediany.com/3d-model/cmu-mcgill-semi-suite-x07-x08/fullscreen/"
                 },
-                { "link": "/floor-plans/mcgill/mcgill_groundfloor.png", "description": "Ground Floor", "category": "floor" },
-                { "link": "/floor-plans/mcgill/mcgill-first-floor.png", "description": "First Floor", "category": "floor" },
-                { "link": "/floor-plans/mcgill/mcgill-second-floor.png", "description": "Second Floor", "category": "floor" },
-                { "link": "/floor-plans/mcgill/mcgill-third-floor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/mcgill/mcgill_groundfloor.png",
+                    "description": "Ground Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/mcgill/mcgill-first-floor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/mcgill/mcgill-second-floor.png",
+                    "description": "Second Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/mcgill/mcgill-third-floor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["semiSuiteSingle", "semiSuiteDouble"],
-            "bathrooms": { "types": ["sharedSuite"], "details": "bathroom shared with a suite" },
-            "ac": { "level": "window", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "Yes, needs more info" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
+            "roomTypes": [
+                3,
+                4
+            ],
+            "bathrooms": {
+                "types": [
+                    1
+                ],
+                "details": "bathroom shared with a suite"
+            },
+            "ac": {
+                "level": 2,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "Yes, needs more info"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
             "commonAreas": {
                 "hasLounge": true,
                 "details": "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
             },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -536,7 +799,13 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
+            "closeBuildings": [
+                "donner",
+                "hamerschlag",
+                "welch",
+                "scobell",
+                "henderson"
+            ],
             "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson"
         }
     },
@@ -628,14 +897,37 @@
             ]
         },
         "amenities": {
-            "roomTypes": ["semiSuiteSingle", "semiSuiteDouble", "semiSuiteTriple"],
-            "bathrooms": { "types": ["sharedSuite"], "details": "bathroom shared with a suite" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "small shared kitchens every other floor" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
-            "commonAreas": { "hasLounge": true, "details": "2 huge lounges per floor, with TV" },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "roomTypes": [
+                3,
+                4,
+                5
+            ],
+            "bathrooms": {
+                "types": [
+                    1
+                ],
+                "details": "bathroom shared with a suite"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "small shared kitchens every other floor"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "2 huge lounges per floor, with TV"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -795,26 +1087,40 @@
         },
         "amenities": {
             "roomTypes": [
-                "semiSuiteSingle",
-                "semiSuiteDouble",
-                "semiSuiteQuad",
-                "tradSingle",
-                "tradDouble",
-                "tradTriple"
+                3,
+                4,
+                6,
+                0,
+                1,
+                2
             ],
             "bathrooms": {
-                "types": ["communal", "sharedSuite"],
+                "types": [
+                    0,
+                    1
+                ],
                 "details": "traditional dorms have Communal bathrooms and semi-suite will share with another suite"
             },
-            "ac": { "level": "none", "details": "AC not available" },
-            "kitchen": { "scope": "shared", "details": "3 kitchens" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
+            "ac": {
+                "level": 0,
+                "details": "AC not available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "3 kitchens"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
             "commonAreas": {
                 "hasLounge": true,
                 "details": "Large lounge with public grand piano, large study lounge, pool table room, big courtyard"
             },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -824,7 +1130,9 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["stever"],
+            "closeBuildings": [
+                "stever"
+            ],
             "note": "Mudge is located on Morewood Ave, close to Stever, slightly farther from campus"
         }
     },
@@ -886,7 +1194,11 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.tours.vividmediany.com/3d-model/cmu-residence-on-fifth-m105-apt-triple/fullscreen/"
                 },
-                { "link": "/floor-plans/fifth/residence-on-fifth---mezzanine.png", "description": "Mezzanine", "category": "floor" },
+                {
+                    "link": "/floor-plans/fifth/residence-on-fifth---mezzanine.png",
+                    "description": "Mezzanine",
+                    "category": "floor"
+                },
                 {
                     "link": "/floor-plans/fifth/residence-on-fifth---third-floor.png",
                     "description": "Third Floor",
@@ -905,14 +1217,37 @@
             ]
         },
         "amenities": {
-            "roomTypes": ["aptTriple", "studioAptDouble"],
-            "bathrooms": { "types": ["private"], "details": "bathrooms are private" },
-            "ac": { "level": "central", "details": "unknown" },
-            "kitchen": { "scope": "inUnit", "details": "kitchenette" },
-            "laundry": { "location": "eachFloor", "details": "documented on the 4th floor; may not be every floor" },
-            "commonAreas": { "hasLounge": true, "details": "Den, TV room" },
-            "gym": { "available": true, "details": "Fitness Room" },
-            "genderHousing": "coed"
+            "roomTypes": [
+                7,
+                9
+            ],
+            "bathrooms": {
+                "types": [
+                    2
+                ],
+                "details": "bathrooms are private"
+            },
+            "ac": {
+                "level": 3,
+                "details": "unknown"
+            },
+            "kitchen": {
+                "scope": 2,
+                "details": "kitchenette"
+            },
+            "laundry": {
+                "location": 2,
+                "details": "documented on the 4th floor; may not be every floor"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "Den, TV room"
+            },
+            "gym": {
+                "available": true,
+                "details": "Fitness Room"
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -975,24 +1310,54 @@
                     "description": "Ground Floor",
                     "category": "floor"
                 },
-                { "link": "/floor-plans/scobell/scobell-house-first-floor.png", "description": "First Floor", "category": "floor" },
+                {
+                    "link": "/floor-plans/scobell/scobell-house-first-floor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
                 {
                     "link": "/floor-plans/scobell/scobell-house-second-floor.png",
                     "description": "Second Floor",
                     "category": "floor"
                 },
-                { "link": "/floor-plans/scobell/scobell-house-third-floor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/scobell/scobell-house-third-floor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["tradSingle", "tradDouble"],
-            "bathrooms": { "types": ["communal"], "details": "needs more details" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "idk maybe?" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
-            "commonAreas": { "hasLounge": true, "details": "Big 0th floor lounge, and lounges every floor" },
-            "gym": { "available": false },
-            "genderHousing": "womenOnly"
+            "roomTypes": [
+                0,
+                1
+            ],
+            "bathrooms": {
+                "types": [
+                    0
+                ],
+                "details": "needs more details"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "idk maybe?"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "Big 0th floor lounge, and lounges every floor"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 1
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -1002,7 +1367,14 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["donner", "hamerschlag", "welch", "boss", "mcgill", "henderson"],
+            "closeBuildings": [
+                "donner",
+                "hamerschlag",
+                "welch",
+                "boss",
+                "mcgill",
+                "henderson"
+            ],
             "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Boss/McGill, and Henderson"
         }
     },
@@ -1054,20 +1426,54 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.tours.vividmediany.com/3d-model/cmu-welch-semi-suite-x05-x07/fullscreen/"
                 },
-                { "link": "/floor-plans/welch/welch-first-floor.png", "description": "First Floor", "category": "floor" },
-                { "link": "/floor-plans/welch/welch-second-floor.png", "description": "Second Floor", "category": "floor" },
-                { "link": "/floor-plans/welch/welch-third-floor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/welch/welch-first-floor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/welch/welch-second-floor.png",
+                    "description": "Second Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/welch/welch-third-floor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["semiSuiteSingle", "semiSuiteDouble"],
-            "bathrooms": { "types": ["sharedSuite"], "details": "needs more details" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "Kitchen yes" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
-            "commonAreas": { "hasLounge": true, "details": "study space/lounge" },
-            "gym": { "available": false },
-            "genderHousing": "genderInclusive"
+            "roomTypes": [
+                3,
+                4
+            ],
+            "bathrooms": {
+                "types": [
+                    1
+                ],
+                "details": "needs more details"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "Kitchen yes"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "study space/lounge"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 3
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -1077,7 +1483,14 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["donner", "hamerschlag", "scobell", "boss", "mcgill", "henderson"],
+            "closeBuildings": [
+                "donner",
+                "hamerschlag",
+                "scobell",
+                "boss",
+                "mcgill",
+                "henderson"
+            ],
             "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Scobell, Boss/McGill, and Henderson"
         }
     },
@@ -1143,18 +1556,44 @@
                     "description": "Second Floor",
                     "category": "floor"
                 },
-                { "link": "/floor-plans/hamerschlag/hamerschlag-third-floor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/hamerschlag/hamerschlag-third-floor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["tradSingle", "tradDouble"],
-            "bathrooms": { "types": ["communal"], "details": "needs more details" },
-            "ac": { "level": "central", "details": "yes, should have AC" },
-            "kitchen": { "scope": "shared", "details": "Yes, there is a kitchen" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
-            "commonAreas": { "hasLounge": true, "details": "1st floor schlounge and study room on each floor in each tower" },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "roomTypes": [
+                0,
+                1
+            ],
+            "bathrooms": {
+                "types": [
+                    0
+                ],
+                "details": "needs more details"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, should have AC"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "Yes, there is a kitchen"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
+            "commonAreas": {
+                "hasLounge": true,
+                "details": "1st floor schlounge and study room on each floor in each tower"
+            },
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -1164,7 +1603,14 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["donner", "boss", "mcgill", "welch", "scobell", "henderson"],
+            "closeBuildings": [
+                "donner",
+                "boss",
+                "mcgill",
+                "welch",
+                "scobell",
+                "henderson"
+            ],
             "note": "Located on Margaret Morrison St, close to Donner, Boss/McGill, Welch, Scobell, and Henderson"
         }
     },
@@ -1208,24 +1654,59 @@
                     "category": "roomType",
                     "virtualTourLink": "https://www.tours.vividmediany.com/3d-model/cmu-boss-semi-suite-x01-x02-x04/fullscreen/"
                 },
-                { "link": "/floor-plans/boss/boss_groundfloor.png", "description": "Ground Floor", "category": "floor" },
-                { "link": "/floor-plans/boss/boss_firstfloor.png", "description": "First Floor", "category": "floor" },
-                { "link": "/floor-plans/boss/boss_secondfloor.png", "description": "Second Floor", "category": "floor" },
-                { "link": "/floor-plans/boss/boss_thirdfloor.png", "description": "Third Floor", "category": "floor" }
+                {
+                    "link": "/floor-plans/boss/boss_groundfloor.png",
+                    "description": "Ground Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/boss/boss_firstfloor.png",
+                    "description": "First Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/boss/boss_secondfloor.png",
+                    "description": "Second Floor",
+                    "category": "floor"
+                },
+                {
+                    "link": "/floor-plans/boss/boss_thirdfloor.png",
+                    "description": "Third Floor",
+                    "category": "floor"
+                }
             ]
         },
         "amenities": {
-            "roomTypes": ["semiSuiteSingle", "semiSuiteDouble"],
-            "bathrooms": { "types": ["sharedSuite"], "details": "bathrooms shared with a suite" },
-            "ac": { "level": "central", "details": "yes, AC is available" },
-            "kitchen": { "scope": "shared", "details": "Yes, needs more info" },
-            "laundry": { "location": "basement", "details": "not verified in this data pass" },
+            "roomTypes": [
+                3,
+                4
+            ],
+            "bathrooms": {
+                "types": [
+                    1
+                ],
+                "details": "bathrooms shared with a suite"
+            },
+            "ac": {
+                "level": 3,
+                "details": "yes, AC is available"
+            },
+            "kitchen": {
+                "scope": 1,
+                "details": "Yes, needs more info"
+            },
+            "laundry": {
+                "location": 1,
+                "details": "not verified in this data pass"
+            },
             "commonAreas": {
                 "hasLounge": true,
                 "details": "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
             },
-            "gym": { "available": false },
-            "genderHousing": "coed"
+            "gym": {
+                "available": false
+            },
+            "genderHousing": 0
         },
         "accessibility": {
             "wheelchairAccessible": false,
@@ -1235,7 +1716,13 @@
         },
         "atmosphere": {},
         "location": {
-            "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
+            "closeBuildings": [
+                "donner",
+                "hamerschlag",
+                "welch",
+                "scobell",
+                "henderson"
+            ],
             "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson"
         }
     }
