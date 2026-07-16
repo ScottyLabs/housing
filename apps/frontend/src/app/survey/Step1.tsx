@@ -16,7 +16,7 @@ const YEAR_OPTIONS: SelectOption[] = [
   { value: "senior", label: "Senior" },
 ];
 
-// TODO: figure out how to add all majors
+// Major options need the full majors list later.
 const MAJOR_OPTIONS: SelectOption[] = [
   { value: "cfa", label: "CFA" },
   { value: "arch", label: "Arch" },
@@ -66,7 +66,6 @@ function Field({
 function SurveyInfo() {
 
   return (
-    <>
       <div className="flex items-center gap-4 rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-6">
         <img
           src="/unsorted-icons/info.svg"
@@ -78,7 +77,6 @@ function SurveyInfo() {
           We need some information about you in order to offer recommended buildings
         </p>
       </div>
-    </>
   );
 }
 
@@ -90,7 +88,6 @@ export default function Step1() {
   return (
     <>
       <SurveyInfo />
-    
       <div className="rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-8">
         <h2 className="text-[24px] font-semibold leading-none">Who are you?</h2>
         <div className="mt-8 flex flex-col gap-8">
@@ -123,6 +120,6 @@ export default function Step1() {
           />
         </div>
       </div>
-    </>
+      </>
   );
 }

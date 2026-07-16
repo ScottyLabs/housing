@@ -44,7 +44,9 @@ function SliderInput({
           min={min}
           max={max}
           value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
+          onChange={(e) => {
+            onChange(Number(e.target.value));
+          }}
           className="w-full h-[4px] bg-gray-300 rounded appearance-none cursor-pointer slider"
           style={{
             background: `linear-gradient(to right,
@@ -53,8 +55,7 @@ function SliderInput({
                                 #d1d5db ${percent}%,
                                 #d1d5db 100%)`,
           }}
-        /> 
-        );
+        /> );
 }
 
 export default function Slider({
@@ -71,8 +72,8 @@ export default function Slider({
 
   const THUMB_SIZE = 22.6;
 
-  function getTickPosition(percent: number) {
-    return `calc(${percent}% + ${(0.5 - percent / 100) * THUMB_SIZE}px)`;
+  function getTickPosition(tickPercent: number) {
+    return `calc(${tickPercent}% + ${(0.5 - tickPercent / 100) * THUMB_SIZE}px)`;
   }
 
   const ticks = showTicks

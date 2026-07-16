@@ -69,7 +69,9 @@ export default function Survey() {
     }
   };
 
-  const skip = () => navigate("/home");
+  const skip = () => {
+    navigate("/home");
+  };
 
   return (
     <div className="mx-auto w-full max-w-[1140px] px-6 pb-12 pt-[26px]">
