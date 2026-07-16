@@ -63,10 +63,7 @@ function Field({
   );
 }
 
-export default function Step1() {
-  const [gender, setGender] = useState("");
-  const [year, setYear] = useState("");
-  const [major, setMajor] = useState("");
+function SurveyInfo() {
 
   return (
     <>
@@ -81,7 +78,19 @@ export default function Step1() {
           We need some information about you in order to offer recommended buildings
         </p>
       </div>
+    </>
+  );
+}
 
+export default function Step1() {
+  const [gender, setGender] = useState("");
+  const [year, setYear] = useState("");
+  const [major, setMajor] = useState("");
+
+  return (
+    <>
+      <SurveyInfo />
+    
       <div className="rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-8">
         <h2 className="text-[24px] font-semibold leading-none">Who are you?</h2>
         <div className="mt-8 flex flex-col gap-8">
