@@ -1,6 +1,6 @@
----
-title: Contributing
----
+______________________________________________________________________
+
+## title: Contributing
 
 # Contributing to CMUHousing
 
@@ -13,7 +13,8 @@ ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scott
 ## How to Contribute
 
 1. **Fork the repository** or create a new branch if you have write access
-2. **Create a new branch** from `main` with a descriptive name:
+
+1. **Create a new branch** from `main` with a descriptive name:
 
    ```bash
    git checkout -b your-feature-name
@@ -21,9 +22,11 @@ ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scott
    git checkout -b bug-description
    ```
 
-3. **Make your changes** following the code style and conventions
-4. **Test your changes** locally by running the project. See [README.md](README.md) for more instructions on running the project.
-5. **Commit using conventional commits** (see below)
+1. **Make your changes** following the code style and conventions
+
+1. **Test your changes** locally by running the project. See [README.md](README.md) for more instructions on running the project.
+
+1. **Commit using conventional commits** (see below)
 
    ```bash
    git add .
@@ -31,7 +34,7 @@ ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scott
    git commit -m "Your commit message"
    ```
 
-6. **Push to your fork** or branch
+1. **Push to your fork** or branch
 
    ```bash
    # if first branch push
@@ -41,7 +44,7 @@ ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scott
    git push
    ```
 
-7. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting your branch on [GitHub](https://github.com/ScottyLabs/cmuhousing/tree/main).
+1. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting your branch on [GitHub](https://github.com/ScottyLabs/cmuhousing/tree/main).
 
 ## Conventional Commits
 

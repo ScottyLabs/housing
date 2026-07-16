@@ -1,22 +1,22 @@
 {
-    "name": "cmu-housing",
-    "version": "0.0.0",
-    "private": true,
-    "type": "module",
-    "dependencies": {
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
-        "react-router-dom": "^6.28.0"
-    },
-    "devDependencies": {
-        "@tailwindcss/postcss": "^4.3.0",
-        "@types/node": "^20.19.37",
-        "@types/react": "^19.2.14",
-        "@types/react-dom": "^19.2.3",
-        "@vitejs/plugin-react": "^4.3.4",
-        "autoprefixer": "^10.5.0",
-        "tailwindcss": "^4.2.1",
-        "typescript": "^5.9.3",
-        "vite": "^5.4.8"
-    }
+  "name": "cmu-housing",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/node": "^20.19.37",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.5.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.8"
+  }
 }

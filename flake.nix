@@ -10,7 +10,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    devenv.url = "github:cachix/devenv";
     scottylabs = {
       url = "git+https://codeberg.org/ScottyLabs/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +20,6 @@
     {
       self,
       nixpkgs,
-      devenv,
       scottylabs,
       ...
     }:
@@ -40,14 +38,16 @@
           helpers = scottylabs.mkLib pkgs;
 
           frontend = helpers.buildDenoTask {
-            src = ./apps/frontend;
+            src = ./.;
+            cwd = "apps/frontend";
             pname = "housing-frontend";
             version = "0.1.0";
           };
 
           backend =
             (helpers.buildDenoTask {
-              src = ./apps/backend;
+              src = ./.;
+              cwd = "apps/backend";
               pname = "housing-backend";
               entrypoint = "src/index.ts";
               compile = true;
@@ -61,8 +61,6 @@
         in
         {
           inherit frontend backend;
-          default = self.packages.${system}.backend;
-          devenv = devenv.packages.${system}.devenv;
         }
       );
     };
