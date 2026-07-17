@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import BuildingComparison from "@/app/building-comparison/page";
 import BuildingOptions from "@/app/building-options/page";
 import LaunchPage from "@/app/launch-page/page";
 import MapPage from "@/app/map-page";
@@ -45,6 +46,7 @@ export default function App() {
 					<Route path="/home" element={<Home />} />
 					<Route path="/map" element={<MapPage />} />
 					<Route path="/building-options" element={<BuildingOptions />} />
+					<Route path="/building-comparison" element={<BuildingComparison />} />
 					<Route path="/building/:id" element={<BuildingDetails />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>

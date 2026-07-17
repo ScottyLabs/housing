@@ -17,13 +17,13 @@ export default function BuildingOption({
         style={{ width: width, height: height }}
       >
         <img
-          src={building.image}
+          src={building.media.mainImage}
           alt={building.name}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
         <div
           className="
-                    absolute 
+                    absolute
                     inset-x-0 
                     bottom-0 
                     h-24
