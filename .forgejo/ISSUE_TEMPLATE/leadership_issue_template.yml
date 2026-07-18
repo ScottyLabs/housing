@@ -42,11 +42,11 @@ body:
       label: Size
       description: Rough effort estimate of issue size
       options:
-        - XS
-        - S
-        - M
-        - L
-        - XL
+        - size/XS
+        - size/S
+        - size/M
+        - size/L
+        - size/XL
     validations:
       required: true
 
@@ -55,9 +55,9 @@ body:
     attributes:
       label: Priority
       options:
-        - P0
-        - P1
-        - P2
+        - priority/high
+        - priority/medium
+        - priority/low
     validations:
       required: true
 
@@ -84,5 +84,7 @@ body:
         - label: beginner friendly
         - label: documentation
         - label: wontfix
+        - label: backend
+        - label: frontend
     validations:
       required: true
