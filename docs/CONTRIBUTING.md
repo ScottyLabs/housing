@@ -1,7 +1,3 @@
-______________________________________________________________________
-
-## title: Contributing
-
 # Contributing to CMUHousing
 
 Thank you for your interest in contributing to CMUHousing! This guide will help you get started.
@@ -86,7 +82,23 @@ Prerequisites: [devenv](https://devenv.sh) and [direnv](https://direnv.net/).
 ```sh
 cd housing
 direnv allow
-devenv up   # starts the frontend dev server on port 3000
+devenv up
+```
+
+Then you can use the follow commands from root to run the frontend.
+
+```sh
+cd apps/frontend
+
+deno task dev
+```
+
+Lastly, run the following commands from root to run the backend. (NOTE: Currently due to a devops issue this doesn't work. Ignore this step)
+
+```sh
+cd apps/backend
+
+PORT=3001 deno task dev
 ```
 
 If secretspec complains about the vault provider locally, use:
