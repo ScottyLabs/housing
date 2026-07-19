@@ -3,32 +3,32 @@ import BuildingOption from "@/components/BuildingOption";
 import { deriveTags } from "@/data/tags";
 
 export default function TaggedBuildingOption({ building }: { building: Building }) {
-    const tagMap = useBuildingTagsMap();
-    const tagIds = deriveTags(building);
+  const tagMap = useBuildingTagsMap();
+  const tagIds = deriveTags(building);
 
-    return (
-        <div className="flex flex-col gap-[20px]">
-            <BuildingOption building={building} width={320} height={220} />
-            <>
-                {tagIds.length > 0 && (
-                    <div className="flex flex-col gap-[18px]">
-                        {tagIds
-                            .map((id) => {
-                                const someTag = tagMap.get(id);
-                                if (someTag === undefined) {
-                                    throw new Error(`Building ${building.name} contains invalid tag: ${id}`);
-                                }
-                                return someTag;
-                            })
-                            .map((tag) => (
-                                <div key={tag.id} className="flex gap-[5px] items-center">
-                                    <img src={tag.icon} alt={tag.label} className="w-[34.56px] h-[34.56px]" />
-                                    <h2 className="text-[18px]">{tag.label}</h2>
-                                </div>
-                            ))}
-                    </div>
-                )}
-            </>
-        </div>
-    );
+  return (
+    <div className="flex flex-col gap-[20px]">
+      <BuildingOption building={building} width={320} height={220} />
+      <>
+        {tagIds.length > 0 && (
+          <div className="flex flex-col gap-[18px]">
+            {tagIds
+              .map((id) => {
+                const someTag = tagMap.get(id);
+                if (someTag === undefined) {
+                  throw new Error(`Building ${building.name} contains invalid tag: ${id}`);
+                }
+                return someTag;
+              })
+              .map((tag) => (
+                <div key={tag.id} className="flex gap-[5px] items-center">
+                  <img src={tag.icon} alt={tag.label} className="w-[34.56px] h-[34.56px]" />
+                  <h2 className="text-[18px]">{tag.label}</h2>
+                </div>
+              ))}
+          </div>
+        )}
+      </>
+    </div>
+  );
 }

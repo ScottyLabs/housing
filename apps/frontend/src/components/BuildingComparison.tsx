@@ -152,7 +152,9 @@ export default function BuildingColumn({
             className="w-9 h-9"
           />
           <div className="text-[16px] whitespace-normal break-words">
-            <div>{building.amenities.bathrooms.types.map((t) => bathroomTypeLabel[t]).join(", ")}</div>
+            <div>
+              {building.amenities.bathrooms.types.map((t) => bathroomTypeLabel[t]).join(", ")}
+            </div>
             <div className="font-normal text-[16px] whitespace-normal break-words">
               {building.amenities.bathrooms.details}
             </div>
