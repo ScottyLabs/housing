@@ -163,7 +163,7 @@ One-to-one extension of `user` holding lifestyle/roommate-matching preferences.
 | Column | DB type | Nullable | Notes |
 | --- | --- | --- | --- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
-| `user_id` | `integer` | No (FK → `user.id`) | Owning user. |
+| `user_id` | `integer` | No (FK -> `user.id`) | Owning user. |
 | `accommodations` | `text[]` | Yes | List of accessibility/accommodation needs. |
 | `cooking_frequency` | `integer` | Yes | Self-reported frequency scale (e.g. times per week). |
 | `goals` | `text[]` | Yes | Free-text goals for housing/roommate search. |
@@ -184,7 +184,7 @@ One-to-one extension of `user` holding the public-facing roommate-matching profi
 | Column | DB type | Nullable | Notes |
 | --- | --- | --- | --- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
-| `user_id` | `integer` | No (FK → `user.id`) | Owning user. |
+| `user_id` | `integer` | No (FK -> `user.id`) | Owning user. |
 | `alcohol` | `boolean` | Yes | Whether the user drinks alcohol. |
 | `assigned_sex` | `text` | Yes | Assigned sex, used for housing-eligibility matching. |
 | `bathroom_preference` | `text` | Yes | Preferred bathroom arrangement. |
@@ -239,8 +239,8 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 | Column | DB type | Nullable | Notes |
 | --- | --- | --- | --- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
-| `dorm_id` | `integer` | No (FK → `dorm.id`) | Dorm being reviewed. |
-| `user_id` | `integer` | No (FK → `user.id`) | Author of the review. |
+| `dorm_id` | `integer` | No (FK -> `dorm.id`) | Dorm being reviewed. |
+| `user_id` | `integer` | No (FK -> `user.id`) | Author of the review. |
 | `body` | `text` | Yes | Free-text review content. |
 | `lived_term` | `text` | Yes | Term the reviewer lived there (e.g. Fall). |
 | `lived_year` | `text` | Yes | Year the reviewer lived there. |
@@ -252,10 +252,10 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 
 ## Relationships
 
-- `user (1) → (1) user_preferences` via `user_preferences.user_id`
-- `user (1) → (1) roommate_profile` via `roommate_profile.user_id`
-- `user (1) → (many) review` via `review.user_id`
-- `dorm (1) → (many) review` via `review.dorm_id`
+- `user (1) -> (1) user_preferences` via `user_preferences.user_id`
+- `user (1) -> (1) roommate_profile` via `roommate_profile.user_id`
+- `user (1) -> (many) review` via `review.user_id`
+- `dorm (1) -> (many) review` via `review.dorm_id`
 
 No `relations()` helpers are defined in `schema.ts` yet, so joins are written manually with Drizzle's query builder rather than the relational query API.
 

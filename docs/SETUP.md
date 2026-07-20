@@ -43,7 +43,7 @@ URLs:
 
 - https://housing-frontend-main.scottylabs.net (default Kennel URL)
 - https://cmuhousing.scottylabs.org (custom domain, managed by Kennel)
-- https://cmuhousing.com — point DNS at deploy-01 after verifying the Kennel deploy
+- https://cmuhousing.com, point DNS at deploy-01 after verifying the Kennel deploy
 
 Validate locally before pushing:
 

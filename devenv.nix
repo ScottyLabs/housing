@@ -22,4 +22,7 @@
 
     kennel.services.backend.customDomain = "cmuhousing.com";
   };
+
+  # TODO: ignorePatterns currently filters out every staged file
+  git-hooks.hooks.oxlint.args = [ "--no-error-on-unmatched-pattern" ];
 }

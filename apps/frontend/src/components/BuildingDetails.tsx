@@ -521,7 +521,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 onClick={closeLightbox}
                 aria-label="Close"
               >
-                ✕
+                &times;
               </button>
             </div>
           );
