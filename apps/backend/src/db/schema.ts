@@ -39,7 +39,8 @@ export const userPreferencesTable = pgTable("user_preferences", {
   updatedAt: timestamp("updated_at"),
   userId: integer("user_id")
     .notNull()
-    .references(() => userTable.id),
+    .references(() => userTable.id)
+    .unique(),
   year: text("year"),
 });
 
@@ -67,7 +68,8 @@ export const roommateProfileTable = pgTable("roommate_profile", {
   updatedAt: timestamp("updated_at"),
   userId: integer("user_id")
     .notNull()
-    .references(() => userTable.id),
+    .references(() => userTable.id)
+    .unique(),
   volumePreference: integer("volume_preference"),
   wakeTime: text("wake_time"),
   whereFrom: text("where_from"),
@@ -107,5 +109,6 @@ export const reviewTable = pgTable("review", {
   submittedAt: timestamp("submitted_at"),
   userId: integer("user_id")
     .notNull()
-    .references(() => userTable.id),
+    .references(() => userTable.id)
+    .unique(),
 });
