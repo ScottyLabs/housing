@@ -1,6 +1,27 @@
 {
-  "globals": {
-    "Deno": "readonly",
-    "Response": "readonly"
-  }
+  "ignorePatterns": [
+    "apps/backend/drizzle.config.ts",
+    "apps/backend/src/db/client.ts",
+    "apps/backend/src/db/index.ts",
+    "apps/backend/src/db/migrations.ts",
+    "apps/backend/src/index.ts",
+    "apps/backend/src/utils/log.ts",
+    "apps/backend/src/utils/typebox.ts",
+    "apps/frontend/src/app/building-comparison/page.tsx",
+    "apps/frontend/src/app/building-options/BuildingFilter.tsx",
+    "apps/frontend/src/app/building-options/TaggedBuildingOption.tsx",
+    "apps/frontend/src/app/map-page.tsx",
+    "apps/frontend/src/components/BuildingComparison.tsx",
+    "apps/frontend/src/components/BuildingContext.tsx",
+    "apps/frontend/src/components/BuildingDetails.tsx",
+    "apps/frontend/src/components/BuildingOption.tsx",
+    "apps/frontend/src/components/Checkbox.tsx",
+    "apps/frontend/src/components/DropdownButton.tsx",
+    "apps/frontend/src/components/Navbar.tsx",
+    "apps/frontend/src/components/ShareDropdown.tsx",
+    "apps/frontend/src/components/Slider.tsx",
+    "apps/frontend/src/data/buildingTypes.ts",
+    "apps/frontend/src/data/buildings.ts",
+    "apps/frontend/src/main.tsx"
+  ]
 }
