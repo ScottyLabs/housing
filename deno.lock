@@ -13,12 +13,13 @@
     "npm:@types/react-dom@^19.2.3": "19.2.3_@types+react@19.2.17",
     "npm:@types/react@^19.2.14": "19.2.17",
     "npm:@vitejs/plugin-react@^4.3.4": "4.7.0_vite@5.4.21__@types+node@20.19.43_@types+node@20.19.43",
-    "npm:arctic@^3.7.0": "3.7.0",
     "npm:autoprefixer@^10.5.0": "10.5.2_postcss@8.5.18",
     "npm:drizzle-kit@~0.31.10": "0.31.10",
     "npm:drizzle-orm@~0.45.2": "0.45.2_postgres@3.4.9",
     "npm:drizzle-typebox@~0.3.3": "0.3.3_@sinclair+typebox@0.34.49_drizzle-orm@0.45.2__postgres@3.4.9_postgres@3.4.9",
+    "npm:elysia-oauth2-resource-server@~0.1.1": "0.1.1_@elysiajs+bearer@1.4.4__elysia@1.4.29___@sinclair+typebox@0.34.49___exact-mirror@0.2.7____@sinclair+typebox@0.34.49___file-type@22.0.1___openapi-types@12.1.3___typescript@5.9.3_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3",
     "npm:elysia@^1.4.29": "1.4.29_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3",
+    "npm:jose@^6.2.3": "6.2.3",
     "npm:postgres@^3.4.9": "3.4.9",
     "npm:react-dom@19.1.0": "19.1.0_react@19.1.0",
     "npm:react-router-dom@^6.28.0": "6.30.4_react@19.1.0_react-dom@19.1.0__react@19.1.0",
@@ -187,6 +188,12 @@
     },
     "@elysia/static@1.4.11_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3": {
       "integrity": "sha512-L3PN8V+cgz9Oz9kTow7ed3DHHCTHb9ZqZZDLxmKhrIKcFmWvjqzTm9TcMR2aLKjjls+QMSGuB7ZyaO+usIXovA==",
+      "dependencies": [
+        "elysia"
+      ]
+    },
+    "@elysiajs/bearer@1.4.4_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3": {
+      "integrity": "sha512-NCMiTEwLmqfxkbaTHYvZXvmO+CHmHVNlLLNa+0RcJviK88abVeSnn6wswgABGGTRJJTkfw3Ks3fw/7um3bxeRQ==",
       "dependencies": [
         "elysia"
       ]
@@ -735,34 +742,6 @@
     "@logtape/logtape@2.2.4": {
       "integrity": "sha512-2rALzv9m4ibE5FyB8/FMm5MPMMlK7ujgy3ufricVKIxj6e7SZbw4w6J16/fRAsXgdDlOXPUA0aa6XoEQvdlKxw=="
     },
-    "@oslojs/asn1@1.0.0": {
-      "integrity": "sha512-zw/wn0sj0j0QKbIXfIlnEcTviaCzYOY3V5rAyjR6YtOByFtJiT574+8p9Wlach0lZH9fddD4yb9laEAIl4vXQA==",
-      "dependencies": [
-        "@oslojs/binary"
-      ]
-    },
-    "@oslojs/binary@1.0.0": {
-      "integrity": "sha512-9RCU6OwXU6p67H4NODbuxv2S3eenuQ4/WFLrsq+K/k682xrznH5EVWA7N4VFk9VYVcbFtKqur5YQQZc0ySGhsQ=="
-    },
-    "@oslojs/crypto@1.0.1": {
-      "integrity": "sha512-7n08G8nWjAr/Yu3vu9zzrd0L9XnrJfpMioQcvCMxBIiF5orECHe5/3J0jmXRVvgfqMm/+4oxlQ+Sq39COYLcNQ==",
-      "dependencies": [
-        "@oslojs/asn1",
-        "@oslojs/binary"
-      ]
-    },
-    "@oslojs/encoding@0.4.1": {
-      "integrity": "sha512-hkjo6MuIK/kQR5CrGNdAPZhS01ZCXuWDRJ187zh6qqF2+yMHZpD9fAYpX8q2bOO6Ryhl3XpCT6kUX76N8hhm4Q=="
-    },
-    "@oslojs/encoding@1.1.0": {
-      "integrity": "sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ=="
-    },
-    "@oslojs/jwt@0.2.0": {
-      "integrity": "sha512-bLE7BtHrURedCn4Mco3ma9L4Y1GR2SMBuIvjWr7rmQ4/W/4Jy70TIAgZ+0nIlk0xHz1vNP8x8DCns45Sb2XRbg==",
-      "dependencies": [
-        "@oslojs/encoding@0.4.1"
-      ]
-    },
     "@remix-run/router@1.23.3": {
       "integrity": "sha512-4An71tdz9X8+3sI4Qqqd2LWd9vS39J7sqd9EU4Scw7TJE/qB10Flv/UuqbPVgfQV9XoK8Np6jNquZitnZq5i+Q=="
     },
@@ -1067,14 +1046,6 @@
         "vite"
       ]
     },
-    "arctic@3.7.0": {
-      "integrity": "sha512-ZMQ+f6VazDgUJOd+qNV+H7GohNSYal1mVjm5kEaZfE2Ifb7Ss70w+Q7xpJC87qZDkMZIXYf0pTIYZA0OPasSbw==",
-      "dependencies": [
-        "@oslojs/crypto",
-        "@oslojs/encoding@1.1.0",
-        "@oslojs/jwt"
-      ]
-    },
     "autoprefixer@10.5.2_postcss@8.5.18": {
       "integrity": "sha512-rD5t5DwOjJdmSORcTq64j8MawTC+tbQ+HHqjR4NDumamy/ambn1UJrlKL+KdwujWxMkFjPM3pPHOEA9tl4767Q==",
       "dependencies": [
@@ -1154,6 +1125,15 @@
     },
     "electron-to-chromium@1.5.389": {
       "integrity": "sha512-cEto7aeOqBfU1D+c5py5pE+ooscKE75JifxLBdFUZsqAxRS6y7kebtxAZvICszSl05gPjYHDTjY+lXpyGvpJbg=="
+    },
+    "elysia-oauth2-resource-server@0.1.1_@elysiajs+bearer@1.4.4__elysia@1.4.29___@sinclair+typebox@0.34.49___exact-mirror@0.2.7____@sinclair+typebox@0.34.49___file-type@22.0.1___openapi-types@12.1.3___typescript@5.9.3_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3": {
+      "integrity": "sha512-cyrQe21kQXRcKdgVEOH4mBJs9ivnXB2F/sD25FXkp1/WOhX4pSbFn4F1ZUhKEdht8aFyJw3FafiyLOPmtoeYFQ==",
+      "dependencies": [
+        "@elysiajs/bearer",
+        "elysia",
+        "jose"
+      ],
+      "scripts": true
     },
     "elysia@1.4.29_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3": {
       "integrity": "sha512-GwMRGGwSdjfPt+w3LA0fqTuYJtS8uVRJicvoar98/HrO5qdFKDc9CwjIb6Kja+v39lkY+58hr2JvdR9jQzlUuA==",
@@ -1353,6 +1333,9 @@
     "jiti@2.7.0": {
       "integrity": "sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==",
       "bin": true
+    },
+    "jose@6.2.3": {
+      "integrity": "sha512-YYVDInQKFJfR/xa3ojUTl8c2KoTwiL1R5Wg9YCydwH0x0B9grbzlg5HC7mMjCtUJjbQ/YnGEZIhI5tCgfTb4Hw=="
     },
     "js-tokens@4.0.0": {
       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
@@ -1650,11 +1633,12 @@
           "npm:@logtape/elysia@^2.2.1",
           "npm:@logtape/logtape@^2.2.4",
           "npm:@sinclair/typebox@0.34.49",
-          "npm:arctic@^3.7.0",
           "npm:drizzle-kit@~0.31.10",
           "npm:drizzle-orm@~0.45.2",
           "npm:drizzle-typebox@~0.3.3",
+          "npm:elysia-oauth2-resource-server@~0.1.1",
           "npm:elysia@^1.4.29",
+          "npm:jose@^6.2.3",
           "npm:postgres@^3.4.9"
         ]
       },
