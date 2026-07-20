@@ -2,6 +2,8 @@ import { configureLogger, logger } from "./utils/log.ts";
 import { fromTypes, openapi } from "@elysiajs/openapi";
 import { Elysia } from "elysia";
 import { elysiaLogger } from "@logtape/elysia";
+import { getOrCreateUser } from "./auth/user.ts";
+import { jwtAuth } from "./auth/middleware.ts";
 import { healthRoute } from "./routes/health.ts";
 import { runMigrations } from "./db/migrations.ts";
 import { staticPlugin } from "@elysia/static";
@@ -26,8 +28,10 @@ await runMigrations();
 
 const api = new Elysia({ prefix: "/api" })
   .use(elysiaLogger({ category: "housing-backend" }))
-  .use(openapi({ references: fromTypes() }))
-  .use(healthRoute);
+  .use(openapi({ path: "/docs", references: fromTypes() }))
+  .use(healthRoute)
+  .use(jwtAuth)
+  .get("/me", async ({ auth }) => await getOrCreateUser(auth));
 
 const app = new Elysia().use(api);
 
