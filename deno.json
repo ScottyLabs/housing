@@ -1,5 +1,5 @@
 {
   "nodeModulesDir": "auto",
   "workspace": ["./apps/backend", "./apps/frontend"],
-  "exclude": [".devenv", ".direnv"]
+  "exclude": [".devenv"]
 }
