@@ -308,11 +308,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784356753,
-        "narHash": "sha256-12KrbMiWLcf8m7pCvAtZh1ZrgF85ZXDXvfR/fWTKy84=",
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
         "type": "github"
       },
       "original": {
@@ -473,11 +473,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1784309355,
-        "narHash": "sha256-0lI99/hJkJgWVf2V90fJbYhXzkRgIGG3O45YFsDhJLs=",
+        "lastModified": 1784605506,
+        "narHash": "sha256-UIjdejO4cmXoSrqmDOvFAwPlZhm5Zl9polTXbNxMXSc=",
         "ref": "refs/heads/main",
-        "rev": "815fee688eaefcad6ad90fcdfb9fd00e2793218b",
-        "revCount": 102,
+        "rev": "dc821ca87f27c148a4cae4abfb55af9931b862e4",
+        "revCount": 107,
         "type": "git",
         "url": "https://codeberg.org/ScottyLabs/devenv"
       },
