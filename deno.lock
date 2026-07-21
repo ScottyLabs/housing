@@ -1,6 +1,9 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@panva/jose@^6.2.2": "6.2.3",
+    "jsr:@panva/oauth4webapi@^3.8.5": "3.8.6",
+    "jsr:@panva/openid-client@^6.8.4": "6.8.4",
     "jsr:@std/assert@1": "1.0.19",
     "jsr:@std/internal@^1.0.12": "1.0.14",
     "npm:@elysia/static@^1.4.11": "1.4.11_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3",
@@ -14,12 +17,11 @@
     "npm:@types/react@^19.2.14": "19.2.17",
     "npm:@vitejs/plugin-react@^4.3.4": "4.7.0_vite@5.4.21__@types+node@20.19.43_@types+node@20.19.43",
     "npm:autoprefixer@^10.5.0": "10.5.2_postcss@8.5.18",
+    "npm:drizzle-kit@*": "0.31.10",
     "npm:drizzle-kit@~0.31.10": "0.31.10",
     "npm:drizzle-orm@~0.45.2": "0.45.2_postgres@3.4.9",
     "npm:drizzle-typebox@~0.3.3": "0.3.3_@sinclair+typebox@0.34.49_drizzle-orm@0.45.2__postgres@3.4.9_postgres@3.4.9",
-    "npm:elysia-oauth2-resource-server@~0.1.1": "0.1.1_@elysiajs+bearer@1.4.4__elysia@1.4.29___@sinclair+typebox@0.34.49___exact-mirror@0.2.7____@sinclair+typebox@0.34.49___file-type@22.0.1___openapi-types@12.1.3___typescript@5.9.3_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3",
     "npm:elysia@^1.4.29": "1.4.29_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3",
-    "npm:jose@^6.2.3": "6.2.3",
     "npm:postgres@^3.4.9": "3.4.9",
     "npm:react-dom@19.1.0": "19.1.0_react@19.1.0",
     "npm:react-router-dom@^6.28.0": "6.30.4_react@19.1.0_react-dom@19.1.0__react@19.1.0",
@@ -29,6 +31,19 @@
     "npm:vite@^5.4.8": "5.4.21_@types+node@20.19.43"
   },
   "jsr": {
+    "@panva/jose@6.2.3": {
+      "integrity": "57cc772f01b2ac60f847a7e6ec815059762768186266ed833fb59953e9611312"
+    },
+    "@panva/oauth4webapi@3.8.6": {
+      "integrity": "37569071868714cee36c5df8be7939efcf68811e849a80b87d4be22aff331c50"
+    },
+    "@panva/openid-client@6.8.4": {
+      "integrity": "656014de1dd3e08dd05a7b60d3e19d4a5371c324f322bdedf844bb0d05693c2c",
+      "dependencies": [
+        "jsr:@panva/jose",
+        "jsr:@panva/oauth4webapi"
+      ]
+    },
     "@std/assert@1.0.19": {
       "integrity": "eaada96ee120cb980bc47e040f82814d786fe8162ecc53c91d8df60b8755991e",
       "dependencies": [
@@ -188,12 +203,6 @@
     },
     "@elysia/static@1.4.11_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3": {
       "integrity": "sha512-L3PN8V+cgz9Oz9kTow7ed3DHHCTHb9ZqZZDLxmKhrIKcFmWvjqzTm9TcMR2aLKjjls+QMSGuB7ZyaO+usIXovA==",
-      "dependencies": [
-        "elysia"
-      ]
-    },
-    "@elysiajs/bearer@1.4.4_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3": {
-      "integrity": "sha512-NCMiTEwLmqfxkbaTHYvZXvmO+CHmHVNlLLNa+0RcJviK88abVeSnn6wswgABGGTRJJTkfw3Ks3fw/7um3bxeRQ==",
       "dependencies": [
         "elysia"
       ]
@@ -1126,15 +1135,6 @@
     "electron-to-chromium@1.5.389": {
       "integrity": "sha512-cEto7aeOqBfU1D+c5py5pE+ooscKE75JifxLBdFUZsqAxRS6y7kebtxAZvICszSl05gPjYHDTjY+lXpyGvpJbg=="
     },
-    "elysia-oauth2-resource-server@0.1.1_@elysiajs+bearer@1.4.4__elysia@1.4.29___@sinclair+typebox@0.34.49___exact-mirror@0.2.7____@sinclair+typebox@0.34.49___file-type@22.0.1___openapi-types@12.1.3___typescript@5.9.3_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3": {
-      "integrity": "sha512-cyrQe21kQXRcKdgVEOH4mBJs9ivnXB2F/sD25FXkp1/WOhX4pSbFn4F1ZUhKEdht8aFyJw3FafiyLOPmtoeYFQ==",
-      "dependencies": [
-        "@elysiajs/bearer",
-        "elysia",
-        "jose"
-      ],
-      "scripts": true
-    },
     "elysia@1.4.29_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3": {
       "integrity": "sha512-GwMRGGwSdjfPt+w3LA0fqTuYJtS8uVRJicvoar98/HrO5qdFKDc9CwjIb6Kja+v39lkY+58hr2JvdR9jQzlUuA==",
       "dependencies": [
@@ -1333,9 +1333,6 @@
     "jiti@2.7.0": {
       "integrity": "sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==",
       "bin": true
-    },
-    "jose@6.2.3": {
-      "integrity": "sha512-YYVDInQKFJfR/xa3ojUTl8c2KoTwiL1R5Wg9YCydwH0x0B9grbzlg5HC7mMjCtUJjbQ/YnGEZIhI5tCgfTb4Hw=="
     },
     "js-tokens@4.0.0": {
       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
@@ -1627,6 +1624,7 @@
     "members": {
       "apps/backend": {
         "dependencies": [
+          "jsr:@panva/openid-client@^6.8.4",
           "jsr:@std/assert@1",
           "npm:@elysia/static@^1.4.11",
           "npm:@elysiajs/openapi@^1.4.15",
@@ -1636,9 +1634,7 @@
           "npm:drizzle-kit@~0.31.10",
           "npm:drizzle-orm@~0.45.2",
           "npm:drizzle-typebox@~0.3.3",
-          "npm:elysia-oauth2-resource-server@~0.1.1",
           "npm:elysia@^1.4.29",
-          "npm:jose@^6.2.3",
           "npm:postgres@^3.4.9"
         ]
       },

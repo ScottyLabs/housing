@@ -1,13 +1,10 @@
-import type { JWTPayload } from "jose";
+import type { IDToken } from "@panva/openid-client";
 import { eq } from "drizzle-orm";
 import { db } from "../db/index.ts";
 import { userTable } from "../db/schema.ts";
 
-export async function getOrCreateUser(auth: JWTPayload) {
+export async function getOrCreateUser(auth: IDToken) {
   const sub = auth.sub;
-  if (sub === undefined || sub === "") {
-    throw new Error("JWT payload is missing a `sub` claim");
-  }
 
   const [existing] = await db
     .select()
