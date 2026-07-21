@@ -41,10 +41,6 @@ if (!port) {
 
 await runMigrations();
 
-// The Keycloak client for cmu-housing is provisioned via ScottyLabs
-// governance's `oidc_client` feature; until that's requested and merged,
-// OIDC_CLIENT_ID etc. won't be set and login is disabled (routes below just
-// bounce back to `/`) so the rest of the app still runs without it.
 const oidcSettings = appUrl ? loadOidcSettings() : undefined;
 const oidcConfig = oidcSettings ? await buildOidcConfig(oidcSettings) : undefined;
 if (oidcConfig) {
@@ -55,17 +51,14 @@ if (oidcConfig) {
   );
 }
 
-// `Response.redirect` (what Elysia's `redirect()` helper wraps) requires an
-// absolute URL, so a bare "/" throws. Build the one absolute home URL we
-// redirect back to once, from `APP_URL`; falls back to a raw redirect
-// Response with a relative Location header on the rare deployment that
-// somehow has no APP_URL at all, since that's valid at the HTTP level even
-// though the stricter `Response.redirect` constructor rejects it.
-const homeUrl = appUrl ? new URL("/", appUrl).href : undefined;
+function toPath(redirect: (url: string) => Response, path: string): Response {
+  const target = appUrl ? new URL(path, appUrl).href : undefined;
+  return target
+    ? redirect(target)
+    : new Response(null, { headers: { Location: path }, status: 302 });
+}
 function toHome(redirect: (url: string) => Response): Response {
-  return homeUrl
-    ? redirect(homeUrl)
-    : new Response(null, { headers: { Location: "/" }, status: 302 });
+  return toPath(redirect, "/");
 }
 
 const api = new Elysia({ prefix: "/api" })
@@ -73,11 +66,6 @@ const api = new Elysia({ prefix: "/api" })
   .use(openapi({ path: "/docs", references: fromTypes() }))
   .use(healthRoute)
   .use(sessionAuth)
-  // Starts a login: redirects to Keycloak with `redirect_uri` set to the
-  // Ricochet relay's fixed address, carrying a `state` that encodes our own
-  // real callback URL plus a CSRF nonce (see oidc.ts#createRelayState).
-  // Ricochet decodes `state` to know where to forward the browser once
-  // Keycloak redirects back to it.
   .get("/auth/login", ({ cookie, redirect }) => {
     if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
 
@@ -112,9 +100,10 @@ const api = new Elysia({ prefix: "/api" })
       cookie[SESSION_COOKIE_NAME].set({ value: sessionId, ...sessionCookieOptions });
     } catch (error) {
       logger.error("OIDC callback failed:", nodeError(error));
+      return toHome(redirect);
     }
 
-    return toHome(redirect);
+    return toPath(redirect, "/home");
   })
   .get("/auth/logout", async ({ cookie, redirect }) => {
     const sessionId = cookie[SESSION_COOKIE_NAME].value;
