@@ -75,9 +75,6 @@ const api = new Elysia({ prefix: "/api" })
 
     return redirect(buildLoginUrl(oidcConfig, oidcSettings, state).href);
   })
-  // Where Ricochet forwards the browser after Keycloak redirects back to it.
-  // Exchanges the code for tokens directly with Keycloak, establishes a
-  // session, and sends the browser on to the app.
   .get("/auth/callback", async ({ cookie, redirect, request }) => {
     if (!oidcConfig) return toHome(redirect);
 
@@ -113,8 +110,6 @@ const api = new Elysia({ prefix: "/api" })
     cookie[SESSION_COOKIE_NAME].remove();
     return toHome(redirect);
   })
-  // First-request user upsert already happened at callback time; this is
-  // just a session check endpoint.
   .get("/me", ({ user, set }) => {
     if (!user) {
       set.status = 401;
