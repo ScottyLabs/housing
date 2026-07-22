@@ -3,6 +3,7 @@ import { fromTypes, openapi } from "@elysiajs/openapi";
 import { Elysia } from "elysia";
 import { elysiaLogger } from "@logtape/elysia";
 import { healthRoute } from "./routes/health.ts";
+import { preferencesRoute } from "./preferences/routes.ts";
 import { runMigrations } from "./db/migrations.ts";
 import { staticPlugin } from "@elysia/static";
 
@@ -27,7 +28,8 @@ await runMigrations();
 const api = new Elysia({ prefix: "/api" })
   .use(elysiaLogger({ category: "housing-backend" }))
   .use(openapi({ references: fromTypes() }))
-  .use(healthRoute);
+  .use(healthRoute)
+  .use(preferencesRoute);
 
 const app = new Elysia().use(api);
 
