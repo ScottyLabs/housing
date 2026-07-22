@@ -17,16 +17,13 @@ export const roommateStatusEnum = pgEnum("roommate_status", ["searching", "commi
 // Tables
 
 export const userTable = pgTable("user", {
-  andrewId: text("andrew_id"),
-  createdTime: timestamp("created_time"),
+  andrewId: text("andrew_id").notNull(),
+  createdTime: timestamp("created_time").notNull().defaultNow(),
   id: serial("id").primaryKey(),
-  name: text("name"),
-  oidcSubject: text("oidc_subject"),
+  name: text("name").notNull(),
+  oidcSubject: text("oidc_subject").notNull().unique(),
 });
 
-// Server-side login sessions, keyed by the opaque token stored in the
-// session cookie. Created on a successful OIDC callback, looked up on every
-// request to resolve the logged-in user.
 export const sessionTable = pgTable("session", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   expiresAt: timestamp("expires_at").notNull(),
