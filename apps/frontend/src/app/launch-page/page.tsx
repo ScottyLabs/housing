@@ -10,12 +10,12 @@ export default function LaunchPage() {
         </p>
 
         <div className="mt-[30px] flex flex-col gap-4 sm:flex-row sm:gap-5">
-          <Link
-            to="/home"
+          <a
+            href="/api/auth/login"
             className="flex h-[56px] w-full items-center justify-center rounded-[13px] bg-brand-primary text-[18px] font-medium text-white transition-colors hover:bg-[#f1872c] sm:w-[321px]"
           >
             Get personalized results
-          </Link>
+          </a>
           <Link
             to="/home"
             className="flex h-[56px] w-full items-center justify-center rounded-[13px] bg-brand-buttongray font-['Inter'] text-[18px] font-medium text-black transition-colors hover:bg-[#d7dfe3] sm:w-[260px]"
