@@ -11,6 +11,16 @@ export default function Navbar() {
 
   return (
     <>
+      <div className="flex items-center justify-between h-16 px-4 border-b-2 border-gray-200 md:hidden">
+        <Link to="/home" className="flex items-center gap-2">
+          <img src="/cmuhousingdog.svg" alt="CMU Housing" className="w-10 h-10" />
+          <img src="/logo.svg" alt="CMU Housing" className="h-8" />
+        </Link>
+        <Link to="/profile">
+          <img src="/profile.svg" alt="profile" className="rounded-full w-10 h-10" />
+        </Link>
+      </div>
+
       <div className="hidden w-full border-b-2 border-gray-200 md:block">
         <div className="flex items-center h-24 whitespace-nowrap">
           <Link
