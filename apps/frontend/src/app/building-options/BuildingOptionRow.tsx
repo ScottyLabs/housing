@@ -28,8 +28,7 @@ export default function BuildingOptionRow({
         {see_more && (
           <Link
             to="/building-options"
-            className="flex flex-col items-center rounded-2xl bg-brand-menugray justify-center border border-black/10 transition-colors duration-200 hover:bg-gray-200 cursor-pointer"
-            style={{ width: 320, height: 220 }}
+            className="flex flex-col items-center rounded-2xl bg-brand-menugray justify-center border border-black/10 transition-colors duration-200 hover:bg-gray-200 cursor-pointer shrink-0 w-[240px] h-[320px] md:w-[320px] md:h-[220px]"
           >
             <img
               src="/all-buildings-colored.svg"

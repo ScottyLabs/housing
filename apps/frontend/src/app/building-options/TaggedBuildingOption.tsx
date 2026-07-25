@@ -7,8 +7,11 @@ export default function TaggedBuildingOption({ building }: { building: Building 
   const tagIds = deriveTags(building);
 
   return (
-    <div className="flex flex-col gap-[20px]">
-      <BuildingOption building={building} width={320} height={220} />
+    <div className="flex flex-col gap-[20px] shrink-0">
+      <BuildingOption
+        building={building}
+        className="w-[240px] h-[320px] md:w-[320px] md:h-[220px]"
+      />
       <>
         {tagIds.length > 0 && (
           <div className="flex flex-col gap-[18px]">
