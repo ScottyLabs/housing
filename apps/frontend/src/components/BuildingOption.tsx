@@ -5,16 +5,18 @@ export default function BuildingOption({
   building,
   width,
   height,
+  className,
 }: {
   building: Building;
   width?: number;
-  height: number;
+  height?: number;
+  className?: string;
 }) {
   return (
     <Link to={`/building/${building.id}`}>
       <div
-        className="relative overflow-hidden rounded-[18px]"
-        style={{ width: width, height: height }}
+        className={`relative overflow-hidden rounded-[18px] ${className ?? ""}`}
+        style={className ? undefined : { width: width, height: height }}
       >
         <img
           src={building.media.mainImage}

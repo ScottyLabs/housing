@@ -9,7 +9,7 @@ export default function Home() {
       </div>
 
       <div className="flex-1 flex flex-col px-0 md:px-5 md:overflow-hidden">
-        <h1 className="font-bold text-[24px] md:text-[32px] pt-[15px] pb-[28px] flex-shrink-0">
+        <h1 className="hidden md:block font-bold text-[24px] md:text-[32px] pt-[15px] pb-[28px] flex-shrink-0">
           All Building Options
         </h1>
         <div className="flex-1 md:overflow-y-auto pb-[60px]">
