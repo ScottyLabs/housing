@@ -7,7 +7,7 @@ export default function BuildingOption({
   height,
 }: {
   building: Building;
-  width: number;
+  width?: number;
   height: number;
 }) {
   return (
