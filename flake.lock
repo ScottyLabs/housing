@@ -479,11 +479,11 @@
         "rev": "fdca8451a302b02e3a63598808c40d0ec3150244",
         "revCount": 111,
         "type": "git",
-        "url": "https://codeberg.org/ScottyLabs/devenv"
+        "url": "https://codeberg.org/ScottyLabs/kennel"
       },
       "original": {
         "type": "git",
-        "url": "https://codeberg.org/ScottyLabs/devenv"
+        "url": "https://codeberg.org/ScottyLabs/kennel"
       }
     },
     "treefmt-nix": {
