@@ -5,6 +5,7 @@ import BuildingOptions from "@/app/building-options/page";
 import LaunchPage from "@/app/launch-page/page";
 import MapPage from "@/app/map-page";
 import NotFound from "@/app/not-found";
+import Profile from "@/app/profile";
 import Home from "@/app/page";
 import Survey from "@/app/survey/page";
 import { BuildingProvider } from "@/components/BuildingContext";
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/survey" element={<Survey />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/building-options" element={<BuildingOptions />} />
           <Route path="/building-comparison" element={<BuildingComparison />} />
           <Route path="/building/:id" element={<BuildingDetails />} />
