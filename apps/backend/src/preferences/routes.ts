@@ -1,6 +1,7 @@
 import { Elysia, t } from "elysia";
 import { eq } from "drizzle-orm";
 import { dbPlugin } from "../plugins/db.ts";
+import { sessionAuth } from "../auth/middleware.ts";
 import { userPreferencesTable } from "../db/schema.ts";
 
 /**
@@ -22,31 +23,34 @@ const preferencesBody = t.Object({
 
 export const preferencesRoute = new Elysia({ prefix: "/me" })
   .use(dbPlugin)
+  .use(sessionAuth)
 
-  // TODO: add .use(requireAuth) when auth is done
-
-  .get("/preferences", async ({ db }) => {
-    // TODO: get userId from auth instead of hardcoded value
-    const userId = 1;
+  .get("/preferences", async ({ db, user, set }) => {
+    if (!user) {
+      set.status = 401;
+      return { error: "Unauthorized" };
+    }
 
     const rows = await db
       .select()
       .from(userPreferencesTable)
-      .where(eq(userPreferencesTable.userId, userId));
+      .where(eq(userPreferencesTable.userId, user.id));
 
     return rows[0] ?? null;
   })
 
   .put(
     "/preferences",
-    async ({ db, body }) => {
-      // TODO: get userId from auth instead of hardcoded value
-      const userId = 1;
+    async ({ db, body, user, set }) => {
+      if (!user) {
+        set.status = 401;
+        return { error: "Unauthorized" };
+      }
 
       const [saved] = await db
         .insert(userPreferencesTable)
         .values({
-          userId,
+          userId: user.id,
           ...body,
         })
         .onConflictDoUpdate({
