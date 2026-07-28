@@ -1,7 +1,8 @@
-import { configureLogger, logger, nodeError } from "./utils/log.ts";
+import { staticPlugin } from "@elysia/static";
 import { fromTypes, openapi } from "@elysiajs/openapi";
-import { Elysia } from "elysia";
 import { elysiaLogger } from "@logtape/elysia";
+import { Elysia } from "elysia";
+import { sessionAuth } from "./auth/middleware.ts";
 import {
   buildLoginUrl,
   buildOidcConfig,
@@ -9,7 +10,6 @@ import {
   exchangeCodeForClaims,
   loadOidcSettings,
 } from "./auth/oidc.ts";
-import { sessionAuth } from "./auth/middleware.ts";
 import {
   createSession,
   deleteSession,
@@ -19,10 +19,10 @@ import {
   sessionCookieOptions,
 } from "./auth/session.ts";
 import { getOrCreateUser } from "./auth/user.ts";
+import { runMigrations } from "./db/migrations.ts";
 import { healthRoute } from "./routes/health.ts";
 import { preferencesRoute } from "./preferences/routes.ts";
-import { runMigrations } from "./db/migrations.ts";
-import { staticPlugin } from "@elysia/static";
+import { configureLogger, logger, nodeError } from "./utils/log.ts";
 
 const portStr = Deno.env.get("PORT");
 let port = 0;
@@ -72,7 +72,10 @@ const api = new Elysia({ prefix: "/api" })
 
     const callbackUrl = `${appUrl}/api/auth/callback`;
     const state = createRelayState(callbackUrl);
-    cookie[OAUTH_STATE_COOKIE_NAME].set({ value: state, ...oauthStateCookieOptions });
+    cookie[OAUTH_STATE_COOKIE_NAME].set({
+      value: state,
+      ...oauthStateCookieOptions,
+    });
 
     return redirect(buildLoginUrl(oidcConfig, oidcSettings, state).href);
   })
@@ -95,13 +98,16 @@ const api = new Elysia({ prefix: "/api" })
 
       const user = await getOrCreateUser(claims);
       const sessionId = await createSession(user.id);
-      cookie[SESSION_COOKIE_NAME].set({ value: sessionId, ...sessionCookieOptions });
+      cookie[SESSION_COOKIE_NAME].set({
+        value: sessionId,
+        ...sessionCookieOptions,
+      });
     } catch (error) {
       logger.error("OIDC callback failed:", nodeError(error));
       return toHome(redirect);
     }
 
-    return toPath(redirect, "/home");
+    return toPath(redirect, "/survey");
   })
   .get("/auth/logout", async ({ cookie, redirect }) => {
     const sessionId = cookie[SESSION_COOKIE_NAME].value;
