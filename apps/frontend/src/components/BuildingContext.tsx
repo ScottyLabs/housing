@@ -1,44 +1,10 @@
 import { createContext, useContext } from "react";
 import { buildings } from "@/data/buildings";
 import { buildingTags } from "@/data/tags";
+import type { Building, Tag } from "@/data/buildingTypes";
 
-export interface Building {
-  id: string;
-  name: string;
-  image: string;
-  photoGallery: BuildingImage[];
-  floorPlanGallery: FloorPlanItem[];
-  tags: string[];
-  rooms: string[];
-  bathrooms: BathroomInfo;
-  closeBuildings: string;
-  AC: ACInfo;
-  kitchen: string;
-  lounge: string;
-}
-export interface Tag {
-  id: string;
-  label: string;
-  icon: string;
-}
+export type { Building, Tag };
 
-type BathroomInfo = {
-  type: string;
-  details: string;
-};
-type ACInfo = {
-  available: boolean;
-  details: string;
-};
-type BuildingImage = {
-  link: string;
-  description: string;
-};
-type FloorPlanItem = {
-  link: string;
-  description: string;
-  virtualTourLink?: string;
-};
 interface BuildingContextType {
   buildings: Building[];
   tags: Tag[];
@@ -61,7 +27,6 @@ export const useBuildings = () => useContext(BuildingContext).buildings;
 export const useBuildingTagsMap = () =>
   new Map(useContext(BuildingContext).tags.map((tag) => [tag.id, tag]));
 
-// Requires that id is a valid building id
 export function useBuildingById(id: string): Building {
   return useBuildings().find((b) => b.id === id)!;
 }

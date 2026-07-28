@@ -1,7 +1,3 @@
-______________________________________________________________________
-
-## title: Setup
-
 # Setup
 
 For ScottyLabs Org Member setup instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -18,11 +14,23 @@ cd housing
 direnv allow
 ```
 
-## Running the Frontend
+## Running the app
 
 ```sh
 # From the repo root
 devenv up
+```
+
+```sh
+cd apps/frontend
+
+deno task dev
+```
+
+```sh
+cd apps/backend
+
+PORT=3001 deno task dev
 ```
 
 The backend is proxied through the Vite development server and can be accessed at http://localhost:3000 during development. The backend should not be accessed directly, as all paths prefixed with `/api` will be routed to the backend.
@@ -35,7 +43,7 @@ URLs:
 
 - https://housing-frontend-main.scottylabs.net (default Kennel URL)
 - https://cmuhousing.scottylabs.org (custom domain, managed by Kennel)
-- https://cmuhousing.com — point DNS at deploy-01 after verifying the Kennel deploy
+- https://cmuhousing.com, point DNS at deploy-01 after verifying the Kennel deploy
 
 Validate locally before pushing:
 

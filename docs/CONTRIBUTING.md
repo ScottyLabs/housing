@@ -1,25 +1,23 @@
-______________________________________________________________________
+# Contributing to CMU Housing
 
-## title: Contributing
+Thank you for your interest in contributing to CMU Housing! This guide will help you get started.
 
-# Contributing to CMUHousing
+## Setup
 
-Thank you for your interest in contributing to CMUHousing! This guide will help you get started.
-
-## Setup Codeberg
-
-ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scottylabs/codeberg-setup/) to setup their codeberg in order to commit. CMUHousing developers also should add themselves to the cmuhousing team using [these instructions](https://docs.scottylabs.org/governance/adding-yourself-to-a-team/). This allows your commits to be verified and signed.
+Developers should add themselves to the `cmu-housing` team in [governance](https://codeberg.org/ScottyLabs/governance) following the instructions in its README. This gives you access to secrets and permission to create branches on the repo.
 
 ## How to Contribute
 
-1. **Fork the repository** or create a new branch if you have write access
-
-1. **Create a new branch** from `main` with a descriptive name:
+1. **Create a new branch** from latest `main` with a descriptive name:
 
    ```bash
-   git checkout -b your-feature-name
+   git fetch origin main
+   git switch main
+   git reset --hard origin/main
+
+   git checkout -b feat/your-feature
    # or
-   git checkout -b bug-description
+   git checkout -b fix/the-bug
    ```
 
 1. **Make your changes** following the code style and conventions
@@ -44,7 +42,7 @@ ScottyLabs developers must follow [this guide](https://docs.scottylabs.org/scott
    git push
    ```
 
-1. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting your branch on [GitHub](https://github.com/ScottyLabs/cmuhousing/tree/main).
+1. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting the repo's homepage on [Codeberg](https://codeberg.org/ScottyLabs/housing).
 
 ## Conventional Commits
 
@@ -61,11 +59,11 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 
 ## Code Editor Setup
 
-We recommend using VSCode, and the following setup guide will assume you are using VSCode.
+We recommend using VS Code, and the following setup guide will assume you are using VS Code.
 
-Recommended VSCode extensions:
+Recommended VS Code extensions:
 
-- VSCode has builtin TypeScript language support
+- VS Code has builtin TypeScript language support
 - [Dependi](https://marketplace.visualstudio.com/items?itemName=fill-labs.dependi)
 - [Oxc](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode)
 - [Typescript (Native Preview)](https://marketplace.visualstudio.com/items?itemName=typescriptteam.native-preview)
@@ -75,34 +73,35 @@ Recommended VSCode extensions:
 
 You will also need git installed.
 
-<!--TODO: ## Creating your .env file -->
-
-<!--TODO: ## Database Setup  -->
-
 ## Local Development
 
-Prerequisites: [devenv](https://devenv.sh) and [direnv](https://direnv.net/).
+Prerequisites: [devenv](https://devenv.sh).
+
+Start the shared infrastructure (postgres, ricochet):
 
 ```sh
-cd housing
-direnv allow
-devenv up   # starts the frontend dev server on port 3000
+devenv up
 ```
 
-If secretspec complains about the vault provider locally, use:
+Frontend, in a separate terminal:
 
 ```sh
-SECRETSPEC_PROVIDER=dotenv://.env devenv shell
+cd apps/frontend
+deno task dev
+```
+
+Backend, in a separate terminal inside the devenv shell:
+
+```sh
+cd apps/backend
+PORT=3001 deno task dev
 ```
 
 ## Before Submitting
 
 Before you commit and open a pull request, make sure to:
 
-- Run `npm run lint` in `apps/frontend` and fix any errors/warnings
-- Run `npm run format` from the repo root to format your code
-- Test locally with your changes (`devenv up` or `npm run dev` in `apps/frontend`)
-- Ensure your commits follow conventional commit format
+- Test locally with your changes (`devenv up` and then `deno task dev` in `apps/frontend`)
 - Update documentation if you added/changed features
 
 ## Pull Request Guidelines
@@ -116,7 +115,7 @@ Before you commit and open a pull request, make sure to:
 
 To understand current priorities, roadmap, and ongoing work:
 
-- Visit the [CMUHousing Development project](https://github.com/orgs/ScottyLabs/projects/29)
+- Visit the [CMU Housing Development project](https://codeberg.org/ScottyLabs/housing/projects/55337)
   - Pick an issue from the board and assign it to yourself.
   - Use Priority and Size labels to choose based on what you can handle in a timely fashion.
 - If you cannot access the board, ask a maintainer to add you to the ScottyLabs organization.

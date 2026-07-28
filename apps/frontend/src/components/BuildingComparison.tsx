@@ -1,5 +1,12 @@
 import { Building, useBuildings } from "./BuildingContext";
 import DropdownButton, { SelectOption } from "@/components/DropdownButton";
+import { ACLevel, BathroomType, RoomType } from "@/data/buildingTypes";
+
+const bathroomTypeLabel: Record<BathroomType, string> = {
+  [BathroomType.Communal]: "Communal",
+  [BathroomType.SharedSuite]: "Shared Suite",
+  [BathroomType.Private]: "Private",
+};
 
 export default function BuildingColumn({
   building,
@@ -16,7 +23,7 @@ export default function BuildingColumn({
   return (
     <>
       <img
-        src={building.image}
+        src={building.media.mainImage}
         alt={building.name}
         style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "18px" }}
       />
@@ -34,7 +41,7 @@ export default function BuildingColumn({
 
       <div className="text-[16px] pt-2.5 pb-2.5 px-4 rounded-2xl bg-brand-menugray border border-black/10">
         Room Types
-        {building.rooms.includes("tradSingle") && (
+        {building.amenities.roomTypes.includes(RoomType.TradSingle) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
               src={"/unsorted-icons/room type/trad single.svg"}
@@ -48,7 +55,7 @@ export default function BuildingColumn({
             </div>
           </div>
         )}
-        {building.rooms.includes("semiSuiteSingle") && (
+        {building.amenities.roomTypes.includes(RoomType.SemiSuiteSingle) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
               src={"/unsorted-icons/room type/trad single.svg"}
@@ -62,7 +69,7 @@ export default function BuildingColumn({
             </div>
           </div>
         )}
-        {building.rooms.includes("tradDouble") && (
+        {building.amenities.roomTypes.includes(RoomType.TradDouble) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
               src={"/unsorted-icons/room type/trad double.svg"}
@@ -76,7 +83,7 @@ export default function BuildingColumn({
             </div>
           </div>
         )}
-        {building.rooms.includes("semiSuiteDouble") && (
+        {building.amenities.roomTypes.includes(RoomType.SemiSuiteDouble) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
               src={"/unsorted-icons/room type/trad double.svg"}
@@ -90,7 +97,7 @@ export default function BuildingColumn({
             </div>
           </div>
         )}
-        {building.rooms.includes("tradTriple") && (
+        {building.amenities.roomTypes.includes(RoomType.TradTriple) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
               src={"/unsorted-icons/room type/trad triple.svg"}
@@ -104,7 +111,7 @@ export default function BuildingColumn({
             </div>
           </div>
         )}
-        {building.rooms.includes("semiSuiteTriple") && (
+        {building.amenities.roomTypes.includes(RoomType.SemiSuiteTriple) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
               src={"/unsorted-icons/room type/trad triple.svg"}
@@ -130,7 +137,7 @@ export default function BuildingColumn({
             height={36}
             className="w-9 h-9"
           />
-          <div className="text-[16px] pb-1">{building.kitchen}</div>
+          <div className="text-[16px] pb-1">{building.amenities.kitchen.details}</div>
         </div>
       </div>
 
@@ -145,9 +152,11 @@ export default function BuildingColumn({
             className="w-9 h-9"
           />
           <div className="text-[16px] whitespace-normal break-words">
-            <div>{building.bathrooms.type}</div>
+            <div>
+              {building.amenities.bathrooms.types.map((t) => bathroomTypeLabel[t]).join(", ")}
+            </div>
             <div className="font-normal text-[16px] whitespace-normal break-words">
-              {building.bathrooms.details}
+              {building.amenities.bathrooms.details}
             </div>
           </div>
         </div>
@@ -156,7 +165,7 @@ export default function BuildingColumn({
       <div className="text-[16px] pt-2.5 pb-2.5 px-4 rounded-2xl bg-brand-menugray border border-black/10">
         Air Conditioning
         <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
-          {building.AC.available && (
+          {building.amenities.ac.level !== ACLevel.None && (
             <img
               src={"/unsorted-icons/ac/yes.svg"}
               alt={"info"}
@@ -165,7 +174,7 @@ export default function BuildingColumn({
               className="w-9 h-9"
             />
           )}
-          {building.AC.available === false && (
+          {building.amenities.ac.level === ACLevel.None && (
             <img
               src={"/unsorted-icons/ac/none.svg"}
               alt={"info"}
@@ -174,7 +183,7 @@ export default function BuildingColumn({
               className="w-9 h-9"
             />
           )}
-          <div className="text-[16px] pt-1 pb-1">{building.AC.details}</div>
+          <div className="text-[16px] pt-1 pb-1">{building.amenities.ac.details}</div>
         </div>
       </div>
     </>

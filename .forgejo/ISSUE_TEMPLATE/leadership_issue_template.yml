@@ -1,4 +1,3 @@
----
 name: Task (Leadership)
 description: (Leadership) Standard Issue Made by Leadership
 title: "[BRIEF DESCRIPTION]"
@@ -8,10 +7,8 @@ body:
     id: objective
     attributes:
       label: Overall Objective
-      description: What is this issue trying to accomplish and why? If applicable,
-        where does the project stand right now?
-      placeholder: e.g. Users currently see stale data because the cache isn't
-        invalidated on update. This issue fixes that.
+      description: What is this issue trying to accomplish and why? If applicable, where does the project stand right now?
+      placeholder: e.g. Users currently see stale data because the cache isn't invalidated on update. This issue fixes that.
     validations:
       required: true
 
@@ -19,8 +16,7 @@ body:
     id: approach
     attributes:
       label: Suggested Approach
-      description: What might be a good direction to go down or what might be good
-        resources/ideas to start from
+      description: What might be a good direction to go down or what might be good resources/ideas to start from
       placeholder: |
         1. Use X to do Y
         2. I suggest looking up the docs for X
@@ -42,11 +38,11 @@ body:
       label: Size
       description: Rough effort estimate of issue size
       options:
-        - XS
-        - S
-        - M
-        - L
-        - XL
+        - size/XS
+        - size/S
+        - size/M
+        - size/L
+        - size/XL
     validations:
       required: true
 
@@ -55,9 +51,9 @@ body:
     attributes:
       label: Priority
       options:
-        - P0
-        - P1
-        - P2
+        - priority/high
+        - priority/medium
+        - priority/low
     validations:
       required: true
 
@@ -84,5 +80,7 @@ body:
         - label: beginner friendly
         - label: documentation
         - label: wontfix
+        - label: backend
+        - label: frontend
     validations:
       required: true

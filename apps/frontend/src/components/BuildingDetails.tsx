@@ -1,10 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import { type Building, useBuildingById } from "@/components/BuildingContext";
+import { useParams, Link } from "react-router-dom";
+import { type Building, useBuildingById, useBuildings } from "@/components/BuildingContext";
+import { ACLevel, BathroomType, RoomType } from "@/data/buildingTypes";
+
+const bathroomTypeLabel: Record<BathroomType, string> = {
+  [BathroomType.Communal]: "Communal",
+  [BathroomType.SharedSuite]: "Shared Suite",
+  [BathroomType.Private]: "Private",
+};
 
 export default function BuildingDetails({ buildingID }: { buildingID?: string }) {
   const { id } = useParams();
   const building: Building = useBuildingById(buildingID ?? id ?? "");
+  const allBuildings = useBuildings();
 
   type GalleryItem = { link: string; description: string; virtualTourLink?: string };
   const [lightbox, setLightbox] = useState<{ items: GalleryItem[]; index: number } | null>(null);
@@ -34,12 +42,21 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
   }, [lightbox, closeLightbox, prev, next]);
 
   if (!building) return <div>Not found</div>;
+
+  const closeBuildingNames = building.location.closeBuildings
+    .map((closeId) => allBuildings.find((b) => b.id === closeId))
+    .filter((b): b is Building => b !== undefined);
+
   return (
     <div className="space-y-4 overflow-x-auto min-w-40 max-w-full pb-3 pt-3 px-30">
       <h2 className="font-bold text-[24px] flex-shrink-0">{building.name}</h2>
       <div className="w-full h-[300px]">
         <div className="relative w-full h-full overflow-hidden rounded-[18px]">
-          <img className="w-full h-full object-cover" src={building.image} alt={building.name} />
+          <img
+            className="w-full h-full object-cover"
+            src={building.media.mainImage}
+            alt={building.name}
+          />
         </div>
       </div>
 
@@ -54,7 +71,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 min-w-0">
         <div className="text-[16px] pt-2.5 pb-2.5 px-4 rounded-2xl bg-brand-menugray border border-black/10">
           Room Types
-          {building.rooms.includes("tradSingle") && (
+          {building.amenities.roomTypes.includes(RoomType.TradSingle) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
                 src={"/unsorted-icons/room type/trad single.svg"}
@@ -69,7 +86,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               </div>
             </div>
           )}
-          {building.rooms.includes("semiSuiteSingle") && (
+          {building.amenities.roomTypes.includes(RoomType.SemiSuiteSingle) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl2xl">
               <img
                 src={"/unsorted-icons/room type/trad single.svg"}
@@ -84,7 +101,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               </div>
             </div>
           )}
-          {building.rooms.includes("tradDouble") && (
+          {building.amenities.roomTypes.includes(RoomType.TradDouble) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
                 src={"/unsorted-icons/room type/trad double.svg"}
@@ -99,7 +116,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               </div>
             </div>
           )}
-          {building.rooms.includes("semiSuiteDouble") && (
+          {building.amenities.roomTypes.includes(RoomType.SemiSuiteDouble) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
                 src={"/unsorted-icons/room type/trad double.svg"}
@@ -114,7 +131,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               </div>
             </div>
           )}
-          {building.rooms.includes("tradTriple") && (
+          {building.amenities.roomTypes.includes(RoomType.TradTriple) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
                 src={"/unsorted-icons/room type/trad triple.svg"}
@@ -129,7 +146,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               </div>
             </div>
           )}
-          {building.rooms.includes("semiSuiteTriple") && (
+          {building.amenities.roomTypes.includes(RoomType.SemiSuiteTriple) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
                 src={"/unsorted-icons/room type/trad triple.svg"}
@@ -141,6 +158,66 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
 
               <div className="text-[16px] whitespace-normal break-words">
                 <span className="font-normal">Semi-Suite</span> Triple
+              </div>
+            </div>
+          )}
+          {building.amenities.roomTypes.includes(RoomType.SemiSuiteQuad) && (
+            <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
+              <img
+                src={"/unsorted-icons/room type/trad triple.svg"}
+                alt={"info"}
+                width={36}
+                height={36}
+                className="w-9 h-9"
+              />
+
+              <div className="text-[16px] whitespace-normal break-words">
+                <span className="font-normal">Semi-Suite</span> Quad
+              </div>
+            </div>
+          )}
+          {building.amenities.roomTypes.includes(RoomType.ApartmentTriple) && (
+            <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
+              <img
+                src={"/unsorted-icons/room type/trad triple.svg"}
+                alt={"info"}
+                width={36}
+                height={36}
+                className="w-9 h-9"
+              />
+
+              <div className="text-[16px] whitespace-normal break-words">
+                <span className="font-normal">Apartment</span> Triple
+              </div>
+            </div>
+          )}
+          {building.amenities.roomTypes.includes(RoomType.StudioApartmentSingle) && (
+            <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
+              <img
+                src={"/unsorted-icons/room type/trad single.svg"}
+                alt={"info"}
+                width={36}
+                height={36}
+                className="w-9 h-9"
+              />
+
+              <div className="text-[16px] whitespace-normal break-words">
+                <span className="font-normal">Studio Apartment</span> Single
+              </div>
+            </div>
+          )}
+          {building.amenities.roomTypes.includes(RoomType.StudioApartmentDouble) && (
+            <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
+              <img
+                src={"/unsorted-icons/room type/trad double.svg"}
+                alt={"info"}
+                width={36}
+                height={36}
+                className="w-9 h-9"
+              />
+
+              <div className="text-[16px] whitespace-normal break-words">
+                <span className="font-normal">Studio Apartment</span> Double
               </div>
             </div>
           )}
@@ -157,9 +234,11 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               className="w-9 h-9"
             />
             <div className="text-[16px] whitespace-normal break-words ">
-              <div>{building.bathrooms.type}</div>
+              <div>
+                {building.amenities.bathrooms.types.map((t) => bathroomTypeLabel[t]).join(", ")}
+              </div>
               <div className="font-normal text-[16px] whitespace-normal break-words">
-                {building.bathrooms.details}
+                {building.amenities.bathrooms.details}
               </div>
             </div>
           </div>
@@ -169,16 +248,31 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           <div className="flex gap-3 pt-1 pb-1 items-center rounded-2xl">
             <img src={"/distance.svg"} alt={"info"} width={36} height={36} className="w-9 h-9" />
             <div className="min-w-0 flex-1">
-              <div className="text-[16px] whitespace-normal break-words">
-                {building.closeBuildings}
-              </div>
+              {building.location.note && (
+                <div className="text-[16px] whitespace-normal break-words">
+                  {building.location.note}
+                </div>
+              )}
+              {closeBuildingNames.length > 0 && (
+                <div className="flex flex-wrap gap-x-2 text-[14px] pt-1">
+                  {closeBuildingNames.map((b) => (
+                    <Link
+                      key={b.id}
+                      to={`/building/${b.id}`}
+                      className="text-brand-primary underline"
+                    >
+                      {b.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
         <div className="flex-1 text-[16px] pt-2.5 pb-2.5 px-4 rounded-2xl bg-brand-menugray border border-black/10">
           Air Conditioning
           <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
-            {building.AC.available && (
+            {building.amenities.ac.level !== ACLevel.None && (
               <img
                 src={"/unsorted-icons/ac/yes.svg"}
                 alt={"info"}
@@ -187,7 +281,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 className="w-9 h-9"
               />
             )}
-            {building.AC.available === false && (
+            {building.amenities.ac.level === ACLevel.None && (
               <img
                 src={"/unsorted-icons/ac/none.svg"}
                 alt={"info"}
@@ -197,7 +291,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               />
             )}
 
-            <div className=" text-[16px] pt-1 pb-1">{building.AC.details}</div>
+            <div className=" text-[16px] pt-1 pb-1">{building.amenities.ac.details}</div>
           </div>
         </div>
 
@@ -212,7 +306,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               className="w-9 h-9"
             />
 
-            <div className="text-[16px] pb-1">{building.kitchen}</div>
+            <div className="text-[16px] pb-1">{building.amenities.kitchen.details}</div>
           </div>
         </div>
         <div className="flex-1 text-[16px] pt-2.5 pb-2.5 px-4 rounded-2xl bg-brand-menugray border border-black/10">
@@ -226,18 +320,10 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               className="w-9 h-9"
             />
 
-            <div className="text-[16px] pt-1 pb-1">{building.lounge}</div>
+            <div className="text-[16px] pt-1 pb-1">{building.amenities.commonAreas.details}</div>
           </div>
         </div>
       </div>
-      {/*
-            <div className="flex gap-3 pt-2.5 px-4 items-center">
-                <img src={"/location.svg"} alt={"location"} width={48} height={48} className="w-9 h-9" />
-
-                <div className="h-fit ">
-                    <h1 className="font-semibold text-[24px] pt-[15px] pb-2.5 flex-shrink-0">Location</h1>
-                </div>
-            </div> */}
       <div className="flex gap-3 pt-2.5 items-center">
         <img src={"/gallery.svg"} alt={"gallery"} width={36} height={36} className="w-9 h-9" />
 
@@ -247,11 +333,11 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
       </div>
       <div className="flex-1 text-[16px] pt-2.5 pb-2.5 px-2.5 rounded-2xl bg-brand-menugray border border-black/10">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
-          {building.photoGallery.map((image, i) => (
+          {building.media.photos.map((image, i) => (
             <div
               key={image.link}
               className="flex flex-col items-center cursor-pointer group"
-              onClick={() => setLightbox({ items: building.photoGallery, index: i })}
+              onClick={() => setLightbox({ items: building.media.photos, index: i })}
             >
               <img
                 src={image.link}
@@ -263,14 +349,10 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           ))}
         </div>
       </div>
-      {building.floorPlanGallery.length > 0 &&
+      {building.media.floorPlans.length > 0 &&
         (() => {
-          const isFloorEntry = (desc: string) => /floor|level|tower|mezzanine/i.test(desc);
-
-          const roomTypePlans = building.floorPlanGallery.filter(
-            (p) => !isFloorEntry(p.description),
-          );
-          const floorPlans = building.floorPlanGallery.filter((p) => isFloorEntry(p.description));
+          const roomTypePlans = building.media.floorPlans.filter((p) => p.category === "roomType");
+          const floorPlans = building.media.floorPlans.filter((p) => p.category === "floor");
 
           const roomTypeIcon = (desc: string): string | null => {
             const d = desc.toLowerCase();
@@ -380,7 +462,6 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           );
         })()}
 
-      {/* ── Lightbox ── */}
       {lightbox &&
         (() => {
           const item = lightbox.items[lightbox.index];
@@ -390,7 +471,6 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
               onClick={closeLightbox}
             >
-              {/* prev */}
               {hasMultiple && (
                 <button
                   className="absolute left-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
@@ -404,7 +484,6 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 </button>
               )}
 
-              {/* image card */}
               <div
                 className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center gap-3"
                 onClick={(e) => e.stopPropagation()}
@@ -424,7 +503,6 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 </div>
               </div>
 
-              {/* next */}
               {hasMultiple && (
                 <button
                   className="absolute right-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
@@ -438,13 +516,12 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 </button>
               )}
 
-              {/* close */}
               <button
                 className="absolute top-4 right-4 text-white text-2xl px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
                 onClick={closeLightbox}
                 aria-label="Close"
               >
-                ✕
+                &times;
               </button>
             </div>
           );

@@ -42,7 +42,7 @@ export default function Home() {
             style={{ gridRow: "1 / 3" }}
             className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-black/20"
           >
-            <span className="flex items-center justify-center w-9 h-9 rounded-full bg-brand-orange text-white text-2xl">
+            <span className="flex items-center justify-center w-9 h-9 rounded-full bg-brand-primary text-white text-2xl">
               <img src="/public/orange-plus.svg" alt="Add" className="w-10 h-10 object-contain" />
             </span>
             <span className="font-semibold text-[16px]">Add Building</span>
