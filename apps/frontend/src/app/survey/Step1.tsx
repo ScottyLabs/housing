@@ -1,5 +1,4 @@
-import { useState } from "react";
-import DropdownButton, { SelectOption } from "@/components/DropdownButton";
+import DropdownButton, { type SelectOption } from "@/components/DropdownButton";
 
 const GENDER_OPTIONS: SelectOption[] = [
   { value: "male", label: "Male" },
@@ -26,6 +25,15 @@ const MAJOR_OPTIONS: SelectOption[] = [
   { value: "ece", label: "ECE" },
   { value: "scs", label: "SCS" },
 ];
+
+interface Step1Props {
+  gender: string;
+  setGender: (val: string) => void;
+  year: string;
+  setYear: (val: string) => void;
+  major: string;
+  setMajor: (val: string) => void;
+}
 
 function Field({
   icon,
@@ -64,27 +72,22 @@ function Field({
 }
 
 function SurveyInfo() {
-
   return (
-      <div className="flex items-center gap-4 rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-6">
-        <img
-          src="/unsorted-icons/info.svg"
-          alt=""
-          aria-hidden="true"
-          className="h-12 w-12 flex-shrink-0"
-        />
-        <p className="text-[18px] font-semibold leading-snug">
-          We need some information about you in order to offer recommended buildings
-        </p>
-      </div>
+    <div className="flex items-center gap-4 rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-6">
+      <img
+        src="/unsorted-icons/info.svg"
+        alt=""
+        aria-hidden="true"
+        className="h-12 w-12 flex-shrink-0"
+      />
+      <p className="text-[18px] font-semibold leading-snug">
+        We need some information about you in order to offer recommended buildings
+      </p>
+    </div>
   );
 }
 
-export default function Step1() {
-  const [gender, setGender] = useState("");
-  const [year, setYear] = useState("");
-  const [major, setMajor] = useState("");
-
+export default function Step1({ gender, setGender, year, setYear, major, setMajor }: Step1Props) {
   return (
     <>
       <SurveyInfo />
@@ -120,6 +123,6 @@ export default function Step1() {
           />
         </div>
       </div>
-      </>
+    </>
   );
 }

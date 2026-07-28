@@ -1,7 +1,24 @@
 import { useState } from "react";
 
-export default function Checkbox({ label }: { label: string }) {
-  const [isChecked, setIsChecked] = useState(false);
+export default function Checkbox({
+  label,
+  checked: controlledChecked,
+  onChange: controlledOnChange,
+}: {
+  label: string;
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
+}) {
+  const [internalChecked, setInternalChecked] = useState(false);
+  const isChecked = controlledChecked !== undefined ? controlledChecked : internalChecked;
+
+  const handleChange = (checked: boolean) => {
+    if (controlledOnChange) {
+      controlledOnChange(checked);
+    } else {
+      setInternalChecked(checked);
+    }
+  };
 
   return (
     <label className="flex items-center gap-[10px] cursor-pointer w-full">
@@ -9,7 +26,7 @@ export default function Checkbox({ label }: { label: string }) {
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={(e) => setIsChecked(e.target.checked)}
+          onChange={(e) => handleChange(e.target.checked)}
           className="sr-only"
         />
         <div
