@@ -66,6 +66,7 @@ const api = new Elysia({ prefix: "/api" })
   .use(elysiaLogger({ category: "housing-backend" }))
   .use(openapi({ path: "/docs", references: fromTypes() }))
   .use(healthRoute)
+  .use(preferencesRoute)
   .use(sessionAuth)
   .get("/auth/login", ({ cookie, redirect }) => {
     if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
