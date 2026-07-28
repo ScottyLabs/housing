@@ -12,16 +12,25 @@ import {
 } from "drizzle-orm/pg-core";
 
 // Enums
-const roommateStatusEnum = pgEnum("roommate_status", ["searching", "committed", "inactive"]);
+export const roommateStatusEnum = pgEnum("roommate_status", ["searching", "committed", "inactive"]);
 
 // Tables
 
 export const userTable = pgTable("user", {
-  andrewId: text("andrew_id"),
-  createdTime: timestamp("created_time"),
+  andrewId: text("andrew_id").notNull(),
+  createdTime: timestamp("created_time").notNull().defaultNow(),
   id: serial("id").primaryKey(),
-  name: text("name"),
-  oidcSubject: text("oidc_subject"),
+  name: text("name").notNull(),
+  oidcSubject: text("oidc_subject").notNull().unique(),
+});
+
+export const sessionTable = pgTable("session", {
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  expiresAt: timestamp("expires_at").notNull(),
+  id: text("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => userTable.id),
 });
 
 export const userPreferencesTable = pgTable("user_preferences", {

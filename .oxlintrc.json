@@ -1,6 +1,9 @@
 {
   "ignorePatterns": [
     "apps/backend/drizzle.config.ts",
+    "apps/backend/src/auth/oidc.ts",
+    "apps/backend/src/auth/session.ts",
+    "apps/backend/src/auth/user.ts",
     "apps/backend/src/db/client.ts",
     "apps/backend/src/db/index.ts",
     "apps/backend/src/db/migrations.ts",
