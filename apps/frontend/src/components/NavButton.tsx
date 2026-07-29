@@ -19,13 +19,13 @@ export default function NavButton({
                 ${isActive ? "bg-brand-primary text-white" : "hover:bg-gray-100"}
             `}
     >
-      <div className="flex min-w-full gap-2 items-center text-xs whitespace-normal lg:text-sm">
+      <div className="flex flex-col items-center gap-1 text-center text-xs whitespace-normal lg:text-sm">
         <img
           src={icon}
           alt={`${name} Icon`}
           className={isActive ? "brightness-0 invert" : "brightness-100"}
         />
-        <div className="hidden md:block">{name}</div>
+        <div>{name}</div>
       </div>
     </Link>
   );

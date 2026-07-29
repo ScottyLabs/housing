@@ -14,14 +14,10 @@ import BuildingDetails from "./components/BuildingDetails";
 function AppLayout({ children, showNavbar }: { children: React.ReactNode; showNavbar: boolean }) {
   return (
     <div className="antialiased min-h-screen flex flex-col bg-white">
-      {showNavbar && (
-        <div className="border-b-2 border-gray-200">
-          <Navbar />
-        </div>
-      )}
+      {showNavbar && <Navbar />}
       <div>
         <BuildingProvider>
-          <main className="flex-1 overflow-hidden">{children}</main>
+          <main className="flex-1 overflow-hidden pb-20 md:pb-0">{children}</main>
         </BuildingProvider>
       </div>
     </div>
