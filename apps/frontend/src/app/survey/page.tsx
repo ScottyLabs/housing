@@ -225,7 +225,7 @@ export default function Survey() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[1140px] px-6 pb-12 pt-[26px]">
+    <div className="mx-auto w-full max-w-[1140px] px-6 pb-48 pt-[26px]">
       <h1 className="text-[32px] font-bold leading-none">Survey</h1>
       <div className="mt-6 flex flex-col gap-6">
         <SurveyStepContent step={step} data={data} update={updateData} />
