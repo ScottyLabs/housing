@@ -47,13 +47,13 @@ function SliderInput({
       onChange={(e) => {
         onChange(Number(e.target.value));
       }}
-      className="w-full h-[4px] bg-gray-300 rounded appearance-none cursor-pointer slider"
+      className="w-full h-11 bg-transparent appearance-none cursor-pointer slider touch-none"
       style={{
         background: `linear-gradient(to right,
                                 var(--color-brand-primary) 0%,
                                 var(--color-brand-primary) ${percent}%,
                                 #d1d5db ${percent}%,
-                                #d1d5db 100%)`,
+                                #d1d5db 100%) center / 100% 4px no-repeat`,
       }}
     />
   );
@@ -98,7 +98,7 @@ export default function Slider({
     : [];
 
   return (
-    <div className="flex flex-col h-[23px] justify-center">
+    <div className="flex flex-col h-11 justify-center">
       <div className="relative flex flex-col justify-center">
         <SliderInput min={min} max={max} value={value} percent={percent} onChange={handleChange} />
 

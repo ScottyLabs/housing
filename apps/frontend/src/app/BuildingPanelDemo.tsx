@@ -12,30 +12,21 @@ export default function BuildingPanelDemo() {
   ];
 
   return (
-    <div className="space-y-4 overflow-x-auto min-w-[300px] max-w-full pb-3">
+    <div className="space-y-4 pb-3">
       <div className="flex gap-[12px] items-center">
         <h2 className="font-semibold text-[24px]">Recommended Buildings</h2>
       </div>
-      <div className="flex gap-[12px] ">
-        {recommended_buildings.slice(0, 3).map((b) => (
+      <div className="grid grid-cols-2 gap-[12px] md:grid-cols-[repeat(3,419.79px)]">
+        {recommended_buildings.map((b) => (
           <BuildingOption
             key={b.id}
             building={b}
-            className="shrink-0 w-[240px] h-[320px] md:w-[419.79px] md:h-[286.33px]"
-          />
-        ))}
-      </div>
-      <div className="flex gap-[12px] ">
-        {recommended_buildings.slice(3, 5).map((b) => (
-          <BuildingOption
-            key={b.id}
-            building={b}
-            className="shrink-0 w-[240px] h-[320px] md:w-[419.79px] md:h-[286.33px]"
+            className="w-full aspect-[3/4] md:aspect-[419.79/286.33]"
           />
         ))}
         <Link
           to="/building-options"
-          className="flex flex-col items-center rounded-lg bg-brand-menugray justify-center border border-black/10 transition-colors duration-200 hover:bg-gray-200 cursor-pointer shrink-0 w-[240px] h-[320px] md:w-[419.79px] md:h-[286.33px]"
+          className="flex flex-col items-center justify-center rounded-lg bg-brand-menugray border border-black/10 transition-colors duration-200 hover:bg-gray-200 cursor-pointer w-full aspect-[3/4] md:aspect-[419.79/286.33]"
         >
           <img src="/all-buildings-colored.svg" alt="all buildings" className="w-[48px] h-[48px]" />
           <div className="font-semibold text-black text-[24px] w-full text-center ">
