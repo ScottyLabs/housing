@@ -20,12 +20,18 @@ function SliderRow({ icon, question }: { icon: string; question: string }) {
       <img src={icon} alt="" aria-hidden="true" className="h-12 w-12 flex-shrink-0" />
       <div className="flex flex-1 flex-col gap-3">
         <span className="text-[18px] font-medium leading-none">{question}</span>
-        <div className="flex items-center gap-[14px]">
-          <span className="whitespace-nowrap text-[18px] font-medium">Rarely</span>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-[14px]">
+          <span className="hidden whitespace-nowrap text-[18px] font-medium sm:inline">Rarely</span>
           <div className="flex-1">
             <Slider min={1} max={5} showTicks />
           </div>
-          <span className="whitespace-nowrap text-[18px] font-medium">Every day</span>
+          <span className="hidden whitespace-nowrap text-[18px] font-medium sm:inline">
+            Every day
+          </span>
+          <div className="flex justify-between text-[18px] font-medium sm:hidden">
+            <span>Rarely</span>
+            <span>Every day</span>
+          </div>
         </div>
       </div>
     </div>
