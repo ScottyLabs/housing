@@ -344,7 +344,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 alt={image.description}
                 className="w-full rounded-xl transition-opacity group-hover:opacity-80"
               />
-              <div className="text-center text-[14px] pt-2">{image.description}</div>
+              <div className="text-center text-[16px] pt-2">{image.description}</div>
             </div>
           ))}
         </div>
@@ -416,7 +416,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                               className="w-[18px] h-[18px] flex-shrink-0"
                             />
                           )}
-                          <span className="font-semibold text-[16px]">{plan.description}</span>
+                          <span className="font-normal text-[16px]">{plan.description}</span>
                         </div>
                         {plan.virtualTourLink && (
                           <a
@@ -424,7 +424,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="block w-full text-center text-white text-[14px] bg-brand-primary hover:opacity-90 transition-opacity rounded-lg py-1.5 mt-1 mb-1"
+                            className="block w-full text-center text-white text-[16px] bg-brand-primary hover:opacity-90 transition-opacity rounded-lg py-1.5 mt-1 mb-1"
                           >
                             Virtual Tour
                           </a>
