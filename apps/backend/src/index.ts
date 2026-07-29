@@ -21,6 +21,7 @@ import {
 import { getOrCreateUser } from "./auth/user.ts";
 import { runMigrations } from "./db/migrations.ts";
 import { healthRoute } from "./routes/health.ts";
+import { preferencesRoute } from "./preferences/routes.ts";
 import { configureLogger, logger, nodeError } from "./utils/log.ts";
 
 const portStr = Deno.env.get("PORT");
@@ -65,6 +66,7 @@ const api = new Elysia({ prefix: "/api" })
   .use(elysiaLogger({ category: "housing-backend" }))
   .use(openapi({ path: "/docs", references: fromTypes() }))
   .use(healthRoute)
+  .use(preferencesRoute)
   .use(sessionAuth)
   .get("/auth/login", ({ cookie, redirect }) => {
     if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
