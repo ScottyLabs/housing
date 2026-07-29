@@ -192,6 +192,7 @@ async function sendPreferences(data: SurveyData): Promise<boolean> {
   try {
     const res = await fetch("/api/me/preferences", {
       body: JSON.stringify(payload),
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       method: "PUT",
     });
