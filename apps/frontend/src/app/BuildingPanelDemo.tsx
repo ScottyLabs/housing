@@ -18,17 +18,24 @@ export default function BuildingPanelDemo() {
       </div>
       <div className="flex gap-[12px] ">
         {recommended_buildings.slice(0, 3).map((b) => (
-          <BuildingOption key={b.id} building={b} width={419.79} height={286.33} />
+          <BuildingOption
+            key={b.id}
+            building={b}
+            className="shrink-0 w-[240px] h-[320px] md:w-[419.79px] md:h-[286.33px]"
+          />
         ))}
       </div>
       <div className="flex gap-[12px] ">
         {recommended_buildings.slice(3, 5).map((b) => (
-          <BuildingOption key={b.id} building={b} width={419.79} height={286.33} />
+          <BuildingOption
+            key={b.id}
+            building={b}
+            className="shrink-0 w-[240px] h-[320px] md:w-[419.79px] md:h-[286.33px]"
+          />
         ))}
         <Link
           to="/building-options"
-          className="flex flex-col items-center rounded-lg bg-brand-menugray justify-center border border-black/10 transition-colors duration-200 hover:bg-gray-200 cursor-pointer"
-          style={{ width: 419.79, height: 286.33 }}
+          className="flex flex-col items-center rounded-lg bg-brand-menugray justify-center border border-black/10 transition-colors duration-200 hover:bg-gray-200 cursor-pointer shrink-0 w-[240px] h-[320px] md:w-[419.79px] md:h-[286.33px]"
         >
           <img src="/all-buildings-colored.svg" alt="all buildings" className="w-[48px] h-[48px]" />
           <div className="font-semibold text-black text-[24px] w-full text-center ">
