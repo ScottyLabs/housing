@@ -38,7 +38,7 @@ const QUESTIONS: Array<{
   },
   {
     key: "productiveAroundOthers",
-    icon: "/unsorted-icons/work%20with%20others.svg",
+    icon: "/unsorted-icons/work-with-others.svg",
     question: "How often do you work productively around others?",
   },
   {

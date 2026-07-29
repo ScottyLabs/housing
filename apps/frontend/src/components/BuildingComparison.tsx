@@ -44,7 +44,7 @@ export default function BuildingColumn({
         {building.amenities.roomTypes.includes(RoomType.TradSingle) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
-              src={"/unsorted-icons/room type/trad single.svg"}
+              src={"/unsorted-icons/room-type/trad-single.svg"}
               alt={"trad single"}
               width={36}
               height={36}
@@ -58,7 +58,7 @@ export default function BuildingColumn({
         {building.amenities.roomTypes.includes(RoomType.SemiSuiteSingle) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
-              src={"/unsorted-icons/room type/trad single.svg"}
+              src={"/unsorted-icons/room-type/trad-single.svg"}
               alt={"semi-suite single"}
               width={36}
               height={36}
@@ -72,7 +72,7 @@ export default function BuildingColumn({
         {building.amenities.roomTypes.includes(RoomType.TradDouble) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
-              src={"/unsorted-icons/room type/trad double.svg"}
+              src={"/unsorted-icons/room-type/trad-double.svg"}
               alt={"trad double"}
               width={36}
               height={36}
@@ -86,7 +86,7 @@ export default function BuildingColumn({
         {building.amenities.roomTypes.includes(RoomType.SemiSuiteDouble) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
-              src={"/unsorted-icons/room type/trad double.svg"}
+              src={"/unsorted-icons/room-type/trad-double.svg"}
               alt={"semi-suite double"}
               width={36}
               height={36}
@@ -100,7 +100,7 @@ export default function BuildingColumn({
         {building.amenities.roomTypes.includes(RoomType.TradTriple) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
-              src={"/unsorted-icons/room type/trad triple.svg"}
+              src={"/unsorted-icons/room-type/trad-triple.svg"}
               alt={"trad triple"}
               width={36}
               height={36}
@@ -114,7 +114,7 @@ export default function BuildingColumn({
         {building.amenities.roomTypes.includes(RoomType.SemiSuiteTriple) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
-              src={"/unsorted-icons/room type/trad triple.svg"}
+              src={"/unsorted-icons/room-type/trad-triple.svg"}
               alt={"semi-suite triple"}
               width={36}
               height={36}
