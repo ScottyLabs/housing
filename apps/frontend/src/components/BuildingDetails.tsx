@@ -74,7 +74,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.TradSingle) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad single.svg"}
+                src={"/unsorted-icons/room-type/trad-single.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -89,7 +89,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.SemiSuiteSingle) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl2xl">
               <img
-                src={"/unsorted-icons/room type/trad single.svg"}
+                src={"/unsorted-icons/room-type/trad-single.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -104,7 +104,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.TradDouble) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad double.svg"}
+                src={"/unsorted-icons/room-type/trad-double.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -119,7 +119,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.SemiSuiteDouble) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad double.svg"}
+                src={"/unsorted-icons/room-type/trad-double.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -134,7 +134,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.TradTriple) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad triple.svg"}
+                src={"/unsorted-icons/room-type/trad-triple.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -149,7 +149,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.SemiSuiteTriple) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad triple.svg"}
+                src={"/unsorted-icons/room-type/trad-triple.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -164,7 +164,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.SemiSuiteQuad) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad triple.svg"}
+                src={"/unsorted-icons/room-type/trad-triple.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -179,7 +179,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.ApartmentTriple) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad triple.svg"}
+                src={"/unsorted-icons/room-type/trad-triple.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -194,7 +194,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.StudioApartmentSingle) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad single.svg"}
+                src={"/unsorted-icons/room-type/trad-single.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -209,7 +209,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           {building.amenities.roomTypes.includes(RoomType.StudioApartmentDouble) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
-                src={"/unsorted-icons/room type/trad double.svg"}
+                src={"/unsorted-icons/room-type/trad-double.svg"}
                 alt={"info"}
                 width={36}
                 height={36}
@@ -313,7 +313,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           Common Areas
           <div className="flex gap-3 pt-1 pb-1 items-center rounded-2xl">
             <img
-              src={"/unsorted-icons/work with others.svg"}
+              src={"/unsorted-icons/work-with-others.svg"}
               alt={"info"}
               width={36}
               height={36}
@@ -356,9 +356,9 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
 
           const roomTypeIcon = (desc: string): string | null => {
             const d = desc.toLowerCase();
-            if (d.includes("triple")) return "/unsorted-icons/room type/trad triple.svg";
-            if (d.includes("double")) return "/unsorted-icons/room type/trad double.svg";
-            if (d.includes("single")) return "/unsorted-icons/room type/trad single.svg";
+            if (d.includes("triple")) return "/unsorted-icons/room-type/trad-triple.svg";
+            if (d.includes("double")) return "/unsorted-icons/room-type/trad-double.svg";
+            if (d.includes("single")) return "/unsorted-icons/room-type/trad-single.svg";
             return null;
           };
 
