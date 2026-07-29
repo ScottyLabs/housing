@@ -17,11 +17,11 @@ const YEAR_OPTIONS: SelectOption[] = [
 
 // Major options need the full majors list later.
 const MAJOR_OPTIONS: SelectOption[] = [
-  { value: "cfa", label: "CFA" },
   { value: "arch", label: "Arch" },
+  { value: "cee", label: "CEE" },
+  { value: "cfa", label: "CFA" },
   { value: "design", label: "Design" },
   { value: "dietrich", label: "Dietrich" },
-  { value: "cee", label: "CEE" },
   { value: "ece", label: "ECE" },
   { value: "scs", label: "SCS" },
 ];

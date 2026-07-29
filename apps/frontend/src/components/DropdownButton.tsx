@@ -11,12 +11,14 @@ export default function DropdownButton({
   onChangeAction,
   value,
   subtitle,
+  maxHeight = "max-h-38",
 }: {
   options: SelectOption[];
   placeholder?: string;
   onChangeAction: (value: string) => void;
   value: string;
   subtitle?: string;
+  maxHeight?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption = options.find((opt) => opt.value === value);
@@ -73,12 +75,14 @@ export default function DropdownButton({
         <img src="/dropdown-closed.svg" alt="dropdown closed" className="w-[14px] h-[8px]" />
       </div>
       {isOpen && (
-        <div className="absolute w-full mt-2 z-10 w-full bg-brand-menugray border border-black/10 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+        <div
+          className={`absolute w-full mt-2 z-10 bg-brand-menugray border border-black/10 rounded-xl shadow-lg ${maxHeight} overflow-y-auto`}
+        >
           {options.map((option) => (
             <div
               key={option.value}
               onClick={() => handleSelect(option)}
-              className="px-4 py-1 hover:bg-brand-buttongray first:rounded-t-lg last:rounded-b-lg border-b last:border-b-0 border-black/5 select-none text-[14px]"
+              className="px-4 py-2 hover:bg-brand-buttongray first:rounded-t-lg last:rounded-b-lg border-b last:border-b-0 border-black/5 select-none text-[14px] cursor-pointer"
             >
               {option.label}
             </div>
