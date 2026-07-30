@@ -75,9 +75,15 @@ export default function Profile() {
           )}
 
           {data && (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 text-[18px]">
               <p>Name: {data.name} </p>
               <p>Andrew ID: {data.andrewId}</p>
+              <a
+                href="/survey"
+                className="flex h-[56px] w-full items-center justify-center rounded-[13px] bg-brand-primary text-[18px] font-medium text-white transition-colors hover:bg-[#f1872c] sm:w-[321px]"
+              >
+                Edit Survey Responces
+              </a>
               <a
                 href="/api/auth/logout"
                 className="flex h-[56px] w-full items-center justify-center rounded-[13px] bg-brand-primary text-[18px] font-medium text-white transition-colors hover:bg-[#f1872c] sm:w-[321px]"
