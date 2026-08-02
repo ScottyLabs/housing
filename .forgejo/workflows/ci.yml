@@ -9,3 +9,19 @@ jobs:
   check:
     uses: ScottyLabs/kennel/.forgejo/workflows/ci.yml@main
     secrets: inherit
+
+  check-openapi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v27
+      - uses: cachix/devenv-action@v15
+      - name: Check openapi.json freshness
+        run: |
+          cd apps/backend && deno task openapi
+          if ! git diff --exit-code ../frontend/src/api/openapi.json > /dev/null; then
+            echo "::error::apps/frontend/src/api/openapi.json is out of date with backend routes."
+            echo "Please run 'cd apps/backend && deno task openapi' locally and commit the updated openapi.json file."
+            git diff ../frontend/src/api/openapi.json
+            exit 1
+          fi
