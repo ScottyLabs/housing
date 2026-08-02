@@ -40,7 +40,9 @@ if (!port) {
   Deno.exit(EXIT_FAILURE);
 }
 
-await runMigrations();
+if (!Deno.env.get("SKIP_MIGRATIONS")) {
+  await runMigrations();
+}
 
 const oidcSettings = appUrl ? loadOidcSettings() : undefined;
 const oidcConfig = oidcSettings ? await buildOidcConfig(oidcSettings) : undefined;

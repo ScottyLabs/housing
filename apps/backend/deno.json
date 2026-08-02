@@ -5,7 +5,7 @@
     "db:generate": "deno run --allow-all npm:drizzle-kit generate",
     "db:migrate": "deno run --allow-all src/db/migrations.ts",
     "db:studio": "deno run --allow-all npm:drizzle-kit studio",
-    "openapi": "curl -f http://localhost:3001/api/docs/json -o ../frontend/src/api/openapi.json"
+    "openapi": "deno run --allow-read --allow-write --allow-env --allow-net --allow-run scripts/generate-openapi.ts"
   },
   "imports": {
     "@elysia/static": "npm:@elysia/static@^1.4.11",

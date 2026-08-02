@@ -6,9 +6,293 @@
     "version": "0.0.0"
   },
   "paths": {
-    "/api/health/": { "get": { "operationId": "getApiHealth" } },
+    "/api/health/": {
+      "get": {
+        "operationId": "getApiHealth"
+      }
+    },
     "/api/me/preferences": {
-      "get": { "operationId": "getApiMePreferences" },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "userId",
+                        "accommodations",
+                        "cookingFrequency",
+                        "goals",
+                        "gymFrequency",
+                        "major",
+                        "needsAloneTime",
+                        "preferredAmenities",
+                        "preferredGenderHousing",
+                        "productiveAroundOthers",
+                        "socialFrequency",
+                        "updatedAt",
+                        "year"
+                      ],
+                      "properties": {
+                        "id": {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        "userId": {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        "accommodations": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "cookingFrequency": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "goals": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "gymFrequency": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "major": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "needsAloneTime": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "preferredAmenities": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "preferredGenderHousing": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "productiveAroundOthers": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "socialFrequency": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "updatedAt": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "type": "Date"
+                                },
+                                {
+                                  "format": "date-time",
+                                  "type": "string"
+                                },
+                                {
+                                  "format": "date",
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "number"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "year": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response for status 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["error"],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiMePreferences"
+      },
       "put": {
         "requestBody": {
           "required": true,
@@ -20,8 +304,15 @@
                   "accommodations": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "cookingFrequency": {
@@ -31,18 +322,35 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "goals": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "gymFrequency": {
@@ -52,16 +360,33 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "major": {
                     "nullable": true,
-                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "needsAloneTime": {
                     "nullable": true,
@@ -70,23 +395,47 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "preferredAmenities": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "preferredGenderHousing": {
                     "nullable": true,
-                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "productiveAroundOthers": {
                     "nullable": true,
@@ -95,11 +444,21 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "socialFrequency": {
@@ -109,16 +468,35 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
-                  "year": { "nullable": true, "anyOf": [{ "type": "string" }, { "type": "null" }] }
-                },
-                "additionalProperties": false
+                  "year": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
               }
             },
             "application/x-www-form-urlencoded": {
@@ -128,8 +506,15 @@
                   "accommodations": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "cookingFrequency": {
@@ -139,18 +524,35 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "goals": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "gymFrequency": {
@@ -160,16 +562,33 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "major": {
                     "nullable": true,
-                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "needsAloneTime": {
                     "nullable": true,
@@ -178,23 +597,47 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "preferredAmenities": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "preferredGenderHousing": {
                     "nullable": true,
-                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "productiveAroundOthers": {
                     "nullable": true,
@@ -203,11 +646,21 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "socialFrequency": {
@@ -217,16 +670,35 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
-                  "year": { "nullable": true, "anyOf": [{ "type": "string" }, { "type": "null" }] }
-                },
-                "additionalProperties": false
+                  "year": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
               }
             },
             "multipart/form-data": {
@@ -236,8 +708,15 @@
                   "accommodations": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "cookingFrequency": {
@@ -247,18 +726,35 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "goals": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "gymFrequency": {
@@ -268,16 +764,33 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "major": {
                     "nullable": true,
-                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "needsAloneTime": {
                     "nullable": true,
@@ -286,23 +799,47 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "preferredAmenities": {
                     "nullable": true,
                     "anyOf": [
-                      { "type": "array", "items": { "type": "string" } },
-                      { "type": "null" }
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "preferredGenderHousing": {
                     "nullable": true,
-                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
                   },
                   "productiveAroundOthers": {
                     "nullable": true,
@@ -311,11 +848,21 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
                   "socialFrequency": {
@@ -325,16 +872,306 @@
                         "minimum": 1,
                         "maximum": 5,
                         "anyOf": [
-                          { "format": "integer", "default": 0, "type": "string" },
-                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                          {
+                            "format": "integer",
+                            "default": 0,
+                            "type": "string"
+                          },
+                          {
+                            "minimum": 1,
+                            "maximum": 5,
+                            "type": "integer"
+                          }
                         ]
                       },
-                      { "type": "null" }
+                      {
+                        "type": "null"
+                      }
                     ]
                   },
-                  "year": { "nullable": true, "anyOf": [{ "type": "string" }, { "type": "null" }] }
-                },
-                "additionalProperties": false
+                  "year": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "userId",
+                    "accommodations",
+                    "cookingFrequency",
+                    "goals",
+                    "gymFrequency",
+                    "major",
+                    "needsAloneTime",
+                    "preferredAmenities",
+                    "preferredGenderHousing",
+                    "productiveAroundOthers",
+                    "socialFrequency",
+                    "updatedAt",
+                    "year"
+                  ],
+                  "properties": {
+                    "id": {
+                      "anyOf": [
+                        {
+                          "format": "integer",
+                          "default": 0,
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "userId": {
+                      "anyOf": [
+                        {
+                          "format": "integer",
+                          "default": 0,
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "accommodations": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "cookingFrequency": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "goals": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "gymFrequency": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "major": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "needsAloneTime": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "preferredAmenities": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "preferredGenderHousing": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "productiveAroundOthers": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "socialFrequency": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "updatedAt": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "Date"
+                            },
+                            {
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            {
+                              "format": "date",
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "year": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response for status 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["error"],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
               }
             }
           }
@@ -342,10 +1179,98 @@
         "operationId": "putApiMePreferences"
       }
     },
-    "/api/auth/login": { "get": { "operationId": "getApiAuthLogin" } },
-    "/api/auth/callback": { "get": { "operationId": "getApiAuthCallback" } },
-    "/api/auth/logout": { "get": { "operationId": "getApiAuthLogout" } },
-    "/api/me": { "get": { "operationId": "getApiMe" } }
+    "/api/auth/login": {
+      "get": {
+        "operationId": "getApiAuthLogin"
+      }
+    },
+    "/api/auth/callback": {
+      "get": {
+        "operationId": "getApiAuthCallback"
+      }
+    },
+    "/api/auth/logout": {
+      "get": {
+        "operationId": "getApiAuthLogout"
+      }
+    },
+    "/api/me": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["id", "name", "andrewId", "oidcSubject", "createdTime"],
+                  "properties": {
+                    "id": {
+                      "anyOf": [
+                        {
+                          "format": "integer",
+                          "default": 0,
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "andrewId": {
+                      "type": "string"
+                    },
+                    "oidcSubject": {
+                      "type": "string"
+                    },
+                    "createdTime": {
+                      "anyOf": [
+                        {
+                          "type": "Date"
+                        },
+                        {
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        {
+                          "format": "date",
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response for status 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["error"],
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiMe"
+      }
+    }
   },
-  "components": { "schemas": {} }
+  "components": {
+    "schemas": {}
+  }
 }
