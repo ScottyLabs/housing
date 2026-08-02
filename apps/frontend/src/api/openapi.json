@@ -1,0 +1,351 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Elysia Documentation",
+    "description": "Development documentation",
+    "version": "0.0.0"
+  },
+  "paths": {
+    "/api/health/": { "get": { "operationId": "getApiHealth" } },
+    "/api/me/preferences": {
+      "get": { "operationId": "getApiMePreferences" },
+      "put": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accommodations": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "cookingFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "goals": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "gymFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "major": {
+                    "nullable": true,
+                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                  },
+                  "needsAloneTime": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "preferredAmenities": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "preferredGenderHousing": {
+                    "nullable": true,
+                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                  },
+                  "productiveAroundOthers": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "socialFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "year": { "nullable": true, "anyOf": [{ "type": "string" }, { "type": "null" }] }
+                },
+                "additionalProperties": false
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accommodations": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "cookingFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "goals": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "gymFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "major": {
+                    "nullable": true,
+                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                  },
+                  "needsAloneTime": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "preferredAmenities": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "preferredGenderHousing": {
+                    "nullable": true,
+                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                  },
+                  "productiveAroundOthers": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "socialFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "year": { "nullable": true, "anyOf": [{ "type": "string" }, { "type": "null" }] }
+                },
+                "additionalProperties": false
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accommodations": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "cookingFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "goals": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "gymFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "major": {
+                    "nullable": true,
+                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                  },
+                  "needsAloneTime": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "preferredAmenities": {
+                    "nullable": true,
+                    "anyOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "null" }
+                    ]
+                  },
+                  "preferredGenderHousing": {
+                    "nullable": true,
+                    "anyOf": [{ "type": "string" }, { "type": "null" }]
+                  },
+                  "productiveAroundOthers": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "socialFrequency": {
+                    "nullable": true,
+                    "anyOf": [
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "anyOf": [
+                          { "format": "integer", "default": 0, "type": "string" },
+                          { "minimum": 1, "maximum": 5, "type": "integer" }
+                        ]
+                      },
+                      { "type": "null" }
+                    ]
+                  },
+                  "year": { "nullable": true, "anyOf": [{ "type": "string" }, { "type": "null" }] }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "operationId": "putApiMePreferences"
+      }
+    },
+    "/api/auth/login": { "get": { "operationId": "getApiAuthLogin" } },
+    "/api/auth/callback": { "get": { "operationId": "getApiAuthCallback" } },
+    "/api/auth/logout": { "get": { "operationId": "getApiAuthLogout" } },
+    "/api/me": { "get": { "operationId": "getApiMe" } }
+  },
+  "components": { "schemas": {} }
+}
