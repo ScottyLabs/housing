@@ -21,23 +21,51 @@ const preferencesBody = t.Object({
   year: t.Optional(t.Nullable(t.String())),
 });
 
+const preferencesResponse = t.Object({
+  id: t.Integer(),
+  userId: t.Integer(),
+  accommodations: t.Nullable(t.Array(t.String())),
+  cookingFrequency: t.Nullable(t.Integer()),
+  goals: t.Nullable(t.Array(t.String())),
+  gymFrequency: t.Nullable(t.Integer()),
+  major: t.Nullable(t.String()),
+  needsAloneTime: t.Nullable(t.Integer()),
+  preferredAmenities: t.Nullable(t.Array(t.String())),
+  preferredGenderHousing: t.Nullable(t.String()),
+  productiveAroundOthers: t.Nullable(t.Integer()),
+  socialFrequency: t.Nullable(t.Integer()),
+  updatedAt: t.Nullable(t.Date()),
+  year: t.Nullable(t.String()),
+});
+
+const unauthorizedResponse = t.Object({ error: t.String() });
+
 export const preferencesRoute = new Elysia({ prefix: "/me" })
   .use(dbPlugin)
   .use(sessionAuth)
 
-  .get("/preferences", async ({ db, user, set }) => {
-    if (!user) {
-      set.status = 401;
-      return { error: "Unauthorized" };
-    }
+  .get(
+    "/preferences",
+    async ({ db, user, set }) => {
+      if (!user) {
+        set.status = 401;
+        return { error: "Unauthorized" };
+      }
 
-    const rows = await db
-      .select()
-      .from(userPreferencesTable)
-      .where(eq(userPreferencesTable.userId, user.id));
+      const rows = await db
+        .select()
+        .from(userPreferencesTable)
+        .where(eq(userPreferencesTable.userId, user.id));
 
-    return rows[0] ?? null;
-  })
+      return rows[0] ?? null;
+    },
+    {
+      response: {
+        200: t.Union([preferencesResponse, t.Null()]),
+        401: unauthorizedResponse,
+      },
+    },
+  )
 
   .put(
     "/preferences",
@@ -66,5 +94,9 @@ export const preferencesRoute = new Elysia({ prefix: "/me" })
     },
     {
       body: preferencesBody,
+      response: {
+        200: preferencesResponse,
+        401: unauthorizedResponse,
+      },
     },
   );
