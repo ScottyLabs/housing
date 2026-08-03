@@ -21,7 +21,7 @@ import {
 import { getOrCreateUser } from "./auth/user.ts";
 import { runMigrations } from "./db/migrations.ts";
 import { healthRoute } from "./routes/health.ts";
-import { preferencesRoute } from "./preferences/routes.ts";
+import { preferencesRoute } from "./routes/preferences.ts";
 import { configureLogger, logger, nodeError } from "./utils/log.ts";
 
 const portStr = Deno.env.get("PORT");
