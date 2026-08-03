@@ -12,6 +12,9 @@ jobs:
 
   check-openapi:
     runs-on: docker
+    env:
+      SECRETSPEC_PROFILE: ci
+      SECRETSPEC_PROVIDER: env
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v7
       - uses: https://codeberg.org/ScottyLabs/kennel/.forgejo/actions/prepare@main
