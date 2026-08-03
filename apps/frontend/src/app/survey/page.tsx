@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import client from "@/api/client";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -202,15 +203,53 @@ async function sendPreferences(data: SurveyData): Promise<boolean> {
   }
 }
 
-export default function Survey() {
-  const [step, setStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+function useSurveyData() {
   const [data, setData] = useState<SurveyData>(initialSurveyData);
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    void client.GET("/api/me/preferences").then(({ data: prefs }) => {
+      if (!prefs) return;
+      setData({
+        gender: prefs.preferredGenderHousing ?? "",
+        year: prefs.year ?? "",
+        major: prefs.major ?? "",
+        cookingFrequency:
+          prefs.cookingFrequency === null
+            ? initialSurveyData.cookingFrequency
+            : Number(prefs.cookingFrequency),
+        gymFrequency:
+          prefs.gymFrequency === null ? initialSurveyData.gymFrequency : Number(prefs.gymFrequency),
+        productiveAroundOthers:
+          prefs.productiveAroundOthers === null
+            ? initialSurveyData.productiveAroundOthers
+            : Number(prefs.productiveAroundOthers),
+        needsAloneTime:
+          prefs.needsAloneTime === null
+            ? initialSurveyData.needsAloneTime
+            : Number(prefs.needsAloneTime),
+        socialFrequency:
+          prefs.socialFrequency === null
+            ? initialSurveyData.socialFrequency
+            : Number(prefs.socialFrequency),
+        goals: prefs.goals ?? [],
+        accommodations: prefs.accommodations ?? [],
+        preferredAmenities: prefs.preferredAmenities ?? [],
+      });
+    });
+  }, []);
 
   const updateData = (fields: Partial<SurveyData>) => {
     setData((prev) => ({ ...prev, ...fields }));
   };
+
+  return { data, updateData };
+}
+
+export default function Survey() {
+  const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { data, updateData } = useSurveyData();
+  const navigate = useNavigate();
 
   const handleNext = () => {
     if (step < TOTAL_STEPS) {
