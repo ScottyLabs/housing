@@ -127,6 +127,18 @@ export interface Building {
   editorialTags?: string[];
 }
 
+export interface FilterState {
+  distanceFrom: string;
+  socialness: number | null;
+  noiseLevel: number | null;
+  serviceAnimal: boolean;
+  wheelchairAccessible: boolean;
+  singleRoom: boolean;
+  airConditioning: boolean;
+  laundryEachFloor: boolean;
+  enSuiteBathroom: boolean;
+}
+
 export interface Tag {
   id: string;
   label: string;
