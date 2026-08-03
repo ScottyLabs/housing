@@ -12,6 +12,7 @@
     "apps/backend/scripts/generate-openapi.ts",
     "apps/backend/src/utils/log.ts",
     "apps/backend/src/utils/typebox.ts",
+    "apps/frontend/src/api/openapi.d.ts",
     "apps/frontend/src/app/building-comparison/page.tsx",
     "apps/frontend/src/app/building-options/BuildingFilter.tsx",
     "apps/frontend/src/app/building-options/TaggedBuildingOption.tsx",
