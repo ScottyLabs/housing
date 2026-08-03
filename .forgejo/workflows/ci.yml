@@ -13,15 +13,8 @@ jobs:
   check-openapi:
     runs-on: docker
     steps:
-      - uses: actions/checkout@v4
-      - uses: cachix/install-nix-action@v27
-      - uses: cachix/devenv-action@v15
+      - uses: https://code.forgejo.org/actions/checkout@v7
+      - uses: https://codeberg.org/ScottyLabs/kennel/.forgejo/actions/prepare@main
       - name: Check openapi.json freshness
         run: |
-          cd apps/backend && deno task openapi
-          if ! git diff --exit-code ../frontend/src/api/openapi.json > /dev/null; then
-            echo "::error::apps/frontend/src/api/openapi.json is out of date with backend routes."
-            echo "Please run 'cd apps/backend && deno task openapi' locally and commit the updated openapi.json file."
-            git diff ../frontend/src/api/openapi.json
-            exit 1
-          fi
+          devenv shell -- sh -c 'cd apps/backend && deno task openapi && git diff --exit-code ../frontend/src/api/openapi.json || (echo "::error::openapi.json is out of date" && exit 1)'
