@@ -4,7 +4,8 @@
     "build": "deno compile --frozen --no-check --allow-all --cached-only --include src --include drizzle --output dist/bin/housing-backend src/index.ts",
     "db:generate": "deno run --allow-all npm:drizzle-kit generate",
     "db:migrate": "deno run --allow-all src/db/migrations.ts",
-    "db:studio": "deno run --allow-all npm:drizzle-kit studio"
+    "db:studio": "deno run --allow-all npm:drizzle-kit studio",
+    "openapi": "deno run --allow-read --allow-write --allow-env --allow-net --allow-run scripts/generate-openapi.ts"
   },
   "imports": {
     "@elysia/static": "npm:@elysia/static@^1.4.11",

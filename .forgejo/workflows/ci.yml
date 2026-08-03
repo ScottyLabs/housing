@@ -9,3 +9,15 @@ jobs:
   check:
     uses: ScottyLabs/kennel/.forgejo/workflows/ci.yml@main
     secrets: inherit
+
+  check-openapi:
+    runs-on: docker
+    env:
+      SECRETSPEC_PROFILE: ci
+      SECRETSPEC_PROVIDER: env
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v7
+      - uses: https://codeberg.org/ScottyLabs/kennel/.forgejo/actions/prepare@main
+      - name: Check openapi.json freshness
+        run: |
+          devenv shell -- sh -c 'cd apps/backend && deno task openapi && treefmt ../frontend/src/api/openapi.json 2>/dev/null || true && git diff --exit-code ../frontend/src/api/openapi.json || (echo "::error::openapi.json is out of date" && exit 1)'

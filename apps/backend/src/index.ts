@@ -1,7 +1,7 @@
 import { staticPlugin } from "@elysia/static";
 import { fromTypes, openapi } from "@elysiajs/openapi";
 import { elysiaLogger } from "@logtape/elysia";
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { sessionAuth } from "./auth/middleware.ts";
 import {
   buildLoginUrl,
@@ -40,7 +40,9 @@ if (!port) {
   Deno.exit(EXIT_FAILURE);
 }
 
-await runMigrations();
+if (!Deno.env.get("SKIP_MIGRATIONS")) {
+  await runMigrations();
+}
 
 const oidcSettings = appUrl ? loadOidcSettings() : undefined;
 const oidcConfig = oidcSettings ? await buildOidcConfig(oidcSettings) : undefined;
@@ -118,13 +120,28 @@ const api = new Elysia({ prefix: "/api" })
     cookie[SESSION_COOKIE_NAME].remove();
     return toHome(redirect);
   })
-  .get("/me", ({ user, set }) => {
-    if (!user) {
-      set.status = 401;
-      return { error: "Unauthorized" };
-    }
-    return user;
-  });
+  .get(
+    "/me",
+    ({ user, set }) => {
+      if (!user) {
+        set.status = 401;
+        return { error: "Unauthorized" };
+      }
+      return user;
+    },
+    {
+      response: {
+        200: t.Object({
+          id: t.Integer(),
+          name: t.String(),
+          andrewId: t.String(),
+          oidcSubject: t.String(),
+          createdTime: t.Date(),
+        }),
+        401: t.Object({ error: t.String() }),
+      },
+    },
+  );
 
 const app = new Elysia().use(api);
 
