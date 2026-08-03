@@ -177,30 +177,22 @@ function SurveyStepContent({
 }
 
 async function sendPreferences(data: SurveyData): Promise<boolean> {
-  const payload = {
-    accommodations: data.accommodations,
-    cookingFrequency: data.cookingFrequency,
-    goals: data.goals,
-    gymFrequency: data.gymFrequency,
-    major: data.major || null,
-    needsAloneTime: data.needsAloneTime,
-    preferredAmenities: data.preferredAmenities,
-    preferredGenderHousing: data.gender || null,
-    productiveAroundOthers: data.productiveAroundOthers,
-    socialFrequency: data.socialFrequency,
-    year: data.year || null,
-  };
-  try {
-    const res = await fetch("/api/me/preferences", {
-      body: JSON.stringify(payload),
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      method: "PUT",
-    });
-    return res.ok;
-  } catch {
-    return false;
-  }
+  const { response } = await client.PUT("/api/me/preferences", {
+    body: {
+      accommodations: data.accommodations,
+      cookingFrequency: data.cookingFrequency,
+      goals: data.goals,
+      gymFrequency: data.gymFrequency,
+      major: data.major || null,
+      needsAloneTime: data.needsAloneTime,
+      preferredAmenities: data.preferredAmenities,
+      preferredGenderHousing: data.gender || null,
+      productiveAroundOthers: data.productiveAroundOthers,
+      socialFrequency: data.socialFrequency,
+      year: data.year || null,
+    },
+  });
+  return response.ok;
 }
 
 function useSurveyData() {
