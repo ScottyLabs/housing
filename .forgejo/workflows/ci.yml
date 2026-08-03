@@ -20,4 +20,4 @@ jobs:
       - uses: https://codeberg.org/ScottyLabs/kennel/.forgejo/actions/prepare@main
       - name: Check openapi.json freshness
         run: |
-          devenv shell -- sh -c 'cd apps/backend && deno task openapi && git diff --exit-code ../frontend/src/api/openapi.json || (echo "::error::openapi.json is out of date" && exit 1)'
+          devenv shell -- sh -c 'cd apps/backend && deno task openapi && treefmt ../frontend/src/api/openapi.json 2>/dev/null || true && git diff --exit-code ../frontend/src/api/openapi.json || (echo "::error::openapi.json is out of date" && exit 1)'
