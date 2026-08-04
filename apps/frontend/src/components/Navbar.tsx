@@ -57,12 +57,12 @@ export default function Navbar() {
               pathname={pathname}
             />
             <NavButton href="/map" name="Map" icon="/map.svg" isActive={pathname === "/map"} />
-            <NavbarSpacer left_nbr_path="/map" right_nbr_path="/roommates" pathname={pathname} />
+            <NavbarSpacer left_nbr_path="/map" right_nbr_path="/reviews" pathname={pathname} />
             <NavButton
-              href="/roommates"
-              name="Roommates"
-              icon="/person.svg"
-              isActive={pathname === "/roommates"}
+              href="/reviews"
+              name="Reviews"
+              icon="/write-review.svg"
+              isActive={pathname === "/reviews"}
             />
           </div>
           <div className="flex gap-1 items-center mx-2 ">
@@ -103,10 +103,10 @@ export default function Navbar() {
         />
         <NavButton href="/map" name="Map" icon="/map.svg" isActive={pathname === "/map"} />
         <NavButton
-          href="/roommates"
-          name="Roommates"
-          icon="/person.svg"
-          isActive={pathname === "/roommates"}
+          href="/reviews"
+          name="Reviews"
+          icon="/write-review.svg"
+          isActive={pathname === "/reviews"}
         />
       </nav>
     </>
