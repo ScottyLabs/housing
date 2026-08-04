@@ -155,6 +155,26 @@ shape.
   `atmosphere`, `location`, and optional `editorialTags` for hand-authored tags with no
   structured source.
 
+## Filter scoring
+
+`scoreBuilding` in `scoring.ts` scores a building against the filter panel. Set
+controls add points; missing data adds nothing and never subtracts:
+
+| Filter control | Scored from |
+|---|---|
+| Air conditioning | `amenities.ac.level` is `Window` or `Central` |
+| Laundry on each floor | `amenities.laundry.location` is `EachFloor` |
+| En suite bathroom | `amenities.bathrooms.types` has `SharedSuite` or `Private` |
+| Single room | `amenities.roomTypes` has a single-occupant type |
+| Service Animal | `accessibility.serviceAnimalFriendly` |
+| Wheelchair accessible | `accessibility.wheelchairAccessible` |
+| Socialness, Noise Level | `atmosphere.socialness`, `atmosphere.noiseLevel` |
+| Distance from | `location.closeBuildings` on either building |
+
+`atmosphere`, coordinates, and `accessibility` flags are empty so 
+those score 0. `groupBuildings` sorts by score into `bestFit`, 
+`decentFit`, and `wildCard`, three per row.
+
 ## Tag derivation
 
 `deriveTags(building)` in `tags.tsx` computes a building's tag ids from its structured fields, so
