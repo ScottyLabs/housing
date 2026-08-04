@@ -10,6 +10,7 @@ import Survey from "@/app/survey/page";
 import { BuildingProvider } from "@/components/BuildingContext";
 import Navbar from "@/components/Navbar";
 import BuildingDetails from "./components/BuildingDetails";
+import ReviewsPage from "./app/reviews/page";
 
 function AppLayout({ children, showNavbar }: { children: React.ReactNode; showNavbar: boolean }) {
   return (
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/building-options" element={<BuildingOptions />} />
           <Route path="/building-comparison" element={<BuildingComparison />} />
           <Route path="/building/:id" element={<BuildingDetails />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
