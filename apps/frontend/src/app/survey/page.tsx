@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import client from "@/api/client";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -176,41 +177,71 @@ function SurveyStepContent({
 }
 
 async function sendPreferences(data: SurveyData): Promise<boolean> {
-  const payload = {
-    accommodations: data.accommodations,
-    cookingFrequency: data.cookingFrequency,
-    goals: data.goals,
-    gymFrequency: data.gymFrequency,
-    major: data.major || null,
-    needsAloneTime: data.needsAloneTime,
-    preferredAmenities: data.preferredAmenities,
-    preferredGenderHousing: data.gender || null,
-    productiveAroundOthers: data.productiveAroundOthers,
-    socialFrequency: data.socialFrequency,
-    year: data.year || null,
-  };
-  try {
-    const res = await fetch("/api/me/preferences", {
-      body: JSON.stringify(payload),
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      method: "PUT",
+  const { response } = await client.PUT("/api/me/preferences", {
+    body: {
+      accommodations: data.accommodations,
+      cookingFrequency: data.cookingFrequency,
+      goals: data.goals,
+      gymFrequency: data.gymFrequency,
+      major: data.major || null,
+      needsAloneTime: data.needsAloneTime,
+      preferredAmenities: data.preferredAmenities,
+      preferredGenderHousing: data.gender || null,
+      productiveAroundOthers: data.productiveAroundOthers,
+      socialFrequency: data.socialFrequency,
+      year: data.year || null,
+    },
+  });
+  return response.ok;
+}
+
+function useSurveyData() {
+  const [data, setData] = useState<SurveyData>(initialSurveyData);
+
+  useEffect(() => {
+    void client.GET("/api/me/preferences").then(({ data: prefs }) => {
+      if (!prefs) return;
+      setData({
+        gender: prefs.preferredGenderHousing ?? "",
+        year: prefs.year ?? "",
+        major: prefs.major ?? "",
+        cookingFrequency:
+          prefs.cookingFrequency === null
+            ? initialSurveyData.cookingFrequency
+            : Number(prefs.cookingFrequency),
+        gymFrequency:
+          prefs.gymFrequency === null ? initialSurveyData.gymFrequency : Number(prefs.gymFrequency),
+        productiveAroundOthers:
+          prefs.productiveAroundOthers === null
+            ? initialSurveyData.productiveAroundOthers
+            : Number(prefs.productiveAroundOthers),
+        needsAloneTime:
+          prefs.needsAloneTime === null
+            ? initialSurveyData.needsAloneTime
+            : Number(prefs.needsAloneTime),
+        socialFrequency:
+          prefs.socialFrequency === null
+            ? initialSurveyData.socialFrequency
+            : Number(prefs.socialFrequency),
+        goals: prefs.goals ?? [],
+        accommodations: prefs.accommodations ?? [],
+        preferredAmenities: prefs.preferredAmenities ?? [],
+      });
     });
-    return res.ok;
-  } catch {
-    return false;
-  }
+  }, []);
+
+  const updateData = (fields: Partial<SurveyData>) => {
+    setData((prev) => ({ ...prev, ...fields }));
+  };
+
+  return { data, updateData };
 }
 
 export default function Survey() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [data, setData] = useState<SurveyData>(initialSurveyData);
+  const { data, updateData } = useSurveyData();
   const navigate = useNavigate();
-
-  const updateData = (fields: Partial<SurveyData>) => {
-    setData((prev) => ({ ...prev, ...fields }));
-  };
 
   const handleNext = () => {
     if (step < TOTAL_STEPS) {

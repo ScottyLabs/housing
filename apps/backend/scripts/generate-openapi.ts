@@ -2,7 +2,8 @@
 
 /* oxlint-disable */
 
-const targetUrl = new URL("../../frontend/src/api/openapi.json", import.meta.url);
+const openapiJsonUrl = new URL("../../frontend/src/api/openapi.json", import.meta.url);
+const openapiDtsUrl = new URL("../../frontend/src/api/openapi.d.ts", import.meta.url);
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => {
@@ -57,8 +58,27 @@ async function getSpec(): Promise<unknown> {
 
 try {
   const spec = await getSpec();
-  await Deno.writeTextFile(targetUrl, JSON.stringify(spec, null, 2) + "\n");
+  await Deno.writeTextFile(openapiJsonUrl, JSON.stringify(spec, null, 2) + "\n");
   console.log("Updated apps/frontend/src/api/openapi.json");
+
+  // Generate TypeScript types from openapi.json
+  const typegen = new Deno.Command("deno", {
+    args: [
+      "run",
+      "-A",
+      "npm:openapi-typescript",
+      openapiJsonUrl.pathname,
+      "-o",
+      openapiDtsUrl.pathname,
+    ],
+    stdout: "inherit",
+    stderr: "inherit",
+  });
+  const { code } = await typegen.output();
+  if (code !== 0) {
+    throw new Error("openapi-typescript failed");
+  }
+  console.log("Updated apps/frontend/src/api/openapi.d.ts");
 } catch (error: unknown) {
   if (error instanceof Error) {
     console.error(error.message);

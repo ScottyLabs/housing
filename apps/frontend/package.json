@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@tanstack/react-query": "^5.101.4",
+    "openapi-fetch": "^0.17.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-router-dom": "^6.28.0"
@@ -15,6 +17,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.5.0",
+    "openapi-typescript": "^7.13.0",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
     "vite": "^5.4.8"
