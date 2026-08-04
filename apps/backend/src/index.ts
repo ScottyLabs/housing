@@ -21,7 +21,8 @@ import {
 import { getOrCreateUser } from "./auth/user.ts";
 import { runMigrations } from "./db/migrations.ts";
 import { healthRoute } from "./routes/health.ts";
-import { preferencesRoute } from "./preferences/routes.ts";
+import { preferencesRoute } from "./routes/preferences.ts";
+import { meRoute } from "./routes/me.ts";
 import { configureLogger, logger, nodeError } from "./utils/log.ts";
 
 const portStr = Deno.env.get("PORT");
@@ -69,6 +70,7 @@ const api = new Elysia({ prefix: "/api" })
   .use(openapi({ path: "/docs", references: fromTypes() }))
   .use(healthRoute)
   .use(preferencesRoute)
+  .use(meRoute)
   .use(sessionAuth)
   .get("/auth/login", ({ cookie, redirect }) => {
     if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
@@ -119,29 +121,7 @@ const api = new Elysia({ prefix: "/api" })
     }
     cookie[SESSION_COOKIE_NAME].remove();
     return toHome(redirect);
-  })
-  .get(
-    "/me",
-    ({ user, set }) => {
-      if (!user) {
-        set.status = 401;
-        return { error: "Unauthorized" };
-      }
-      return user;
-    },
-    {
-      response: {
-        200: t.Object({
-          id: t.Integer(),
-          name: t.String(),
-          andrewId: t.String(),
-          oidcSubject: t.String(),
-          createdTime: t.Date(),
-        }),
-        401: t.Object({ error: t.String() }),
-      },
-    },
-  );
+  });
 
 const app = new Elysia().use(api);
 

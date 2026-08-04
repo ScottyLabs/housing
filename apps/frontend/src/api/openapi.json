@@ -1179,21 +1179,6 @@
         "operationId": "putApiMePreferences"
       }
     },
-    "/api/auth/login": {
-      "get": {
-        "operationId": "getApiAuthLogin"
-      }
-    },
-    "/api/auth/callback": {
-      "get": {
-        "operationId": "getApiAuthCallback"
-      }
-    },
-    "/api/auth/logout": {
-      "get": {
-        "operationId": "getApiAuthLogout"
-      }
-    },
     "/api/me": {
       "get": {
         "responses": {
@@ -1267,6 +1252,21 @@
           }
         },
         "operationId": "getApiMe"
+      }
+    },
+    "/api/auth/login": {
+      "get": {
+        "operationId": "getApiAuthLogin"
+      }
+    },
+    "/api/auth/callback": {
+      "get": {
+        "operationId": "getApiAuthCallback"
+      }
+    },
+    "/api/auth/logout": {
+      "get": {
+        "operationId": "getApiAuthLogout"
       }
     }
   },
