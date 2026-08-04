@@ -76,11 +76,7 @@ function AccommodationsSection({
 }) {
   return (
     <div className="flex flex-col w-full gap-[14px]">
-      <FilterHeader
-        name="Accommodations"
-        desc="Requirements for you"
-        icon="/accomadations.svg"
-      />
+      <FilterHeader name="Accommodations" desc="Requirements for you" icon="/accomadations.svg" />
       <div className="flex flex-col gap-[26px] w-full sm:items-start pl-1">
         <Checkbox
           label="Service Animal"

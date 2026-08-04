@@ -171,8 +171,8 @@ controls add points; missing data adds nothing and never subtracts:
 | Socialness, Noise Level | `atmosphere.socialness`, `atmosphere.noiseLevel` |
 | Distance from | `location.closeBuildings` on either building |
 
-`atmosphere`, coordinates, and `accessibility` flags are empty so 
-those score 0. `groupBuildings` sorts by score into `bestFit`, 
+`atmosphere`, coordinates, and `accessibility` flags are empty so
+those score 0. `groupBuildings` sorts by score into `bestFit`,
 `decentFit`, and `wildCard`, three per row.
 
 ## Tag derivation
