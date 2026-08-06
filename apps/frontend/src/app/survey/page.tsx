@@ -64,7 +64,7 @@ function SurveyFooter(props: SurveyFooterProps) {
   );
 }
 
-interface SurveyData {
+export interface SurveyData {
   gender: string;
   year: string;
   major: string;
@@ -195,7 +195,7 @@ async function sendPreferences(data: SurveyData): Promise<boolean> {
   return response.ok;
 }
 
-function useSurveyData() {
+export function useSurveyData() {
   const [data, setData] = useState<SurveyData>(initialSurveyData);
 
   useEffect(() => {
