@@ -1,13 +1,13 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useBuildings } from "@/components/BuildingContext";
-import type { FilterState } from "@/data/buildingTypes";
-import { defaultFilters, groupBuildings } from "@/data/scoring";
+import { useFilters } from "@/components/FilterContext";
+import { groupBuildings } from "@/data/scoring";
 import BuildingFilter from "./BuildingFilter";
 import BuildingOptionRow from "./BuildingOptionRow";
 
 export default function Home() {
   const buildings = useBuildings();
-  const [filters, setFilters] = useState<FilterState>(defaultFilters);
+  const { filters, setFilters } = useFilters();
   const { bestFit, decentFit, wildCard } = useMemo(
     () => groupBuildings(buildings, filters),
     [buildings, filters],
