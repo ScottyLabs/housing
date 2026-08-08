@@ -1,23 +1,15 @@
-import { useBuildingById } from "@/components/BuildingContext";
-import BuildingOption from "@/components/BuildingOption";
 import { Link } from "react-router-dom";
+import type { Building } from "@/components/BuildingContext";
+import BuildingOption from "@/components/BuildingOption";
 
-export default function BuildingPanelDemo() {
-  const recommended_buildings = [
-    useBuildingById("stever"),
-    useBuildingById("morewood"),
-    useBuildingById("mudge"),
-    useBuildingById("etower"),
-    useBuildingById("donner"),
-  ];
-
+export default function RecommendedBuildings({ buildings }: { buildings: Building[] }) {
   return (
     <div className="space-y-4 pb-3">
       <div className="flex gap-[12px] items-center">
         <h2 className="font-semibold text-[24px]">Recommended Buildings</h2>
       </div>
       <div className="grid grid-cols-2 gap-[12px] md:grid-cols-[repeat(3,419.79px)]">
-        {recommended_buildings.map((b) => (
+        {buildings.map((b) => (
           <BuildingOption
             key={b.id}
             building={b}

@@ -17,6 +17,7 @@ export const defaultFilters: FilterState = {
   airConditioning: false,
   laundryEachFloor: false,
   enSuiteBathroom: false,
+  genderHousing: null,
 };
 
 export interface BuildingGroups {
@@ -56,6 +57,7 @@ function amenityScore(building: Building, filters: FilterState): number {
   if (filters.singleRoom && hasSingleRoom(building)) score += 1;
   if (filters.serviceAnimal && building.accessibility.serviceAnimalFriendly) score += 1;
   if (filters.wheelchairAccessible && building.accessibility.wheelchairAccessible) score += 1;
+  if (filters.genderHousing === building.amenities.genderHousing) score += 1;
   return score;
 }
 
@@ -91,13 +93,17 @@ export function scoreBuilding(building: Building, filters: FilterState, all: Bui
   );
 }
 
-export function groupBuildings(buildings: Building[], filters: FilterState): BuildingGroups {
+export function rankBuildings(buildings: Building[], filters: FilterState): Building[] {
   const scored = buildings.map((building) => ({
     building: building,
     score: scoreBuilding(building, filters, buildings),
   }));
   scored.sort((a, b) => b.score - a.score);
-  const ranked = scored.map((entry) => entry.building);
+  return scored.map((entry) => entry.building);
+}
+
+export function groupBuildings(buildings: Building[], filters: FilterState): BuildingGroups {
+  const ranked = rankBuildings(buildings, filters);
 
   return {
     bestFit: ranked.slice(0, 3),
