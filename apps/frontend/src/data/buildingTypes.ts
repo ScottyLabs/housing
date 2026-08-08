@@ -137,6 +137,7 @@ export interface FilterState {
   airConditioning: boolean;
   laundryEachFloor: boolean;
   enSuiteBathroom: boolean;
+  genderHousing: GenderHousing | null;
 }
 
 export interface Tag {
