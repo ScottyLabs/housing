@@ -6,7 +6,7 @@ on:
 
 jobs:
   label-and-board:
-    runs-on: codeberg-small
+    runs-on: native
 
     env:
       CODEBERG_API: https://codeberg.org/api/v1
