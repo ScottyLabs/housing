@@ -11,7 +11,7 @@ jobs:
     secrets: inherit
 
   check-openapi:
-    runs-on: docker
+    runs-on: native
     env:
       SECRETSPEC_PROFILE: ci
       SECRETSPEC_PROVIDER: env
