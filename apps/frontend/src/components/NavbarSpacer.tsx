@@ -10,8 +10,7 @@ export default function NavbarSpacer({
   return (
     <div className="flex h-16 w-2 items-center justify-center">
       <div
-        className={`h-10 w-0 border-black/20 border-1 rounded-full
-                                ${pathname === left_nbr_path || pathname === right_nbr_path ? "hidden" : ""}`}
+        className="h-10 w-0 border-black/20 border-1 rounded-full"
       />
     </div>
   );
