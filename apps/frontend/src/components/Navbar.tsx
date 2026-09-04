@@ -22,7 +22,7 @@ export default function Navbar() {
       </div>
 
       <div className="hidden w-full border-b-2 border-gray-200 md:block">
-        <div className="flex items-center h-24 whitespace-nowrap">
+        <div className="flex items-center h-24 whitespace-nowrap px-4">
           <Link
             to="/home"
             className="px-6 py-3 gap-2 min-w-max relative rounded-2xl flex items-center cursor-pointer transition-colors duration-200 hover:bg-gray-100"
