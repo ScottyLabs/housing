@@ -94,6 +94,7 @@ Backend, in a separate terminal inside the devenv shell:
 
 ```sh
 cd apps/backend
+devenv shell
 PORT=3001 deno task dev
 ```
 
@@ -134,10 +135,11 @@ Project Resources
 - [React Docs](https://react.dev/reference/react)
 - [CBP Docs and Meeting Minutes](https://docs.google.com/document/d/1-P8JLaKZ7PBhJOtMzQoG8pInUbNH-Cfx1wHNx3zs_as/edit)
 - [ScottyLabs Tech Docs](https://docs.scottylabs.org/)
+- [Google Maps API Docs](https://developers.google.com/maps/documentation/javascript/overview)
 
 Points of Contact
 
-- **Project Lead**: Nikhil (@ecstaticpilot)
+- **Project Lead**: Emma (@sakura888) and Nikhil (@ecstaticpilot)
 - **Advisors**: Max (@tentype) and John (@gostmeaper)
 - **Outreach/ResEd Contact**: John (@gostmeaper)
 - **Senate Contact**: Sanjeev (@blender1778)
