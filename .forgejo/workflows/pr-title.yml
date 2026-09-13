@@ -1,0 +1,33 @@
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  lint:
+    runs-on: native
+    steps:
+      - name: Check title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          set -euo pipefail
+
+          types='feat|fix|chore|docs|refactor|test|perf|build|ci|style|revert'
+          pattern="^($types)(\([a-z0-9._/-]+\))?!?: .+"
+
+          echo "Title: $PR_TITLE"
+          if [[ "$PR_TITLE" =~ $pattern ]]; then
+            echo "Looks good."
+            exit 0
+          fi
+
+          echo "::error::PR title must be a conventional commit, e.g. 'feat(backend): add unit lookup'"
+          echo "Allowed types: ${types//|/, }"
+          echo "Optional scope in parentheses, '!' for a breaking change, then ': ' and a description."
+          exit 1
