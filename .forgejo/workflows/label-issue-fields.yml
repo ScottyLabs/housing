@@ -1,0 +1,170 @@
+name: Label issue fields on open
+
+on:
+  issues:
+    types: [opened]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  label-and-board:
+    runs-on: native
+
+    env:
+      FORGE_API: ${{ github.server_url }}/api/v1
+      REPO_OWNER: ${{ github.repository_owner }}
+      REPO_NAME: ${{ github.event.repository.name }}
+      BODY_FILE: ${{ runner.temp }}/issue_body_${{ github.run_id }}.txt
+
+    steps:
+      - name: Parse and label issue
+        env:
+          FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          set -euo pipefail
+
+          # The native runner has a minimal PATH (no awk, maybe no sed/jq),
+          # so everything below is pure bash.
+          printf '%s\n' "$ISSUE_BODY" > "$BODY_FILE"
+          cat "$BODY_FILE"
+
+          trim() {
+            local s="$1"
+            s="${s%$'\r'}"                        # strip CR from CRLF bodies
+            s="${s#"${s%%[![:space:]]*}"}"        # leading whitespace
+            s="${s%"${s##*[![:space:]]}"}"        # trailing whitespace
+            printf '%s' "$s"
+          }
+
+          # First non-blank line under "### <heading>"
+          extract() {
+            local heading="$1" line t found=0
+            while IFS= read -r line || [ -n "$line" ]; do
+              t="$(trim "$line")"
+              if [ "$found" -eq 0 ]; then
+                [ "$t" = "### $heading" ] && found=1
+                continue
+              fi
+              case "$t" in
+                '###'*|'_No response_'*) return 0 ;;
+                '') continue ;;
+                *) printf '%s' "$t"; return 0 ;;
+              esac
+            done < "$BODY_FILE"
+          }
+
+          # Only the CHECKED checkboxes under "### Labels"
+          checked_labels() {
+            local line t found=0
+            while IFS= read -r line || [ -n "$line" ]; do
+              t="$(trim "$line")"
+              if [ "$found" -eq 0 ]; then
+                case "$t" in '### Label'*) found=1 ;; esac
+                continue
+              fi
+              case "$t" in
+                '###'*) return 0 ;;
+                '- [x]'*|'- [X]'*|'* [x]'*|'* [X]'*)
+                  printf '%s\n' "$(trim "${t#*]}")" ;;
+              esac
+            done < "$BODY_FILE"
+          }
+
+          labels=()
+          for heading in Size Priority Stage; do
+            value="$(extract "$heading")"
+            if [ -n "$value" ]; then labels+=("$value"); fi
+          done
+          while IFS= read -r lbl; do
+            if [ -n "$lbl" ]; then labels+=("$lbl"); fi
+          done < <(checked_labels)
+
+          # Every issue gets a stage, including ones opened from the general
+          # template, so the board is never missing a column.
+          has_stage=0
+          for lbl in ${labels[@]+"${labels[@]}"}; do
+            case "$lbl" in stage/*) has_stage=1 ;; esac
+          done
+          if [ "$has_stage" -eq 0 ]; then labels+=("stage/ready"); fi
+
+          if [ "${#labels[@]}" -eq 0 ]; then
+            echo "No labels to apply, skipping."
+            exit 0
+          fi
+          printf 'Applying label: %s\n' "${labels[@]}"
+
+          json_escape() {
+            local s="$1"
+            s="${s//\\/\\\\}"; s="${s//\"/\\\"}"
+            s="${s//$'\t'/\\t}"; s="${s//$'\r'/\\r}"; s="${s//$'\n'/\\n}"
+            printf '%s' "$s"
+          }
+
+          payload='{"labels":['
+          for i in "${!labels[@]}"; do
+            [ "$i" -gt 0 ] && payload+=','
+            payload+="\"$(json_escape "${labels[$i]}")\""
+          done
+          payload+=']}'
+          echo "Payload: $payload"
+
+          curl -fsSL \
+            -X POST \
+            -H "Authorization: token $FORGE_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$payload" \
+            "$FORGE_API/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER/labels"
+
+      - name: Clean up issue body
+        if: always()
+        env:
+          FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+
+          if [ ! -f "$BODY_FILE" ]; then
+            echo "No parsed body file, nothing to clean up."
+            exit 0
+          fi
+
+          # Keep only the content before "### Size"
+          cleaned=""
+          had_size=0
+          while IFS= read -r line || [ -n "$line" ]; do
+            stripped="${line%$'\r'}"
+            if [ "$stripped" = "### Size" ]; then had_size=1; break; fi
+            cleaned+="$stripped"$'\n'
+          done < "$BODY_FILE"
+
+          if [ "$had_size" -eq 0 ]; then
+            echo "No '### Size' section (general template), leaving body as-is."
+            rm -f "$BODY_FILE"
+            exit 0
+          fi
+
+          # Strip trailing blank lines
+          while [ -n "$cleaned" ] && [ "${cleaned: -1}" = $'\n' ]; do
+            cleaned="${cleaned%$'\n'}"
+          done
+
+          json_escape() {
+            local s="$1"
+            s="${s//\\/\\\\}"; s="${s//\"/\\\"}"
+            s="${s//$'\t'/\\t}"; s="${s//$'\r'/\\r}"; s="${s//$'\n'/\\n}"
+            printf '%s' "$s"
+          }
+
+          curl -fsSL \
+            -X PATCH \
+            -H "Authorization: token $FORGE_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"body\":\"$(json_escape "$cleaned")\"}" \
+            "$FORGE_API/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
+
+          rm -f "$BODY_FILE"
+          echo "Issue body cleaned up."

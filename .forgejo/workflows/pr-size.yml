@@ -1,0 +1,67 @@
+name: PR size
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  size:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: native
+
+    env:
+      FORGE_API: ${{ github.server_url }}/api/v1
+      FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+      REPO_OWNER: ${{ github.repository_owner }}
+      REPO_NAME: ${{ github.event.repository.name }}
+
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Measure and label
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          source .forgejo/scripts/forge-lib.sh
+
+          diff_file="${RUNNER_TEMP:-/tmp}/pr_${PR_NUMBER}.diff"
+          api GET "/pulls/$PR_NUMBER.diff" > "$diff_file"
+
+          skip=0 changed=0 skipped=0
+          while IFS= read -r line || [ -n "$line" ]; do
+            case "$line" in
+              'diff --git '*)
+                path="${line##* b/}"
+                skip=0
+                case "$path" in
+                  *.lock|*/*.lock|deno.lock|node_modules/*|*/node_modules/*|\
+                  *openapi.json|*.snap|*.min.js|*.min.css|*.svg|*.png|*.jpg|*.ico)
+                    skip=1 ;;
+                esac
+                [ "$skip" -eq 1 ] && skipped=$((skipped + 1))
+                continue ;;
+              '+++'*|'---'*) continue ;;
+            esac
+            [ "$skip" -eq 1 ] && continue
+            case "$line" in
+              '+'*|'-'*) changed=$((changed + 1)) ;;
+            esac
+          done < "$diff_file"
+          rm -f "$diff_file"
+
+          if   [ "$changed" -lt 10  ]; then size="size/XS"
+          elif [ "$changed" -lt 50  ]; then size="size/S"
+          elif [ "$changed" -lt 200 ]; then size="size/M"
+          elif [ "$changed" -lt 600 ]; then size="size/L"
+          else                              size="size/XL"
+          fi
+
+          echo "PR #$PR_NUMBER: $changed changed lines ($skipped generated files ignored) -> $size"
+          set_exclusive_label "$PR_NUMBER" "size/" "$size"

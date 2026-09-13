@@ -58,14 +58,13 @@ body:
       required: true
 
   - type: dropdown
-    id: status
+    id: stage
     attributes:
-      label: Status
+      label: Stage
+      description: Where this starts. After that it's kept in sync automatically from assignment and open/closed state.
       options:
-        - Ready
-        - In progress
-        - Backlog
-        - Done
+        - stage/ready
+        - stage/backlog
     validations:
       required: true
 
