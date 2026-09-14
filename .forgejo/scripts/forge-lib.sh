@@ -53,12 +53,24 @@ json_count() {
 }
 
 api_abs() {
-  local method="$1" url="$2" body="${3:-}"
-  local args=(-fsSL --retry 2 -X "$method"
+  local method="$1" url="$2" body="${3:-}" out code
+  local args=(-sSL --retry 2 -X "$method"
               -H "Authorization: token $FORGE_TOKEN"
-              -H "Accept: application/json")
+              -H "Accept: application/json"
+              -w '\n%{http_code}')
   [ -n "$body" ] && args+=(-H "Content-Type: application/json" -d "$body")
-  curl "${args[@]}" "$url"
+  out="$(curl "${args[@]}" "$url")" || return 1
+  code="${out##*$'\n'}"
+  out="${out%$'\n'*}"
+  case "$code" in
+    2*) printf '%s' "$out"; return 0 ;;
+  esac
+  {
+    echo "::error::$method $url -> HTTP $code"
+    [ -n "$body" ] && echo "::error::request body: $body"
+    echo "::error::response: $out"
+  } >&2
+  return 1
 }
 
 api() {
@@ -152,7 +164,7 @@ ensure_labels() {
 }
 
 add_labels() {
-  local number="$1" name id first=1 payload='{"labels":[' ids=()
+  local number="$1" name id first=1 ids=() names_payload='{"labels":[' ids_payload='{"labels":['
   shift
   [ "$#" -eq 0 ] && return 0
   ensure_labels "$@"
@@ -166,13 +178,25 @@ add_labels() {
   done
   [ "${#ids[@]}" -eq 0 ] && return 0
   for id in "${ids[@]}"; do
-    [ "$first" -eq 1 ] || payload+=','
+    [ "$first" -eq 1 ] || ids_payload+=','
     first=0
-    payload+="$id"
+    ids_payload+="$id"
   done
-  payload+=']}'
-  echo "  + ${*}"
-  api POST "/issues/$number/labels" "$payload" > /dev/null
+  ids_payload+=']}'
+  first=1
+  for name in "$@"; do
+    [ "$first" -eq 1 ] || names_payload+=','
+    first=0
+    names_payload+="\"$(json_escape "$name")\""
+  done
+  names_payload+=']}'
+
+  echo "  + ${*} -> $ids_payload"
+  if api POST "/issues/$number/labels" "$ids_payload" > /dev/null 2>&1; then
+    return 0
+  fi
+  echo "  ids rejected, retrying with names: $names_payload"
+  api POST "/issues/$number/labels" "$names_payload" > /dev/null
 }
 
 set_exclusive_label() {
