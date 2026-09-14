@@ -71,6 +71,71 @@ issue_has_label() {
   return 1
 }
 
+LIB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LABELS_FILE="${LABELS_FILE:-$LIB_DIR/../labels.yml}"
+
+yaml_unquote() {
+  local s="$1"
+  case "$s" in
+    \"*\") s="${s#\"}"; s="${s%\"}" ;;
+    \'*\') s="${s#\'}"; s="${s%\'}" ;;
+  esac
+  printf '%s' "$s"
+}
+
+each_label_spec() {
+  local name="" color="" desc="" line t
+  [ -f "$LABELS_FILE" ] || return 0
+  while IFS= read -r line || [ -n "$line" ]; do
+    t="$(trim "$line")"
+    case "$t" in
+      '#'*|'') continue ;;
+      '- name:'*)
+        [ -n "$name" ] && printf '%s\t%s\t%s\n' "$name" "$color" "$desc"
+        name="$(yaml_unquote "$(trim "${t#- name:}")")"; color=""; desc="" ;;
+      'color:'*)       color="$(yaml_unquote "$(trim "${t#color:}")")" ;;
+      'description:'*) desc="$(yaml_unquote "$(trim "${t#description:}")")" ;;
+    esac
+  done < "$LABELS_FILE"
+  [ -n "$name" ] && printf '%s\t%s\t%s\n' "$name" "$color" "$desc"
+  return 0
+}
+
+_REPO_LABELS=""
+repo_labels_json() {
+  [ -n "$_REPO_LABELS" ] || _REPO_LABELS="$(api GET "/labels?limit=100")"
+  printf '%s' "$_REPO_LABELS"
+}
+
+repo_has_label() {
+  local n
+  while IFS= read -r n; do
+    [ "$n" = "$1" ] && return 0
+  done < <(json_strings "$(repo_labels_json)" name)
+  return 1
+}
+
+create_label() {
+  local name="$1" found="" color="#ededed" desc="" n c d
+  while IFS=$'\t' read -r n c d; do
+    if [ "$n" = "$name" ]; then color="$c"; desc="$d"; found=1; break; fi
+  done < <(each_label_spec)
+  [ -n "$found" ] || echo "::warning::'$name' is not in .forgejo/labels.yml"
+  color="#${color#\#}"
+  echo "  ! creating missing label $name"
+  api POST "/labels" \
+    "{\"name\":\"$(json_escape "$name")\",\"color\":\"$color\",\"description\":\"$(json_escape "$desc")\"}" \
+    > /dev/null
+  _REPO_LABELS=""
+}
+
+ensure_labels() {
+  local name
+  for name in "$@"; do
+    repo_has_label "$name" || create_label "$name"
+  done
+}
+
 add_labels() {
   local number="$1" payload='{"labels":[' first=1 name
   shift
@@ -82,6 +147,10 @@ add_labels() {
   done
   payload+=']}'
   echo "  + ${*}"
+  if api POST "/issues/$number/labels" "$payload" > /dev/null 2>&1; then
+    return 0
+  fi
+  ensure_labels "$@"
   api POST "/issues/$number/labels" "$payload" > /dev/null
 }
 
