@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-: "${FORGE_API:?FORGE_API is required}"
-: "${FORGE_TOKEN:?FORGE_TOKEN is required}"
-: "${REPO_OWNER:?REPO_OWNER is required}"
-: "${REPO_NAME:?REPO_NAME is required}"
+: "${FORGE_API:=${GITHUB_SERVER_URL:?GITHUB_SERVER_URL is not set}/api/v1}"
+: "${REPO_OWNER:=${GITHUB_REPOSITORY%%/*}}"
+: "${REPO_NAME:=${GITHUB_REPOSITORY#*/}}"
+
+if [ -z "${FORGE_TOKEN:-}" ]; then
+  echo "::error::FORGE_TOKEN is empty. Either the secret isn't set on this repo"
+  echo "::error::(Settings -> Actions -> Secrets, or the ScottyLabs org), or the"
+  echo "::error::step is missing 'env: FORGE_TOKEN: \${{ secrets.FORGE_TOKEN }}'."
+  exit 1
+fi
 
 REPO_API="$FORGE_API/repos/$REPO_OWNER/$REPO_NAME"
 
