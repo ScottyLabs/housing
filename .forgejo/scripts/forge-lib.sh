@@ -53,24 +53,36 @@ json_count() {
 }
 
 api_abs() {
-  local method="$1" url="$2" body="${3:-}" out code
-  local args=(-sSL --retry 2 -X "$method"
-              -H "Authorization: token $FORGE_TOKEN"
-              -H "Accept: application/json"
-              -w '\n%{http_code}')
-  [ -n "$body" ] && args+=(-H "Content-Type: application/json" -d "$body")
-  out="$(curl "${args[@]}" "$url")" || return 1
-  code="${out##*$'\n'}"
-  out="${out%$'\n'*}"
-  case "$code" in
-    2*) printf '%s' "$out"; return 0 ;;
-  esac
-  {
-    echo "::error::$method $url -> HTTP $code"
-    [ -n "$body" ] && echo "::error::request body: $body"
-    echo "::error::response: $out"
-  } >&2
-  return 1
+  local method="$1" url="$2" body="${3:-}" out last code redirect hop=0 args=()
+  while : ; do
+    args=(-sS --retry 2 -X "$method"
+          -H "Authorization: token $FORGE_TOKEN"
+          -H "Accept: application/json"
+          -w '\n%{http_code} %{redirect_url}')
+    [ -n "$body" ] && args+=(-H "Content-Type: application/json" -d "$body")
+    out="$(curl "${args[@]}" "$url")" || return 1
+    last="${out##*$'\n'}"
+    out="${out%$'\n'*}"
+    code="${last%% *}"
+    redirect="${last#* }"
+    case "$code" in
+      2*) printf '%s' "$out"; return 0 ;;
+      3*)
+        if [ -n "$redirect" ] && [ "$hop" -lt 3 ]; then
+          echo "  following $code redirect to $redirect" >&2
+          url="$redirect"
+          hop=$((hop + 1))
+          continue
+        fi
+        ;;
+    esac
+    {
+      echo "::error::$method $url -> HTTP $code"
+      [ -n "$body" ] && echo "::error::request body: $body"
+      echo "::error::response: $out"
+    } >&2
+    return 1
+  done
 }
 
 api() {
