@@ -52,13 +52,17 @@ json_count() {
   printf '%s' "$n"
 }
 
-api() {
-  local method="$1" path="$2" body="${3:-}"
+api_abs() {
+  local method="$1" url="$2" body="${3:-}"
   local args=(-fsSL --retry 2 -X "$method"
               -H "Authorization: token $FORGE_TOKEN"
               -H "Accept: application/json")
   [ -n "$body" ] && args+=(-H "Content-Type: application/json" -d "$body")
-  curl "${args[@]}" "$REPO_API$path"
+  curl "${args[@]}" "$url"
+}
+
+api() {
+  api_abs "$1" "$REPO_API$2" "${3:-}"
 }
 
 issue_labels_json() { api GET "/issues/$1/labels"; }
@@ -102,16 +106,27 @@ each_label_spec() {
 }
 
 _REPO_LABELS=""
+_ORG_LABELS=""
+
 repo_labels_json() {
   [ -n "$_REPO_LABELS" ] || _REPO_LABELS="$(api GET "/labels?limit=100")"
   printf '%s' "$_REPO_LABELS"
 }
 
-repo_has_label() {
-  local n
-  while IFS= read -r n; do
-    [ "$n" = "$1" ] && return 0
-  done < <(json_strings "$(repo_labels_json)" name)
+org_labels_json() {
+  [ -n "$_ORG_LABELS" ] || _ORG_LABELS="$(api_abs GET "$FORGE_API/orgs/$REPO_OWNER/labels?limit=100" 2>/dev/null || printf '[]')"
+  printf '%s' "$_ORG_LABELS"
+}
+
+label_id() {
+  local want="$1" json i ids=() names=()
+  for json in "$(repo_labels_json)" "$(org_labels_json)"; do
+    mapfile -t ids   < <(json_numbers "$json" id)
+    mapfile -t names < <(json_strings "$json" name)
+    for i in "${!names[@]}"; do
+      if [ "${names[$i]}" = "$want" ]; then printf '%s' "${ids[$i]}"; return 0; fi
+    done
+  done
   return 1
 }
 
@@ -132,25 +147,31 @@ create_label() {
 ensure_labels() {
   local name
   for name in "$@"; do
-    repo_has_label "$name" || create_label "$name"
+    label_id "$name" > /dev/null || create_label "$name"
   done
 }
 
 add_labels() {
-  local number="$1" payload='{"labels":[' first=1 name
+  local number="$1" name id first=1 payload='{"labels":[' ids=()
   shift
   [ "$#" -eq 0 ] && return 0
+  ensure_labels "$@"
   for name in "$@"; do
+    id="$(label_id "$name" || true)"
+    if [ -z "$id" ]; then
+      echo "::warning::could not resolve label '$name'"
+      continue
+    fi
+    ids+=("$id")
+  done
+  [ "${#ids[@]}" -eq 0 ] && return 0
+  for id in "${ids[@]}"; do
     [ "$first" -eq 1 ] || payload+=','
     first=0
-    payload+="\"$(json_escape "$name")\""
+    payload+="$id"
   done
   payload+=']}'
   echo "  + ${*}"
-  if api POST "/issues/$number/labels" "$payload" > /dev/null 2>&1; then
-    return 0
-  fi
-  ensure_labels "$@"
   api POST "/issues/$number/labels" "$payload" > /dev/null
 }
 

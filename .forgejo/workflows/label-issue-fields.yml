@@ -19,6 +19,10 @@ jobs:
       BODY_FILE: ${{ runner.temp }}/issue_body_${{ github.run_id }}.txt
 
     steps:
+      - uses: https://code.forgejo.org/actions/checkout@v7
+        with:
+          fetch-depth: 1
+
       - name: Parse and label issue
         env:
           FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
@@ -26,19 +30,10 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
           set -euo pipefail
+          source .forgejo/scripts/forge-lib.sh
 
-          # The native runner has a minimal PATH (no awk, maybe no sed/jq),
-          # so everything below is pure bash.
           printf '%s\n' "$ISSUE_BODY" > "$BODY_FILE"
           cat "$BODY_FILE"
-
-          trim() {
-            local s="$1"
-            s="${s%$'\r'}"                        # strip CR from CRLF bodies
-            s="${s#"${s%%[![:space:]]*}"}"        # leading whitespace
-            s="${s%"${s##*[![:space:]]}"}"        # trailing whitespace
-            printf '%s' "$s"
-          }
 
           # First non-blank line under "### <heading>"
           extract() {
@@ -95,29 +90,7 @@ jobs:
             echo "No labels to apply, skipping."
             exit 0
           fi
-          printf 'Applying label: %s\n' "${labels[@]}"
-
-          json_escape() {
-            local s="$1"
-            s="${s//\\/\\\\}"; s="${s//\"/\\\"}"
-            s="${s//$'\t'/\\t}"; s="${s//$'\r'/\\r}"; s="${s//$'\n'/\\n}"
-            printf '%s' "$s"
-          }
-
-          payload='{"labels":['
-          for i in "${!labels[@]}"; do
-            [ "$i" -gt 0 ] && payload+=','
-            payload+="\"$(json_escape "${labels[$i]}")\""
-          done
-          payload+=']}'
-          echo "Payload: $payload"
-
-          curl -fsSL \
-            -X POST \
-            -H "Authorization: token $FORGE_TOKEN" \
-            -H "Content-Type: application/json" \
-            -d "$payload" \
-            "$FORGE_API/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER/labels"
+          add_labels "$ISSUE_NUMBER" "${labels[@]}"
 
       - name: Clean up issue body
         if: always()
@@ -126,6 +99,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           set -euo pipefail
+          source .forgejo/scripts/forge-lib.sh
 
           if [ ! -f "$BODY_FILE" ]; then
             echo "No parsed body file, nothing to clean up."
@@ -152,19 +126,7 @@ jobs:
             cleaned="${cleaned%$'\n'}"
           done
 
-          json_escape() {
-            local s="$1"
-            s="${s//\\/\\\\}"; s="${s//\"/\\\"}"
-            s="${s//$'\t'/\\t}"; s="${s//$'\r'/\\r}"; s="${s//$'\n'/\\n}"
-            printf '%s' "$s"
-          }
-
-          curl -fsSL \
-            -X PATCH \
-            -H "Authorization: token $FORGE_TOKEN" \
-            -H "Content-Type: application/json" \
-            -d "{\"body\":\"$(json_escape "$cleaned")\"}" \
-            "$FORGE_API/repos/$REPO_OWNER/$REPO_NAME/issues/$ISSUE_NUMBER"
+          api PATCH "/issues/$ISSUE_NUMBER" "{\"body\":\"$(json_escape "$cleaned")\"}" > /dev/null
 
           rm -f "$BODY_FILE"
           echo "Issue body cleaned up."
