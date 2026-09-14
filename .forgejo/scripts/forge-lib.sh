@@ -11,6 +11,12 @@ if [ -z "${FORGE_TOKEN:-}" ]; then
   exit 1
 fi
 
+_RAW_TOKEN_LEN="${#FORGE_TOKEN}"
+FORGE_TOKEN="${FORGE_TOKEN//[$' \t\r\n']/}"
+if [ "${#FORGE_TOKEN}" -ne "$_RAW_TOKEN_LEN" ]; then
+  echo "::warning::FORGE_TOKEN contained whitespace and was stripped; re-save the secret without a trailing newline"
+fi
+
 REPO_API="$FORGE_API/repos/$REPO_OWNER/$REPO_NAME"
 
 trim() {
