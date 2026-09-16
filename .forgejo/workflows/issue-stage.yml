@@ -1,0 +1,46 @@
+name: Issue stage
+
+on:
+  issues:
+    types: [assigned, unassigned, closed, reopened]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  stage:
+    runs-on: native
+
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Apply stage label
+        env:
+          FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_STATE: ${{ github.event.issue.state }}
+          ASSIGNEES_JSON: ${{ toJSON(github.event.issue.assignees) }}
+        run: |
+          set -euo pipefail
+          source .forgejo/scripts/forge-lib.sh
+
+          assignees="$(json_count "${ASSIGNEES_JSON:-}" login)"
+          echo "Issue #$ISSUE_NUMBER: state=$ISSUE_STATE assignees=$assignees"
+
+          if [ "$ISSUE_STATE" = "closed" ]; then
+            stage="stage/done"
+          elif [ "$assignees" -gt 0 ]; then
+            stage="stage/in-progress"
+          elif issue_has_label "$ISSUE_NUMBER" "stage/backlog"; then
+            # Parked on purpose by a human - don't drag it back to ready.
+            echo "Keeping stage/backlog."
+            exit 0
+          else
+            stage="stage/ready"
+          fi
+
+          echo "Target stage: $stage"
+          set_exclusive_label "$ISSUE_NUMBER" "stage/" "$stage"

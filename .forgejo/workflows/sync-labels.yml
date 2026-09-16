@@ -1,0 +1,99 @@
+name: Sync labels
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .forgejo/labels.yml
+      - .forgejo/workflows/sync-labels.yml
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  sync:
+    runs-on: native
+
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Sync
+        env:
+          FORGE_TOKEN: ${{ secrets.FORGE_TOKEN }}
+        run: |
+          set -euo pipefail
+          source .forgejo/scripts/forge-lib.sh
+
+          # --- read the existing labels off the forge ---
+          existing="$(api GET "/labels?limit=100")"
+          mapfile -t have_ids    < <(json_numbers "$existing" id)
+          mapfile -t have_names  < <(json_strings "$existing" name)
+          mapfile -t have_colors < <(json_strings "$existing" color)
+          mapfile -t have_descs  < <(json_strings "$existing" description)
+
+          index_of() { # index_of <name> -> prints index or -1
+            local i
+            for i in "${!have_names[@]}"; do
+              [ "${have_names[$i]}" = "$1" ] && { printf '%s' "$i"; return 0; }
+            done
+            printf '%s' -1
+          }
+
+          unquote() { # strip one layer of surrounding quotes
+            local s="$1"
+            case "$s" in
+              \"*\") s="${s#\"}"; s="${s%\"}" ;;
+              \'*\') s="${s#\'}"; s="${s%\'}" ;;
+            esac
+            printf '%s' "$s"
+          }
+
+          declare -A wanted=()
+          created=0 updated=0 unchanged=0
+
+          flush() { # flush <name> <color> <description>
+            local name="$1" color="${2#\#}" desc="$3" idx payload
+            [ -z "$name" ] && return 0
+            wanted[$name]=1
+            payload="{\"name\":\"$(json_escape "$name")\",\"color\":\"#$color\",\"description\":\"$(json_escape "$desc")\"}"
+            idx="$(index_of "$name")"
+            if [ "$idx" = "-1" ]; then
+              echo "create  $name"
+              api POST "/labels" "$payload" > /dev/null
+              created=$((created + 1))
+              return 0
+            fi
+            if [ "${have_colors[$idx]#\#}" = "$color" ] && [ "${have_descs[$idx]}" = "$desc" ]; then
+              unchanged=$((unchanged + 1))
+            else
+              echo "update  $name (${have_colors[$idx]} -> #$color)"
+              api PATCH "/labels/${have_ids[$idx]}" "$payload" > /dev/null
+              updated=$((updated + 1))
+            fi
+          }
+
+          # --- walk labels.yml (fixed name/color/description order) ---
+          name="" color="" desc=""
+          while IFS= read -r line || [ -n "$line" ]; do
+            t="$(trim "$line")"
+            case "$t" in
+              '#'*|'') continue ;;
+              '- name:'*)
+                flush "$name" "$color" "$desc"
+                name="$(unquote "$(trim "${t#- name:}")")"; color=""; desc="" ;;
+              'color:'*)       color="$(unquote "$(trim "${t#color:}")")" ;;
+              'description:'*) desc="$(unquote "$(trim "${t#description:}")")" ;;
+            esac
+          done < .forgejo/labels.yml
+          flush "$name" "$color" "$desc"
+
+          echo
+          echo "created=$created updated=$updated unchanged=$unchanged"
+
+          for n in "${have_names[@]}"; do
+            [ -n "${wanted[$n]:-}" ] || echo "::warning::label '$n' exists on the repo but is not in .forgejo/labels.yml"
+          done
