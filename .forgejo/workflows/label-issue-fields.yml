@@ -16,7 +16,7 @@ jobs:
       FORGE_API: ${{ github.server_url }}/api/v1
       REPO_OWNER: ${{ github.repository_owner }}
       REPO_NAME: ${{ github.event.repository.name }}
-      BODY_FILE: ${{ runner.temp }}/issue_body_${{ github.run_id }}.txt
+      BODY_FILE: issue_body_${{ github.run_id }}.txt
 
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v7
@@ -31,6 +31,7 @@ jobs:
         run: |
           set -euo pipefail
           source .forgejo/scripts/forge-lib.sh
+          BODY_FILE="$RUNNER_TEMP/$BODY_FILE"
 
           printf '%s\n' "$ISSUE_BODY" > "$BODY_FILE"
           cat "$BODY_FILE"
@@ -100,6 +101,7 @@ jobs:
         run: |
           set -euo pipefail
           source .forgejo/scripts/forge-lib.sh
+          BODY_FILE="$RUNNER_TEMP/$BODY_FILE"
 
           if [ ! -f "$BODY_FILE" ]; then
             echo "No parsed body file, nothing to clean up."
