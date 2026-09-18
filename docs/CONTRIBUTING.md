@@ -42,7 +42,7 @@ Developers should add themselves to the `cmu-housing` team in [governance](https
    git push
    ```
 
-1. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting the repo's homepage on [Codeberg](https://codeberg.org/ScottyLabs/housing).
+1. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting the repo's homepage on [Codeberg](https://git.cmu.dev/ScottyLabs/housing).
 
 ## Conventional Commits
 
@@ -116,7 +116,7 @@ Before you commit and open a pull request, make sure to:
 
 To understand current priorities, roadmap, and ongoing work:
 
-- Visit the [CMU Housing Development project](https://codeberg.org/ScottyLabs/housing/projects/55337)
+- Visit the [CMU Housing Development project](https://git.cmu.dev/ScottyLabs/housing/projects/55337)
   - Pick an issue from the board and assign it to yourself.
   - Use Priority and Size labels to choose based on what you can handle in a timely fashion.
 - If you cannot access the board, ask a maintainer to add you to the ScottyLabs organization.
