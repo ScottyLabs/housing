@@ -4,7 +4,7 @@ Thank you for your interest in contributing to CMU Housing! This guide will help
 
 ## Setup
 
-Developers should add themselves to the `cmu-housing` team in [governance](https://git.cmu.dev/ScottyLabs/governance) following the instructions in its README or [these housing specific instructions](../adding-yourself-to-governance.md) (they lead you to the same result). This gives you access to secrets and permission to create branches on the repo.
+Developers should add themselves to the `cmu-housing` team in [governance](https://git.cmu.dev/ScottyLabs/governance) following the instructions in its README or [these housing specific instructions](adding-yourself-to-governance.md) (they lead you to the same result). This gives you access to secrets and permission to create branches on the repo.
 
 ## How to Contribute
 

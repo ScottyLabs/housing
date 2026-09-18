@@ -6,7 +6,7 @@
 
 1. Open [governance](https://git.cmu.dev/ScottyLabs/governance).
 
-1. Fork the repository. Press the fork button in the top right. Then you'll be prompted with details of the fork. You'll want to just keep all as given and press the "Fork repository" button. ![fork-button](images/fork_button.png)
+1. Fork the repository. Press the fork button in the top right. Then you'll be prompted with details of the fork. You'll want to just keep all as given and press the "Fork repository" button.
 
 1. Take a look at the file system below. This is all of governances file as displayed on a web view. Follow this file path on git.cmu.dev: data -> teams -> cmu-housing.toml
 
