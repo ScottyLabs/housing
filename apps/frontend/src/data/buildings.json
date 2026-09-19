@@ -307,7 +307,7 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson",
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Henderson",
       "latitude": 40.441572826932486,
       "longitude": -79.93928963898341
     }
@@ -650,7 +650,7 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "boss", "mcgill"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Boss/McGill",
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Boss/McGill",
       "latitude": 40.44100440703857,
       "longitude": -79.93925089894915
     }
@@ -765,7 +765,7 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson",
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Henderson",
       "latitude": 40.44182111388465,
       "longitude": -79.93909779218046
     }
@@ -1307,7 +1307,7 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "boss", "mcgill", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Boss/McGill, and Henderson",
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Boss/McGill, and Henderson",
       "latitude": 40.44134196049577,
       "longitude": -79.93963894018592
     }
@@ -1413,7 +1413,7 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "scobell", "boss", "mcgill", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Scobell, Boss/McGill, and Henderson",
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Scobell, Boss/McGill, and Henderson",
       "latitude": 40.44115931075925,
       "longitude": -79.93947916234082
     }
