@@ -102,7 +102,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": [],
-      "note": "e tower is right on top of UG, close to campus and tepper. home to UHS and CAPS"
+      "note": "e tower is right on top of UG, close to campus and tepper. home to UHS and CAPS",
+      "latitude": 40.44500505315387,
+      "longitude": -79.94323045720432
     }
   },
   {
@@ -202,7 +204,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": [],
-      "note": "stever is located on morewood ave, and buggies are built in the basement"
+      "note": "stever is located on morewood ave, and buggies are built in the basement",
+      "latitude": 40.4462308440447,
+      "longitude": -79.94265849424025
     }
   },
   {
@@ -303,7 +307,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson"
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson",
+      "latitude": 40.441572826932486,
+      "longitude": -79.93928963898341
     }
   },
   {
@@ -404,7 +410,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": [],
-      "note": "unknown"
+      "note": "unknown",
+      "latitude": 40.44824700318969,
+      "longitude": -79.94602827018498
     }
   },
   {
@@ -523,7 +531,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": [],
-      "note": "Donner is located close to Resnik, Margaret Morrison/CFA"
+      "note": "Donner is located close to Resnik, Margaret Morrison/CFA",
+      "latitude": 40.44188700294032,
+      "longitude": -79.94023636267904
     }
   },
   {
@@ -640,7 +650,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "boss", "mcgill"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Boss/McGill"
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Boss/McGill",
+      "latitude": 40.44100440703857,
+      "longitude": -79.93925089894915
     }
   },
   {
@@ -753,7 +765,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson"
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson",
+      "latitude": 40.44182111388465,
+      "longitude": -79.93909779218046
     }
   },
   {
@@ -879,7 +893,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": [],
-      "note": "Morewood Gardens is right on top of UG, next to UHS and CAPS, close to campus"
+      "note": "Morewood Gardens is right on top of UG, next to UHS and CAPS, close to campus",
+      "latitude": 40.445069937572704,
+      "longitude": -79.94324961565809
     }
   },
   {
@@ -1062,7 +1078,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["stever"],
-      "note": "Mudge is located on Morewood Ave, close to Stever, slightly farther from campus"
+      "note": "Mudge is located on Morewood Ave, close to Stever, slightly farther from campus",
+      "latitude": 40.44691482941882,
+      "longitude": -79.94265298459514
     }
   },
   {
@@ -1182,7 +1200,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": [],
-      "note": "res on fifth is close to many utility/dining (Craigs St, Starbucks, Chipotle, bus stops, UPitt"
+      "note": "res on fifth is close to many utility/dining (Craigs St, Starbucks, Chipotle, bus stops, UPitt",
+      "latitude": 40.44684010797551,
+      "longitude": -79.94675464406312
     }
   },
   {
@@ -1287,7 +1307,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "boss", "mcgill", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Boss/McGill, and Henderson"
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Boss/McGill, and Henderson",
+      "latitude": 40.44134196049577,
+      "longitude": -79.93963894018592
     }
   },
   {
@@ -1391,7 +1413,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "scobell", "boss", "mcgill", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Scobell, Boss/McGill, and Henderson"
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Scobell, Boss/McGill, and Henderson",
+      "latitude": 40.44115931075925,
+      "longitude": -79.93947916234082
     }
   },
   {
@@ -1499,7 +1523,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "boss", "mcgill", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Boss/McGill, Welch, Scobell, and Henderson"
+      "note": "Located on Margaret Morrison St, close to Donner, Boss/McGill, Welch, Scobell, and Henderson",
+      "latitude": 40.441289407285105,
+      "longitude": -79.93891460787795
     }
   },
   {
@@ -1600,7 +1626,9 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson"
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Henderson",
+      "latitude": 40.44200967524592,
+      "longitude": -79.93874623763492
     }
   }
 ]
