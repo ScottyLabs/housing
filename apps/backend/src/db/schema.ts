@@ -9,6 +9,7 @@ import {
   serial,
   text,
   timestamp,
+  unique,
 } from "drizzle-orm/pg-core";
 
 // Enums
@@ -103,21 +104,24 @@ export const dormTable = pgTable("dorm", {
   updatedAt: timestamp("updated_at"),
 });
 
-export const reviewTable = pgTable("review", {
-  body: text("body"),
-  dormId: integer("dorm_id")
-    .notNull()
-    .references(() => dormTable.id),
-  id: serial("id").primaryKey(),
-  livedTerm: text("lived_term"),
-  livedYear: text("lived_year"),
-  ratingAmenities: integer("rating_amenities"),
-  ratingAtmosphere: integer("rating_atmosphere"),
-  ratingOverall: integer("rating_overall"),
-  ratingRoomQuality: integer("rating_room_quality"),
-  submittedAt: timestamp("submitted_at"),
-  userId: integer("user_id")
-    .notNull()
-    .references(() => userTable.id)
-    .unique(),
-});
+export const reviewTable = pgTable(
+  "review",
+  {
+    body: text("body"),
+    dormId: integer("dorm_id")
+      .notNull()
+      .references(() => dormTable.id),
+    id: serial("id").primaryKey(),
+    livedTerm: text("lived_term"),
+    livedYear: text("lived_year"),
+    ratingAmenities: integer("rating_amenities"),
+    ratingAtmosphere: integer("rating_atmosphere"),
+    ratingOverall: integer("rating_overall"),
+    ratingRoomQuality: integer("rating_room_quality"),
+    submittedAt: timestamp("submitted_at").defaultNow(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => userTable.id),
+  },
+  (table) => [unique("review_user_dorm_unique").on(table.userId, table.dormId)],
+);
