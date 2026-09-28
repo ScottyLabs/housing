@@ -4,6 +4,7 @@ import { useBuildings } from "@/components/BuildingContext";
 import { type Preferences, preferencesToFilters } from "@/data/preferences";
 import { rankBuildings } from "@/data/scoring";
 import RecommendedBuildings from "./RecommendedBuildings";
+import { GenderHousing } from "@/data/buildingTypes";
 
 function usePreferences() {
   const [preferences, setPreferences] = useState<Preferences | null>(null);
@@ -20,11 +21,21 @@ function usePreferences() {
 export default function Home() {
   const buildings = useBuildings();
   const preferences = usePreferences();
+
   const recommended = useMemo(() => {
     if (preferences === null) {
+      // Copy the shared building list before sorting it.
+      // oxlint-disable-next-line unicorn/no-array-sort
       return [...buildings].sort((b1, b2) => b1.name.localeCompare(b2.name)).slice(0, 5);
     }
-    return rankBuildings(buildings, preferencesToFilters(preferences)).slice(0, 5);
+    const filters = preferencesToFilters(preferences);
+    const eligible = buildings.filter(
+      (building) =>
+        filters.genderHousing === null ||
+        building.amenities.genderHousing === GenderHousing.CoEd ||
+        building.amenities.genderHousing === filters.genderHousing,
+    );
+    return rankBuildings(eligible, filters).slice(0, 5);
   }, [buildings, preferences]);
 
   return (
