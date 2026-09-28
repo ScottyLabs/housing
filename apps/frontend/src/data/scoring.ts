@@ -57,7 +57,6 @@ function amenityScore(building: Building, filters: FilterState): number {
   if (filters.singleRoom && hasSingleRoom(building)) score += 1;
   if (filters.serviceAnimal && building.accessibility.serviceAnimalFriendly) score += 1;
   if (filters.wheelchairAccessible && building.accessibility.wheelchairAccessible) score += 1;
-  if (filters.genderHousing === building.amenities.genderHousing) score += 1;
   return score;
 }
 
