@@ -3,6 +3,7 @@ import {
   BathroomType,
   type Building,
   type FilterState,
+  GenderHousing,
   LaundryLocation,
   RoomType,
 } from "./buildingTypes";
@@ -57,7 +58,8 @@ function amenityScore(building: Building, filters: FilterState): number {
   if (filters.singleRoom && hasSingleRoom(building)) score += 1;
   if (filters.serviceAnimal && building.accessibility.serviceAnimalFriendly) score += 1;
   if (filters.wheelchairAccessible && building.accessibility.wheelchairAccessible) score += 1;
-  if (filters.genderHousing === building.amenities.genderHousing) score += 1;
+  if (filters.genderHousing !== null && building.amenities.genderHousing === filters.genderHousing)
+    score += 1;
   return score;
 }
 
@@ -93,8 +95,16 @@ export function scoreBuilding(building: Building, filters: FilterState, all: Bui
   );
 }
 
+function isEligible(building: Building, filters: FilterState): boolean {
+  if (filters.genderHousing === null) return true;
+  const housing = building.amenities.genderHousing;
+  if (housing === GenderHousing.CoEd || housing === GenderHousing.GenderInclusive) return true;
+  return housing === filters.genderHousing;
+}
+
 export function rankBuildings(buildings: Building[], filters: FilterState): Building[] {
-  const scored = buildings.map((building) => ({
+  const eligible = buildings.filter((building) => isEligible(building, filters));
+  const scored = eligible.map((building) => ({
     building: building,
     score: scoreBuilding(building, filters, buildings),
   }));
