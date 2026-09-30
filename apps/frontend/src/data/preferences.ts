@@ -22,16 +22,15 @@ function toGenderHousing(gender: string | null): GenderHousing | null {
 }
 
 export function preferencesToFilters(prefs: Preferences): FilterState {
-  const wanted = [...(prefs.accommodations ?? []), ...(prefs.preferredAmenities ?? [])];
+  const wanted = new Set([...(prefs.accommodations ?? []), ...(prefs.preferredAmenities ?? [])]);
 
   return {
     ...defaultFilters,
-    serviceAnimal: wanted.includes("Service Animal"),
-    wheelchairAccessible: wanted.includes("Wheelchair accessible"),
-    singleRoom: wanted.includes("Single room"),
-    airConditioning:
-      wanted.includes("Air conditioning") || wanted.includes("Climate control: AC"),
-    enSuiteBathroom: wanted.includes("En suite bathroom"),
+    serviceAnimal: wanted.has("Service Animal"),
+    wheelchairAccessible: wanted.has("Wheelchair accessible"),
+    singleRoom: wanted.has("Single room"),
+    airConditioning: wanted.has("Air conditioning") || wanted.has("Climate control: AC"),
+    enSuiteBathroom: wanted.has("En suite bathroom"),
     socialness: prefs.socialFrequency === null ? null : Number(prefs.socialFrequency),
     genderHousing: toGenderHousing(prefs.preferredGenderHousing),
   };
