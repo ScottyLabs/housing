@@ -1602,5 +1602,1174 @@
       "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
       "note": "Located on Margaret Morrison St, close to Donner, Hamerschalg, Welch, Scobell, and Henderson"
     }
+  },
+  {
+    "id": "fairfax",
+    "name": "Fairfax Apartments",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/fairfax-apartments_adjusted-min.jpg",
+      "photos": [],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/fairfax/faf-studio-sample-layout.png",
+          "description": "Studio Apartment",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/fairfax/faf-1br-sample-layout.png",
+          "description": "1-Bedroom Apartment",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/fairfax/faf-2br-sample-layout.png",
+          "description": "2-Bedroom Apartment",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/fairfax/faf-annex-fl-1-2-3.png",
+          "description": "Annex Floors 1-3",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fairfax/faf-fl-1.png",
+          "description": "First Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fairfax/faf-fl-2-3-4-5.png",
+          "description": "Floors 2-5",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fairfax/faf-fl-6-7-8.png",
+          "description": "Floors 6-8",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fairfax/faf-fl-9.png",
+          "description": "Ninth Floor",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [8, 9],
+      "bathrooms": {
+        "types": [2],
+        "details": "bathrooms per unit"
+      },
+      "ac": {
+        "level": 3
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 1,
+        "details": "shared with whole dorm on first floor"
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "communal kitchen, dining area, lobby, study, laundry room"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": true,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4469460962968,
+      "longitude": -79.9476919479028,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "fifthneville",
+    "name": "Fifth Neville Apartments",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/fifthneville900x600.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/1-bedroom-apartment-double---bedroom-min.jpeg",
+          "description": "1-Bedroom Apartment Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/1-bedroom-apartment-double---bedroom2-min.jpeg",
+          "description": "1-Bedroom Apartment Double Bedroom (Another view)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/1-bedroom-apartment-double---bedroom-3-min.jpeg",
+          "description": "1-Bedroom Apartment Double Bedroom (Third view)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/1-bedroom-apartment-double---dining-room-min2.jpeg",
+          "description": "1-Bedroom Apartment Double Dining Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/1-bedroom-apartment-double---kitchen-min.jpeg",
+          "description": "1-Bedroom Apartment Double Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/1-bedroom-apartment-double---living-room-min.jpeg",
+          "description": "1-Bedroom Apartment Double Living Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/studio-apartment-double---main-room1-min.jpeg",
+          "description": "Studio Apartment Double Main Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/studio-apartment-double---main-room2-min.jpeg",
+          "description": "Studio Apartment Double Main Room (Another view)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/studio-apartment-double---kitchen-min1.jpeg",
+          "description": "Studio Apartment Double Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/1-bedroom-apartment-double---kitchen-min.jpg",
+          "description": "1-Bedroom Apartment Double Kitchen (Another view)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/fifth-neville-lounge-min.jpeg",
+          "description": "Fifth Neville Lounge"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/photo-grid-images/fifth-neville-laundry-min.jpeg",
+          "description": "Laundry Room"
+        }
+      ],
+      "floorPlans": []
+    },
+    "amenities": {
+      "roomTypes": [8, 9],
+      "bathrooms": {
+        "types": [1, 2],
+        "details": "bathrooms per unit"
+      },
+      "ac": {
+        "level": 3
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 1
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "basement lounge and study; ping pong, foosball, air hockey, and shuffleboard available"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": true,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4474131149012,
+      "longitude": -79.9464846772549,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "forbesbeeler",
+    "name": "Forbes Beeler Apartments",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/images/forbes-beeler/outside-fb-900x600-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/images/forbes-beeler/main-lounges-min.jpg",
+          "description": "Main Lounges"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/forbes-beeler/fidget-swings-min.jpg",
+          "description": "Fidget Swings"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/forbes-beeler/cubby-wall-min.jpg",
+          "description": "Cubby Wall"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/grid-images/forbes-beeler-wellness-room-1-700x500px-min.png",
+          "description": "Wellness Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/grid-images/forbes-beeler-wellness-room-2-700x500px-min.png",
+          "description": "Wellness Room (Another view)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/forbes-beeler/game-room-min.jpg",
+          "description": "Game Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/forbes-beeler/tv-room-min.jpg",
+          "description": "TV Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/forbes-beeler/study-lounge-min.jpg",
+          "description": "Study Lounge"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/forbes-beeler/student-apartment-common-space-min.jpg",
+          "description": "Apartment Common Space"
+        }
+      ],
+      "floorPlans": []
+    },
+    "amenities": {
+      "roomTypes": [8, 9],
+      "bathrooms": {
+        "types": [1, 2],
+        "details": "bathrooms per unit"
+      },
+      "ac": {
+        "level": 3
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 2,
+        "details": "shared by floor"
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "each floor has media room, lounge, and study rooms. large lounge, wellness room, and music rooms on first floor"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": false,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4442596456125,
+      "longitude": -79.9391293033433,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "highlands",
+    "name": "The Highlands",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/the-highlands-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20single%20bedroom-min.jpg",
+          "description": "Single Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20second%20single%20bedroom-min.jpg",
+          "description": "Second Single Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20apartment%20bathroom%20toward%20sink-min.jpg",
+          "description": "Apartment Bathroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20dining%20and%20living%20area-min.jpg",
+          "description": "Dining and Living Area"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20ADA%20apartment%20double%20bedroom%20toward%20desks-min.jpg",
+          "description": "ADA Apartment Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20ADA%20apartment%20living%20area%20and%20laundry%20closet-min.jpg",
+          "description": "ADA Apartment Living Area and Laundry Closet"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20community%20space-min.jpg",
+          "description": "Community Space"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Highlands/Highlands%20laundry%20room-min.jpg",
+          "description": "Laundry Room"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/highlands/highlands-first-floor.png",
+          "description": "First Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/highlands/highlands-second-floor.png",
+          "description": "Second Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/highlands/highlands-third-floor.png",
+          "description": "Third Floor",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [8, 9],
+      "bathrooms": {
+        "types": [1, 2],
+        "details": "bathrooms per unit"
+      },
+      "ac": {
+        "level": 2,
+        "details": "only in bedrooms"
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 0,
+        "details": "laundry separate from dorm"
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "1st floor lounge"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": false,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": true,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4484537838169,
+      "longitude": -79.9461284844631,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "margaretmorrison",
+    "name": "Margaret Morrison Apartments",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/margaret-morrison-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/MargMorrison/Margaret%20Morrison%20Apartments%20double%20with%20view%20toward%20closet%20and%20dressers-min.JPG",
+          "description": "Double Bedroom (Toward closet and dressers)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/MargMorrison/Margaret%20Morrison%20Apartments%20double-min.JPG",
+          "description": "Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/MargMorrison/Margaret%20Morrison%20Apartments%20bathroom-min.JPG",
+          "description": "Bathroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/MargMorrison/Margaret%20Morrison%20Apartments%20kitchen%20and%20living%20room-min.JPG",
+          "description": "Kitchen and Living Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/MargMorrison/Margaret%20Morrison%20Apartments%20kitchen-min.JPG",
+          "description": "Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/MargMorrison/Margaret%20Morrison%20Apartments%20living%20room-min.JPG",
+          "description": "Living Room"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/margaretmorrison/margaret-morrison_two-bedroom_floor-plan.png",
+          "description": "Two-Bedroom Apartment",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_101-105_street_level.png",
+          "description": "Apts 101-105 Street Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_101-105_entry_level.png",
+          "description": "Apts 101-105 Entry Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_101-105_2nd_level.png",
+          "description": "Apts 101-105 Second Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_101-105_3rd_level.png",
+          "description": "Apts 101-105 Third Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_111-130_entry_level.png",
+          "description": "Apts 111-130 Entry Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_111-130_upper_level.png",
+          "description": "Apts 111-130 Upper Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_111-130_lower_level.png",
+          "description": "Apts 111-130 Lower Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_131-134_entry_level.png",
+          "description": "Apts 131-134 Entry Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_131-134_2nd_level.png",
+          "description": "Apts 131-134 Second Level",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/margaretmorrison/mma_131-134_3rd_level.png",
+          "description": "Apts 131-134 Third Level",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [9],
+      "bathrooms": {
+        "types": [2]
+      },
+      "ac": {
+        "level": 2,
+        "details": "only in bedrooms"
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 0,
+        "details": "laundry room on street"
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "Intersection Lounge separate from units"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": false,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": false,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4420310449421,
+      "longitude": -79.9387146784535,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "neville",
+    "name": "Neville Apartments",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/neville-backyard-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/single-bedroom-min.jpg",
+          "description": "Single Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/neville-double-bedroom-min.jpg",
+          "description": "Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/neville-bathroom-min.jpg",
+          "description": "Bathroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/kitchen-min.jpg",
+          "description": "Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/kitchen-apt-8-min.jpg",
+          "description": "Kitchen (Apt 8)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/dining-room-apts-1-and-5-min.jpg",
+          "description": "Dining Room (Apts 1 and 5)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/living-dining-room-min.jpg",
+          "description": "Living and Dining Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/living-room-apts-4-and-8-min.jpg",
+          "description": "Living Room (Apts 4 and 8)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/living-room-apts-2-and-5-min.jpg",
+          "description": "Living Room (Apts 2 and 5)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Neville/Neville%20backyard%20-%20another%20view-min.JPG",
+          "description": "Backyard"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/neville/neville-apts-1-4.png",
+          "description": "Apartments 1-4",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/neville/neville-apts-5-8.png",
+          "description": "Apartments 5-8",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [8, 9],
+      "bathrooms": {
+        "types": [2]
+      },
+      "ac": {
+        "level": 2,
+        "details": "only in bedrooms"
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 0
+      },
+      "commonAreas": {
+        "hasLounge": false
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": false,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": true,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.447513309255,
+      "longitude": -79.9471739625741,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "roselawn",
+    "name": "Roselawn Houses",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/roselawn-houses-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20double-min.JPG",
+          "description": "Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20double%20-%20another%20view-min.JPG",
+          "description": "Double Bedroom (Another view)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20single-min.JPG",
+          "description": "Single Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20bathroom-min.JPG",
+          "description": "Bathroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20kitchen%20and%20dining%20room-min.JPG",
+          "description": "Kitchen and Dining Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20kitchen%20and%20dining%20room%20toward%20living%20room-min.JPG",
+          "description": "Kitchen and Dining Room (Toward living room)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20kitchen-min.JPG",
+          "description": "Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Roselawn/Roselawn%20kitchen%20toward%20back%20door-min.JPG",
+          "description": "Kitchen (Toward back door)"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/roselawn/roselawn_five-occupant-house_single-bedroom_floor-plan.png",
+          "description": "Five-Occupant House Single Bedroom",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/roselawn/roselawn_five-occupant-house_double-bedroom_floor-plan.png",
+          "description": "Five-Occupant House Double Bedroom",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/roselawn/roselawn_first-floor_floor-plan.png",
+          "description": "First Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/roselawn/roselawn_second-floor_floor-plan.png",
+          "description": "Second Floor",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [8, 9],
+      "bathrooms": {
+        "types": [1, 2],
+        "details": "bathrooms per house"
+      },
+      "ac": {
+        "level": 3
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 0,
+        "details": "laundry room on street"
+      },
+      "commonAreas": {
+        "hasLounge": false
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": false,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": false,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4420051579668,
+      "longitude": -79.9382277473254,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "woodlawn",
+    "name": "Woodlawn Apartments",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/woodlawn-apartments-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Woodlawn/Single-min.JPG",
+          "description": "Single Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Woodlawn/Double-min.JPG",
+          "description": "Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Woodlawn/Kitchen-min.JPG",
+          "description": "Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Woodlawn/Bathroom%20with%20towel%20warmers%20visible%20in%20the%20mirror-min.JPG",
+          "description": "Bathroom"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/woodlawn/woodlawn-floor-b.png",
+          "description": "Floor B",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/woodlawn/woodlawn-floor-1.png",
+          "description": "First Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/woodlawn/woodlawn-floor-2.png",
+          "description": "Second Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/woodlawn/woodlawn-floor-3.png",
+          "description": "Third Floor",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [8, 9],
+      "bathrooms": {
+        "types": [1, 2],
+        "details": "bathrooms per unit"
+      },
+      "ac": {
+        "level": 2,
+        "details": "only in bedrooms"
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 1
+      },
+      "commonAreas": {
+        "hasLounge": false
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": false,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": true,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4425032938329,
+      "longitude": -79.9377985797988,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "resnik",
+    "name": "Resnik House",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/resnik-house-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Resnik/Resnik%20prime%20double%20with%20view%20toward%20closets%20and%20dressers-min.JPG",
+          "description": "Double Bedroom (Toward closets and dressers)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Resnik/Resnik%20prime%20double-min.JPG",
+          "description": "Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Resnik/Resnik%20suite%20bathroom%20with%20shower-min.JPG",
+          "description": "Suite Bathroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Resnik/Resnik%20suite%20single%20with%20view%20toward%20bed-min.JPG",
+          "description": "Suite Single"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/resnik/resnik_semi-suite-single_floor-plan.png",
+          "description": "Semi-Suite Single",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/resnik/resnik_semi-suite-double_floor-plan.png",
+          "description": "Semi-Suite Double",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/resnik/resnik_first-floor_floor-plan.png",
+          "description": "First Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/resnik/resnik-second-floor.png",
+          "description": "Second Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/resnik/resnik-third-floor.png",
+          "description": "Third Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/resnik/resnik-fourth-floor.png",
+          "description": "Fourth Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/resnik/resnik-fifth-floor.png",
+          "description": "Fifth Floor",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [3, 4],
+      "bathrooms": {
+        "types": [1, 2]
+      },
+      "ac": {
+        "level": 3
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 1
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "each floor has lounge"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": false,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4425418764762,
+      "longitude": -79.9400374897439,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "spirit",
+    "name": "Spirit House",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/SA_Spirit%20House-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_dining-min.jpg",
+          "description": "Dining Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_kitchen-min.jpg",
+          "description": "Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_living-min.jpg",
+          "description": "Living Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_livingtowardkitchen-min.jpg",
+          "description": "Living Room (another angle)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_study-min.jpg",
+          "description": "Study Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_double-min.jpg",
+          "description": "Double Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_single-min.jpg",
+          "description": "Single Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_triple-min.jpg",
+          "description": "Triple Bedroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_laundry-min.jpg",
+          "description": "Laundry Room"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/Spirit/SA_Spirit_bathroom-min.jpg",
+          "description": "Bathroom"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/spirit/spirit-house_all-floors.png",
+          "description": "All Floors",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [3, 4, 5],
+      "bathrooms": {
+        "types": [1, 2]
+      },
+      "ac": {
+        "level": 2,
+        "details": "only in bedrooms"
+      },
+      "kitchen": {
+        "scope": 1
+      },
+      "laundry": {
+        "location": 1
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "house has a living room"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": false,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": false,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4419102553918,
+      "longitude": -79.9378610932361,
+      "closeBuildings": []
+    },
+    "editorialTags": ["offline"]
+  },
+  {
+    "id": "westwing",
+    "name": "West Wing",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/west-wing-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/WestWing/West%20Wing%20prime%20double%20view%20toward%20closets-min.JPG",
+          "description": "Semi-Suite Double"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/WestWing/West%20Wing%20prime%20double-min.JPG",
+          "description": "Semi-Suite Double (another angle)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/WestWing/West%20Wing%20suite%20single%20view%20toward%20bed-min.JPG",
+          "description": "Semi-Suite Single"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/WestWing/West%20Wing%20prime%20double%20bathroom%20-%20sink-min.JPG",
+          "description": "Bathroom"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/WestWing/West%20Wing%20community%20kitchen%20-%20another%20view-min.JPG",
+          "description": "Community Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/WestWing/West%20Wing%20community%20kitchen-min.JPG",
+          "description": "Community Kitchen (another angle)"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/our-communities/housing-images-tours/WestWing/West%20Wing%20lounge-min.JPG",
+          "description": "Lounge"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/westwing/west-wing_semi-suite-single_floor-plan.png",
+          "description": "Semi-Suite Single",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/westwing/west-wing_semi-suite-double_floor-plan.png",
+          "description": "Semi-Suite Double",
+          "category": "roomType"
+        },
+        {
+          "link": "/floor-plans/westwing/west-wing_first-floor_floor-plan.png",
+          "description": "First Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/westwing/west-wing_second-floor_floor-plan.png",
+          "description": "Second Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/westwing/west-wing-third-floor.png",
+          "description": "Third Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/westwing/west-wing-fourth-floor.png",
+          "description": "Fourth Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/westwing/west-wing-fifth-floor.png",
+          "description": "Fifth Floor",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [3, 4],
+      "bathrooms": {
+        "types": [1, 2]
+      },
+      "ac": {
+        "level": 3
+      },
+      "kitchen": {
+        "scope": 2
+      },
+      "laundry": {
+        "location": 1
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "each floor has lounge; 1st floor has large computer cluster, tech room, recreational areas, and lounge"
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": false,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.4426985572609,
+      "longitude": -79.9408768021358,
+      "closeBuildings": []
+    }
+  },
+  {
+    "id": "fifthclyde",
+    "name": "Fifth & Clyde House",
+    "media": {
+      "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/fifthandclyde-min.jpg",
+      "photos": [
+        {
+          "link": "https://www.cmu.edu/housing/images/fifth-clyde/main-lobby-700x500-min.jpg",
+          "description": "Main Lounge"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/fifth-clyde/community-kitchen-700x500-min.jpg",
+          "description": "Community Kitchen"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/fifth-clyde/common-space-700x500-min.jpg",
+          "description": "Common Space"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/fifth-clyde/tv-lounge-700x500-min.jpg",
+          "description": "TV Lounge"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/fifth-clyde/double-700x500-min.jpg",
+          "description": "Semi-Suite Double"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/fifth-clyde/single-700x500-min.jpg",
+          "description": "Semi-Suite Single"
+        },
+        {
+          "link": "https://www.cmu.edu/housing/images/fifth-clyde/bathroom-700x500-min.jpg",
+          "description": "Bathroom"
+        }
+      ],
+      "floorPlans": [
+        {
+          "link": "/floor-plans/fifthclyde/fifth-clyde-floor-1.png",
+          "description": "First Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fifthclyde/fifth-clyde-floor-2.png",
+          "description": "Second Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fifthclyde/fifth-clyde-floor-3.png",
+          "description": "Third Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fifthclyde/fifth-clyde-floor-4.png",
+          "description": "Fourth Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fifthclyde/fifth-clyde-floor-5.png",
+          "description": "Fifth Floor",
+          "category": "floor"
+        },
+        {
+          "link": "/floor-plans/fifthclyde/fifth-clyde-floor-6.png",
+          "description": "Sixth Floor",
+          "category": "floor"
+        }
+      ]
+    },
+    "amenities": {
+      "roomTypes": [3, 4, 8, 9],
+      "bathrooms": {
+        "types": []
+      },
+      "ac": {
+        "level": 3
+      },
+      "kitchen": {
+        "scope": 1,
+        "details": "Large Kitchen on first floor and kitchens on each floor"
+      },
+      "laundry": {
+        "location": 1
+      },
+      "commonAreas": {
+        "hasLounge": true,
+        "details": "each floor has kitchens and lounges; 1st floor has multipurpose room, large lounge, wellness/dance room, large and small music rooms, and study rooms."
+      },
+      "gym": {
+        "available": false
+      },
+      "genderHousing": 0
+    },
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "serviceAnimalFriendly": true,
+      "groundFloorRooms": true,
+      "strobeAlarm": false
+    },
+    "atmosphere": {},
+    "location": {
+      "latitude": 40.447675388038,
+      "longitude": -79.9456133896324,
+      "closeBuildings": []
+    }
   }
 ]

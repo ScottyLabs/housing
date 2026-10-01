@@ -25,11 +25,15 @@ function AppLayout({ children, showNavbar }: { children: React.ReactNode; showNa
   );
 }
 
+function ScrollToTop() {
+  useEffect(() => {
+    globalThis.scroll({ top: 0 });
+  }, []);
+  return null;
+}
+
 export default function App() {
   const location = useLocation();
-  useEffect(() => {
-    window.scroll({ top: 0 });
-  }, [location.pathname]);
   return (
     <AppLayout showNavbar={location.pathname !== "/"}>
       <div key={location.pathname}>
@@ -44,6 +48,7 @@ export default function App() {
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ScrollToTop />
       </div>
     </AppLayout>
   );
