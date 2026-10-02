@@ -126,6 +126,62 @@ export default function BuildingColumn({
           </div>
         )}
       </div>
+      {building.amenities.roomTypes.includes(RoomType.SemiSuiteQuad) && (
+  <div className="flex gap-3 pt-2.5 pb-1 items-center">
+    <img
+      src={"/unsorted-icons/room-type/trad-triple.svg"}
+      alt={"semi-suite quad"}
+      width={36}
+      height={36}
+      className="w-9 h-9"
+    />
+    <div className="text-[16px] whitespace-normal break-words">
+      <span className="font-normal">Semi-Suite</span> Quad
+    </div>
+  </div>
+)}
+{building.amenities.roomTypes.includes(RoomType.ApartmentTriple) && (
+  <div className="flex gap-3 pt-2.5 pb-1 items-center">
+    <img
+      src={"/unsorted-icons/room-type/trad-triple.svg"}
+      alt={"apartment triple"}
+      width={36}
+      height={36}
+      className="w-9 h-9"
+    />
+    <div className="text-[16px] whitespace-normal break-words">
+      <span className="font-normal">Apartment</span> Triple
+    </div>
+  </div>
+)}
+{building.amenities.roomTypes.includes(RoomType.StudioApartmentSingle) && (
+  <div className="flex gap-3 pt-2.5 pb-1 items-center">
+    <img
+      src={"/unsorted-icons/room-type/trad-single.svg"}
+      alt={"studio apartment single"}
+      width={36}
+      height={36}
+      className="w-9 h-9"
+    />
+    <div className="text-[16px] whitespace-normal break-words">
+      <span className="font-normal">Studio Apartment</span> Single
+    </div>
+  </div>
+)}
+{building.amenities.roomTypes.includes(RoomType.StudioApartmentDouble) && (
+  <div className="flex gap-3 pt-2.5 pb-1 items-center">
+    <img
+      src={"/unsorted-icons/room-type/trad-double.svg"}
+      alt={"studio apartment double"}
+      width={36}
+      height={36}
+      className="w-9 h-9"
+    />
+    <div className="text-[16px] whitespace-normal break-words">
+      <span className="font-normal">Studio Apartment</span> Double
+    </div>
+  </div>
+)}
 
       <div className="text-[16px] pt-2.5 pb-2.5 px-4 rounded-2xl bg-brand-menugray border border-black/10">
         Kitchen
