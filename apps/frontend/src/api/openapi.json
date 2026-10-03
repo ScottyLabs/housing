@@ -11,6 +11,50 @@
         "operationId": "getApiHealth"
       }
     },
+    "/api/config/maps/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "required": ["enabled", "apiKey", "mapId"],
+                      "properties": {
+                        "enabled": {
+                          "const": true,
+                          "type": "boolean"
+                        },
+                        "apiKey": {
+                          "type": "string"
+                        },
+                        "mapId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": ["enabled"],
+                      "properties": {
+                        "enabled": {
+                          "const": false,
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiConfigMaps"
+      }
+    },
     "/api/me/preferences": {
       "get": {
         "responses": {

@@ -3,9 +3,9 @@
   "specifiers": {
     "jsr:@std/assert@1": "1.0.19",
     "jsr:@std/internal@^1.0.12": "1.0.14",
-    "npm:@elysia/static@^1.4.11": "1.4.11_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3",
-    "npm:@elysiajs/openapi@^1.4.15": "1.4.15_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3",
-    "npm:@logtape/elysia@^2.2.1": "2.2.4_@logtape+logtape@2.2.4_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3",
+    "npm:@elysia/static@^1.4.11": "1.4.11_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_typescript@5.9.3",
+    "npm:@elysiajs/openapi@^1.4.15": "1.4.15_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_typescript@5.9.3",
+    "npm:@logtape/elysia@^2.2.1": "2.2.4_@logtape+logtape@2.2.4_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_typescript@5.9.3",
     "npm:@logtape/logtape@^2.2.4": "2.2.4",
     "npm:@sinclair/typebox@0.34.49": "0.34.49",
     "npm:@tailwindcss/postcss@^4.3.0": "4.3.2",
@@ -13,7 +13,7 @@
     "npm:@types/node@^20.19.37": "20.19.43",
     "npm:@types/react-dom@^19.2.3": "19.2.3_@types+react@19.2.17",
     "npm:@types/react@^19.2.14": "19.2.17",
-    "npm:@vitejs/plugin-react@^4.3.4": "4.7.0_vite@5.4.21__@types+node@20.19.43_@types+node@20.19.43",
+    "npm:@vitejs/plugin-react@^4.3.4": "4.7.0_vite@5.4.21__@types+node@20.19.43_@babel+core@7.29.7_@types+node@20.19.43",
     "npm:autoprefixer@^10.5.0": "10.5.2_postcss@8.5.18",
     "npm:drizzle-kit@*": "0.31.10",
     "npm:drizzle-kit@~0.31.10": "0.31.10",
@@ -29,6 +29,7 @@
     "npm:react-router-dom@^6.28.0": "6.30.4_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:react@19.1.0": "19.1.0",
     "npm:tailwindcss@^4.2.1": "4.3.2",
+    "npm:typescript@5.9.3": "5.9.3",
     "npm:typescript@^5.9.3": "5.9.3",
     "npm:vite@^5.4.8": "5.4.21_@types+node@20.19.43"
   },
@@ -190,13 +191,13 @@
     "@drizzle-team/brocli@0.10.2": {
       "integrity": "sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w=="
     },
-    "@elysia/static@1.4.11_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3": {
+    "@elysia/static@1.4.11_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_typescript@5.9.3": {
       "integrity": "sha512-L3PN8V+cgz9Oz9kTow7ed3DHHCTHb9ZqZZDLxmKhrIKcFmWvjqzTm9TcMR2aLKjjls+QMSGuB7ZyaO+usIXovA==",
       "dependencies": [
         "elysia"
       ]
     },
-    "@elysiajs/openapi@1.4.15_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3": {
+    "@elysiajs/openapi@1.4.15_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_typescript@5.9.3": {
       "integrity": "sha512-HDtGIrWfFJk6UJS7qbgRmjifbSqnnRGDM3CsU/GVJkxLbEVEkNuQDf+Quh9fGbytSrJ8g4+tX9eVjshYhCH29w==",
       "dependencies": [
         "elysia"
@@ -730,7 +731,7 @@
         "@jridgewell/sourcemap-codec"
       ]
     },
-    "@logtape/elysia@2.2.4_@logtape+logtape@2.2.4_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_exact-mirror@0.2.7__@sinclair+typebox@0.34.49_file-type@22.0.1_openapi-types@12.1.3_typescript@5.9.3": {
+    "@logtape/elysia@2.2.4_@logtape+logtape@2.2.4_elysia@1.4.29__@sinclair+typebox@0.34.49__exact-mirror@0.2.7___@sinclair+typebox@0.34.49__file-type@22.0.1__openapi-types@12.1.3__typescript@5.9.3_@sinclair+typebox@0.34.49_typescript@5.9.3": {
       "integrity": "sha512-dHgE4sp+UgO09V5bnCTjSkoFGNcCIU1OqQymXV1hmgE6T0VobS2epVKLj2zilqDJ+W6oDNf/RX8fqCxZE83Jeg==",
       "dependencies": [
         "@logtape/logtape",
@@ -1068,7 +1069,7 @@
         "csstype"
       ]
     },
-    "@vitejs/plugin-react@4.7.0_vite@5.4.21__@types+node@20.19.43_@types+node@20.19.43": {
+    "@vitejs/plugin-react@4.7.0_vite@5.4.21__@types+node@20.19.43_@babel+core@7.29.7_@types+node@20.19.43": {
       "integrity": "sha512-gUu9hwfWvvEDBBmgtAowQCojwZmJ5mcLn3aufeCsitijs3+f2NsrPtlAWIR6OPiqljl96GVCUbLe0HyqIpVaoA==",
       "dependencies": [
         "@babel/core",
