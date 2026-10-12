@@ -22,7 +22,7 @@ export default function Home() {
   const preferences = usePreferences();
   const recommended = useMemo(() => {
     if (preferences === null) {
-      return [...buildings].sort((b1, b2) => b1.name.localeCompare(b2.name)).slice(0, 5);
+      return buildings.toSorted((b1, b2) => b1.name.localeCompare(b2.name)).slice(0, 5);
     }
     return rankBuildings(buildings, preferencesToFilters(preferences)).slice(0, 5);
   }, [buildings, preferences]);
