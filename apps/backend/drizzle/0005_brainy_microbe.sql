@@ -1,0 +1,1 @@
+ALTER TABLE "review" ALTER COLUMN "submitted_at" SET DEFAULT now();
