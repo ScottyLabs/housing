@@ -18,7 +18,7 @@ export const mapsRoute = new Elysia({ prefix: "/config/maps" }).get(
   () => {
     const apiKey = Deno.env.get("GOOGLE_MAPS_API_KEY");
 
-    if (!apiKey || !mapId) {
+    if (!apiKey) {
       return { enabled: false as const };
     }
 
