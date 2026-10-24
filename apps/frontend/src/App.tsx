@@ -13,6 +13,7 @@ import { FilterProvider } from "@/components/FilterContext";
 import Navbar from "@/components/Navbar";
 import BuildingDetails from "./components/BuildingDetails";
 import ReviewsPage from "./app/reviews/page";
+import Profile from "@/app/profile/page";
 
 function AppLayout({ children, showNavbar }: { children: React.ReactNode; showNavbar: boolean }) {
   return (
@@ -51,6 +52,7 @@ export default function App() {
           <Route path="/building-comparison" element={<BuildingComparison />} />
           <Route path="/building/:id" element={<BuildingDetails />} />
           <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ScrollToTop />
