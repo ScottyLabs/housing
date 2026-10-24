@@ -4,8 +4,10 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@posthog/react": "^1.7.1",
     "@tanstack/react-query": "^5.101.4",
     "openapi-fetch": "^0.17.0",
+    "posthog-js": "^1.407.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-router-dom": "^6.28.0"

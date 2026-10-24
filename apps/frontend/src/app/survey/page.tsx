@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import client from "@/api/client";
+import posthog, { isPostHogInitialized } from "@/posthog";
+import { posthogLogger } from "@/posthog-logger";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -245,13 +247,23 @@ export default function Survey() {
 
   const handleNext = () => {
     if (step < TOTAL_STEPS) {
+      if (isPostHogInitialized) posthog.capture("survey_step_completed", { step_number: step });
       setStep(step + 1);
     } else {
       setIsSubmitting(true);
-      void sendPreferences(data).finally(() => {
-        setIsSubmitting(false);
-        navigate("/home");
-      });
+      void sendPreferences(data)
+        .then((saved) => {
+          if (saved) {
+            if (isPostHogInitialized) posthog.capture("survey_submitted");
+            posthogLogger.surveyPreferencesSaved();
+          } else {
+            posthogLogger.surveyPreferencesSaveFailed();
+          }
+        })
+        .finally(() => {
+          setIsSubmitting(false);
+          navigate("/home");
+        });
     }
   };
 
@@ -268,6 +280,7 @@ export default function Survey() {
           if (step > 1) setStep(step - 1);
         }}
         onSkip={() => {
+          if (isPostHogInitialized) posthog.capture("survey_skipped", { step_number: step });
           navigate("/home");
         }}
         isSubmitting={isSubmitting}

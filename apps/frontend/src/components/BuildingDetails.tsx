@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { type Building, useBuildingById, useBuildings } from "@/components/BuildingContext";
 import { ACLevel, BathroomType, RoomType } from "@/data/buildingTypes";
+import posthog, { isPostHogInitialized } from "@/posthog";
 
 const bathroomTypeLabel: Record<BathroomType, string> = {
   [BathroomType.Communal]: "Communal",
@@ -423,7 +424,10 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                             href={plan.virtualTourLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (isPostHogInitialized) posthog.capture("virtual_tour_opened");
+                            }}
                             className="block w-full text-center text-white text-[16px] bg-brand-primary hover:opacity-90 transition-opacity rounded-lg py-1.5 mt-1 mb-1"
                           >
                             Virtual Tour

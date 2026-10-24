@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import posthog, { isPostHogInitialized } from "@/posthog";
 
 export default function LaunchPage() {
   return (
@@ -12,12 +13,18 @@ export default function LaunchPage() {
         <div className="mt-[30px] flex flex-col gap-4 sm:flex-row sm:gap-5">
           <a
             href="/api/auth/login"
+            onClick={() => {
+              if (isPostHogInitialized) posthog.capture("login_started");
+            }}
             className="flex h-[56px] w-full items-center justify-center rounded-[13px] bg-brand-primary text-[18px] font-medium text-white transition-colors hover:bg-[#f1872c] sm:w-[321px]"
           >
             Get personalized results
           </a>
           <Link
             to="/home"
+            onClick={() => {
+              if (isPostHogInitialized) posthog.capture("guest_mode_selected");
+            }}
             className="flex h-[56px] w-full items-center justify-center rounded-[13px] bg-brand-buttongray font-['Inter'] text-[18px] font-medium text-black transition-colors hover:bg-[#d7dfe3] sm:w-[260px]"
           >
             Continue as guest

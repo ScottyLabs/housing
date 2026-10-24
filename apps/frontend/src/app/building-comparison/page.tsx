@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Building, useBuildings } from "@/components/BuildingContext";
 import BuildingColumn from "@/components/BuildingComparison";
+import posthog, { isPostHogInitialized } from "@/posthog";
+import { posthogLogger } from "@/posthog-logger";
 
 const MAX_BUILDINGS = 4;
 
@@ -11,12 +13,18 @@ export default function Home() {
   const getBuilding = (id: string) => buildings.find((b) => b.id === id);
 
   const handleChange = (index: number) => (id: string) => {
+    if (isPostHogInitialized)
+      posthog.capture("comparison_building_changed", { column_index: index + 1 });
     setIds((prev) => prev.map((cur, i) => (i === index ? id : cur)));
   };
 
   const addColumn = () => {
     const next = buildings.find((b) => !ids.includes(b.id));
-    if (next) setIds((prev) => [...prev, next.id]);
+    if (next) {
+      if (isPostHogInitialized) posthog.capture("comparison_building_added");
+      posthogLogger.comparisonBuildingAdded();
+      setIds((prev) => [...prev, next.id]);
+    }
   };
 
   return (

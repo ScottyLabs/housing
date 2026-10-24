@@ -1,4 +1,5 @@
 import { useState } from "react";
+import posthog, { isPostHogInitialized } from "@/posthog";
 export default function ShareDropdown({
   isOpen,
   onClose,
@@ -20,6 +21,7 @@ export default function ShareDropdown({
       icon: "/unsorted-icons/link.svg",
       action: async () => {
         await navigator.clipboard.writeText(globalThis.location.href);
+        if (isPostHogInitialized) posthog.capture("share_method_selected", { method: "url" });
         setCopiedName("URL");
         setTimeout(() => setCopiedName(null), 2000);
       },
@@ -28,6 +30,7 @@ export default function ShareDropdown({
       name: "SMS",
       icon: "/unsorted-icons/sms.svg",
       action: () => {
+        if (isPostHogInitialized) posthog.capture("share_method_selected", { method: "sms" });
         globalThis.location.href =
           "sms:?&body=" +
           encodeURIComponent("Find your perfect dorm at " + globalThis.location.href);
@@ -37,6 +40,7 @@ export default function ShareDropdown({
       name: "Email",
       icon: "/unsorted-icons/email.svg",
       action: () => {
+        if (isPostHogInitialized) posthog.capture("share_method_selected", { method: "email" });
         globalThis.location.href =
           "mailto:?subject=" +
           encodeURIComponent("Check this CMU Housing website out!") +
@@ -48,6 +52,7 @@ export default function ShareDropdown({
       name: "Embed",
       icon: "/unsorted-icons/embed.svg",
       action: () => {
+        if (isPostHogInitialized) posthog.capture("share_method_selected", { method: "embed" });
         setShowEmbed(true);
       },
     },
@@ -77,6 +82,7 @@ export default function ShareDropdown({
                   await navigator.clipboard.writeText(
                     `<iframe src="${globalThis.location.href}" width="100%" height="600"></iframe>`,
                   );
+                  if (isPostHogInitialized) posthog.capture("share_embed_code_copied");
                   setCopiedName("Embed Code");
                   setTimeout(() => setCopiedName(null), 2000);
                 }}

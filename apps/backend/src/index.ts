@@ -120,7 +120,7 @@ const api = new Elysia({ prefix: "/api" })
       await deleteSession(sessionId);
     }
     cookie[SESSION_COOKIE_NAME].remove();
-    return toHome(redirect);
+    return toPath(redirect, "/?logged_out");
   });
 
 const app = new Elysia().use(api);
