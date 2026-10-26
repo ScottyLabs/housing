@@ -12,9 +12,9 @@ jobs:
 
   check-openapi:
     runs-on: native
+    enable-openid-connect: true
     env:
       SECRETSPEC_PROFILE: ci
-      SECRETSPEC_PROVIDER: env
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v7
       - uses: https://git.cmu.dev/ScottyLabs/kennel/.forgejo/actions/prepare@main
