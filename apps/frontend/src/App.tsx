@@ -7,6 +7,7 @@ import MapPage from "@/app/map-page";
 import NotFound from "@/app/not-found";
 import Home from "@/app/page";
 import Survey from "@/app/survey/page";
+import Rating from "@/app/rating/page";
 import { BuildingProvider } from "@/components/BuildingContext";
 import Navbar from "@/components/Navbar";
 import BuildingDetails from "./components/BuildingDetails";
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/" element={<LaunchPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/survey" element={<Survey />} />
+          <Route path="/rating" element={<Rating />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/building-options" element={<BuildingOptions />} />
           <Route path="/building-comparison" element={<BuildingComparison />} />

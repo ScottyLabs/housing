@@ -31,12 +31,14 @@ function SliderInput({
   value,
   percent,
   onChange,
+  ariaLabel,
 }: {
   min: number;
   max: number;
   value: number;
   percent: number;
   onChange: (value: number) => void;
+  ariaLabel?: string;
 }) {
   return (
     <input
@@ -47,6 +49,7 @@ function SliderInput({
       onChange={(e) => {
         onChange(Number(e.target.value));
       }}
+      aria-label={ariaLabel}
       className="w-full h-11 bg-transparent appearance-none cursor-pointer slider touch-none"
       style={{
         background: `linear-gradient(to right,
@@ -65,12 +68,14 @@ export default function Slider({
   showTicks = false,
   value: controlledValue,
   onChange: controlledOnChange,
+  ariaLabel,
 }: {
   min?: number;
   max?: number;
   showTicks?: boolean;
   value?: number;
   onChange?: (value: number) => void;
+  ariaLabel?: string;
 }) {
   const [internalValue, setInternalValue] = useState(Math.floor((min + max) / 2));
   const value = controlledValue !== undefined ? controlledValue : internalValue;
@@ -100,7 +105,14 @@ export default function Slider({
   return (
     <div className="flex flex-col h-11 justify-center">
       <div className="relative flex flex-col justify-center">
-        <SliderInput min={min} max={max} value={value} percent={percent} onChange={handleChange} />
+        <SliderInput
+          min={min}
+          max={max}
+          value={value}
+          percent={percent}
+          onChange={handleChange}
+          ariaLabel={ariaLabel}
+        />
 
         {ticks.map((left) => (
           <SliderMarker key={left} size="h-[10px] w-[10px]" left={left} />

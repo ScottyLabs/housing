@@ -49,7 +49,15 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
 
   return (
     <div className="space-y-4 overflow-x-auto min-w-40 max-w-full pb-3 pt-3 px-4 sm:px-10 md:px-20 lg:px-30">
-      <h2 className="font-bold text-[24px] flex-shrink-0">{building.name}</h2>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="font-bold text-[24px]">{building.name}</h2>
+        <Link
+          to={`/rating?building=${encodeURIComponent(building.id)}`}
+          className="rounded-2xl bg-brand-primary px-5 py-3 font-medium text-white hover:bg-[#f1872c]"
+        >
+          Write a Review
+        </Link>
+      </div>
       <div className="w-full h-[300px]">
         <div className="relative w-full h-full overflow-hidden rounded-[18px]">
           <img

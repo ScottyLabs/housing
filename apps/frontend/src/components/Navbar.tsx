@@ -62,7 +62,7 @@ export default function Navbar() {
               href="/reviews"
               name="Reviews"
               icon="/write-review.svg"
-              isActive={pathname === "/reviews"}
+              isActive={pathname === "/reviews" || pathname === "/rating"}
             />
           </div>
           <div className="flex gap-1 items-center mx-2 ">
@@ -106,7 +106,7 @@ export default function Navbar() {
           href="/reviews"
           name="Reviews"
           icon="/write-review.svg"
-          isActive={pathname === "/reviews"}
+          isActive={pathname === "/reviews" || pathname === "/rating"}
         />
       </nav>
     </>
