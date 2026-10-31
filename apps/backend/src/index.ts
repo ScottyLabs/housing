@@ -21,6 +21,7 @@ import {
 import { getOrCreateUser } from "./auth/user.ts";
 import { runMigrations } from "./db/migrations.ts";
 import { healthRoute } from "./routes/health.ts";
+import { mapsRoute } from "./routes/maps-config.ts";
 import { preferencesRoute } from "./routes/preferences.ts";
 import { meRoute } from "./routes/me.ts";
 import { configureLogger, logger, nodeError } from "./utils/log.ts";
@@ -69,6 +70,7 @@ const api = new Elysia({ prefix: "/api" })
   .use(elysiaLogger({ category: "housing-backend" }))
   .use(openapi({ path: "/docs", references: fromTypes() }))
   .use(healthRoute)
+  .use(mapsRoute)
   .use(preferencesRoute)
   .use(meRoute)
   .use(sessionAuth)

@@ -11,6 +11,12 @@
         "operationId": "getApiHealth"
       }
     },
+    "/api/config/maps/": {
+      "get": {
+        "responses": {},
+        "operationId": "getApiConfigMaps"
+      }
+    },
     "/api/me/preferences": {
       "get": {
         "responses": {
