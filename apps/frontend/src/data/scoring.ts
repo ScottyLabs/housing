@@ -108,6 +108,6 @@ export function groupBuildings(buildings: Building[], filters: FilterState): Bui
   return {
     bestFit: ranked.slice(0, 3),
     decentFit: ranked.slice(3, 6),
-    wildCard: ranked.slice(6, 9),
+    wildCard: ranked.slice(6),
   };
 }

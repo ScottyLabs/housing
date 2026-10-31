@@ -15,6 +15,7 @@ export const buildingTags: Tag[] = [
   { id: "gymAccess", label: "Gym access", icon: "/building-tags/gym.svg" },
   { id: "girlsOnly", label: "Girls only", icon: "/building-tags/girlsOnly.svg" },
   { id: "lgbtqInclusive", label: "LGBTQ+ inclusive", icon: "/building-tags/workWithOthers.svg" },
+  { id: "offline", label: "Offline", icon: "/unsorted-icons/info.svg" },
 ];
 
 export function deriveTags(b: Building): string[] {
