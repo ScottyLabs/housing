@@ -1,7 +1,7 @@
 [
   {
     "id": "etower",
-    "name": "E Tower",
+    "name": "E-Tower",
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/photo-grid-images/mascots/etower1400x700.jpg",
       "photos": [
@@ -70,7 +70,7 @@
       "roomTypes": [0, 1],
       "bathrooms": {
         "types": [0],
-        "details": "bathrooms shared per floor (single sex)"
+        "details": "Bathrooms shared per floor (single sex)"
       },
       "ac": {
         "level": 1,
@@ -78,11 +78,11 @@
       },
       "kitchen": {
         "scope": 1,
-        "details": "only a small kitchen"
+        "details": "Very small kitchen located on the 4th floor"
       },
       "laundry": {
         "location": 1,
-        "details": "not verified in this data pass"
+        "details": "2 washers and 2 dryers available per floor"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -101,8 +101,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "e tower is right on top of UG, close to campus and tepper. home to UHS and CAPS",
+      "closeBuildings": ["morewood"],
+      "note": "E-Tower is right on top of UG, close to campus and Tepper, and connected to Morewood Gardens via the breezeway",
       "latitude": 40.44500505315387,
       "longitude": -79.94323045720432
     }
@@ -172,15 +172,15 @@
       "roomTypes": [1],
       "bathrooms": {
         "types": [0],
-        "details": "bathrooms per wing"
+        "details": "Bathrooms per wing"
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "Yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "Kitchen and dining room"
+        "details": "Kitchen and dining room located on the first floor"
       },
       "laundry": {
         "location": 1,
@@ -203,8 +203,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "stever is located on morewood ave, and buggies are built in the basement",
+      "closeBuildings": ["morewood", "mudge"],
+      "note": "Stever is located on Morewood Ave, and buggies are built in the basement. It is in between Morewood Gardens and Mudge",
       "latitude": 40.4462308440447,
       "longitude": -79.94265849424025
     }
@@ -275,15 +275,15 @@
       "roomTypes": [3, 4],
       "bathrooms": {
         "types": [1],
-        "details": "bathrooms shared with a suite"
+        "details": "Bathrooms shared with a suite"
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "Yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "Yes, needs more info"
+        "details": "Communal kitchen on first floor"
       },
       "laundry": {
         "location": 1,
@@ -378,11 +378,11 @@
       "roomTypes": [9],
       "bathrooms": {
         "types": [2],
-        "details": "bathrooms are private"
+        "details": "Bathrooms are private"
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "Yes, AC available"
       },
       "kitchen": {
         "scope": 2,
@@ -390,7 +390,7 @@
       },
       "laundry": {
         "location": 1,
-        "details": "near lower level, per floor plan"
+        "details": "Near lower level, per floor plan"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -409,8 +409,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "unknown",
+      "closeBuildings": ["highlands", "fifthclyde"],
+      "note": "Located on Clyde St, near Highlands Apartments and Fifth and Clyde House",
       "latitude": 40.44824700318969,
       "longitude": -79.94602827018498
     }
@@ -530,8 +530,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "Donner is located close to Resnik, Margaret Morrison/CFA",
+      "closeBuildings": ["resnik"],
+      "note": "Donner is located close to Resnik, Margaret Morrison/CFA, as well as other dorms on the hill",
       "latitude": 40.44188700294032,
       "longitude": -79.94023636267904
     }
@@ -618,15 +618,15 @@
       "roomTypes": [3, 4],
       "bathrooms": {
         "types": [1],
-        "details": "CHONKR bathrooms (or so I've heard)"
+        "details": "Bathrooms are private"
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "kitchen?"
+        "details": "not verified in this data pass"
       },
       "laundry": {
         "location": 1,
@@ -634,7 +634,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "wellness room and leaky study room"
+        "details": "wellness room and study room"
       },
       "gym": {
         "available": false
@@ -737,11 +737,11 @@
       },
       "ac": {
         "level": 2,
-        "details": "yes, AC is available"
+        "details": "yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "Yes, needs more info"
+        "details": "Communal kitchen on first floor"
       },
       "laundry": {
         "location": 1,
@@ -764,8 +764,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Henderson",
+      "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson", "boss"],
+      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, Henderson, and Boss",
       "latitude": 40.44182111388465,
       "longitude": -79.93909779218046
     }
@@ -861,15 +861,15 @@
       "roomTypes": [3, 4, 5],
       "bathrooms": {
         "types": [1],
-        "details": "bathroom shared with a suite"
+        "details": "Bathroom shared with a suite"
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "Yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "small shared kitchens every other floor"
+        "details": "Small shared kitchens every other floor"
       },
       "laundry": {
         "location": 1,
@@ -880,7 +880,7 @@
         "details": "2 huge lounges per floor, with TV"
       },
       "gym": {
-        "available": false
+        "available": true
       },
       "genderHousing": 0
     },
@@ -892,8 +892,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "Morewood Gardens is right on top of UG, next to UHS and CAPS, close to campus",
+      "closeBuildings": ["etower", "stever"],
+      "note": "Morewood Gardens is right on top of UG, close to campus. Connected to E-Tower via the breezeway",
       "latitude": 40.445069937572704,
       "longitude": -79.94324961565809
     }
@@ -1046,7 +1046,7 @@
       "roomTypes": [3, 4, 6, 0, 1, 2],
       "bathrooms": {
         "types": [0, 1],
-        "details": "traditional dorms have Communal bathrooms and semi-suite will share with another suite"
+        "details": "Traditional dorms have Communal bathrooms and semi-suite will share with another suite"
       },
       "ac": {
         "level": 0,
@@ -1054,11 +1054,11 @@
       },
       "kitchen": {
         "scope": 1,
-        "details": "3 kitchens"
+        "details": "3 kitchens, one in the basement of each tower"
       },
       "laundry": {
         "location": 1,
-        "details": "not verified in this data pass"
+        "details": "Laundry located in basement of each tower"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -1167,7 +1167,7 @@
       "roomTypes": [7, 9],
       "bathrooms": {
         "types": [2],
-        "details": "bathrooms are private"
+        "details": "Bathrooms are private"
       },
       "ac": {
         "level": 3,
@@ -1175,11 +1175,11 @@
       },
       "kitchen": {
         "scope": 2,
-        "details": "kitchenette"
+        "details": "Kitchenette"
       },
       "laundry": {
         "location": 2,
-        "details": "documented on the 4th floor; may not be every floor"
+        "details": "Documented on the 4th floor; may not be every floor"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -1199,8 +1199,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "res on fifth is close to many utility/dining (Craigs St, Starbucks, Chipotle, bus stops, UPitt",
+      "closeBuildings": ["fifthneville"],
+      "note": "Res on fifth is close to many utility/dining (Craigs St, Starbucks, Chipotle, bus stops, UPitt. Across the street from Fifth Neville",
       "latitude": 40.44684010797551,
       "longitude": -79.94675464406312
     }
@@ -1275,15 +1275,15 @@
       "roomTypes": [0, 1],
       "bathrooms": {
         "types": [0],
-        "details": "needs more details"
+        "details": "Bathrooms are private"
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "Yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "idk maybe?"
+        "details": "not verified in this data pass"
       },
       "laundry": {
         "location": 1,
@@ -1381,15 +1381,15 @@
       "roomTypes": [3, 4],
       "bathrooms": {
         "types": [1],
-        "details": "needs more details"
+        "details": "Bathrooms are private"
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "Yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "Kitchen yes"
+        "details": "not verified in this data pass"
       },
       "laundry": {
         "location": 1,
@@ -1491,11 +1491,11 @@
       "roomTypes": [0, 1],
       "bathrooms": {
         "types": [0],
-        "details": "needs more details"
+        "details": "not verified in this data pass"
       },
       "ac": {
         "level": 3,
-        "details": "yes, should have AC"
+        "details": "yes, central AC"
       },
       "kitchen": {
         "scope": 1,
@@ -1598,11 +1598,11 @@
       },
       "ac": {
         "level": 3,
-        "details": "yes, AC is available"
+        "details": "Yes, AC available"
       },
       "kitchen": {
         "scope": 1,
-        "details": "Yes, needs more info"
+        "details": "Yes, each Maggie Mo has a kitchen on the ground floor"
       },
       "laundry": {
         "location": 1,
@@ -1610,7 +1610,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
+        "details": "Communal lounge on ground floor and 1 per floor with TV areas"
       },
       "gym": {
         "available": false
