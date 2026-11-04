@@ -1684,7 +1684,7 @@
       "roomTypes": [8, 9],
       "bathrooms": {
         "types": [2],
-        "details": "bathrooms per unit"
+        "details": "Bathrooms per unit"
       },
       "ac": {
         "level": 3
@@ -1694,11 +1694,11 @@
       },
       "laundry": {
         "location": 1,
-        "details": "shared with whole dorm on first floor"
+        "details": "Shared with whole dorm on first floor"
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "communal kitchen, dining area, lobby, study, laundry room"
+        "details": "Communal kitchen, dining area, lobby, study, laundry room"
       },
       "gym": {
         "available": false
@@ -1792,7 +1792,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "basement lounge and study; ping pong, foosball, air hockey, and shuffleboard available"
+        "details": "Basement lounge and study; ping pong, foosball, air hockey, and shuffleboard available"
       },
       "gym": {
         "available": false
@@ -1861,7 +1861,7 @@
       "roomTypes": [8, 9],
       "bathrooms": {
         "types": [1, 2],
-        "details": "bathrooms per unit"
+        "details": "Bathrooms per unit"
       },
       "ac": {
         "level": 3
@@ -1871,11 +1871,11 @@
       },
       "laundry": {
         "location": 2,
-        "details": "shared by floor"
+        "details": "Shared by floor"
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has media room, lounge, and study rooms. large lounge, wellness room, and music rooms on first floor"
+        "details": "Each floor has media room, lounge, and study rooms. large lounge, wellness room, and music rooms on first floor"
       },
       "gym": {
         "available": false
@@ -1956,18 +1956,18 @@
       "roomTypes": [8, 9],
       "bathrooms": {
         "types": [1, 2],
-        "details": "bathrooms per unit"
+        "details": "Bathrooms per unit"
       },
       "ac": {
         "level": 2,
-        "details": "only in bedrooms"
+        "details": "Only in bedrooms"
       },
       "kitchen": {
         "scope": 2
       },
       "laundry": {
         "location": 0,
-        "details": "laundry separate from dorm"
+        "details": "Laundry separate from dorm"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -2087,14 +2087,14 @@
       },
       "ac": {
         "level": 2,
-        "details": "only in bedrooms"
+        "details": "Only in bedrooms"
       },
       "kitchen": {
         "scope": 2
       },
       "laundry": {
         "location": 0,
-        "details": "laundry room on street"
+        "details": "Laundry room on street"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -2185,7 +2185,7 @@
       },
       "ac": {
         "level": 2,
-        "details": "only in bedrooms"
+        "details": "Only in bedrooms"
       },
       "kitchen": {
         "scope": 2
@@ -2280,7 +2280,7 @@
       "roomTypes": [8, 9],
       "bathrooms": {
         "types": [1, 2],
-        "details": "bathrooms per house"
+        "details": "Bathrooms per house"
       },
       "ac": {
         "level": 3
@@ -2290,7 +2290,7 @@
       },
       "laundry": {
         "location": 0,
-        "details": "laundry room on street"
+        "details": "Laundry room on street"
       },
       "commonAreas": {
         "hasLounge": false
@@ -2363,11 +2363,11 @@
       "roomTypes": [8, 9],
       "bathrooms": {
         "types": [1, 2],
-        "details": "bathrooms per unit"
+        "details": "Bathrooms per unit"
       },
       "ac": {
         "level": 2,
-        "details": "only in bedrooms"
+        "details": "Only in bedrooms"
       },
       "kitchen": {
         "scope": 2
@@ -2473,7 +2473,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has lounge"
+        "details": "Each floor has lounge"
       },
       "gym": {
         "available": false
@@ -2555,7 +2555,7 @@
       },
       "ac": {
         "level": 2,
-        "details": "only in bedrooms"
+        "details": "Only in bedrooms"
       },
       "kitchen": {
         "scope": 1
@@ -2565,7 +2565,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "house has a living room"
+        "details": "House has a living room"
       },
       "gym": {
         "available": false
@@ -2675,7 +2675,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has lounge; 1st floor has large computer cluster, tech room, recreational areas, and lounge"
+        "details": "Each floor has lounge; 1st floor has large computer cluster, tech room, recreational areas, and lounge"
       },
       "gym": {
         "available": false
@@ -2780,7 +2780,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has kitchens and lounges; 1st floor has multipurpose room, large lounge, wellness/dance room, large and small music rooms, and study rooms."
+        "details": "Each floor has kitchens and lounges; 1st floor has multipurpose room, large lounge, wellness/dance room, large and small music rooms, and study rooms."
       },
       "gym": {
         "available": false
