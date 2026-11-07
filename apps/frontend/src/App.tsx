@@ -9,6 +9,7 @@ import Home from "@/app/page";
 import Survey from "@/app/survey/page";
 import Rating from "@/app/rating/page";
 import { BuildingProvider } from "@/components/BuildingContext";
+import { FilterProvider } from "@/components/FilterContext";
 import Navbar from "@/components/Navbar";
 import BuildingDetails from "./components/BuildingDetails";
 import ReviewsPage from "./app/reviews/page";
@@ -19,7 +20,9 @@ function AppLayout({ children, showNavbar }: { children: React.ReactNode; showNa
       {showNavbar && <Navbar />}
       <div>
         <BuildingProvider>
-          <main className="flex-1 overflow-hidden pb-20 md:pb-0">{children}</main>
+          <FilterProvider>
+            <main className="flex-1 overflow-hidden pb-20 md:pb-0">{children}</main>
+          </FilterProvider>
         </BuildingProvider>
       </div>
     </div>
