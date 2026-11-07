@@ -23,6 +23,7 @@ export default function ReviewsPage() {
                     key={b.id}
                     building={b}
                     className="w-full aspect-[3/4] md:aspect-[419.79/286.33]"
+                    to={`/rating?building=${b.id}`}
                   />
                 ))}
               </div>
