@@ -1,6 +1,7 @@
 import { staticPlugin } from "@elysia/static";
 import { fromTypes, openapi } from "@elysiajs/openapi";
 import { elysiaLogger } from "@logtape/elysia";
+import * as client from "@panva/openid-client";
 import { Elysia, t } from "elysia";
 import { sessionAuth } from "./auth/middleware.ts";
 import {
@@ -13,7 +14,9 @@ import {
 import {
   createSession,
   deleteSession,
+  OAUTH_PKCE_COOKIE_NAME,
   OAUTH_STATE_COOKIE_NAME,
+  oauthPkceCookieOptions,
   oauthStateCookieOptions,
   SESSION_COOKIE_NAME,
   sessionCookieOptions,
@@ -74,30 +77,50 @@ const api = new Elysia({ prefix: "/api" })
   .use(preferencesRoute)
   .use(meRoute)
   .use(sessionAuth)
-  .get("/auth/login", ({ cookie, redirect }) => {
+  .get("/auth/login", async ({ cookie, redirect }) => {
     if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
 
     const callbackUrl = `${appUrl}/api/auth/callback`;
     const state = createRelayState(callbackUrl);
+    const pkceCodeVerifier = client.randomPKCECodeVerifier();
+    const codeChallenge = await client.calculatePKCECodeChallenge(pkceCodeVerifier);
     cookie[OAUTH_STATE_COOKIE_NAME].set({
       value: state,
       ...oauthStateCookieOptions,
     });
+    cookie[OAUTH_PKCE_COOKIE_NAME].set({
+      value: pkceCodeVerifier,
+      ...oauthPkceCookieOptions,
+    });
 
-    return redirect(buildLoginUrl(oidcConfig, oidcSettings, state).href);
+    return redirect(buildLoginUrl(oidcConfig, oidcSettings, state, codeChallenge).href);
   })
   .get("/auth/callback", async ({ cookie, redirect, request }) => {
     if (!oidcConfig) return toHome(redirect);
 
     const expectedState = cookie[OAUTH_STATE_COOKIE_NAME].value;
+    const pkceCodeVerifier = cookie[OAUTH_PKCE_COOKIE_NAME].value;
     cookie[OAUTH_STATE_COOKIE_NAME].remove();
-    if (typeof expectedState !== "string" || expectedState === "") {
-      logger.warn("OIDC callback hit without a matching oauth_state cookie (expired or CSRF)");
+    cookie[OAUTH_PKCE_COOKIE_NAME].remove();
+    if (
+      typeof expectedState !== "string" ||
+      expectedState === "" ||
+      typeof pkceCodeVerifier !== "string" ||
+      pkceCodeVerifier === ""
+    ) {
+      logger.warn(
+        "OIDC callback hit without matching oauth_state and PKCE cookies (expired or CSRF)",
+      );
       return toHome(redirect);
     }
 
     try {
-      const claims = await exchangeCodeForClaims(oidcConfig, request, expectedState);
+      const claims = await exchangeCodeForClaims(
+        oidcConfig,
+        request,
+        expectedState,
+        pkceCodeVerifier,
+      );
       if (!claims) {
         logger.error("OIDC callback: no ID token claims in the token response");
         return toHome(redirect);

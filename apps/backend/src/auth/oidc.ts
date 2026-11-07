@@ -59,11 +59,14 @@ export function buildLoginUrl(
   config: client.Configuration,
   settings: OidcSettings,
   state: string,
+  codeChallenge: string,
 ): URL {
   return client.buildAuthorizationUrl(config, {
     redirect_uri: settings.oauthRelayUrl,
     scope: "openid email profile",
     state,
+    code_challenge: codeChallenge,
+    code_challenge_method: "S256",
   });
 }
 
@@ -71,7 +74,11 @@ export async function exchangeCodeForClaims(
   config: client.Configuration,
   currentUrl: URL | Request,
   expectedState: string,
+  pkceCodeVerifier: string,
 ) {
-  const tokens = await client.authorizationCodeGrant(config, currentUrl, { expectedState });
+  const tokens = await client.authorizationCodeGrant(config, currentUrl, {
+    expectedState,
+    pkceCodeVerifier,
+  });
   return tokens.claims();
 }

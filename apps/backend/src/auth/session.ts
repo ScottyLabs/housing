@@ -7,6 +7,7 @@ export const SESSION_COOKIE_NAME = "session_id";
 const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
 
 export const OAUTH_STATE_COOKIE_NAME = "oauth_state";
+export const OAUTH_PKCE_COOKIE_NAME = "oauth_pkce_verifier";
 const OAUTH_STATE_DURATION_S = 10 * 60;
 
 const isProd = (Deno.env.get("APP_URL") ?? "").startsWith("https://");
@@ -24,6 +25,11 @@ export const sessionCookieOptions: CookieOptions = {
 };
 
 export const oauthStateCookieOptions: CookieOptions = {
+  ...baseCookieOptions,
+  maxAge: OAUTH_STATE_DURATION_S,
+};
+
+export const oauthPkceCookieOptions: CookieOptions = {
   ...baseCookieOptions,
   maxAge: OAUTH_STATE_DURATION_S,
 };
