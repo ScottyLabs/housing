@@ -1,17 +1,9 @@
-# Nix / devenv
-.devenv/
+# Nix
 .pre-commit-config.yaml
-
-# AI
-.mcp.json
-.claude
 
 # Deno
 node_modules
 /*/dist
-
-# Secrets
-.env
 
 # OS
 .DS_Store

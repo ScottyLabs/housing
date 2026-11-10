@@ -4,50 +4,25 @@ For ScottyLabs Org Member setup instructions, see [CONTRIBUTING.md](CONTRIBUTING
 
 ## Prerequisites
 
-- [devenv](https://devenv.sh)
-- [direnv](https://direnv.net/)
+Install Lix and log in to OpenBao by following kennel's [local development](https://docs.kennel.scottylabs.org/guides/local-development/#installing-nix) and [secrets](https://docs.kennel.scottylabs.org/guides/secrets/#local-development) guides.
 
 ## Initial Setup
 
 ```sh
 cd housing
-direnv allow
+nix develop
 ```
 
 ## Running the app
 
-```sh
-# From the repo root
-devenv up
-```
+Start PostgreSQL, the Ricochet login relay, the backend on port 3001, and the frontend from the repo root:
 
 ```sh
-cd apps/frontend
-
-deno task dev
-```
-
-```sh
-cd apps/backend
-
-PORT=3001 deno task dev
+pitchfork start --local
 ```
 
 The backend is proxied through the Vite development server and can be accessed at http://localhost:3000 during development. The backend should not be accessed directly, as all paths prefixed with `/api` will be routed to the backend.
 
 ## Deployment
 
-Production runs on Kennel via devenv and secretspec. Pushes to Codeberg `main` trigger deploys.
-
-URLs:
-
-- https://housing-frontend-main.scottylabs.net (default Kennel URL)
-- https://cmuhousing.scottylabs.org (custom domain, managed by Kennel)
-- https://cmuhousing.com, point DNS at deploy-01 after verifying the Kennel deploy
-
-Validate locally before pushing:
-
-```sh
-SECRETSPEC_PROVIDER=dotenv://.env devenv build scottylabs.kennel.config
-nix build
-```
+[Kennel](https://docs.kennel.scottylabs.org/guides/deploying/) deploys the `backend` service in `flake.nix`, which also serves the built frontend, at <https://cmuhousing.com>.

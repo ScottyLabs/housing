@@ -137,7 +137,7 @@ erDiagram
 Backing type for `roommate_profile.status`.
 
 | Value | Meaning |
-| --- | --- |
+| -- | -- |
 | `searching` | User is actively looking for a roommate. |
 | `committed` | User has locked in a roommate/room situation. |
 | `inactive` | User is not currently participating in roommate matching. |
@@ -149,7 +149,7 @@ Backing type for `roommate_profile.status`.
 Core account record. Every other table hangs off of `user.id`.
 
 | Column | DB type | Nullable | Notes |
-| --- | --- | --- | --- |
+| -- | -- | -- | -- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
 | `andrew_id` | `text` | Yes | CMU AndrewID for the account. |
 | `created_time` | `timestamp` | Yes | When the account was created. |
@@ -161,7 +161,7 @@ Core account record. Every other table hangs off of `user.id`.
 One-to-one extension of `user` holding lifestyle/roommate-matching preferences.
 
 | Column | DB type | Nullable | Notes |
-| --- | --- | --- | --- |
+| -- | -- | -- | -- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
 | `user_id` | `integer` | No (FK -> `user.id`) | Owning user. |
 | `accommodations` | `text[]` | Yes | List of accessibility/accommodation needs. |
@@ -182,7 +182,7 @@ One-to-one extension of `user` holding lifestyle/roommate-matching preferences.
 One-to-one extension of `user` holding the public-facing roommate-matching profile.
 
 | Column | DB type | Nullable | Notes |
-| --- | --- | --- | --- |
+| -- | -- | -- | -- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
 | `user_id` | `integer` | No (FK -> `user.id`) | Owning user. |
 | `alcohol` | `boolean` | Yes | Whether the user drinks alcohol. |
@@ -214,7 +214,7 @@ One-to-one extension of `user` holding the public-facing roommate-matching profi
 Reference data for CMU residence halls, shared across all users (not tied to a `user_id`).
 
 | Column | DB type | Nullable | Notes |
-| --- | --- | --- | --- |
+| -- | -- | -- | -- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
 | `ac_details` | `text` | Yes | Description of air conditioning setup. |
 | `bathroom_details` | `text` | Yes | Description of bathroom facilities. |
@@ -237,7 +237,7 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 
 | Column | DB type | Nullable | Notes |
-| --- | --- | --- | --- |
+| -- | -- | -- | -- |
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
 | `dorm_id` | `integer` | No (FK -> `dorm.id`) | Dorm being reviewed. |
 | `user_id` | `integer` | No (FK -> `user.id`) | Author of the review. |

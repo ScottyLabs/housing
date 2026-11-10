@@ -8,13 +8,8 @@ import { createInsertSchema, createSelectSchema, BuildSchema } from "drizzle-typ
 
 import type { Table } from "drizzle-orm";
 
-// Elysia's TSchema comes from the CJS build of @sinclair/typebox, while
-// drizzle-typebox's schemas come from the ESM build. Under Deno these are two
-// separate declarations (each declares `Kind` as its own `unique symbol`), so
-// the recipe's ESM-flavored field types are nominally incompatible with
-// Elysia's `t.Object`. At runtime both builds key off `Symbol.for('TypeBox.Kind')`
-// and are identical, so we re-flavor the field types to Elysia's TSchema while
-// preserving each field's `static` for `body` inference.
+// Elysia's TSchema comes from the CJS build of @sinclair/typebox, while drizzle-typebox's schemas come from the ESM build. Under Deno these are two separate declarations (each declares `Kind` as its own `unique symbol`), so the recipe's ESM-flavored field types are nominally incompatible with
+// Elysia's `t.Object`. At runtime both builds key off `Symbol.for('TypeBox.Kind')` and are identical, so we re-flavor the field types to Elysia's TSchema while preserving each field's `static` for `body` inference.
 import type { TSchema as ElysiaTSchema } from "elysia";
 
 type Reflavor<Props> = {

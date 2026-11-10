@@ -6,6 +6,7 @@ import { sessionAuth } from "./auth/middleware.ts";
 import {
   buildLoginUrl,
   buildOidcConfig,
+  createPkce,
   createRelayState,
   exchangeCodeForClaims,
   loadOidcSettings,
@@ -13,6 +14,7 @@ import {
 import {
   createSession,
   deleteSession,
+  OAUTH_PKCE_COOKIE_NAME,
   OAUTH_STATE_COOKIE_NAME,
   oauthStateCookieOptions,
   SESSION_COOKIE_NAME,
@@ -74,7 +76,7 @@ const api = new Elysia({ prefix: "/api" })
   .use(preferencesRoute)
   .use(meRoute)
   .use(sessionAuth)
-  .get("/auth/login", ({ cookie, redirect }) => {
+  .get("/auth/login", async ({ cookie, redirect }) => {
     if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
 
     const callbackUrl = `${appUrl}/api/auth/callback`;
@@ -84,20 +86,32 @@ const api = new Elysia({ prefix: "/api" })
       ...oauthStateCookieOptions,
     });
 
-    return redirect(buildLoginUrl(oidcConfig, oidcSettings, state).href);
+    const { codeChallenge, codeVerifier } = await createPkce();
+    cookie[OAUTH_PKCE_COOKIE_NAME].set({
+      value: codeVerifier,
+      ...oauthStateCookieOptions,
+    });
+
+    return redirect(buildLoginUrl(oidcConfig, oidcSettings, state, codeChallenge).href);
   })
   .get("/auth/callback", async ({ cookie, redirect, request }) => {
     if (!oidcConfig) return toHome(redirect);
 
     const expectedState = cookie[OAUTH_STATE_COOKIE_NAME].value;
+    const codeVerifier = cookie[OAUTH_PKCE_COOKIE_NAME].value;
     cookie[OAUTH_STATE_COOKIE_NAME].remove();
+    cookie[OAUTH_PKCE_COOKIE_NAME].remove();
     if (typeof expectedState !== "string" || expectedState === "") {
       logger.warn("OIDC callback hit without a matching oauth_state cookie (expired or CSRF)");
       return toHome(redirect);
     }
+    if (typeof codeVerifier !== "string" || codeVerifier === "") {
+      logger.warn("OIDC callback hit without a PKCE verifier cookie (expired or CSRF)");
+      return toHome(redirect);
+    }
 
     try {
-      const claims = await exchangeCodeForClaims(oidcConfig, request, expectedState);
+      const claims = await exchangeCodeForClaims(oidcConfig, request, expectedState, codeVerifier);
       if (!claims) {
         logger.error("OIDC callback: no ID token claims in the token response");
         return toHome(redirect);

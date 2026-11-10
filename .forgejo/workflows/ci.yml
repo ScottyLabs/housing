@@ -6,18 +6,16 @@ on:
   pull_request:
 
 jobs:
-  check:
-    uses: ScottyLabs/kennel/.forgejo/workflows/ci.yml@main
-    enable-openid-connect: true
+  checks:
+    uses: ScottyLabs/kennel/.forgejo/workflows/checks.yml@main
 
   check-openapi:
     runs-on: native
-    enable-openid-connect: true
-    env:
-      SECRETSPEC_PROFILE: ci
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v7
-      - uses: https://git.cmu.dev/ScottyLabs/kennel/.forgejo/actions/prepare@main
+
       - name: Check openapi.json freshness
         run: |
-          devenv shell -- sh -c 'cd apps/backend && deno task openapi && treefmt ../frontend/src/api/openapi.json 2>/dev/null || true && git diff --exit-code ../frontend/src/api/openapi.json || (echo "::error::openapi.json is out of date" && exit 1)'
+          nix develop --command sh -c 'cd apps/backend && deno task openapi'
+          nix fmt apps/frontend/src/api/openapi.json
+          git diff --exit-code apps/frontend/src/api/openapi.json || (echo "::error::openapi.json is out of date" && exit 1)

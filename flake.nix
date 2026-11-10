@@ -9,58 +9,69 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    scottylabs = {
-      url = "git+https://git.cmu.dev/ScottyLabs/kennel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    scottylabs.url = "git+https://git.cmu.dev/ScottyLabs/kennel";
+    nixpkgs.follows = "scottylabs/nixpkgs";
+    flake-parts.follows = "scottylabs/flake-parts";
   };
 
   outputs =
-    {
-      nixpkgs,
-      scottylabs,
-      ...
-    }:
-    let
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ inputs.scottylabs.flakeModules.default ];
       systems = [
         "x86_64-linux"
         "aarch64-linux"
+        "aarch64-darwin"
       ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-    {
-      packages = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          helpers = scottylabs.mkLib pkgs;
 
+      perSystem =
+        { helpers, ... }:
+        let
           frontend = helpers.buildDenoTask {
             src = ./.;
             cwd = "apps/frontend";
             pname = "housing-frontend";
             version = "0.1.0";
           };
+        in
+        {
+          scottylabs = {
+            project.name = "cmu-housing";
 
-          backend =
-            (helpers.buildDenoTask {
+            deno = {
+              enable = true;
+              react.enable = true;
+            };
+            postgres.enable = true;
+
+            ricochet = {
+              enable = true;
+              appUrl = "http://localhost:3000";
+            };
+
+            processes = {
+              backend = {
+                run = "cd apps/backend && PORT=3001 exec secretspec run -P dev -- deno task dev";
+                depends = [ "postgres-setup" ];
+              };
+              frontend.run = "cd apps/frontend && deno task dev";
+            };
+          };
+
+          # TODO: ignorePatterns currently filters out every staged file
+          pre-commit.settings.hooks.oxlint.args = [ "--no-error-on-unmatched-pattern" ];
+
+          services.backend = {
+            package = helpers.buildDenoTask {
               src = ./.;
               cwd = "apps/backend";
               pname = "housing-backend";
               entrypoint = "src/index.ts";
               compile = true;
-            }).overrideAttrs
-              (old: {
-                nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
-                postInstall = ''
-                  wrapProgram $out/bin/housing-backend --set STATIC_DIR ${frontend}
-                '';
-              });
-        in
-        {
-          inherit frontend backend;
-        }
-      );
+            };
+            customDomain = "cmuhousing.com";
+            env.STATIC_DIR = "${frontend}";
+          };
+        };
     };
 }

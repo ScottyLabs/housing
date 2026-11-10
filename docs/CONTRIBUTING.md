@@ -4,7 +4,7 @@ Thank you for your interest in contributing to CMU Housing! This guide will help
 
 ## Setup
 
-Developers should add themselves to the `cmu-housing` team in [governance](https://git.cmu.dev/ScottyLabs/governance) following the instructions in its README or [these housing specific instructions](adding-yourself-to-governance.md) (they lead you to the same result). This gives you access to secrets and permission to create branches on the repo.
+Developers should [join the `cmu-housing` team through governance](https://git.cmu.dev/ScottyLabs/governance#joining-a-team). This gives you access to secrets and permission to create branches on the repo.
 
 ## How to Contribute
 
@@ -22,7 +22,7 @@ Developers should add themselves to the `cmu-housing` team in [governance](https
 
 1. **Make your changes** following the code style and conventions
 
-1. **Test your changes** locally by running the project. See [README.md](README.md) for more instructions on running the project.
+1. **Test your changes** locally by running the project. See [SETUP.md](SETUP.md) for instructions on running the project.
 
 1. **Commit using conventional commits** (see below)
 
@@ -42,11 +42,11 @@ Developers should add themselves to the `cmu-housing` team in [governance](https
    git push
    ```
 
-1. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting the repo's homepage on [Codeberg](https://git.cmu.dev/ScottyLabs/housing).
+1. **Open a Pull Request** with a clear description of your changes. You can do this by going to the link provided in the push terminal response or by visiting the repo's homepage on [git.cmu.dev](https://git.cmu.dev/ScottyLabs/housing).
 
 ## Conventional Commits
 
-This project follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+This project follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), which kennel's [git hooks](https://docs.kennel.scottylabs.org/guides/local-development/#git-hooks) check on every commit.
 
 **Examples:**
 
@@ -55,7 +55,7 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 - `docs: update README installation steps`
 - `refactor: simplify embed pagination logic`
 - `chore: update dependencies to latest versions`
-- `style: format code with biome`
+- `style: format code with oxfmt`
 
 ## Code Editor Setup
 
@@ -75,34 +75,13 @@ You will also need git installed.
 
 ## Local Development
 
-Prerequisites: [devenv](https://devenv.sh).
-
-Start the shared infrastructure (postgres, ricochet):
-
-```sh
-devenv up
-```
-
-Frontend, in a separate terminal:
-
-```sh
-cd apps/frontend
-deno task dev
-```
-
-Backend, in a separate terminal inside the devenv shell:
-
-```sh
-cd apps/backend
-devenv shell
-PORT=3001 deno task dev
-```
+See [SETUP.md](SETUP.md) to install Lix, enter the dev shell, and run the app.
 
 ## Before Submitting
 
 Before you commit and open a pull request, make sure to:
 
-- Test locally with your changes (`devenv up` and then `deno task dev` in `apps/frontend`)
+- Test locally with your changes (`pitchfork start --local`)
 - Update documentation if you added/changed features
 
 ## Pull Request Guidelines
@@ -116,10 +95,10 @@ Before you commit and open a pull request, make sure to:
 
 To understand current priorities, roadmap, and ongoing work:
 
-- Visit the [CMU Housing Development project](https://git.cmu.dev/ScottyLabs/housing/projects/55337)
+- Visit the [CMU Housing Development project](https://git.cmu.dev/ScottyLabs/housing/projects/3)
   - Pick an issue from the board and assign it to yourself.
   - Use Priority and Size labels to choose based on what you can handle in a timely fashion.
-- If you cannot access the board, ask a maintainer to add you to the ScottyLabs organization.
+- If you cannot access the board, [join the `cmu-housing` team through governance](https://git.cmu.dev/ScottyLabs/governance#joining-a-team).
 
 ## Need Help?
 
@@ -134,7 +113,7 @@ Project Resources
 - [Figma](https://www.figma.com/design/jxjhX4m6xj4PSZOizoaXHd/CMU-Housing)
 - [React Docs](https://react.dev/reference/react)
 - [CBP Docs and Meeting Minutes](https://docs.google.com/document/d/1-P8JLaKZ7PBhJOtMzQoG8pInUbNH-Cfx1wHNx3zs_as/edit)
-- [ScottyLabs Tech Docs](https://docs.scottylabs.org/)
+- [Kennel Docs](https://docs.kennel.scottylabs.org/)
 - [Google Maps API Docs](https://developers.google.com/maps/documentation/javascript/overview)
 
 Points of Contact
@@ -144,5 +123,3 @@ Points of Contact
 - **Outreach/ResEd Contact**: John (@gostmeaper)
 - **Senate Contact**: Sanjeev (@blender1778)
 - **DevOps**: Ryan (@thesuperrl)
-
-Remember to follow conventional committing guidelines while contributing!
