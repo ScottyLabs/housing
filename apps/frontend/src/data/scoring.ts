@@ -21,6 +21,10 @@ export const defaultFilters: FilterState = {
   genderHousing: null,
 };
 
+// Best Fit is the top of the ranking, Decent Fit the next few, and Wild Card everything after.
+const BEST_FIT_COUNT = 3;
+const DECENT_FIT_COUNT = 6;
+
 export interface BuildingGroups {
   bestFit: Building[];
   decentFit: Building[];
@@ -116,8 +120,8 @@ export function groupBuildings(buildings: Building[], filters: FilterState): Bui
   const ranked = rankBuildings(buildings, filters);
 
   return {
-    bestFit: ranked.slice(0, 3),
-    decentFit: ranked.slice(3, 6),
-    wildCard: ranked.slice(6, 9),
+    bestFit: ranked.slice(0, BEST_FIT_COUNT),
+    decentFit: ranked.slice(BEST_FIT_COUNT, BEST_FIT_COUNT + DECENT_FIT_COUNT),
+    wildCard: ranked.slice(BEST_FIT_COUNT + DECENT_FIT_COUNT),
   };
 }

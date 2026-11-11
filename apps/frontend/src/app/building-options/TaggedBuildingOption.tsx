@@ -1,17 +1,15 @@
 import { type Building, useBuildingTagsMap } from "../../components/BuildingContext.tsx";
 import BuildingOption from "../../components/BuildingOption.tsx";
 import { deriveTags } from "../../data/tags.tsx";
+import { cardSize } from "./cardSize.ts";
 
 export default function TaggedBuildingOption({ building }: { building: Building }) {
   const tagMap = useBuildingTagsMap();
   const tagIds = deriveTags(building);
 
   return (
-    <div className="flex flex-col gap-[20px] shrink-0">
-      <BuildingOption
-        building={building}
-        className="w-[240px] h-[320px] md:w-[320px] md:h-[220px]"
-      />
+    <div className="flex flex-col gap-[20px] shrink-0 min-w-0">
+      <BuildingOption building={building} className={cardSize} />
 
       {tagIds.length > 0 && (
         <div className="flex flex-col gap-[18px]">

@@ -194,7 +194,7 @@ export default function BuildingFilter({
   return (
     <div className="pb-6 md:pb-10">
       <div
-        className={`flex flex-col overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-full h-auto md:h-[83vh] ${
+        className={`flex flex-col overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-full h-auto ${
           isOpen ? "md:w-[385px]" : "md:hidden"
         }`}
       >
@@ -203,9 +203,7 @@ export default function BuildingFilter({
           onToggleAction={() => setIsOpen(!isOpen)}
           onToggleMobileAction={() => setMobileOpen(!mobileOpen)}
         />
-        <div
-          className={`${mobileOpen ? "block" : "hidden"} md:block flex-1 overflow-y-auto px-[24px] pb-[24px]`}
-        >
+        <div className={`${mobileOpen ? "block" : "hidden"} md:block px-[24px] pb-[24px]`}>
           <div className="flex flex-col gap-[38px] items-center sm:items-start">
             <DistanceSection filters={filters} onChangeAction={onChangeAction} />
             <AtmosphereSection filters={filters} onChangeAction={onChangeAction} />

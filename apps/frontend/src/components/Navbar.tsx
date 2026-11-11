@@ -8,6 +8,9 @@ export default function Navbar() {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
+  // Stays highlighted on the "See More" pages, which are part of the building options.
+  const onBuildingOptions =
+    pathname === "/building-options" || pathname.startsWith("/building-options/");
 
   return (
     <>
@@ -38,7 +41,7 @@ export default function Navbar() {
               href="/building-options"
               name="Buildings"
               icon="/all-buildings.svg"
-              isActive={pathname === "/building-options"}
+              isActive={onBuildingOptions}
             />
             <NavbarSpacer
               left_nbr_path="/building-options"
@@ -93,7 +96,7 @@ export default function Navbar() {
           href="/building-options"
           name="Buildings"
           icon="/all-buildings.svg"
-          isActive={pathname === "/building-options"}
+          isActive={onBuildingOptions}
         />
         <NavButton
           href="/building-comparison"
