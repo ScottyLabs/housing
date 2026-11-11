@@ -58,9 +58,6 @@
             };
           };
 
-          # TODO: ignorePatterns currently filters out every staged file
-          pre-commit.settings.hooks.oxlint.args = [ "--no-error-on-unmatched-pattern" ];
-
           services.backend = {
             package = helpers.buildDenoTask {
               src = ./.;
