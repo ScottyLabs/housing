@@ -145,3 +145,30 @@ export interface Tag {
   label: string;
   icon: string;
 }
+
+const acLevelLabel: Record<ACLevel, string> = {
+  [ACLevel.None]: "None",
+  [ACLevel.ByNecessity]: "By necessity",
+  [ACLevel.Window]: "Window units",
+  [ACLevel.Central]: "Central",
+};
+
+const kitchenScopeLabel: Record<KitchenScope, string> = {
+  [KitchenScope.None]: "None",
+  [KitchenScope.Shared]: "Shared",
+  [KitchenScope.InUnit]: "In unit",
+};
+
+function detailsOrLabel(details: string | undefined, label: string): string {
+  return details === undefined || details.trim() === "" ? label : details;
+}
+
+/** The AC details, or the AC level when no details are written. */
+export function acText(ac: AirConditioning): string {
+  return detailsOrLabel(ac.details, acLevelLabel[ac.level]);
+}
+
+/** The kitchen details, or the kitchen scope when no details are written. */
+export function kitchenText(kitchen: Kitchen): string {
+  return detailsOrLabel(kitchen.details, kitchenScopeLabel[kitchen.scope]);
+}

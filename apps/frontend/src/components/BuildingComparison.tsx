@@ -1,6 +1,6 @@
 import { Building, useBuildings } from "./BuildingContext";
 import DropdownButton, { SelectOption } from "@/components/DropdownButton";
-import { ACLevel, BathroomType, RoomType } from "@/data/buildingTypes";
+import { ACLevel, BathroomType, RoomType, acText, kitchenText } from "@/data/buildingTypes";
 
 const bathroomTypeLabel: Record<BathroomType, string> = {
   [BathroomType.Communal]: "Communal",
@@ -193,7 +193,7 @@ export default function BuildingColumn({
             height={36}
             className="w-9 h-9"
           />
-          <div className="text-[16px] pb-1">{building.amenities.kitchen.details}</div>
+          <div className="text-[16px] pb-1">{kitchenText(building.amenities.kitchen)}</div>
         </div>
       </div>
 
@@ -239,7 +239,7 @@ export default function BuildingColumn({
               className="w-9 h-9"
             />
           )}
-          <div className="text-[16px] pt-1 pb-1">{building.amenities.ac.details}</div>
+          <div className="text-[16px] pt-1 pb-1">{acText(building.amenities.ac)}</div>
         </div>
       </div>
     </>

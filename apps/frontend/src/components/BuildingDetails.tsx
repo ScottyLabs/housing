@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { type Building, useBuildingById, useBuildings } from "@/components/BuildingContext";
-import { ACLevel, BathroomType, RoomType } from "@/data/buildingTypes";
+import { ACLevel, BathroomType, RoomType, acText, kitchenText } from "@/data/buildingTypes";
 
 const bathroomTypeLabel: Record<BathroomType, string> = {
   [BathroomType.Communal]: "Communal",
@@ -299,7 +299,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               />
             )}
 
-            <div className=" text-[16px] pt-1 pb-1">{building.amenities.ac.details}</div>
+            <div className=" text-[16px] pt-1 pb-1">{acText(building.amenities.ac)}</div>
           </div>
         </div>
 
@@ -314,7 +314,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               className="w-9 h-9"
             />
 
-            <div className="text-[16px] pb-1">{building.amenities.kitchen.details}</div>
+            <div className="text-[16px] pb-1">{kitchenText(building.amenities.kitchen)}</div>
           </div>
         </div>
         <div className="flex-1 text-[16px] pt-2.5 pb-2.5 px-4 rounded-2xl bg-brand-menugray border border-black/10">
