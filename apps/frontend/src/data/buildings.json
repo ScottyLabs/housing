@@ -67,21 +67,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [0, 1],
+      "roomTypes": ["trad_single", "trad_double"],
       "bathrooms": {
-        "types": [0],
+        "types": ["communal"],
         "details": "bathrooms shared per floor (single sex)"
       },
       "ac": {
-        "level": 1,
+        "level": "by_necessity",
         "details": "AC by neccesity only with accomodations"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "only a small kitchen"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -91,7 +91,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -169,21 +169,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [1],
+      "roomTypes": ["trad_double"],
       "bathrooms": {
-        "types": [0],
+        "types": ["communal"],
         "details": "bathrooms per wing"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Kitchen and dining room"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -193,7 +193,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -272,21 +272,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4],
+      "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": [1],
+        "types": ["shared_suite"],
         "details": "bathrooms shared with a suite"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Yes, needs more info"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -296,7 +296,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -375,21 +375,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [9],
+      "roomTypes": ["studio_apartment_double"],
       "bathrooms": {
-        "types": [2],
+        "types": ["private"],
         "details": "bathrooms are private"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 2,
+        "scope": "in_unit",
         "details": "Each studio has its own kitchenette, fridge, and bathroom, and there is communal kitchen"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "near lower level, per floor plan"
       },
       "commonAreas": {
@@ -399,7 +399,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -496,21 +496,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [0, 1, 2],
+      "roomTypes": ["trad_single", "trad_double", "trad_triple"],
       "bathrooms": {
-        "types": [0],
+        "types": ["communal"],
         "details": "bathrooms shared on floor"
       },
       "ac": {
-        "level": 1,
+        "level": "by_necessity",
         "details": "No, AC by necessity/triple or if you're lucky you'll get a room w/ AC"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Public kitchen and dining area"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -520,7 +520,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -615,21 +615,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4],
+      "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": [1],
+        "types": ["shared_suite"],
         "details": "CHONKR bathrooms (or so I've heard)"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "kitchen?"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -639,7 +639,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -730,21 +730,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4],
+      "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": [1],
+        "types": ["shared_suite"],
         "details": "bathroom shared with a suite"
       },
       "ac": {
-        "level": 2,
+        "level": "window",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Yes, needs more info"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -754,7 +754,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -858,21 +858,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4, 5],
+      "roomTypes": ["semi_suite_single", "semi_suite_double", "semi_suite_triple"],
       "bathrooms": {
-        "types": [1],
+        "types": ["shared_suite"],
         "details": "bathroom shared with a suite"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "small shared kitchens every other floor"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -882,7 +882,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -1043,21 +1043,28 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4, 6, 0, 1, 2],
+      "roomTypes": [
+        "semi_suite_single",
+        "semi_suite_double",
+        "semi_suite_quad",
+        "trad_single",
+        "trad_double",
+        "trad_triple"
+      ],
       "bathrooms": {
-        "types": [0, 1],
+        "types": ["communal", "shared_suite"],
         "details": "traditional dorms have Communal bathrooms and semi-suite will share with another suite"
       },
       "ac": {
-        "level": 0,
+        "level": "none",
         "details": "AC not available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "3 kitchens"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -1067,7 +1074,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -1164,21 +1171,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [7, 9],
+      "roomTypes": ["apartment_triple", "studio_apartment_double"],
       "bathrooms": {
-        "types": [2],
+        "types": ["private"],
         "details": "bathrooms are private"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "unknown"
       },
       "kitchen": {
-        "scope": 2,
+        "scope": "in_unit",
         "details": "kitchenette"
       },
       "laundry": {
-        "location": 2,
+        "location": "each_floor",
         "details": "documented on the 4th floor; may not be every floor"
       },
       "commonAreas": {
@@ -1189,7 +1196,7 @@
         "available": true,
         "details": "Fitness Room"
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -1272,21 +1279,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [0, 1],
+      "roomTypes": ["trad_single", "trad_double"],
       "bathrooms": {
-        "types": [0],
+        "types": ["communal"],
         "details": "needs more details"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "idk maybe?"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -1296,7 +1303,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 1
+      "genderHousing": "women_only"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -1378,21 +1385,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4],
+      "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": [1],
+        "types": ["shared_suite"],
         "details": "needs more details"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Kitchen yes"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -1402,7 +1409,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 3
+      "genderHousing": "gender_inclusive"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -1488,21 +1495,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [0, 1],
+      "roomTypes": ["trad_single", "trad_double"],
       "bathrooms": {
-        "types": [0],
+        "types": ["communal"],
         "details": "needs more details"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, should have AC"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Yes, there is a kitchen"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -1512,7 +1519,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -1591,21 +1598,21 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4],
+      "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": [1],
+        "types": ["shared_suite"],
         "details": "bathrooms shared with a suite"
       },
       "ac": {
-        "level": 3,
+        "level": "central",
         "details": "yes, AC is available"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Yes, needs more info"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "not verified in this data pass"
       },
       "commonAreas": {
@@ -1615,7 +1622,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -1681,19 +1688,19 @@
       ]
     },
     "amenities": {
-      "roomTypes": [8, 9],
+      "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": [2],
+        "types": ["private"],
         "details": "bathrooms per unit"
       },
       "ac": {
-        "level": 3
+        "level": "central"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 1,
+        "location": "basement",
         "details": "shared with whole dorm on first floor"
       },
       "commonAreas": {
@@ -1703,7 +1710,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": true,
@@ -1776,19 +1783,19 @@
       "floorPlans": []
     },
     "amenities": {
-      "roomTypes": [8, 9],
+      "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": [1, 2],
+        "types": ["shared_suite", "private"],
         "details": "bathrooms per unit"
       },
       "ac": {
-        "level": 3
+        "level": "central"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 1
+        "location": "basement"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -1797,7 +1804,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": true,
@@ -1858,19 +1865,19 @@
       "floorPlans": []
     },
     "amenities": {
-      "roomTypes": [8, 9],
+      "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": [1, 2],
+        "types": ["shared_suite", "private"],
         "details": "bathrooms per unit"
       },
       "ac": {
-        "level": 3
+        "level": "central"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 2,
+        "location": "each_floor",
         "details": "shared by floor"
       },
       "commonAreas": {
@@ -1880,7 +1887,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": true,
@@ -1953,20 +1960,20 @@
       ]
     },
     "amenities": {
-      "roomTypes": [8, 9],
+      "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": [1, 2],
+        "types": ["shared_suite", "private"],
         "details": "bathrooms per unit"
       },
       "ac": {
-        "level": 2,
+        "level": "window",
         "details": "only in bedrooms"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 0,
+        "location": "none",
         "details": "laundry separate from dorm"
       },
       "commonAreas": {
@@ -1976,7 +1983,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -2081,19 +2088,19 @@
       ]
     },
     "amenities": {
-      "roomTypes": [9],
+      "roomTypes": ["studio_apartment_double"],
       "bathrooms": {
-        "types": [2]
+        "types": ["private"]
       },
       "ac": {
-        "level": 2,
+        "level": "window",
         "details": "only in bedrooms"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 0,
+        "location": "none",
         "details": "laundry room on street"
       },
       "commonAreas": {
@@ -2103,7 +2110,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -2179,19 +2186,19 @@
       ]
     },
     "amenities": {
-      "roomTypes": [8, 9],
+      "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": [2]
+        "types": ["private"]
       },
       "ac": {
-        "level": 2,
+        "level": "window",
         "details": "only in bedrooms"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 0
+        "location": "none"
       },
       "commonAreas": {
         "hasLounge": false
@@ -2199,7 +2206,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -2277,19 +2284,19 @@
       ]
     },
     "amenities": {
-      "roomTypes": [8, 9],
+      "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": [1, 2],
+        "types": ["shared_suite", "private"],
         "details": "bathrooms per house"
       },
       "ac": {
-        "level": 3
+        "level": "central"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 0,
+        "location": "none",
         "details": "laundry room on street"
       },
       "commonAreas": {
@@ -2298,7 +2305,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -2360,20 +2367,20 @@
       ]
     },
     "amenities": {
-      "roomTypes": [8, 9],
+      "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": [1, 2],
+        "types": ["shared_suite", "private"],
         "details": "bathrooms per unit"
       },
       "ac": {
-        "level": 2,
+        "level": "window",
         "details": "only in bedrooms"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 1
+        "location": "basement"
       },
       "commonAreas": {
         "hasLounge": false
@@ -2381,7 +2388,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -2458,18 +2465,18 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4],
+      "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": [1, 2]
+        "types": ["shared_suite", "private"]
       },
       "ac": {
-        "level": 3
+        "level": "central"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 1
+        "location": "basement"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -2478,7 +2485,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": true,
@@ -2549,19 +2556,19 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4, 5],
+      "roomTypes": ["semi_suite_single", "semi_suite_double", "semi_suite_triple"],
       "bathrooms": {
-        "types": [1, 2]
+        "types": ["shared_suite", "private"]
       },
       "ac": {
-        "level": 2,
+        "level": "window",
         "details": "only in bedrooms"
       },
       "kitchen": {
-        "scope": 1
+        "scope": "shared"
       },
       "laundry": {
-        "location": 1
+        "location": "basement"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -2570,7 +2577,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": false,
@@ -2660,18 +2667,18 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4],
+      "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": [1, 2]
+        "types": ["shared_suite", "private"]
       },
       "ac": {
-        "level": 3
+        "level": "central"
       },
       "kitchen": {
-        "scope": 2
+        "scope": "in_unit"
       },
       "laundry": {
-        "location": 1
+        "location": "basement"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -2680,7 +2687,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": true,
@@ -2764,19 +2771,24 @@
       ]
     },
     "amenities": {
-      "roomTypes": [3, 4, 8, 9],
+      "roomTypes": [
+        "semi_suite_single",
+        "semi_suite_double",
+        "studio_apartment_single",
+        "studio_apartment_double"
+      ],
       "bathrooms": {
         "types": []
       },
       "ac": {
-        "level": 3
+        "level": "central"
       },
       "kitchen": {
-        "scope": 1,
+        "scope": "shared",
         "details": "Large Kitchen on first floor and kitchens on each floor"
       },
       "laundry": {
-        "location": 1
+        "location": "basement"
       },
       "commonAreas": {
         "hasLounge": true,
@@ -2785,7 +2797,7 @@
       "gym": {
         "available": false
       },
-      "genderHousing": 0
+      "genderHousing": "co_ed"
     },
     "accessibility": {
       "wheelchairAccessible": true,

@@ -1,47 +1,47 @@
 export enum RoomType {
-  TradSingle,
-  TradDouble,
-  TradTriple,
-  SemiSuiteSingle,
-  SemiSuiteDouble,
-  SemiSuiteTriple,
-  SemiSuiteQuad,
-  ApartmentTriple,
-  StudioApartmentSingle,
-  StudioApartmentDouble,
+  TradSingle = "trad_single",
+  TradDouble = "trad_double",
+  TradTriple = "trad_triple",
+  SemiSuiteSingle = "semi_suite_single",
+  SemiSuiteDouble = "semi_suite_double",
+  SemiSuiteTriple = "semi_suite_triple",
+  SemiSuiteQuad = "semi_suite_quad",
+  ApartmentTriple = "apartment_triple",
+  StudioApartmentSingle = "studio_apartment_single",
+  StudioApartmentDouble = "studio_apartment_double",
 }
 
 export enum BathroomType {
-  Communal,
-  SharedSuite,
-  Private,
+  Communal = "communal",
+  SharedSuite = "shared_suite",
+  Private = "private",
 }
 
 export enum ACLevel {
-  None,
-  ByNecessity,
-  Window,
-  Central,
+  None = "none",
+  ByNecessity = "by_necessity",
+  Window = "window",
+  Central = "central",
 }
 
 export enum LaundryLocation {
-  None,
-  Basement,
-  EachFloor,
-  InUnit,
+  None = "none",
+  Basement = "basement",
+  EachFloor = "each_floor",
+  InUnit = "in_unit",
 }
 
 export enum KitchenScope {
-  None,
-  Shared,
-  InUnit,
+  None = "none",
+  Shared = "shared",
+  InUnit = "in_unit",
 }
 
 export enum GenderHousing {
-  CoEd,
-  WomenOnly,
-  MenOnly,
-  GenderInclusive,
+  CoEd = "co_ed",
+  WomenOnly = "women_only",
+  MenOnly = "men_only",
+  GenderInclusive = "gender_inclusive",
 }
 
 export interface Bathrooms {

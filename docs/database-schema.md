@@ -62,20 +62,36 @@ erDiagram
     }
     dorm {
         int id PK
+        string slug UK
         string name
         string image_url
         string_array close_buildings
-        boolean has_ac
-        string ac_details
-        string kitchen_description
-        string lounge_description
-        string bathroom_type
-        string bathroom_details
-        string_array room_types
-        string_array tags
-        json photo_gallery
         numeric latitude
         numeric longitude
+        string location_note
+        enum_array room_types
+        enum_array bathroom_types
+        string bathroom_details
+        enum ac_level
+        string ac_details
+        enum kitchen_scope
+        string kitchen_description
+        enum laundry_location
+        string laundry_details
+        boolean has_lounge
+        string lounge_description
+        boolean gym_available
+        string gym_details
+        enum gender_housing
+        boolean wheelchair_accessible
+        boolean service_animal_friendly
+        boolean ground_floor_rooms
+        boolean strobe_alarm
+        int socialness
+        int noise_level
+        string_array tags
+        json photo_gallery
+        json floor_plans
         timestamp updated_at
     }
     review {
@@ -141,6 +157,19 @@ Backing type for `roommate_profile.status`.
 | `searching` | User is actively looking for a roommate. |
 | `committed` | User has locked in a roommate/room situation. |
 | `inactive` | User is not currently participating in roommate matching. |
+
+### Building enums
+
+Backing types for the `dorm` columns below. Each one mirrors the string enum of the same name in `apps/frontend/src/data/buildingTypes.ts`, and the values must stay identical in both places (`deno task db:seed` rejects any building whose value is not in the Postgres enum). What each value means is documented in [data-codebook.md](data-codebook.md#enums).
+
+| Postgres enum | Used by | Values |
+| -- | -- | -- |
+| `room_type` | `dorm.room_types` (array) | `trad_single`, `trad_double`, `trad_triple`, `semi_suite_single`, `semi_suite_double`, `semi_suite_triple`, `semi_suite_quad`, `apartment_triple`, `studio_apartment_single`, `studio_apartment_double` |
+| `bathroom_type` | `dorm.bathroom_types` (array) | `communal`, `shared_suite`, `private` |
+| `ac_level` | `dorm.ac_level` | `none`, `by_necessity`, `window`, `central` |
+| `laundry_location` | `dorm.laundry_location` | `none`, `basement`, `each_floor`, `in_unit` |
+| `kitchen_scope` | `dorm.kitchen_scope` | `none`, `shared`, `in_unit` |
+| `gender_housing` | `dorm.gender_housing` | `co_ed`, `women_only`, `men_only`, `gender_inclusive` |
 
 ## Tables
 
@@ -211,26 +240,42 @@ One-to-one extension of `user` holding the public-facing roommate-matching profi
 
 ### `dorm`
 
-Reference data for CMU residence halls, shared across all users (not tied to a `user_id`).
+Reference data for CMU residence halls, shared across all users (not tied to a `user_id`). One row per entry in `apps/frontend/src/data/buildings.json`, loaded by `deno task db:seed` (see [Seeding dorm data](#seeding-dorm-data)).
 
 | Column | DB type | Nullable | Notes |
 | -- | -- | -- | -- |
-| `id` | `serial` | No (PK) | Auto-incrementing primary key. |
+| `id` | `serial` | No (PK) | Auto-incrementing primary key. Other tables reference this. |
+| `slug` | `text` | No (unique) | Stable URL-safe identifier, the `id` string from `buildings.json` (e.g. `etower`). Frontend URLs depend on it. |
 | `ac_details` | `text` | Yes | Description of air conditioning setup. |
+| `ac_level` | `ac_level` | No | Level of air conditioning. |
 | `bathroom_details` | `text` | Yes | Description of bathroom facilities. |
-| `bathroom_type` | `text` | Yes | Category of bathroom (e.g. shared, private, communal). |
-| `close_buildings` | `text[]` | Yes | Nearby buildings of interest. |
-| `has_ac` | `boolean` | Yes | Whether the dorm has air conditioning. |
+| `bathroom_types` | `bathroom_type[]` | No | Every bathroom style the building offers. |
+| `close_buildings` | `text[]` | Yes | Slugs of nearby buildings. |
+| `floor_plans` | `json` | No (default `[]`) | Array of `FloorPlan` (`link`, `description`, `category`, optional `virtualTourLink`). |
+| `gender_housing` | `gender_housing` | No | Gender housing policy. |
+| `ground_floor_rooms` | `boolean` | No | Whether the building has ground-floor rooms. |
+| `gym_available` | `boolean` | No | Whether there is a gym. |
+| `gym_details` | `text` | Yes | Description of the gym. |
+| `has_lounge` | `boolean` | No | Whether the building has a lounge. |
 | `image_url` | `text` | Yes | Primary/cover image for the dorm. |
 | `kitchen_description` | `text` | Yes | Description of kitchen facilities. |
+| `kitchen_scope` | `kitchen_scope` | No | Who has access to a kitchen. |
 | `latitude` | `numeric` | Yes | Geographic latitude. |
+| `laundry_details` | `text` | Yes | Description of laundry facilities. |
+| `laundry_location` | `laundry_location` | No | Where laundry is located. |
+| `location_note` | `text` | Yes | Freeform note about the building's location. |
 | `longitude` | `numeric` | Yes | Geographic longitude. |
 | `lounge_description` | `text` | Yes | Description of lounge/common space. |
-| `name` | `text` | Yes | Dorm name. |
-| `photo_gallery` | `json` | Yes | Array/object of additional photo URLs. |
-| `room_types` | `text[]` | Yes | Room configurations offered (e.g. single, double). |
-| `tags` | `text[]` | Yes | Freeform tags for filtering/search. |
+| `name` | `text` | No | Dorm name. |
+| `noise_level` | `integer` | Yes | Noise level scale used by the building ranking in `scoring.ts`. |
+| `photo_gallery` | `json` | Yes | Array of `GalleryImage` (`link`, `description`). |
+| `room_types` | `room_type[]` | No | Room configurations offered. |
+| `service_animal_friendly` | `boolean` | No | Accessibility: service animals allowed. |
+| `socialness` | `integer` | Yes | Social atmosphere scale used by the building ranking in `scoring.ts`. |
+| `strobe_alarm` | `boolean` | No | Accessibility: strobe fire alarms. |
+| `tags` | `text[]` | Yes | Freeform editorial tags (`editorialTags` in `buildings.json`). |
 | `updated_at` | `timestamp` | Yes | Last time the dorm record was edited. |
+| `wheelchair_accessible` | `boolean` | No | Accessibility: wheelchair accessible. |
 
 ### `review`
 
@@ -259,9 +304,20 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 
 No `relations()` helpers are defined in `schema.ts` yet, so joins are written manually with Drizzle's query builder rather than the relational query API.
 
+## Seeding dorm data
+
+`apps/backend/scripts/seed-dorms.ts` copies every building in `apps/frontend/src/data/buildings.json` into the `dorm` table. Run it from `apps/backend` after the migrations have been applied:
+
+```sh
+deno task db:migrate
+deno task db:seed
+```
+
+It is safe to re-run: rows are upserted on `slug`, so existing dorms are updated in place and keep their `id` (reviews point at it). Dorms that were removed from `buildings.json` are not deleted. The script validates every enum value against the Postgres enums and stops without writing anything if one is wrong.
+
 ## TypeScript types
 
-Each table is a `pgTable` object, which Drizzle can turn into `select` (row-as-read) and `insert` (row-as-write) types via `InferSelectModel` / `InferInsertModel` (or the `$inferSelect` / `$inferInsert` shorthand). These aren't hand-written anywhere yet, but adding them alongside the table definitions in `schema.ts` gives the rest of the app compile-time types for free:
+Each table is a `pgTable` object, which Drizzle can turn into `select` (row-as-read) and `insert` (row-as-write) types via `InferSelectModel` / `InferInsertModel` (or the `$inferSelect` / `$inferInsert` shorthand). `Dorm` and `NewDorm` are already exported from `schema.ts` (using `$inferSelect` / `$inferInsert`). The others aren't hand-written anywhere yet, but adding them alongside the table definitions gives the rest of the app compile-time types for free:
 
 ```ts
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
@@ -341,21 +397,37 @@ type RoommateProfile = {
 
 type Dorm = {
   id: number;
+  slug: string;
   acDetails: string | null;
+  acLevel: ACLevel; // "none" | "by_necessity" | "window" | "central"
   bathroomDetails: string | null;
-  bathroomType: string | null;
+  bathroomTypes: BathroomType[];
   closeBuildings: string[] | null;
-  hasAc: boolean | null;
+  floorPlans: FloorPlan[];
+  genderHousing: GenderHousing;
+  groundFloorRooms: boolean;
+  gymAvailable: boolean;
+  gymDetails: string | null;
+  hasLounge: boolean;
   imageUrl: string | null;
   kitchenDescription: string | null;
-  latitude: string | null; // numeric columns come back as strings from postgres-js
-  longitude: string | null;
+  kitchenScope: KitchenScope;
+  latitude: number | null; // numeric with { mode: "number" }
+  laundryDetails: string | null;
+  laundryLocation: LaundryLocation;
+  locationNote: string | null;
+  longitude: number | null;
   loungeDescription: string | null;
-  name: string | null;
-  photoGallery: unknown | null; // json
-  roomTypes: string[] | null;
+  name: string;
+  noiseLevel: number | null;
+  photoGallery: GalleryImage[] | null; // json
+  roomTypes: RoomType[];
+  serviceAnimalFriendly: boolean;
+  socialness: number | null;
+  strobeAlarm: boolean;
   tags: string[] | null;
   updatedAt: Date | null;
+  wheelchairAccessible: boolean;
 };
 
 type Review = {
@@ -375,6 +447,6 @@ type Review = {
 
 A couple of notes worth knowing when consuming these types on the frontend:
 
-- `numeric` columns (`dorm.latitude`, `dorm.longitude`) are typed as `string`, not `number`. Drizzle/postgres-js don't coerce them, to avoid floating-point precision loss. Parse with `Number()` before doing math.
-- `json` columns (`roommate_profile.extras`, `dorm.photo_gallery`) type as `unknown` unless you supply a generic (`json("extras").$type<MyShape>()`), so cast/validate before use.
-- Almost every non-PK, non-FK column is nullable today. None of the table definitions use `.notNull()` except for the foreign key columns. Treat every profile/preference/dorm/review field as optional when rendering the frontend.
+- `numeric` columns are typed as `string` by default, because Drizzle/postgres-js don't coerce them, to avoid floating-point precision loss. `dorm.latitude` and `dorm.longitude` opt in to `{ mode: "number" }`, so they come back as `number`.
+- `json` columns type as `unknown` unless you supply a generic (`json("extras").$type<MyShape>()`), so cast/validate before use. `dorm.photo_gallery` and `dorm.floor_plans` are typed with `$type<GalleryImage[]>()` and `$type<FloorPlan[]>()`; `roommate_profile.extras` is still `unknown`.
+- Almost every non-PK, non-FK column is nullable today. The exception is the `dorm` building fields (`slug`, `name`, the enum and boolean columns, `floor_plans`), which are `NOT NULL` because every building in `buildings.json` has them. Treat every other profile/preference/review field as optional when rendering the frontend.

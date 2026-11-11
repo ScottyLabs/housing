@@ -60,67 +60,67 @@ Building
 
 ## Enums
 
-All enums below are plain numeric TypeScript enums (no explicit string values). The `#` column is the value stored in `buildings.json` and returned by the enum at runtime.
+All enums below are string enums. The `Value` column is the string stored in `buildings.json`, returned by the enum at runtime, and used as the label of the Postgres enum of the same name in the `dorm` table (see [database-schema.md](database-schema.md#building-enums)). Keep the three in sync when adding a member.
 
 ### `RoomType`
 
-| # | Member | Meaning |
+| Value | Member | Meaning |
 | -- | -- | -- |
-| 0 | `TradSingle` | Traditional-style single, shared hallway bathroom. |
-| 1 | `TradDouble` | Traditional-style double, shared hallway bathroom. |
-| 2 | `TradTriple` | Traditional-style triple, shared hallway bathroom. |
-| 3 | `SemiSuiteSingle` | Semi-suite single, bathroom shared with an adjacent suite. |
-| 4 | `SemiSuiteDouble` | Semi-suite double, bathroom shared with an adjacent suite. |
-| 5 | `SemiSuiteTriple` | Semi-suite triple, bathroom shared with an adjacent suite. |
-| 6 | `SemiSuiteQuad` | Semi-suite, four occupants. |
-| 7 | `ApartmentTriple` | Apartment-style triple. |
-| 8 | `StudioApartmentSingle` | Studio apartment, single occupant. |
-| 9 | `StudioApartmentDouble` | Studio apartment, two occupants. |
+| `trad_single` | `TradSingle` | Traditional-style single, shared hallway bathroom. |
+| `trad_double` | `TradDouble` | Traditional-style double, shared hallway bathroom. |
+| `trad_triple` | `TradTriple` | Traditional-style triple, shared hallway bathroom. |
+| `semi_suite_single` | `SemiSuiteSingle` | Semi-suite single, bathroom shared with an adjacent suite. |
+| `semi_suite_double` | `SemiSuiteDouble` | Semi-suite double, bathroom shared with an adjacent suite. |
+| `semi_suite_triple` | `SemiSuiteTriple` | Semi-suite triple, bathroom shared with an adjacent suite. |
+| `semi_suite_quad` | `SemiSuiteQuad` | Semi-suite, four occupants. |
+| `apartment_triple` | `ApartmentTriple` | Apartment-style triple. |
+| `studio_apartment_single` | `StudioApartmentSingle` | Studio apartment, single occupant. |
+| `studio_apartment_double` | `StudioApartmentDouble` | Studio apartment, two occupants. |
 
 ### `BathroomType`
 
-| # | Member | Meaning |
+| Value | Member | Meaning |
 | -- | -- | -- |
-| 0 | `Communal` | Shared per floor/wing, traditional style. |
-| 1 | `SharedSuite` | Shared with one adjacent suite, semi-suite style. |
-| 2 | `Private` | Truly en-suite / in-room, apartment style only. |
+| `communal` | `Communal` | Shared per floor/wing, traditional style. |
+| `shared_suite` | `SharedSuite` | Shared with one adjacent suite, semi-suite style. |
+| `private` | `Private` | Truly en-suite / in-room, apartment style only. |
 
 ### `ACLevel`
 
-| # | Member | Meaning |
+| Value | Member | Meaning |
 | -- | -- | -- |
-| 0 | `None` | No AC. |
-| 1 | `ByNecessity` | Accommodation, triple, or lottery-only AC. |
-| 2 | `Window` | Window units, not central. |
-| 3 | `Central` | Full central AC. |
+| `none` | `None` | No AC. |
+| `by_necessity` | `ByNecessity` | Accommodation, triple, or lottery-only AC. |
+| `window` | `Window` | Window units, not central. |
+| `central` | `Central` | Full central AC. |
 
 ### `LaundryLocation`
 
-| # | Member | Meaning |
+| Value | Member | Meaning |
 | -- | -- | -- |
-| 0 | `None` | No laundry. |
-| 1 | `Basement` | Basement only. |
-| 2 | `EachFloor` | Laundry on every floor. |
-| 3 | `InUnit` | In-unit washer/dryer. |
+| `none` | `None` | No laundry. |
+| `basement` | `Basement` | Basement only. |
+| `each_floor` | `EachFloor` | Laundry on every floor. |
+| `in_unit` | `InUnit` | In-unit washer/dryer. |
 
 ### `KitchenScope`
 
-| # | Member | Meaning |
+| Value | Member | Meaning |
 | -- | -- | -- |
-| 0 | `None` | No kitchen access. |
-| 1 | `Shared` | Communal, building or floor level; `details` says which. |
-| 2 | `InUnit` | Kitchenette in the room ("en suite kitchen"). |
+| `none` | `None` | No kitchen access. |
+| `shared` | `Shared` | Communal, building or floor level; `details` says which. |
+| `in_unit` | `InUnit` | Kitchenette in the room ("en suite kitchen"). |
 
 Floor-vs-building distinctions for `Shared` live in the `details` string, not as a separate enum value.
 
 ### `GenderHousing`
 
-| # | Member | Meaning |
+| Value | Member | Meaning |
 | -- | -- | -- |
-| 0 | `CoEd` | Co-ed housing. |
-| 1 | `WomenOnly` | Women only. |
-| 2 | `MenOnly` | Men only. |
-| 3 | `GenderInclusive` | Gender-inclusive housing. |
+| `co_ed` | `CoEd` | Co-ed housing. |
+| `women_only` | `WomenOnly` | Women only. |
+| `men_only` | `MenOnly` | Men only. |
+| `gender_inclusive` | `GenderInclusive` | Gender-inclusive housing. |
 
 ## "Value + details" wrapper pattern
 

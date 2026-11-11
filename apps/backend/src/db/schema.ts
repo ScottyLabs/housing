@@ -15,6 +15,54 @@ import {
 // Enums
 export const roommateStatusEnum = pgEnum("roommate_status", ["searching", "committed", "inactive"]);
 
+// Building enums. Keep the values in sync with the string enums in apps/frontend/src/data/buildingTypes.ts.
+export const roomTypeEnum = pgEnum("room_type", [
+  "trad_single",
+  "trad_double",
+  "trad_triple",
+  "semi_suite_single",
+  "semi_suite_double",
+  "semi_suite_triple",
+  "semi_suite_quad",
+  "apartment_triple",
+  "studio_apartment_single",
+  "studio_apartment_double",
+]);
+export const bathroomTypeEnum = pgEnum("bathroom_type", ["communal", "shared_suite", "private"]);
+export const acLevelEnum = pgEnum("ac_level", ["none", "by_necessity", "window", "central"]);
+export const laundryLocationEnum = pgEnum("laundry_location", [
+  "none",
+  "basement",
+  "each_floor",
+  "in_unit",
+]);
+export const kitchenScopeEnum = pgEnum("kitchen_scope", ["none", "shared", "in_unit"]);
+export const genderHousingEnum = pgEnum("gender_housing", [
+  "co_ed",
+  "women_only",
+  "men_only",
+  "gender_inclusive",
+]);
+
+export type RoomType = (typeof roomTypeEnum.enumValues)[number];
+export type BathroomType = (typeof bathroomTypeEnum.enumValues)[number];
+export type ACLevel = (typeof acLevelEnum.enumValues)[number];
+export type LaundryLocation = (typeof laundryLocationEnum.enumValues)[number];
+export type KitchenScope = (typeof kitchenScopeEnum.enumValues)[number];
+export type GenderHousing = (typeof genderHousingEnum.enumValues)[number];
+
+// JSON column shapes. These mirror GalleryImage and FloorPlan in apps/frontend/src/data/buildingTypes.ts
+export interface GalleryImage {
+  link: string;
+  description: string;
+}
+export interface FloorPlan {
+  link: string;
+  description: string;
+  category: "roomType" | "floor";
+  virtualTourLink?: string;
+}
+
 // Tables
 
 export const userTable = pgTable("user", {
@@ -87,22 +135,42 @@ export const roommateProfileTable = pgTable("roommate_profile", {
 
 export const dormTable = pgTable("dorm", {
   acDetails: text("ac_details"),
+  acLevel: acLevelEnum("ac_level").notNull(),
   bathroomDetails: text("bathroom_details"),
-  bathroomType: text("bathroom_type"),
+  bathroomTypes: bathroomTypeEnum("bathroom_types").array().notNull(),
   closeBuildings: text("close_buildings").array(),
-  hasAc: boolean("has_ac"),
+  floorPlans: json("floor_plans").$type<FloorPlan[]>().notNull().default([]),
+  genderHousing: genderHousingEnum("gender_housing").notNull(),
+  groundFloorRooms: boolean("ground_floor_rooms").notNull(),
+  gymAvailable: boolean("gym_available").notNull(),
+  gymDetails: text("gym_details"),
+  hasLounge: boolean("has_lounge").notNull(),
   id: serial("id").primaryKey(),
   imageUrl: text("image_url"),
   kitchenDescription: text("kitchen_description"),
-  latitude: numeric("latitude"),
-  longitude: numeric("longitude"),
+  kitchenScope: kitchenScopeEnum("kitchen_scope").notNull(),
+  latitude: numeric("latitude", { mode: "number" }),
+  laundryDetails: text("laundry_details"),
+  laundryLocation: laundryLocationEnum("laundry_location").notNull(),
+  locationNote: text("location_note"),
+  longitude: numeric("longitude", { mode: "number" }),
   loungeDescription: text("lounge_description"),
-  name: text("name"),
-  photoGallery: json("photo_gallery"),
-  roomTypes: text("room_types").array(),
+  name: text("name").notNull(),
+  noiseLevel: integer("noise_level"),
+  photoGallery: json("photo_gallery").$type<GalleryImage[]>(),
+  roomTypes: roomTypeEnum("room_types").array().notNull(),
+  serviceAnimalFriendly: boolean("service_animal_friendly").notNull(),
+  // Stable URL-safe identifier (e.g. "etower"). The frontend routes on this, not on the integer id.
+  slug: text("slug").notNull().unique(),
+  socialness: integer("socialness"),
+  strobeAlarm: boolean("strobe_alarm").notNull(),
   tags: text("tags").array(),
   updatedAt: timestamp("updated_at"),
+  wheelchairAccessible: boolean("wheelchair_accessible").notNull(),
 });
+
+export type Dorm = typeof dormTable.$inferSelect;
+export type NewDorm = typeof dormTable.$inferInsert;
 
 export const reviewTable = pgTable(
   "review",
