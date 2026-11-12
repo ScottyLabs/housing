@@ -1,0 +1,146 @@
+[
+  {
+    "id": "ansys-hall",
+    "name": "ANSYS Hall",
+    "latitude": 40.441951,
+    "longitude": -79.946588
+  },
+  {
+    "id": "baker-hall",
+    "name": "Baker Hall",
+    "latitude": 40.44151,
+    "longitude": -79.945096
+  },
+  {
+    "id": "cohon-center",
+    "name": "Cohon University Center",
+    "latitude": 40.44354,
+    "longitude": -79.941964
+  },
+  {
+    "id": "college-of-fine-arts",
+    "name": "College of Fine Arts",
+    "latitude": 40.441448,
+    "longitude": -79.942951
+  },
+  {
+    "id": "cyert-hall",
+    "name": "Cyert Hall",
+    "latitude": 40.444234,
+    "longitude": -79.943959
+  },
+  {
+    "id": "doherty-hall",
+    "name": "Doherty Hall",
+    "latitude": 40.44251,
+    "longitude": -79.944608
+  },
+  {
+    "id": "gates-hillman",
+    "name": "Gates and Hillman Centers",
+    "latitude": 40.443495,
+    "longitude": -79.944572
+  },
+  {
+    "id": "hamburg-hall",
+    "name": "Hamburg Hall",
+    "latitude": 40.444177,
+    "longitude": -79.945551
+  },
+  {
+    "id": "hamerschlag-hall",
+    "name": "Hamerschlag Hall",
+    "latitude": 40.442423,
+    "longitude": -79.946671
+  },
+  {
+    "id": "hunt-library",
+    "name": "Hunt Library",
+    "latitude": 40.441111,
+    "longitude": -79.94374
+  },
+  {
+    "id": "information-networking-institute",
+    "name": "Information Networking Institute",
+    "latitude": 40.446058,
+    "longitude": -79.948022
+  },
+  {
+    "id": "margaret-morrison-hall",
+    "name": "Margaret Morrison Carnegie Hall",
+    "latitude": 40.442286,
+    "longitude": -79.941562
+  },
+  {
+    "id": "mellon-institute",
+    "name": "Mellon Institute",
+    "latitude": 40.446088,
+    "longitude": -79.951057
+  },
+  {
+    "id": "newell-simon-hall",
+    "name": "Newell-Simon Hall",
+    "latitude": 40.443392,
+    "longitude": -79.945596
+  },
+  {
+    "id": "porter-hall",
+    "name": "Porter Hall",
+    "latitude": 40.441729,
+    "longitude": -79.946236
+  },
+  {
+    "id": "posner-hall",
+    "name": "Posner Hall",
+    "latitude": 40.441349,
+    "longitude": -79.942122
+  },
+  {
+    "id": "purnell-center",
+    "name": "Purnell Center for the Arts",
+    "latitude": 40.443525,
+    "longitude": -79.943565
+  },
+  {
+    "id": "resnik",
+    "name": "Resnik House",
+    "latitude": 40.442521,
+    "longitude": -79.940027
+  },
+  {
+    "id": "roberts-hall",
+    "name": "Roberts Engineering Hall",
+    "latitude": 40.442436,
+    "longitude": -79.947197
+  },
+  {
+    "id": "scaife-hall",
+    "name": "Scaife Hall",
+    "latitude": 40.441685,
+    "longitude": -79.947521
+  },
+  {
+    "id": "software-engineering-institute",
+    "name": "Software Engineering Institute",
+    "latitude": 40.446317,
+    "longitude": -79.950279
+  },
+  {
+    "id": "tepper-quad",
+    "name": "Tepper Quad",
+    "latitude": 40.445165,
+    "longitude": -79.945266
+  },
+  {
+    "id": "warner-hall",
+    "name": "Warner Hall",
+    "latitude": 40.444231,
+    "longitude": -79.943372
+  },
+  {
+    "id": "wean-hall",
+    "name": "Wean Hall",
+    "latitude": 40.442662,
+    "longitude": -79.945687
+  }
+]

@@ -7,6 +7,7 @@ import {
   LaundryLocation,
   RoomType,
 } from "./buildingTypes";
+import { campusBuildings } from "./campusBuildings";
 
 export const defaultFilters: FilterState = {
   distanceFrom: "",
@@ -24,6 +25,10 @@ export const defaultFilters: FilterState = {
 // Best Fit is the top of the ranking, Decent Fit the next few, and Wild Card everything after.
 const BEST_FIT_COUNT = 3;
 const DECENT_FIT_COUNT = 6;
+
+const PROXIMITY_MAX_SCORE = 2;
+const PROXIMITY_RANGE_METERS = 800;
+const EARTH_RADIUS_METERS = 6_371_000;
 
 export interface BuildingGroups {
   bestFit: Building[];
@@ -79,23 +84,33 @@ function atmosphereScore(building: Building, filters: FilterState): number {
   return social + noise;
 }
 
-function isCloseTo(building: Building, targetId: string, all: Building[]): boolean {
-  if (building.location.closeBuildings.includes(targetId)) return true;
-  const target = all.find((other) => other.id === targetId);
-  if (target === undefined) return false;
-  return target.location.closeBuildings.includes(building.id);
+function toRadians(degrees: number): number {
+  return (degrees * Math.PI) / 180;
 }
 
-function proximityScore(building: Building, filters: FilterState, all: Building[]): number {
-  if (filters.distanceFrom === "" || filters.distanceFrom === building.id) return 0;
-  return isCloseTo(building, filters.distanceFrom, all) ? 2 : 0;
+// Straight-line distance between two coordinates (haversine formula).
+function metersBetween(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const dLat = toRadians(lat2 - lat1);
+  const dLng = toRadians(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * EARTH_RADIUS_METERS * Math.asin(Math.sqrt(a));
 }
 
-export function scoreBuilding(building: Building, filters: FilterState, all: Building[]): number {
+function proximityScore(building: Building, filters: FilterState): number {
+  const place = campusBuildings.find((campus) => campus.id === filters.distanceFrom);
+  const { latitude, longitude } = building.location;
+  if (place === undefined || latitude === undefined || longitude === undefined) return 0;
+  const meters = metersBetween(latitude, longitude, place.latitude, place.longitude);
+  return PROXIMITY_MAX_SCORE * Math.max(0, 1 - meters / PROXIMITY_RANGE_METERS);
+}
+
+export function scoreBuilding(building: Building, filters: FilterState): number {
   return (
     amenityScore(building, filters) +
     atmosphereScore(building, filters) +
-    proximityScore(building, filters, all)
+    proximityScore(building, filters)
   );
 }
 
@@ -110,7 +125,7 @@ export function rankBuildings(buildings: Building[], filters: FilterState): Buil
   const eligible = buildings.filter((building) => isEligible(building, filters));
   const scored = eligible.map((building) => ({
     building: building,
-    score: scoreBuilding(building, filters, buildings),
+    score: scoreBuilding(building, filters),
   }));
   scored.sort((a, b) => b.score - a.score);
   return scored.map((entry) => entry.building);

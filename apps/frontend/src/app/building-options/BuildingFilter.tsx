@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useBuildings } from "../../components/BuildingContext.tsx";
 import Checkbox from "../../components/Checkbox.tsx";
 import DropdownButton, { type SelectOption } from "../../components/DropdownButton.tsx";
 import Slider from "../../components/Slider.tsx";
 import type { FilterState } from "../../data/buildingTypes.ts";
+import { campusBuildings } from "../../data/campusBuildings.ts";
 import FilterHeader from "./FilterHeader.tsx";
 
 function DistanceSection({
@@ -13,8 +13,7 @@ function DistanceSection({
   filters: FilterState;
   onChangeAction: (filters: FilterState) => void;
 }) {
-  const allBuildings = useBuildings();
-  const buildings = [...allBuildings].sort((b1, b2) =>
+  const buildings = [...campusBuildings].sort((b1, b2) =>
     b1.name.toLowerCase().localeCompare(b2.name.toLowerCase()),
   );
   const buildingOptions: SelectOption[] = buildings.map((b) => ({ value: b.id, label: b.name }));

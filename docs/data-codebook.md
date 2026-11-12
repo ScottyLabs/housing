@@ -53,7 +53,7 @@ Building
 ├─ location
 │  ├─ latitude?        number
 │  ├─ longitude?       number
-│  ├─ closeBuildings[] string (building ids)
+│  ├─ closeBuildings[] string (campus building ids)
 │  └─ note?            string
 └─ editorialTags?[]    string
 ```
@@ -136,7 +136,8 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 - **`AmenityData`** holds everything the filter/survey/comparison UI reads: room types, bathrooms, AC, kitchen, laundry, common areas, gym, gender housing.
 - **`Accessibility`** holds `wheelchairAccessible`, `serviceAnimalFriendly`, `groundFloorRooms`, `strobeAlarm` (strobe fire alarm & doorbell). Filled in per building as data becomes available.
 - **`Atmosphere`** holds `socialness` / `noiseLevel`, 1-5 scales matching the survey sliders and review table. Both are optional since a building may not have data yet.
-- **`Location`** holds `latitude`/`longitude` for a "distance from landmark" filter (no distance value is stored on the building itself), `closeBuildings` (building ids for the "Closest Buildings" detail card: every building within about 150 m, nearest first, and never fewer than the two nearest), and an optional `note` for a human-written blurb.
+- **`Location`** holds `latitude`/`longitude` for a "distance from landmark" filter (no distance value is stored on the building itself), `closeBuildings` (ids of the four nearest academic or non-residential campus buildings, nearest first, for the "Closest Buildings" detail card; they are listed in `campusBuildings.json`, not in `buildings.json`), and an optional `note` for a human-written blurb.
+- **`CampusBuilding`** is `id` + `name` + `latitude` + `longitude`, one per academic or non-residential building in `campusBuildings.json` (plus Resnik, which is also a food hall). It feeds the "Distance from" filter options and the `closeBuildings` ids; add a row there to offer a new landmark.
 - **`GalleryImage`** is `link` + `description`, one per photo.
 - **`FloorPlan`** is `link` + `description` + `category` (`"roomType" | "floor"`) + optional `virtualTourLink`, which points to a walkthrough for that specific floor plan.
 - **`Media`** holds `mainImage`, optional `icon`, `photos[]`, and `floorPlans[]`.
@@ -155,9 +156,9 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 | Service Animal | `accessibility.serviceAnimalFriendly` |
 | Wheelchair accessible | `accessibility.wheelchairAccessible` |
 | Socialness, Noise Level | `atmosphere.socialness`, `atmosphere.noiseLevel` |
-| Distance from | `location.closeBuildings` on either building |
+| Distance from | straight-line distance from the dorm's coordinates to the chosen campus building in `campusBuildings.json`; full points at 0 m, fading to 0 at 800 m |
 
-`atmosphere`, coordinates, and `accessibility` flags are empty so those score 0. `groupBuildings` sorts by score into `bestFit`, `decentFit`, and `wildCard`, three per row.
+`atmosphere` and `accessibility` flags are empty so those score 0. `groupBuildings` sorts by score into `bestFit`, `decentFit`, and `wildCard`, three per row.
 
 ## Tag derivation
 

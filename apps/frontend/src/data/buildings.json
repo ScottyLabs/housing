@@ -101,8 +101,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["morewood", "stever"],
-      "note": "E Tower is right on top of UG, close to campus and Tepper. Home to UHS and CAPS",
+      "closeBuildings": ["warner-hall", "cyert-hall", "purnell-center", "tepper-quad"],
+      "note": "E Tower is right on top of UG, close to campus and Tepper.",
       "latitude": 40.44500505315387,
       "longitude": -79.94323045720432
     }
@@ -202,7 +202,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["mudge", "morewood", "etower"],
+      "closeBuildings": ["warner-hall", "cyert-hall", "tepper-quad", "cohon-center"],
       "note": "Stever is located on Morewood Ave, and buggies are built in the basement",
       "latitude": 40.4462308440447,
       "longitude": -79.94265849424025
@@ -302,19 +302,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "mcgill",
-        "scobell",
-        "hamerschlag",
-        "welch",
-        "henderson",
-        "maggiemo",
-        "margaretmorrison",
-        "donner",
-        "roselawn",
-        "resnik",
-        "spirit"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
       "latitude": 40.441572826932486,
       "longitude": -79.93928963898341
@@ -415,7 +403,12 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["highlands", "fifthclyde", "fifthneville", "neville"],
+      "closeBuildings": [
+        "information-networking-institute",
+        "tepper-quad",
+        "software-engineering-institute",
+        "hamburg-hall"
+      ],
       "latitude": 40.44824700318969,
       "longitude": -79.94602827018498
     }
@@ -535,18 +528,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "resnik",
-        "scobell",
-        "boss",
-        "mcgill",
-        "welch",
-        "westwing",
-        "maggiemo",
-        "henderson",
-        "margaretmorrison",
-        "hamerschlag"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located close to Margaret Morrison and CFA",
       "latitude": 40.44188700294032,
       "longitude": -79.94023636267904
@@ -662,17 +644,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "welch",
-        "hamerschlag",
-        "scobell",
-        "boss",
-        "mcgill",
-        "maggiemo",
-        "margaretmorrison",
-        "donner",
-        "roselawn"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
       "latitude": 40.44100440703857,
       "longitude": -79.93925089894915
@@ -784,20 +756,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "boss",
-        "maggiemo",
-        "margaretmorrison",
-        "hamerschlag",
-        "scobell",
-        "roselawn",
-        "welch",
-        "henderson",
-        "donner",
-        "spirit",
-        "resnik",
-        "woodlawn"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "cohon-center"],
       "note": "Located on Margaret Morrison St",
       "latitude": 40.44182111388465,
       "longitude": -79.93909779218046
@@ -923,7 +882,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["etower", "stever"],
+      "closeBuildings": ["warner-hall", "cyert-hall", "tepper-quad", "purnell-center"],
       "note": "Morewood Gardens is right on top of UG, next to UHS and CAPS, close to campus",
       "latitude": 40.445069937572704,
       "longitude": -79.94324961565809
@@ -1114,7 +1073,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["stever", "morewood"],
+      "closeBuildings": ["tepper-quad", "warner-hall", "cyert-hall", "cohon-center"],
       "note": "Located on Morewood Ave, slightly farther from campus",
       "latitude": 40.44691482941882,
       "longitude": -79.94265298459514
@@ -1234,7 +1193,12 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["fifthneville", "fairfax", "neville", "fifthclyde"],
+      "closeBuildings": [
+        "information-networking-institute",
+        "tepper-quad",
+        "software-engineering-institute",
+        "hamburg-hall"
+      ],
       "note": "Residence on Fifth is close to many utilities and dining options (Craig St, Starbucks, Chipotle, bus stops, Pitt)",
       "latitude": 40.44684010797551,
       "longitude": -79.94675464406312
@@ -1338,18 +1302,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "welch",
-        "boss",
-        "henderson",
-        "hamerschlag",
-        "mcgill",
-        "donner",
-        "maggiemo",
-        "margaretmorrison",
-        "resnik",
-        "roselawn"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
       "latitude": 40.44134196049577,
       "longitude": -79.93963894018592
@@ -1452,17 +1405,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "scobell",
-        "henderson",
-        "boss",
-        "hamerschlag",
-        "mcgill",
-        "donner",
-        "maggiemo",
-        "margaretmorrison",
-        "roselawn"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
       "latitude": 40.44115931075925,
       "longitude": -79.93947916234082
@@ -1569,18 +1512,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "henderson",
-        "boss",
-        "welch",
-        "mcgill",
-        "scobell",
-        "maggiemo",
-        "margaretmorrison",
-        "roselawn",
-        "spirit",
-        "donner"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
       "latitude": 40.441289407285105,
       "longitude": -79.93891460787795
@@ -1680,20 +1612,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [
-        "margaretmorrison",
-        "mcgill",
-        "roselawn",
-        "boss",
-        "spirit",
-        "hamerschlag",
-        "woodlawn",
-        "scobell",
-        "welch",
-        "henderson",
-        "resnik",
-        "donner"
-      ],
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "cohon-center"],
       "note": "Located on Margaret Morrison St",
       "latitude": 40.44200967524592,
       "longitude": -79.93874623763492
@@ -1782,7 +1701,12 @@
     "location": {
       "latitude": 40.4469460962968,
       "longitude": -79.9476919479028,
-      "closeBuildings": ["neville", "fifth", "fifthneville"]
+      "closeBuildings": [
+        "information-networking-institute",
+        "software-engineering-institute",
+        "tepper-quad",
+        "mellon-institute"
+      ]
     }
   },
   {
@@ -1875,7 +1799,12 @@
     "location": {
       "latitude": 40.4474131149012,
       "longitude": -79.9464846772549,
-      "closeBuildings": ["neville", "fifth", "fifthclyde", "clyde", "fairfax", "highlands"]
+      "closeBuildings": [
+        "information-networking-institute",
+        "tepper-quad",
+        "software-engineering-institute",
+        "hamburg-hall"
+      ]
     }
   },
   {
@@ -1957,7 +1886,7 @@
     "location": {
       "latitude": 40.4442596456125,
       "longitude": -79.9391293033433,
-      "closeBuildings": ["resnik", "woodlawn"]
+      "closeBuildings": ["resnik", "cohon-center", "margaret-morrison-hall", "warner-hall"]
     }
   },
   {
@@ -2052,7 +1981,12 @@
     "location": {
       "latitude": 40.4484537838169,
       "longitude": -79.9461284844631,
-      "closeBuildings": ["clyde", "fifthclyde", "fifthneville", "neville"]
+      "closeBuildings": [
+        "information-networking-institute",
+        "tepper-quad",
+        "software-engineering-institute",
+        "hamburg-hall"
+      ]
     }
   },
   {
@@ -2179,20 +2113,7 @@
     "location": {
       "latitude": 40.4420310449421,
       "longitude": -79.9387146784535,
-      "closeBuildings": [
-        "maggiemo",
-        "mcgill",
-        "roselawn",
-        "boss",
-        "spirit",
-        "hamerschlag",
-        "woodlawn",
-        "scobell",
-        "welch",
-        "henderson",
-        "resnik",
-        "donner"
-      ]
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "cohon-center"]
     }
   },
   {
@@ -2288,7 +2209,12 @@
     "location": {
       "latitude": 40.447513309255,
       "longitude": -79.9471739625741,
-      "closeBuildings": ["fifthneville", "fairfax", "fifth", "clyde", "fifthclyde", "highlands"]
+      "closeBuildings": [
+        "information-networking-institute",
+        "software-engineering-institute",
+        "tepper-quad",
+        "mellon-institute"
+      ]
     }
   },
   {
@@ -2386,18 +2312,7 @@
     "location": {
       "latitude": 40.4420051579668,
       "longitude": -79.9382277473254,
-      "closeBuildings": [
-        "spirit",
-        "margaretmorrison",
-        "maggiemo",
-        "woodlawn",
-        "mcgill",
-        "hamerschlag",
-        "boss",
-        "scobell",
-        "henderson",
-        "welch"
-      ]
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "cohon-center"]
     }
   },
   {
@@ -2479,7 +2394,7 @@
     "location": {
       "latitude": 40.4425032938329,
       "longitude": -79.9377985797988,
-      "closeBuildings": ["spirit", "roselawn", "margaretmorrison", "maggiemo", "mcgill"]
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "cohon-center", "posner-hall"]
     }
   },
   {
@@ -2577,13 +2492,10 @@
       "latitude": 40.4425418764762,
       "longitude": -79.9400374897439,
       "closeBuildings": [
-        "westwing",
-        "donner",
-        "mcgill",
-        "maggiemo",
-        "boss",
-        "margaretmorrison",
-        "scobell"
+        "margaret-morrison-hall",
+        "cohon-center",
+        "posner-hall",
+        "college-of-fine-arts"
       ]
     }
   },
@@ -2676,15 +2588,7 @@
     "location": {
       "latitude": 40.4419102553918,
       "longitude": -79.9378610932361,
-      "closeBuildings": [
-        "roselawn",
-        "woodlawn",
-        "margaretmorrison",
-        "maggiemo",
-        "mcgill",
-        "hamerschlag",
-        "boss"
-      ]
+      "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "cohon-center"]
     },
     "editorialTags": ["offline"]
   },
@@ -2794,7 +2698,7 @@
     "location": {
       "latitude": 40.4426985572609,
       "longitude": -79.9408768021358,
-      "closeBuildings": ["resnik", "donner"]
+      "closeBuildings": ["margaret-morrison-hall", "resnik", "cohon-center", "posner-hall"]
     }
   },
   {
@@ -2904,7 +2808,12 @@
     "location": {
       "latitude": 40.447675388038,
       "longitude": -79.9456133896324,
-      "closeBuildings": ["clyde", "fifthneville", "highlands", "neville", "fifth"]
+      "closeBuildings": [
+        "information-networking-institute",
+        "tepper-quad",
+        "hamburg-hall",
+        "cyert-hall"
+      ]
     }
   }
 ]

@@ -95,8 +95,16 @@ export interface Atmosphere {
 export interface Location {
   latitude?: number;
   longitude?: number;
+  /** Ids of the nearest `CampusBuilding`s, nearest first. */
   closeBuildings: string[];
   note?: string;
+}
+
+export interface CampusBuilding {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface GalleryImage {

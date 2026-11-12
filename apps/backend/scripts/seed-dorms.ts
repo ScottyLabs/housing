@@ -26,6 +26,7 @@ import { configureLogger, logger, nodeError } from "../src/utils/log.ts";
 
 // Read via a relative URL rather than importing it, so the backend has no dependency on the frontend app.
 const buildingsUrl = new URL("../../frontend/src/data/buildings.json", import.meta.url);
+const campusBuildingsUrl = new URL("../../frontend/src/data/campusBuildings.json", import.meta.url);
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
@@ -99,11 +100,22 @@ function assertValidSlugs(buildings: BuildingJson[]): Set<string> {
   return slugs;
 }
 
-function assertCloseBuildingsExist(buildings: BuildingJson[], slugs: Set<string>): void {
+// closeBuildings holds ids of academic/non-residential campus buildings, not of other dorms.
+async function readCampusBuildingIds(): Promise<Set<string>> {
+  const parsed: unknown = JSON.parse(await Deno.readTextFile(campusBuildingsUrl));
+  if (!Array.isArray(parsed)) {
+    throw new TypeError("campusBuildings.json must contain an array of campus buildings");
+  }
+  return new Set((parsed as Array<{ id: string }>).map((campus) => campus.id));
+}
+
+function assertCloseBuildingsExist(buildings: BuildingJson[], campusIds: Set<string>): void {
   for (const building of buildings) {
     for (const other of building.location.closeBuildings) {
-      if (!slugs.has(other)) {
-        throw new Error(`${building.id}: closeBuildings references unknown building "${other}"`);
+      if (!campusIds.has(other)) {
+        throw new Error(
+          `${building.id}: closeBuildings references unknown campus building "${other}"`,
+        );
       }
     }
   }
@@ -115,7 +127,8 @@ async function readBuildings(): Promise<BuildingJson[]> {
     throw new TypeError("buildings.json must contain an array of buildings");
   }
   const buildings = parsed as BuildingJson[];
-  assertCloseBuildingsExist(buildings, assertValidSlugs(buildings));
+  assertValidSlugs(buildings);
+  assertCloseBuildingsExist(buildings, await readCampusBuildingIds());
   return buildings;
 }
 

@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
-import { type Building, useBuildingById, useBuildings } from "@/components/BuildingContext";
+import { type Building, useBuildingById } from "@/components/BuildingContext";
 import { ACLevel, BathroomType, RoomType, acText, kitchenText } from "@/data/buildingTypes";
+import { campusBuildings } from "@/data/campusBuildings";
 
 const bathroomTypeLabel: Record<BathroomType, string> = {
   [BathroomType.Communal]: "Communal",
@@ -12,7 +13,6 @@ const bathroomTypeLabel: Record<BathroomType, string> = {
 export default function BuildingDetails({ buildingID }: { buildingID?: string }) {
   const { id } = useParams();
   const building: Building = useBuildingById(buildingID ?? id ?? "");
-  const allBuildings = useBuildings();
 
   type GalleryItem = { link: string; description: string; virtualTourLink?: string };
   const [lightbox, setLightbox] = useState<{ items: GalleryItem[]; index: number } | null>(null);
@@ -44,8 +44,8 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
   if (!building) return <div>Not found</div>;
 
   const closeBuildingNames = building.location.closeBuildings
-    .map((closeId) => allBuildings.find((b) => b.id === closeId))
-    .filter((b): b is Building => b !== undefined);
+    .map((closeId) => campusBuildings.find((campus) => campus.id === closeId)?.name)
+    .filter((name): name is string => name !== undefined);
 
   return (
     <div className="space-y-4 overflow-x-auto min-w-40 max-w-full pb-3 pt-3 px-4 sm:px-10 md:px-20 lg:px-30">
@@ -262,17 +262,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 </div>
               )}
               {closeBuildingNames.length > 0 && (
-                <div className="flex flex-wrap gap-x-2 text-[14px] pt-1">
-                  {closeBuildingNames.map((b) => (
-                    <Link
-                      key={b.id}
-                      to={`/building/${b.id}`}
-                      className="text-brand-primary underline"
-                    >
-                      {b.name}
-                    </Link>
-                  ))}
-                </div>
+                <div className="text-[14px] pt-1">{closeBuildingNames.join(", ")}</div>
               )}
             </div>
           </div>

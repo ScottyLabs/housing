@@ -250,7 +250,7 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 | `ac_level` | `ac_level` | No | Level of air conditioning. |
 | `bathroom_details` | `text` | Yes | Description of bathroom facilities. |
 | `bathroom_types` | `bathroom_type[]` | No | Every bathroom style the building offers. |
-| `close_buildings` | `text[]` | Yes | Slugs of nearby buildings. |
+| `close_buildings` | `text[]` | Yes | Ids of the nearest academic or non-residential campus buildings (see `campusBuildings.json`). |
 | `floor_plans` | `json` | No (default `[]`) | Array of `FloorPlan` (`link`, `description`, `category`, optional `virtualTourLink`). |
 | `gender_housing` | `gender_housing` | No | Gender housing policy. |
 | `ground_floor_rooms` | `boolean` | No | Whether the building has ground-floor rooms. |
