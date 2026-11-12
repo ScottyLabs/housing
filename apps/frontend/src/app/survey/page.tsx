@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import client from "@/api/client";
+import useFitToViewport from "@/hooks/useFitToViewport";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -162,18 +163,27 @@ function RenderStep3({ data, update }: StepProps) {
   );
 }
 
-function SurveyStepContent({
-  step,
-  data,
-  update,
-}: {
-  step: number;
-  data: SurveyData;
-  update: (fields: Partial<SurveyData>) => void;
-}) {
+function SurveyStepContent({ step, data, update }: StepProps & { step: number }) {
   if (step === 1) return <RenderStep1 data={data} update={update} />;
   if (step === 2) return <RenderStep2 data={data} update={update} />;
   return <RenderStep3 data={data} update={update} />;
+}
+
+// On desktop every step sits in the same grid cell, so the page is always as tall as the tallest step. That keeps the scale-to-fit zoom and the footer in place when moving between steps.
+// The last card stretches to fill any spare height. On mobile only the current step is rendered.
+function SurveySteps({ step, data, update }: StepProps & { step: number }) {
+  return (
+    <div className="mt-6 md:grid">
+      {Array.from({ length: TOTAL_STEPS }, (_, index) => index + 1).map((n) => (
+        <div
+          key={n}
+          className={`flex-col gap-6 md:col-start-1 md:row-start-1 md:flex md:[&>:last-child]:flex-1 ${n === step ? "flex" : "hidden md:invisible"}`}
+        >
+          <SurveyStepContent step={n} data={data} update={update} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 async function sendPreferences(data: SurveyData): Promise<boolean> {
@@ -242,6 +252,7 @@ export default function Survey() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { data, updateData } = useSurveyData();
   const navigate = useNavigate();
+  const { ref, scale } = useFitToViewport();
 
   const handleNext = () => {
     if (step < TOTAL_STEPS) {
@@ -256,11 +267,13 @@ export default function Survey() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[1140px] px-6 pb-12 pt-[26px]">
+    <div
+      ref={ref}
+      style={{ zoom: scale }}
+      className="mx-auto w-full max-w-[1140px] px-6 pb-12 pt-[26px]"
+    >
       <h1 className="text-[32px] font-bold leading-none">Survey</h1>
-      <div className="mt-6 flex flex-col gap-6">
-        <SurveyStepContent step={step} data={data} update={updateData} />
-      </div>
+      <SurveySteps step={step} data={data} update={updateData} />
       <SurveyFooter
         step={step}
         onNext={handleNext}

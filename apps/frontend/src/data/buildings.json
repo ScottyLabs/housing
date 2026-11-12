@@ -70,15 +70,15 @@
       "roomTypes": ["trad_single", "trad_double"],
       "bathrooms": {
         "types": ["communal"],
-        "details": "bathrooms shared per floor (single sex)"
+        "details": "Shared by floor; single-sex"
       },
       "ac": {
         "level": "by_necessity",
-        "details": "AC by neccesity only with accomodations"
+        "details": "By necessity only, with an accommodation"
       },
       "kitchen": {
         "scope": "shared",
-        "details": "only a small kitchen"
+        "details": "Small shared kitchen"
       },
       "laundry": {
         "location": "basement",
@@ -101,8 +101,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "e tower is right on top of UG, close to campus and tepper. home to UHS and CAPS",
+      "closeBuildings": ["morewood", "stever"],
+      "note": "E Tower is right on top of UG, close to campus and Tepper. Home to UHS and CAPS",
       "latitude": 40.44500505315387,
       "longitude": -79.94323045720432
     }
@@ -172,15 +172,14 @@
       "roomTypes": ["trad_double"],
       "bathrooms": {
         "types": ["communal"],
-        "details": "bathrooms per wing"
+        "details": "Shared per wing"
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
         "scope": "shared",
-        "details": "Kitchen and dining room"
+        "details": "Shared kitchen and dining room"
       },
       "laundry": {
         "location": "basement",
@@ -188,7 +187,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "reading room, study rooms, recreation area with ping-pong, pool table, and TV"
+        "details": "Reading room, study rooms, and a recreation area with ping-pong, pool table, and TV"
       },
       "gym": {
         "available": false
@@ -203,8 +202,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "stever is located on morewood ave, and buggies are built in the basement",
+      "closeBuildings": ["mudge", "morewood", "etower"],
+      "note": "Stever is located on Morewood Ave, and buggies are built in the basement",
       "latitude": 40.4462308440447,
       "longitude": -79.94265849424025
     }
@@ -274,16 +273,13 @@
     "amenities": {
       "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": ["shared_suite"],
-        "details": "bathrooms shared with a suite"
+        "types": ["shared_suite"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
-        "scope": "shared",
-        "details": "Yes, needs more info"
+        "scope": "shared"
       },
       "laundry": {
         "location": "basement",
@@ -291,7 +287,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
+        "details": "Communal lounge on the ground floor and one lounge per floor with TV areas"
       },
       "gym": {
         "available": false
@@ -306,8 +302,20 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Henderson",
+      "closeBuildings": [
+        "mcgill",
+        "scobell",
+        "hamerschlag",
+        "welch",
+        "henderson",
+        "maggiemo",
+        "margaretmorrison",
+        "donner",
+        "roselawn",
+        "resnik",
+        "spirit"
+      ],
+      "note": "Located on Margaret Morrison St",
       "latitude": 40.441572826932486,
       "longitude": -79.93928963898341
     }
@@ -377,16 +385,14 @@
     "amenities": {
       "roomTypes": ["studio_apartment_double"],
       "bathrooms": {
-        "types": ["private"],
-        "details": "bathrooms are private"
+        "types": ["private"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
         "scope": "in_unit",
-        "details": "Each studio has its own kitchenette, fridge, and bathroom, and there is communal kitchen"
+        "details": "Kitchenette and fridge in each studio, plus a communal kitchen"
       },
       "laundry": {
         "location": "basement",
@@ -394,7 +400,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "TV room/parlor, fitness area, study lounge, other common areas"
+        "details": "TV room/parlor, fitness area, study lounge, and other common areas"
       },
       "gym": {
         "available": false
@@ -409,8 +415,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "unknown",
+      "closeBuildings": ["highlands", "fifthclyde", "fifthneville", "neville"],
       "latitude": 40.44824700318969,
       "longitude": -79.94602827018498
     }
@@ -499,15 +504,15 @@
       "roomTypes": ["trad_single", "trad_double", "trad_triple"],
       "bathrooms": {
         "types": ["communal"],
-        "details": "bathrooms shared on floor"
+        "details": "Shared per floor"
       },
       "ac": {
         "level": "by_necessity",
-        "details": "No, AC by necessity/triple or if you're lucky you'll get a room w/ AC"
+        "details": "By necessity (accommodation or triple); some rooms may have AC"
       },
       "kitchen": {
         "scope": "shared",
-        "details": "Public kitchen and dining area"
+        "details": "Shared kitchen and dining area"
       },
       "laundry": {
         "location": "basement",
@@ -515,7 +520,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "One lounge on first floor with tv, and games room in the basement"
+        "details": "One lounge on the first floor with a TV, and a games room in the basement"
       },
       "gym": {
         "available": false
@@ -530,8 +535,19 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "Donner is located close to Resnik, Margaret Morrison/CFA",
+      "closeBuildings": [
+        "resnik",
+        "scobell",
+        "boss",
+        "mcgill",
+        "welch",
+        "westwing",
+        "maggiemo",
+        "henderson",
+        "margaretmorrison",
+        "hamerschlag"
+      ],
+      "note": "Located close to Margaret Morrison and CFA",
       "latitude": 40.44188700294032,
       "longitude": -79.94023636267904
     }
@@ -617,16 +633,13 @@
     "amenities": {
       "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": ["shared_suite"],
-        "details": "CHONKR bathrooms (or so I've heard)"
+        "types": ["shared_suite"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
-        "scope": "shared",
-        "details": "kitchen?"
+        "scope": "shared"
       },
       "laundry": {
         "location": "basement",
@@ -634,7 +647,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "wellness room and leaky study room"
+        "details": "Wellness room and study room"
       },
       "gym": {
         "available": false
@@ -649,8 +662,18 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "boss", "mcgill"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Boss/McGill",
+      "closeBuildings": [
+        "welch",
+        "hamerschlag",
+        "scobell",
+        "boss",
+        "mcgill",
+        "maggiemo",
+        "margaretmorrison",
+        "donner",
+        "roselawn"
+      ],
+      "note": "Located on Margaret Morrison St",
       "latitude": 40.44100440703857,
       "longitude": -79.93925089894915
     }
@@ -732,16 +755,13 @@
     "amenities": {
       "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": ["shared_suite"],
-        "details": "bathroom shared with a suite"
+        "types": ["shared_suite"]
       },
       "ac": {
-        "level": "window",
-        "details": "yes, AC is available"
+        "level": "window"
       },
       "kitchen": {
-        "scope": "shared",
-        "details": "Yes, needs more info"
+        "scope": "shared"
       },
       "laundry": {
         "location": "basement",
@@ -749,7 +769,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
+        "details": "Communal lounge on the ground floor and one lounge per floor with TV areas"
       },
       "gym": {
         "available": false
@@ -764,8 +784,21 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Henderson",
+      "closeBuildings": [
+        "boss",
+        "maggiemo",
+        "margaretmorrison",
+        "hamerschlag",
+        "scobell",
+        "roselawn",
+        "welch",
+        "henderson",
+        "donner",
+        "spirit",
+        "resnik",
+        "woodlawn"
+      ],
+      "note": "Located on Margaret Morrison St",
       "latitude": 40.44182111388465,
       "longitude": -79.93909779218046
     }
@@ -860,16 +893,14 @@
     "amenities": {
       "roomTypes": ["semi_suite_single", "semi_suite_double", "semi_suite_triple"],
       "bathrooms": {
-        "types": ["shared_suite"],
-        "details": "bathroom shared with a suite"
+        "types": ["shared_suite"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
         "scope": "shared",
-        "details": "small shared kitchens every other floor"
+        "details": "Small shared kitchens on every other floor"
       },
       "laundry": {
         "location": "basement",
@@ -877,7 +908,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "2 huge lounges per floor, with TV"
+        "details": "2 large lounges per floor, with TV"
       },
       "gym": {
         "available": false
@@ -892,7 +923,7 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
+      "closeBuildings": ["etower", "stever"],
       "note": "Morewood Gardens is right on top of UG, next to UHS and CAPS, close to campus",
       "latitude": 40.445069937572704,
       "longitude": -79.94324961565809
@@ -1053,15 +1084,14 @@
       ],
       "bathrooms": {
         "types": ["communal", "shared_suite"],
-        "details": "traditional dorms have Communal bathrooms and semi-suite will share with another suite"
+        "details": "Communal in traditional rooms; shared with another suite in semi-suites"
       },
       "ac": {
-        "level": "none",
-        "details": "AC not available"
+        "level": "none"
       },
       "kitchen": {
         "scope": "shared",
-        "details": "3 kitchens"
+        "details": "3 shared kitchens"
       },
       "laundry": {
         "location": "basement",
@@ -1069,7 +1099,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Large lounge with public grand piano, large study lounge, pool table room, big courtyard"
+        "details": "Large lounge with a public grand piano, large study lounge, pool table room, and large courtyard"
       },
       "gym": {
         "available": false
@@ -1084,8 +1114,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["stever"],
-      "note": "Mudge is located on Morewood Ave, close to Stever, slightly farther from campus",
+      "closeBuildings": ["stever", "morewood"],
+      "note": "Located on Morewood Ave, slightly farther from campus",
       "latitude": 40.44691482941882,
       "longitude": -79.94265298459514
     }
@@ -1173,16 +1203,14 @@
     "amenities": {
       "roomTypes": ["apartment_triple", "studio_apartment_double"],
       "bathrooms": {
-        "types": ["private"],
-        "details": "bathrooms are private"
+        "types": ["private"]
       },
       "ac": {
-        "level": "central",
-        "details": "unknown"
+        "level": "central"
       },
       "kitchen": {
         "scope": "in_unit",
-        "details": "kitchenette"
+        "details": "In-unit kitchenette"
       },
       "laundry": {
         "location": "each_floor",
@@ -1206,8 +1234,8 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": [],
-      "note": "res on fifth is close to many utility/dining (Craigs St, Starbucks, Chipotle, bus stops, UPitt",
+      "closeBuildings": ["fifthneville", "fairfax", "neville", "fifthclyde"],
+      "note": "Residence on Fifth is close to many utilities and dining options (Craig St, Starbucks, Chipotle, bus stops, Pitt)",
       "latitude": 40.44684010797551,
       "longitude": -79.94675464406312
     }
@@ -1281,16 +1309,13 @@
     "amenities": {
       "roomTypes": ["trad_single", "trad_double"],
       "bathrooms": {
-        "types": ["communal"],
-        "details": "needs more details"
+        "types": ["communal"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
-        "scope": "shared",
-        "details": "idk maybe?"
+        "scope": "shared"
       },
       "laundry": {
         "location": "basement",
@@ -1298,7 +1323,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Big 0th floor lounge, and lounges every floor"
+        "details": "Large ground-floor lounge, and a lounge on every floor"
       },
       "gym": {
         "available": false
@@ -1313,8 +1338,19 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "hamerschlag", "welch", "boss", "mcgill", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Boss/McGill, and Henderson",
+      "closeBuildings": [
+        "welch",
+        "boss",
+        "henderson",
+        "hamerschlag",
+        "mcgill",
+        "donner",
+        "maggiemo",
+        "margaretmorrison",
+        "resnik",
+        "roselawn"
+      ],
+      "note": "Located on Margaret Morrison St",
       "latitude": 40.44134196049577,
       "longitude": -79.93963894018592
     }
@@ -1387,16 +1423,13 @@
     "amenities": {
       "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": ["shared_suite"],
-        "details": "needs more details"
+        "types": ["shared_suite"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
-        "scope": "shared",
-        "details": "Kitchen yes"
+        "scope": "shared"
       },
       "laundry": {
         "location": "basement",
@@ -1404,7 +1437,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "study space/lounge"
+        "details": "Study space/lounge"
       },
       "gym": {
         "available": false
@@ -1419,8 +1452,18 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "hamerschlag", "scobell", "boss", "mcgill", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Scobell, Boss/McGill, and Henderson",
+      "closeBuildings": [
+        "scobell",
+        "henderson",
+        "boss",
+        "hamerschlag",
+        "mcgill",
+        "donner",
+        "maggiemo",
+        "margaretmorrison",
+        "roselawn"
+      ],
+      "note": "Located on Margaret Morrison St",
       "latitude": 40.44115931075925,
       "longitude": -79.93947916234082
     }
@@ -1497,16 +1540,13 @@
     "amenities": {
       "roomTypes": ["trad_single", "trad_double"],
       "bathrooms": {
-        "types": ["communal"],
-        "details": "needs more details"
+        "types": ["communal"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, should have AC"
+        "level": "central"
       },
       "kitchen": {
-        "scope": "shared",
-        "details": "Yes, there is a kitchen"
+        "scope": "shared"
       },
       "laundry": {
         "location": "basement",
@@ -1514,7 +1554,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "1st floor schlounge and study room on each floor in each tower"
+        "details": "First-floor Schlounge and a study room on each floor of each tower"
       },
       "gym": {
         "available": false
@@ -1529,8 +1569,19 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "boss", "mcgill", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Boss/McGill, Welch, Scobell, and Henderson",
+      "closeBuildings": [
+        "henderson",
+        "boss",
+        "welch",
+        "mcgill",
+        "scobell",
+        "maggiemo",
+        "margaretmorrison",
+        "roselawn",
+        "spirit",
+        "donner"
+      ],
+      "note": "Located on Margaret Morrison St",
       "latitude": 40.441289407285105,
       "longitude": -79.93891460787795
     }
@@ -1600,16 +1651,13 @@
     "amenities": {
       "roomTypes": ["semi_suite_single", "semi_suite_double"],
       "bathrooms": {
-        "types": ["shared_suite"],
-        "details": "bathrooms shared with a suite"
+        "types": ["shared_suite"]
       },
       "ac": {
-        "level": "central",
-        "details": "yes, AC is available"
+        "level": "central"
       },
       "kitchen": {
-        "scope": "shared",
-        "details": "Yes, needs more info"
+        "scope": "shared"
       },
       "laundry": {
         "location": "basement",
@@ -1617,7 +1665,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Communal lounge on ground floor and 1 per floor with TV areas with TV areas"
+        "details": "Communal lounge on the ground floor and one lounge per floor with TV areas"
       },
       "gym": {
         "available": false
@@ -1632,8 +1680,21 @@
     },
     "atmosphere": {},
     "location": {
-      "closeBuildings": ["donner", "hamerschlag", "welch", "scobell", "henderson"],
-      "note": "Located on Margaret Morrison St, close to Donner, Hamerschlag, Welch, Scobell, and Henderson",
+      "closeBuildings": [
+        "margaretmorrison",
+        "mcgill",
+        "roselawn",
+        "boss",
+        "spirit",
+        "hamerschlag",
+        "woodlawn",
+        "scobell",
+        "welch",
+        "henderson",
+        "resnik",
+        "donner"
+      ],
+      "note": "Located on Margaret Morrison St",
       "latitude": 40.44200967524592,
       "longitude": -79.93874623763492
     }
@@ -1690,8 +1751,7 @@
     "amenities": {
       "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": ["private"],
-        "details": "bathrooms per unit"
+        "types": ["private"]
       },
       "ac": {
         "level": "central"
@@ -1705,7 +1765,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "communal kitchen, dining area, lobby, study, laundry room"
+        "details": "Communal kitchen, dining area, lobby, study, and laundry room"
       },
       "gym": {
         "available": false
@@ -1722,7 +1782,7 @@
     "location": {
       "latitude": 40.4469460962968,
       "longitude": -79.9476919479028,
-      "closeBuildings": []
+      "closeBuildings": ["neville", "fifth", "fifthneville"]
     }
   },
   {
@@ -1785,8 +1845,7 @@
     "amenities": {
       "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": ["shared_suite", "private"],
-        "details": "bathrooms per unit"
+        "types": ["shared_suite", "private"]
       },
       "ac": {
         "level": "central"
@@ -1799,7 +1858,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "basement lounge and study; ping pong, foosball, air hockey, and shuffleboard available"
+        "details": "Basement lounge and study; ping pong, foosball, air hockey, and shuffleboard available"
       },
       "gym": {
         "available": false
@@ -1816,7 +1875,7 @@
     "location": {
       "latitude": 40.4474131149012,
       "longitude": -79.9464846772549,
-      "closeBuildings": []
+      "closeBuildings": ["neville", "fifth", "fifthclyde", "clyde", "fairfax", "highlands"]
     }
   },
   {
@@ -1867,8 +1926,7 @@
     "amenities": {
       "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": ["shared_suite", "private"],
-        "details": "bathrooms per unit"
+        "types": ["shared_suite", "private"]
       },
       "ac": {
         "level": "central"
@@ -1882,7 +1940,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has media room, lounge, and study rooms. large lounge, wellness room, and music rooms on first floor"
+        "details": "Each floor has a media room, lounge, and study rooms. The first floor has a large lounge, wellness room, and music rooms."
       },
       "gym": {
         "available": false
@@ -1899,7 +1957,7 @@
     "location": {
       "latitude": 40.4442596456125,
       "longitude": -79.9391293033433,
-      "closeBuildings": []
+      "closeBuildings": ["resnik", "woodlawn"]
     }
   },
   {
@@ -1962,12 +2020,11 @@
     "amenities": {
       "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": ["shared_suite", "private"],
-        "details": "bathrooms per unit"
+        "types": ["shared_suite", "private"]
       },
       "ac": {
         "level": "window",
-        "details": "only in bedrooms"
+        "details": "Window units in bedrooms only"
       },
       "kitchen": {
         "scope": "in_unit"
@@ -1978,7 +2035,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "1st floor lounge"
+        "details": "First-floor lounge"
       },
       "gym": {
         "available": false
@@ -1995,7 +2052,7 @@
     "location": {
       "latitude": 40.4484537838169,
       "longitude": -79.9461284844631,
-      "closeBuildings": []
+      "closeBuildings": ["clyde", "fifthclyde", "fifthneville", "neville"]
     }
   },
   {
@@ -2094,7 +2151,7 @@
       },
       "ac": {
         "level": "window",
-        "details": "only in bedrooms"
+        "details": "Window units in bedrooms only"
       },
       "kitchen": {
         "scope": "in_unit"
@@ -2122,7 +2179,20 @@
     "location": {
       "latitude": 40.4420310449421,
       "longitude": -79.9387146784535,
-      "closeBuildings": []
+      "closeBuildings": [
+        "maggiemo",
+        "mcgill",
+        "roselawn",
+        "boss",
+        "spirit",
+        "hamerschlag",
+        "woodlawn",
+        "scobell",
+        "welch",
+        "henderson",
+        "resnik",
+        "donner"
+      ]
     }
   },
   {
@@ -2192,7 +2262,7 @@
       },
       "ac": {
         "level": "window",
-        "details": "only in bedrooms"
+        "details": "Window units in bedrooms only"
       },
       "kitchen": {
         "scope": "in_unit"
@@ -2218,7 +2288,7 @@
     "location": {
       "latitude": 40.447513309255,
       "longitude": -79.9471739625741,
-      "closeBuildings": []
+      "closeBuildings": ["fifthneville", "fairfax", "fifth", "clyde", "fifthclyde", "highlands"]
     }
   },
   {
@@ -2286,8 +2356,7 @@
     "amenities": {
       "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": ["shared_suite", "private"],
-        "details": "bathrooms per house"
+        "types": ["shared_suite", "private"]
       },
       "ac": {
         "level": "central"
@@ -2317,7 +2386,18 @@
     "location": {
       "latitude": 40.4420051579668,
       "longitude": -79.9382277473254,
-      "closeBuildings": []
+      "closeBuildings": [
+        "spirit",
+        "margaretmorrison",
+        "maggiemo",
+        "woodlawn",
+        "mcgill",
+        "hamerschlag",
+        "boss",
+        "scobell",
+        "henderson",
+        "welch"
+      ]
     }
   },
   {
@@ -2369,12 +2449,11 @@
     "amenities": {
       "roomTypes": ["studio_apartment_single", "studio_apartment_double"],
       "bathrooms": {
-        "types": ["shared_suite", "private"],
-        "details": "bathrooms per unit"
+        "types": ["shared_suite", "private"]
       },
       "ac": {
         "level": "window",
-        "details": "only in bedrooms"
+        "details": "Window units in bedrooms only"
       },
       "kitchen": {
         "scope": "in_unit"
@@ -2400,7 +2479,7 @@
     "location": {
       "latitude": 40.4425032938329,
       "longitude": -79.9377985797988,
-      "closeBuildings": []
+      "closeBuildings": ["spirit", "roselawn", "margaretmorrison", "maggiemo", "mcgill"]
     }
   },
   {
@@ -2480,7 +2559,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has lounge"
+        "details": "Lounge on each floor"
       },
       "gym": {
         "available": false
@@ -2497,7 +2576,15 @@
     "location": {
       "latitude": 40.4425418764762,
       "longitude": -79.9400374897439,
-      "closeBuildings": []
+      "closeBuildings": [
+        "westwing",
+        "donner",
+        "mcgill",
+        "maggiemo",
+        "boss",
+        "margaretmorrison",
+        "scobell"
+      ]
     }
   },
   {
@@ -2562,7 +2649,7 @@
       },
       "ac": {
         "level": "window",
-        "details": "only in bedrooms"
+        "details": "Window units in bedrooms only"
       },
       "kitchen": {
         "scope": "shared"
@@ -2572,7 +2659,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "house has a living room"
+        "details": "Living room in the house"
       },
       "gym": {
         "available": false
@@ -2589,7 +2676,15 @@
     "location": {
       "latitude": 40.4419102553918,
       "longitude": -79.9378610932361,
-      "closeBuildings": []
+      "closeBuildings": [
+        "roselawn",
+        "woodlawn",
+        "margaretmorrison",
+        "maggiemo",
+        "mcgill",
+        "hamerschlag",
+        "boss"
+      ]
     },
     "editorialTags": ["offline"]
   },
@@ -2682,7 +2777,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has lounge; 1st floor has large computer cluster, tech room, recreational areas, and lounge"
+        "details": "Lounge on each floor; first floor has a large computer cluster, tech room, recreational areas, and lounge"
       },
       "gym": {
         "available": false
@@ -2699,7 +2794,7 @@
     "location": {
       "latitude": 40.4426985572609,
       "longitude": -79.9408768021358,
-      "closeBuildings": []
+      "closeBuildings": ["resnik", "donner"]
     }
   },
   {
@@ -2785,14 +2880,14 @@
       },
       "kitchen": {
         "scope": "shared",
-        "details": "Large Kitchen on first floor and kitchens on each floor"
+        "details": "Large kitchen on the first floor and kitchens on each floor"
       },
       "laundry": {
         "location": "basement"
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "each floor has kitchens and lounges; 1st floor has multipurpose room, large lounge, wellness/dance room, large and small music rooms, and study rooms."
+        "details": "Lounge on each floor; first floor has a multipurpose room, large lounge, wellness/dance room, large and small music rooms, and study rooms"
       },
       "gym": {
         "available": false
@@ -2809,7 +2904,7 @@
     "location": {
       "latitude": 40.447675388038,
       "longitude": -79.9456133896324,
-      "closeBuildings": []
+      "closeBuildings": ["clyde", "fifthneville", "highlands", "neville", "fifth"]
     }
   }
 ]

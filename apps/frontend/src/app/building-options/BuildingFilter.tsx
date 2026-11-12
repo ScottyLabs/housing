@@ -195,7 +195,7 @@ export default function BuildingFilter({
     <div className="pb-6 md:pb-10">
       <div
         className={`flex flex-col overflow-hidden bg-brand-menugray border border-black/10 rounded-xl w-full h-auto ${
-          isOpen ? "md:w-[385px]" : "md:hidden"
+          isOpen ? "md:w-[320px]" : "md:hidden"
         }`}
       >
         <PanelHeader

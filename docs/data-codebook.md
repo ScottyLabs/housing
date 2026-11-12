@@ -129,13 +129,14 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 - `Bathrooms.types` is an array so a building with more than one bathroom style lists all of them.
 - `CommonAreas.hasLounge` backs the "Common areas" filter.
 - `Gym.available` is a plain boolean for filtering; `details` carries the description.
+- `details` should add what the value can't say (for example which floors share a bathroom), not restate it. The AC and kitchen cards show `details` in place of the value's label, so a `details` string there should still name the value.
 
 ## Grouped types
 
 - **`AmenityData`** holds everything the filter/survey/comparison UI reads: room types, bathrooms, AC, kitchen, laundry, common areas, gym, gender housing.
 - **`Accessibility`** holds `wheelchairAccessible`, `serviceAnimalFriendly`, `groundFloorRooms`, `strobeAlarm` (strobe fire alarm & doorbell). Filled in per building as data becomes available.
 - **`Atmosphere`** holds `socialness` / `noiseLevel`, 1-5 scales matching the survey sliders and review table. Both are optional since a building may not have data yet.
-- **`Location`** holds `latitude`/`longitude` for a "distance from landmark" filter (no distance value is stored on the building itself), `closeBuildings` (a list of building ids for the "Closest Buildings" detail card), and an optional `note` for a human-written blurb.
+- **`Location`** holds `latitude`/`longitude` for a "distance from landmark" filter (no distance value is stored on the building itself), `closeBuildings` (building ids for the "Closest Buildings" detail card: every building within about 150 m, nearest first, and never fewer than the two nearest), and an optional `note` for a human-written blurb.
 - **`GalleryImage`** is `link` + `description`, one per photo.
 - **`FloorPlan`** is `link` + `description` + `category` (`"roomType" | "floor"`) + optional `virtualTourLink`, which points to a walkthrough for that specific floor plan.
 - **`Media`** holds `mainImage`, optional `icon`, `photos[]`, and `floorPlans[]`.
@@ -167,7 +168,6 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 | `noKitchen` | `amenities.kitchen.scope === KitchenScope.None` |
 | `limitedAC` | `amenities.ac.level === ACLevel.ByNecessity` |
 | `noCentralAC` | `amenities.ac.level` is neither `None` nor `Central` |
-| `basementLaundry` | `amenities.laundry.location === LaundryLocation.Basement` |
 | `gymAccess` | `amenities.gym.available` |
 | `girlsOnly` | `amenities.genderHousing === GenderHousing.WomenOnly` |
 | `lgbtqInclusive` | `amenities.genderHousing === GenderHousing.GenderInclusive` |

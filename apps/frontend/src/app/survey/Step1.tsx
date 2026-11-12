@@ -1,4 +1,5 @@
 import DropdownButton, { type SelectOption } from "@/components/DropdownButton";
+import { MAJORS } from "@/data/majors";
 
 const GENDER_OPTIONS: SelectOption[] = [
   { value: "male", label: "Male" },
@@ -15,16 +16,7 @@ const YEAR_OPTIONS: SelectOption[] = [
   { value: "senior", label: "Senior" },
 ];
 
-// Major options need the full majors list later.
-const MAJOR_OPTIONS: SelectOption[] = [
-  { value: "arch", label: "Arch" },
-  { value: "cee", label: "CEE" },
-  { value: "cfa", label: "CFA" },
-  { value: "design", label: "Design" },
-  { value: "dietrich", label: "Dietrich" },
-  { value: "ece", label: "ECE" },
-  { value: "scs", label: "SCS" },
-];
+const MAJOR_OPTIONS: SelectOption[] = MAJORS.map((major) => ({ value: major, label: major }));
 
 interface Step1Props {
   gender: string;
@@ -43,6 +35,7 @@ function Field({
   options,
   value,
   onChangeAction,
+  searchable = false,
 }: {
   icon: string;
   label: string;
@@ -51,6 +44,7 @@ function Field({
   options: SelectOption[];
   value: string;
   onChangeAction: (value: string) => void;
+  searchable?: boolean;
 }) {
   return (
     <div className="flex items-start gap-[18px]">
@@ -64,6 +58,7 @@ function Field({
             placeholder={placeholder}
             value={value}
             onChangeAction={onChangeAction}
+            searchable={searchable}
           />
         </div>
       </div>
@@ -116,10 +111,11 @@ export default function Step1({ gender, setGender, year, setYear, major, setMajo
             icon="/unsorted-icons/degree.svg"
             label="Major"
             helper="This lets us know where most of your classes will probably be"
-            placeholder="Pick your major"
+            placeholder="Search or type your major"
             options={MAJOR_OPTIONS}
             value={major}
             onChangeAction={setMajor}
+            searchable
           />
         </div>
       </div>

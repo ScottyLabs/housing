@@ -11,12 +11,15 @@ export default function Navbar() {
   // Stays highlighted on the "See More" pages, which are part of the building options.
   const onBuildingOptions =
     pathname === "/building-options" || pathname.startsWith("/building-options/");
+  const onHome = pathname === "/home";
+  const onComparison = pathname === "/building-comparison";
+  const onMap = pathname === "/map";
+  const onReviews = pathname === "/reviews" || pathname === "/rating";
 
   return (
     <>
       <div className="flex items-center justify-between h-16 px-4 border-b-2 border-gray-200 md:hidden">
         <Link to="/home" className="flex items-center gap-2">
-          <img src="/cmuhousingdog.svg" alt="CMU Housing" className="w-10 h-10" />
           <img src="/logo.svg" alt="CMU Housing" className="h-8" />
         </Link>
         <Link to="/profile">
@@ -30,42 +33,36 @@ export default function Navbar() {
             to="/home"
             className="px-6 py-3 gap-2 min-w-max relative rounded-2xl flex items-center cursor-pointer transition-colors duration-200 hover:bg-gray-100"
           >
-            <img src="/cmuhousingdog.svg" alt="CMU Housing" className="w-10 h-10" />
-            <div className="hidden lg:block">
-              <img src="/logo.svg" alt="CMU Housing" className="relative w-42 h-8 top-1" />
-            </div>
+            <img src="/logo.svg" alt="CMU Housing" className="w-42 h-8" />
           </Link>
 
-          <div className="flex flex-1 items-center justify-between mx-10 sm:mx-22 lg:mx-24">
+          <div className="flex flex-1 items-center justify-between mx-4 min-[1280px]:mx-10 min-[1700px]:mx-24">
+            <NavButton href="/home" name="Home" icon="/home.svg" isActive={onHome} horizontal />
+            <NavbarSpacer hidden={onHome || onBuildingOptions} />
             <NavButton
               href="/building-options"
-              name="Buildings"
+              name="All Building Options"
               icon="/all-buildings.svg"
               isActive={onBuildingOptions}
+              horizontal
             />
-            <NavbarSpacer
-              left_nbr_path="/building-options"
-              right_nbr_path="/building-comparison"
-              pathname={pathname}
-            />
+            <NavbarSpacer hidden={onBuildingOptions || onComparison} />
             <NavButton
               href="/building-comparison"
-              name="Compare"
+              name="Building Comparison"
               icon="/comparison.svg"
-              isActive={pathname === "/building-comparison"}
+              isActive={onComparison}
+              horizontal
             />
-            <NavbarSpacer
-              left_nbr_path="/building-comparison"
-              right_nbr_path="/map"
-              pathname={pathname}
-            />
-            <NavButton href="/map" name="Map" icon="/map.svg" isActive={pathname === "/map"} />
-            <NavbarSpacer left_nbr_path="/map" right_nbr_path="/reviews" pathname={pathname} />
+            <NavbarSpacer hidden={onComparison || onMap} />
+            <NavButton href="/map" name="Campus Map" icon="/map.svg" isActive={onMap} horizontal />
+            <NavbarSpacer hidden={onMap || onReviews} />
             <NavButton
               href="/reviews"
-              name="Reviews"
+              name="Review Building"
               icon="/write-review.svg"
-              isActive={pathname === "/reviews" || pathname === "/rating"}
+              isActive={onReviews}
+              horizontal
             />
           </div>
           <div className="flex gap-1 items-center mx-2 ">
