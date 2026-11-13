@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { type Building, useBuildingById } from "@/components/BuildingContext";
 import { ACLevel, BathroomType, RoomType, acText, kitchenText } from "@/data/buildingTypes";
 import { campusBuildings } from "@/data/campusBuildings";
+import StudentReviews from "@/components/reviews/StudentReviews";
 
 const bathroomTypeLabel: Record<BathroomType, string> = {
   [BathroomType.Communal]: "Communal",
@@ -49,15 +50,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
 
   return (
     <div className="space-y-4 overflow-x-auto min-w-40 max-w-full pb-3 pt-3 px-4 sm:px-10 md:px-20 lg:px-30">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-bold text-[24px]">{building.name}</h2>
-        <Link
-          to={`/reviews/${encodeURIComponent(building.id)}`}
-          className="rounded-2xl bg-brand-primary px-5 py-3 font-medium text-white hover:bg-[#f1872c]"
-        >
-          Write a Review
-        </Link>
-      </div>
+      <h2 className="font-bold text-[24px]">{building.name}</h2>
       <div className="w-full h-[300px]">
         <div className="relative w-full h-full overflow-hidden rounded-[18px]">
           <img
@@ -322,6 +315,8 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           </div>
         </div>
       </div>
+      <StudentReviews building={building} />
+
       <div className="flex gap-3 pt-2.5 items-center">
         <img src={"/gallery.svg"} alt={"gallery"} width={36} height={36} className="w-9 h-9" />
 

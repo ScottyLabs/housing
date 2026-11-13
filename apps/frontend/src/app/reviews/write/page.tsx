@@ -71,7 +71,6 @@ function useReviewFlow(building: Building, onSignedOut: () => void) {
     else setStep(step - 1);
   };
 
-  // Changing an answer clears the message about what was missing.
   const edit = (fields: Parameters<typeof update>[0]) => {
     setProblem(undefined);
     update(fields);

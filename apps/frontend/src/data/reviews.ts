@@ -19,10 +19,6 @@ export function classYearLabel(value: string | null): string | undefined {
 const SCHOOL_YEARS_SHOWN = 6;
 const AUGUST = 7;
 
-/**
- * School years like "2026/2027", newest first, for the review's `livedYear`. A school year starts
- * in August, so in November 2026 the newest is 2026/2027 and in March 2026 it is 2025/2026.
- */
 export function schoolYearOptions(today: Date): SelectOption[] {
   const newestStart = today.getMonth() >= AUGUST ? today.getFullYear() : today.getFullYear() - 1;
   return Array.from({ length: SCHOOL_YEARS_SHOWN }, (_, index) => {
@@ -40,7 +36,6 @@ export type RatingKey =
 
 export type Ratings = Record<RatingKey, number>;
 
-/** The four ratings, in the order and with the names used on review cards. */
 export const RATING_QUESTIONS: Array<{ key: RatingKey; icon: string; question: string }> = [
   {
     key: "ratingOverall",
@@ -64,6 +59,13 @@ export const RATING_QUESTIONS: Array<{ key: RatingKey; icon: string; question: s
   },
 ];
 
+export const RATING_LABELS: Array<{ key: RatingKey; label: string }> = [
+  { key: "ratingOverall", label: "Overall Experience" },
+  { key: "ratingAmenities", label: "Amenities" },
+  { key: "ratingRoomQuality", label: "Room Quality" },
+  { key: "ratingAtmosphere", label: "Atmosphere" },
+];
+
 export const DEFAULT_RATING = 3;
 
 export const defaultRatings: Ratings = {
@@ -73,13 +75,10 @@ export const defaultRatings: Ratings = {
   ratingRoomQuality: DEFAULT_RATING,
 };
 
-/** What the review form holds before it is saved. */
 export interface ReviewDraft {
   body: string;
-  /** A CLASS_YEAR_OPTIONS value such as "first-year"; saved as the review's `livedTerm`. */
   classYear: string;
   ratings: Ratings;
-  /** A school year such as "2025/2026"; saved as the review's `livedYear`. */
   schoolYear: string;
 }
 
@@ -100,3 +99,86 @@ export function stepProblem(step: number, draft: ReviewDraft): string | undefine
   }
   return undefined;
 }
+
+export interface RatingAverages {
+  amenities: number | null;
+  atmosphere: number | null;
+  overall: number | null;
+  roomQuality: number | null;
+}
+
+export interface DormReview {
+  authorName: string;
+  body: string;
+  id: number;
+  isMine: boolean;
+  livedTerm: string | null;
+  livedYear: string | null;
+  ratings: Record<RatingKey, number | null>;
+  submittedAt: Date | null;
+}
+
+type LooseNumber = string | number | null;
+
+export interface ApiReview {
+  authorName: string;
+  body: string | null;
+  id: string | number;
+  isMine: boolean;
+  livedTerm: string | null;
+  livedYear: string | null;
+  ratingAmenities: LooseNumber;
+  ratingAtmosphere: LooseNumber;
+  ratingOverall: LooseNumber;
+  ratingRoomQuality: LooseNumber;
+  submittedAt: unknown;
+}
+
+function toNumber(value: LooseNumber): number | null {
+  return value === null ? null : Number(value);
+}
+
+function toDate(value: unknown): Date | null {
+  if (typeof value !== "string" && typeof value !== "number") return null;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+export function toDormReview(review: ApiReview): DormReview {
+  return {
+    authorName: review.authorName,
+    body: review.body ?? "",
+    id: Number(review.id),
+    isMine: review.isMine,
+    livedTerm: review.livedTerm,
+    livedYear: review.livedYear,
+    ratings: {
+      ratingAmenities: toNumber(review.ratingAmenities),
+      ratingAtmosphere: toNumber(review.ratingAtmosphere),
+      ratingOverall: toNumber(review.ratingOverall),
+      ratingRoomQuality: toNumber(review.ratingRoomQuality),
+    },
+    submittedAt: toDate(review.submittedAt),
+  };
+}
+
+export function formatReviewDate(date: Date): string {
+  return date.toLocaleDateString("en-US", { day: "numeric", month: "numeric", year: "2-digit" });
+}
+
+export function livedHereText(
+  livedTerm: string | null,
+  livedYear: string | null,
+): string | undefined {
+  const parts = [classYearLabel(livedTerm) ?? livedTerm, livedYear].filter(
+    (part): part is string => part !== null && part !== undefined && part !== "",
+  );
+  return parts.length === 0 ? undefined : `Lived here ${parts.join(", ")}`;
+}
+
+export const AVERAGE_KEYS: Record<RatingKey, keyof RatingAverages> = {
+  ratingAmenities: "amenities",
+  ratingAtmosphere: "atmosphere",
+  ratingOverall: "overall",
+  ratingRoomQuality: "roomQuality",
+};

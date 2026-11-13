@@ -8,7 +8,6 @@ const primaryButton =
 const secondaryButton =
   "flex h-[56px] w-full items-center justify-center rounded-2xl bg-brand-buttongray px-6 font-['Inter'] text-[18px] font-medium text-black transition-colors hover:bg-[#d7dfe3] sm:w-auto sm:min-w-[204px]";
 
-/** Page title with a link back to the building picker, shared by every review form state. */
 export function ReviewPageHeader({ title }: { title: string }) {
   return (
     <>
@@ -20,7 +19,6 @@ export function ReviewPageHeader({ title }: { title: string }) {
   );
 }
 
-/** The info banner at the top of the survey, reused for review notes. */
 export function InfoCard({ children }: { children: ReactNode }) {
   return (
     <div className="flex items-center gap-4 rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-6">
