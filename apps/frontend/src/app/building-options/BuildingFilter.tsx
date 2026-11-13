@@ -1,10 +1,26 @@
 import { useState } from "react";
 import Checkbox from "../../components/Checkbox.tsx";
 import DropdownButton, { type SelectOption } from "../../components/DropdownButton.tsx";
+import HousingClassToggle from "../../components/HousingClassToggle.tsx";
 import Slider from "../../components/Slider.tsx";
-import type { FilterState } from "../../data/buildingTypes.ts";
+import type { FilterState, HousingClass } from "../../data/buildingTypes.ts";
 import { campusBuildings } from "../../data/campusBuildings.ts";
 import FilterHeader from "./FilterHeader.tsx";
+
+function ClassStandingSection({
+  housingClass,
+  onChangeAction,
+}: {
+  housingClass: HousingClass;
+  onChangeAction: (housingClass: HousingClass) => void;
+}) {
+  return (
+    <div className="flex flex-col w-full gap-[18px]">
+      <FilterHeader name="Class Standing" desc="" icon="/unsorted-icons/degree.svg" />
+      <HousingClassToggle value={housingClass} onChange={onChangeAction} />
+    </div>
+  );
+}
 
 function DistanceSection({
   filters,
@@ -172,6 +188,11 @@ function CollapsedRail({ onOpenAction }: { onOpenAction: () => void }) {
       >
         <img src="/hide-sidebar-v2.svg" alt="hide sidebar" className="w-[22.4px] h-[22.4px]" />
       </button>
+      <img
+        src="/unsorted-icons/degree.svg"
+        alt="class standing"
+        className="w-[38.4px] h-[38.4px]"
+      />
       <img src="/distance.svg" alt="distance from" className="w-[38.4px] h-[38.4px]" />
       <img src="/atmosphere.svg" alt="atmosphere" className="w-[38.4px] h-[38.4px]" />
       <img src="/accomadations.svg" alt="accomadations" className="w-[38.4px] h-[38.4px]" />
@@ -183,9 +204,13 @@ function CollapsedRail({ onOpenAction }: { onOpenAction: () => void }) {
 export default function BuildingFilter({
   filters,
   onChangeAction,
+  housingClass,
+  onChangeHousingClassAction,
 }: {
   filters: FilterState;
   onChangeAction: (filters: FilterState) => void;
+  housingClass: HousingClass;
+  onChangeHousingClassAction: (housingClass: HousingClass) => void;
 }) {
   const [isOpen, setIsOpen] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -204,6 +229,10 @@ export default function BuildingFilter({
         />
         <div className={`${mobileOpen ? "block" : "hidden"} md:block px-[24px] pb-[24px]`}>
           <div className="flex flex-col gap-[38px] items-center sm:items-start">
+            <ClassStandingSection
+              housingClass={housingClass}
+              onChangeAction={onChangeHousingClassAction}
+            />
             <DistanceSection filters={filters} onChangeAction={onChangeAction} />
             <AtmosphereSection filters={filters} onChangeAction={onChangeAction} />
             <AccommodationsSection filters={filters} onChangeAction={onChangeAction} />

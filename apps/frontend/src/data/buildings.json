@@ -2,6 +2,7 @@
   {
     "id": "etower",
     "name": "E Tower",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/photo-grid-images/mascots/etower1400x700.jpg",
       "photos": [
@@ -110,6 +111,7 @@
   {
     "id": "stever",
     "name": "Stever",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/photo-grid-images/mascots/stever-house_1400x700.jpg",
       "photos": [
@@ -211,6 +213,7 @@
   {
     "id": "boss",
     "name": "Boss House",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/photo-grid-images/mascots/boss-house__1400x700-min.jpg",
       "photos": [
@@ -311,6 +314,7 @@
   {
     "id": "clyde",
     "name": "Clyde House",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/clyde-house1400x700-min.jpg",
       "photos": [
@@ -416,6 +420,7 @@
   {
     "id": "donner",
     "name": "Donner",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/donner-house1400x700-min.jpg",
       "photos": [
@@ -537,6 +542,7 @@
   {
     "id": "henderson",
     "name": "Henderson",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/henderson-house1400x700-min.jpg",
       "photos": [
@@ -653,6 +659,7 @@
   {
     "id": "mcgill",
     "name": "McGill",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/mcgill-house_1400x700-min.jpg",
       "photos": [
@@ -765,6 +772,7 @@
   {
     "id": "morewood",
     "name": "Morewood Gardens",
+    "housingClasses": ["first_year", "upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/morewood-gardens1400x700-min.jpg",
       "photos": [
@@ -891,6 +899,7 @@
   {
     "id": "mudge",
     "name": "Mudge",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/photo-grid-images/mascots/mudge-house_1400x700-min.jpg",
       "photos": [
@@ -1082,6 +1091,7 @@
   {
     "id": "fifth",
     "name": "Residence on Fifth",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/residence-on-fifth1400x700-min.jpg",
       "photos": [
@@ -1207,6 +1217,7 @@
   {
     "id": "scobell",
     "name": "Scobell",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/scobell-house_900x600-min.jpg",
       "photos": [
@@ -1311,6 +1322,7 @@
   {
     "id": "welch",
     "name": "Welch",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/welch900x600-min.jpg",
       "photos": [
@@ -1414,6 +1426,7 @@
   {
     "id": "hamerschlag",
     "name": "Hamerschlag",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/images/hero-images/hamerschlag2025-1400x700.png",
       "photos": [
@@ -1521,6 +1534,7 @@
   {
     "id": "maggiemo",
     "name": "Maggie Mo",
+    "housingClasses": ["first_year"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/images/hero-images/mma-900x600-min.jpg",
       "photos": [
@@ -1621,6 +1635,7 @@
   {
     "id": "fairfax",
     "name": "Fairfax Apartments",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/fairfax-apartments_adjusted-min.jpg",
       "photos": [],
@@ -1712,6 +1727,7 @@
   {
     "id": "fifthneville",
     "name": "Fifth Neville Apartments",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/about-us/news/news-images/fifthneville900x600.jpg",
       "photos": [
@@ -1810,6 +1826,7 @@
   {
     "id": "forbesbeeler",
     "name": "Forbes Beeler Apartments",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/images/forbes-beeler/outside-fb-900x600-min.jpg",
       "photos": [
@@ -1892,6 +1909,7 @@
   {
     "id": "highlands",
     "name": "The Highlands",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/the-highlands-min.jpg",
       "photos": [
@@ -1992,6 +2010,7 @@
   {
     "id": "margaretmorrison",
     "name": "Margaret Morrison Apartments",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/margaret-morrison-min.jpg",
       "photos": [
@@ -2119,6 +2138,7 @@
   {
     "id": "neville",
     "name": "Neville Apartments",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/neville-backyard-min.jpg",
       "photos": [
@@ -2220,6 +2240,7 @@
   {
     "id": "roselawn",
     "name": "Roselawn Houses",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/roselawn-houses-min.jpg",
       "photos": [
@@ -2318,6 +2339,7 @@
   {
     "id": "woodlawn",
     "name": "Woodlawn Apartments",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/woodlawn-apartments-min.jpg",
       "photos": [
@@ -2400,6 +2422,7 @@
   {
     "id": "resnik",
     "name": "Resnik House",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/resnik-house-min.jpg",
       "photos": [
@@ -2502,6 +2525,7 @@
   {
     "id": "spirit",
     "name": "Spirit House",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/SA_Spirit%20House-min.jpg",
       "photos": [
@@ -2595,6 +2619,7 @@
   {
     "id": "westwing",
     "name": "West Wing",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/west-wing-min.jpg",
       "photos": [
@@ -2704,6 +2729,7 @@
   {
     "id": "fifthclyde",
     "name": "Fifth & Clyde House",
+    "housingClasses": ["upperclass"],
     "media": {
       "mainImage": "https://www.cmu.edu/housing/our-communities/residences/outdoor-building-images/fifthandclyde-min.jpg",
       "photos": [

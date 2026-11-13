@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
-import { useBuildings } from "@/components/BuildingContext";
+import { type Building, useBuildings } from "@/components/BuildingContext";
 import BuildingOption from "@/components/BuildingOption";
+import { buildingsForClass, housingClassLabel, housingClasses } from "@/data/housing";
 
 function SearchIcon() {
   return (
@@ -37,6 +38,24 @@ function BuildingSearch({ value, onChange }: { value: string; onChange: (value: 
   );
 }
 
+function BuildingSection({ title, buildings }: { title: string; buildings: Building[] }) {
+  return (
+    <div className="mt-8 first:mt-6">
+      <h3 className="text-[20px] font-medium leading-none">{title}</h3>
+      <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+        {buildings.map((building) => (
+          <BuildingOption
+            key={building.id}
+            building={building}
+            to={`/reviews/${building.id}`}
+            className="aspect-[4/3] w-full hover:outline-[3px] hover:outline-offset-2 hover:outline-brand-primary"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ReviewsPage() {
   const buildings = useBuildings();
   const [query, setQuery] = useState("");
@@ -46,8 +65,14 @@ export default function ReviewsPage() {
     [buildings],
   );
   const search = query.trim().toLowerCase();
-  const matches =
-    search === "" ? sorted : sorted.filter((b) => b.name.toLowerCase().includes(search));
+  const sections = housingClasses
+    .map((housingClass) => ({
+      housingClass,
+      buildings: buildingsForClass(sorted, housingClass).filter((b) =>
+        b.name.toLowerCase().includes(search),
+      ),
+    }))
+    .filter((section) => section.buildings.length > 0);
 
   return (
     <div className="mx-auto w-full max-w-[1140px] px-6 pb-12 pt-[26px]">
@@ -59,20 +84,16 @@ export default function ReviewsPage() {
           </h2>
           <BuildingSearch value={query} onChange={setQuery} />
         </div>
-        {matches.length === 0 ? (
+        {sections.length === 0 && (
           <p className="mt-8 text-[18px]">No buildings match &ldquo;{query.trim()}&rdquo;.</p>
-        ) : (
-          <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-            {matches.map((building) => (
-              <BuildingOption
-                key={building.id}
-                building={building}
-                to={`/reviews/${building.id}`}
-                className="aspect-[4/3] w-full"
-              />
-            ))}
-          </div>
         )}
+        {sections.map(({ housingClass, buildings: matches }) => (
+          <BuildingSection
+            key={housingClass}
+            title={`${housingClassLabel[housingClass]} Buildings`}
+            buildings={matches}
+          />
+        ))}
       </section>
     </div>
   );

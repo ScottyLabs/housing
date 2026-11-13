@@ -44,6 +44,11 @@ export enum GenderHousing {
   GenderInclusive = "gender_inclusive",
 }
 
+export enum HousingClass {
+  FirstYear = "first_year",
+  Upperclass = "upperclass",
+}
+
 export interface Bathrooms {
   types: BathroomType[];
   details?: string;
@@ -127,6 +132,7 @@ export interface Media {
 export interface Building {
   id: string;
   name: string;
+  housingClasses: HousingClass[];
   media: Media;
   amenities: AmenityData;
   accessibility: Accessibility;

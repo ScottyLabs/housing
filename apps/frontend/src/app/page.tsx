@@ -1,32 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
-import client from "@/api/client";
+import { useMemo } from "react";
 import { useBuildings } from "@/components/BuildingContext";
-import { type Preferences, preferencesToFilters } from "@/data/preferences";
+import { HousingClass } from "@/data/buildingTypes";
+import { buildingsForClass, housingClassForYear } from "@/data/housing";
+import { preferencesToFilters } from "@/data/preferences";
 import { rankBuildings } from "@/data/scoring";
 import useFitToViewport from "@/hooks/useFitToViewport";
+import usePreferences from "@/hooks/usePreferences";
 import RecommendedBuildings from "./RecommendedBuildings";
-
-function usePreferences() {
-  const [preferences, setPreferences] = useState<Preferences | null>(null);
-
-  useEffect(() => {
-    void client.GET("/api/me/preferences").then(({ data }) => {
-      if (data) setPreferences(data);
-    });
-  }, []);
-
-  return preferences;
-}
 
 export default function Home() {
   const buildings = useBuildings();
-  const preferences = usePreferences();
+  const { loaded, preferences } = usePreferences();
   const { ref, scale } = useFitToViewport();
   const recommended = useMemo(() => {
+    const housingClass = housingClassForYear(preferences?.year ?? null) ?? HousingClass.FirstYear;
+    const inClass = buildingsForClass(buildings, housingClass);
     if (preferences === null) {
-      return buildings.toSorted((b1, b2) => b1.name.localeCompare(b2.name)).slice(0, 5);
+      return inClass.toSorted((b1, b2) => b1.name.localeCompare(b2.name)).slice(0, 5);
     }
-    return rankBuildings(buildings, preferencesToFilters(preferences)).slice(0, 5);
+    return rankBuildings(inClass, preferencesToFilters(preferences)).slice(0, 5);
   }, [buildings, preferences]);
 
   return (
@@ -39,7 +31,7 @@ export default function Home() {
         <h1 className="hidden md:block font-bold text-[32px] py-3 flex-shrink-0">Home</h1>
         <div className="md:overflow-y-auto">
           <div className="flex flex-col gap-[16px] items-center sm:items-start pb-2">
-            <RecommendedBuildings buildings={recommended} />
+            {loaded && <RecommendedBuildings buildings={recommended} />}
           </div>
         </div>
       </div>

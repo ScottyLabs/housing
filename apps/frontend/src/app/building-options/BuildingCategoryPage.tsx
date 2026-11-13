@@ -31,13 +31,13 @@ function BackLink() {
 // The "See More" page of a category: every building in it, in the order of the user's preferences.
 export default function BuildingCategoryPage() {
   const { category: slug } = useParams();
-  const groups = useBuildingGroups();
+  const { groups, housingClass, setHousingClass } = useBuildingGroups();
   const category = buildingCategories.find((c) => c.seeMore && c.slug === slug);
 
   if (category === undefined) return <NotFound />;
 
   return (
-    <BuildingOptionsLayout>
+    <BuildingOptionsLayout housingClass={housingClass} onChangeHousingClassAction={setHousingClass}>
       <div className="flex-shrink-0 pt-[15px] pb-[28px]">
         <BackLink />
       </div>

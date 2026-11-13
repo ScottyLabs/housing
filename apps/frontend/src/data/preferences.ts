@@ -6,6 +6,7 @@ export interface Preferences {
   preferredAmenities: string[] | null;
   preferredGenderHousing: string | null;
   socialFrequency: string | number | null;
+  year: string | null;
 }
 
 const genderHousingByAnswer: Record<string, GenderHousing> = {

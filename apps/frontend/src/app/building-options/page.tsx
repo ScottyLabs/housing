@@ -4,10 +4,10 @@ import { buildingCategories } from "./categories";
 import useBuildingGroups from "./useBuildingGroups";
 
 export default function Home() {
-  const groups = useBuildingGroups();
+  const { groups, housingClass, setHousingClass } = useBuildingGroups();
 
   return (
-    <BuildingOptionsLayout>
+    <BuildingOptionsLayout housingClass={housingClass} onChangeHousingClassAction={setHousingClass}>
       <h1 className="hidden md:block font-bold text-[24px] md:text-[32px] pt-[15px] pb-[28px] flex-shrink-0">
         All Building Options
       </h1>
