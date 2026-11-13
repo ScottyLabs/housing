@@ -6,7 +6,7 @@ export default function LaunchPage() {
       <div className="mx-auto flex h-full max-w-[1404px] flex-col px-6 pt-24 sm:px-10 lg:pt-[126px]">
         <img src="/launch-logo.svg" alt="CMU Housing" className="h-auto w-[592px] max-w-full" />
         <p className="mt-[13px] text-[18px] font-semibold leading-none text-black">
-          Find the perfect dorm for you. Unaffiliated with Carnegie Mellon University
+          Find the perfect dorm for you. A ScottyLabs and Undergraduate Student Senate project.
         </p>
 
         <div className="mt-[30px] flex flex-col gap-4 sm:flex-row sm:gap-5">

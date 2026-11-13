@@ -141,16 +141,31 @@ export interface Building {
   editorialTags?: string[];
 }
 
-export interface FilterState {
+export const featureFilters = [
+  "serviceAnimal",
+  "wheelchairAccessible",
+  "groundFloor",
+  "singleRoom",
+  "doubleRoom",
+  "tripleOrLarger",
+  "studioApartment",
+  "airConditioning",
+  "centralAC",
+  "laundryEachFloor",
+  "enSuiteBathroom",
+  "privateBathroom",
+  "enSuiteKitchen",
+  "kitchenAccess",
+  "commonAreas",
+  "gym",
+] as const;
+
+export type FeatureFilter = (typeof featureFilters)[number];
+
+export interface FilterState extends Record<FeatureFilter, boolean> {
   distanceFrom: string;
   socialness: number | null;
   noiseLevel: number | null;
-  serviceAnimal: boolean;
-  wheelchairAccessible: boolean;
-  singleRoom: boolean;
-  airConditioning: boolean;
-  laundryEachFloor: boolean;
-  enSuiteBathroom: boolean;
   genderHousing: GenderHousing | null;
 }
 

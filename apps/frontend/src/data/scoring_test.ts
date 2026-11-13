@@ -4,8 +4,9 @@
 import { deepStrictEqual, ok } from "node:assert/strict";
 import { test } from "node:test";
 import buildingsData from "./buildings.json" with { type: "json" };
-import type { Building, FilterState } from "./buildingTypes.ts";
+import { type Building, type FilterState, featureFilters } from "./buildingTypes.ts";
 import { campusBuildings } from "./campusBuildings.ts";
+import { buildingHasFeature } from "./features.ts";
 import { defaultFilters, groupBuildings, rankBuildings, scoreBuilding } from "./scoring.ts";
 
 // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- Same JSON cast as data/buildings.ts.
@@ -64,4 +65,25 @@ void test("every close building is a listed campus building", () => {
       ok(campusIds.has(id), `${building.id} lists unknown campus building "${id}"`);
     }
   }
+});
+
+void test("every feature filter is held by some building and ranks one first", () => {
+  for (const feature of featureFilters) {
+    ok(
+      buildings.some((building) => buildingHasFeature(building, feature)),
+      `no building has "${feature}", so the filter could never match`,
+    );
+    const top = rankBuildings(buildings, { ...defaultFilters, [feature]: true }).at(0);
+    ok(
+      top !== undefined && buildingHasFeature(top, feature),
+      `"${feature}" should put a building that has it first`,
+    );
+  }
+});
+
+void test("turning on more filters never lowers a matching building's score", () => {
+  const building = buildings[0];
+  const all: FilterState = { ...defaultFilters };
+  for (const feature of featureFilters) all[feature] = true;
+  ok(scoreBuilding(building, all) >= scoreBuilding(building, defaultFilters));
 });

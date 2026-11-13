@@ -1,25 +1,28 @@
-import {
-  ACLevel,
-  BathroomType,
-  type Building,
-  type FilterState,
-  GenderHousing,
-  LaundryLocation,
-  RoomType,
-} from "./buildingTypes";
+import { type Building, type FilterState, featureFilters, GenderHousing } from "./buildingTypes";
 import { campusBuildings } from "./campusBuildings";
+import { buildingHasFeature } from "./features";
 
 export const defaultFilters: FilterState = {
   distanceFrom: "",
   socialness: null,
   noiseLevel: null,
+  genderHousing: null,
   serviceAnimal: false,
   wheelchairAccessible: false,
+  groundFloor: false,
   singleRoom: false,
+  doubleRoom: false,
+  tripleOrLarger: false,
+  studioApartment: false,
   airConditioning: false,
+  centralAC: false,
   laundryEachFloor: false,
   enSuiteBathroom: false,
-  genderHousing: null,
+  privateBathroom: false,
+  enSuiteKitchen: false,
+  kitchenAccess: false,
+  commonAreas: false,
+  gym: false,
 };
 
 // Best Fit is the top of the ranking, Decent Fit the next few, and Wild Card everything after.
@@ -36,40 +39,13 @@ export interface BuildingGroups {
   wildCard: Building[];
 }
 
-function hasAirConditioning(building: Building): boolean {
-  const level = building.amenities.ac.level;
-  return level === ACLevel.Window || level === ACLevel.Central;
-}
-
-function hasLaundryOnEachFloor(building: Building): boolean {
-  return building.amenities.laundry.location === LaundryLocation.EachFloor;
-}
-
-function hasEnSuiteBathroom(building: Building): boolean {
-  const types = building.amenities.bathrooms.types;
-  return types.includes(BathroomType.SharedSuite) || types.includes(BathroomType.Private);
-}
-
-function hasSingleRoom(building: Building): boolean {
-  const rooms = building.amenities.roomTypes;
-  return (
-    rooms.includes(RoomType.TradSingle) ||
-    rooms.includes(RoomType.SemiSuiteSingle) ||
-    rooms.includes(RoomType.StudioApartmentSingle)
-  );
-}
-
 function amenityScore(building: Building, filters: FilterState): number {
-  let score = 0;
-  if (filters.airConditioning && hasAirConditioning(building)) score += 1;
-  if (filters.laundryEachFloor && hasLaundryOnEachFloor(building)) score += 1;
-  if (filters.enSuiteBathroom && hasEnSuiteBathroom(building)) score += 1;
-  if (filters.singleRoom && hasSingleRoom(building)) score += 1;
-  if (filters.serviceAnimal && building.accessibility.serviceAnimalFriendly) score += 1;
-  if (filters.wheelchairAccessible && building.accessibility.wheelchairAccessible) score += 1;
-  if (filters.genderHousing !== null && building.amenities.genderHousing === filters.genderHousing)
-    score += 1;
-  return score;
+  const matched = featureFilters.filter(
+    (feature) => filters[feature] && buildingHasFeature(building, feature),
+  );
+  const genderMatch =
+    filters.genderHousing !== null && building.amenities.genderHousing === filters.genderHousing;
+  return matched.length + (genderMatch ? 1 : 0);
 }
 
 function preferenceScore(actual: number | undefined, wanted: number | null): number {

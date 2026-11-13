@@ -32,6 +32,10 @@ export function preferencesToFilters(prefs: Preferences): FilterState {
     singleRoom: wanted.has("Single room"),
     airConditioning: wanted.has("Air conditioning") || wanted.has("Climate control: AC"),
     enSuiteBathroom: wanted.has("En suite bathroom"),
+    groundFloor: wanted.has("Ground floor room"),
+    enSuiteKitchen: wanted.has("En suite kitchen"),
+    kitchenAccess: wanted.has("Kitchen access"),
+    commonAreas: wanted.has("Common areas"),
     socialness: prefs.socialFrequency === null ? null : Number(prefs.socialFrequency),
     genderHousing: toGenderHousing(prefs.preferredGenderHousing),
   };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavButton from "./NavButton";
 import NavbarSpacer from "./NavbarSpacer";
+import ProfileMenu from "./ProfileMenu";
 import ShareDropdown from "./ShareDropdown";
 
 export default function Navbar() {
@@ -19,18 +20,16 @@ export default function Navbar() {
   return (
     <>
       <div className="flex items-center justify-between h-16 px-4 border-b-2 border-gray-200 md:hidden">
-        <Link to="/home" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <img src="/logo.svg" alt="CMU Housing" className="h-8" />
         </Link>
-        <Link to="/profile">
-          <img src="/profile.svg" alt="profile" className="rounded-full w-10 h-10" />
-        </Link>
+        <ProfileMenu />
       </div>
 
       <div className="hidden w-full border-b-2 border-gray-200 md:block">
         <div className="flex items-center h-24 whitespace-nowrap px-4">
           <Link
-            to="/home"
+            to="/"
             className="px-6 py-3 gap-2 min-w-max relative rounded-2xl flex items-center cursor-pointer transition-colors duration-200 hover:bg-gray-100"
           >
             <img src="/logo.svg" alt="CMU Housing" className="w-42 h-8" />
@@ -80,9 +79,7 @@ export default function Navbar() {
               </button>
               <ShareDropdown isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
             </div>
-            <Link to="/profile" className="min-w-max">
-              <img src="/profile.svg" alt="profile" className="rounded-full w-10 h-10  mx-2" />
-            </Link>
+            <ProfileMenu />
           </div>
         </div>
       </div>
