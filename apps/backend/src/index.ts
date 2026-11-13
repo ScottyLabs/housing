@@ -26,6 +26,8 @@ import { healthRoute } from "./routes/health.ts";
 import { mapsRoute } from "./routes/maps-config.ts";
 import { preferencesRoute } from "./routes/preferences.ts";
 import { meRoute } from "./routes/me.ts";
+import { myReviewsRoute } from "./routes/my-reviews.ts";
+import { reviewsRoute } from "./routes/reviews.ts";
 import { configureLogger, logger, nodeError } from "./utils/log.ts";
 
 const portStr = Deno.env.get("PORT");
@@ -75,6 +77,8 @@ const api = new Elysia({ prefix: "/api" })
   .use(mapsRoute)
   .use(preferencesRoute)
   .use(meRoute)
+  .use(reviewsRoute)
+  .use(myReviewsRoute)
   .use(sessionAuth)
   .get("/auth/login", async ({ cookie, redirect }) => {
     if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);

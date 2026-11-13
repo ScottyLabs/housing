@@ -68,6 +68,70 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/api/reviews/summary": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["getApiReviewsSummary"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/dorms/{slug}/reviews": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["getApiDormsBySlugReviews"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/me/reviews": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["getApiMeReviews"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/me/reviews/{slug}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["getApiMeReviewsBySlug"];
+    put: operations["putApiMeReviewsBySlug"];
+    post?: never;
+    delete: operations["deleteApiMeReviewsBySlug"];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/api/auth/login": {
     parameters: {
       query?: never;
@@ -308,6 +372,338 @@ export interface operations {
       };
       /** @description Response for status 401 */
       401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  getApiReviewsSummary: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            averages: {
+              amenities: (number | null) | null;
+              atmosphere: (number | null) | null;
+              overall: (number | null) | null;
+              roomQuality: (number | null) | null;
+            };
+            count: string | number;
+            dorm: {
+              name: string;
+              slug: string;
+            };
+          }[];
+        };
+      };
+    };
+  };
+  getApiDormsBySlugReviews: {
+    parameters: {
+      query?: {
+        limit?: string | number;
+        offset?: string | number;
+      };
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            dorm: {
+              name: string;
+              slug: string;
+            };
+            reviews: {
+              body: (string | null) | null;
+              id: string | number;
+              livedTerm: (string | null) | null;
+              livedYear: (string | null) | null;
+              ratingAmenities: ((string | number) | null) | null;
+              ratingAtmosphere: ((string | number) | null) | null;
+              ratingOverall: ((string | number) | null) | null;
+              ratingRoomQuality: ((string | number) | null) | null;
+              submittedAt: ((Record<string, never> | string | number) | null) | null;
+              authorName: string;
+              isMine: boolean;
+            }[];
+            summary: {
+              averages: {
+                amenities: (number | null) | null;
+                atmosphere: (number | null) | null;
+                overall: (number | null) | null;
+                roomQuality: (number | null) | null;
+              };
+              count: string | number;
+            };
+          };
+        };
+      };
+      /** @description Response for status 404 */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  getApiMeReviews: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            body: (string | null) | null;
+            id: string | number;
+            livedTerm: (string | null) | null;
+            livedYear: (string | null) | null;
+            ratingAmenities: ((string | number) | null) | null;
+            ratingAtmosphere: ((string | number) | null) | null;
+            ratingOverall: ((string | number) | null) | null;
+            ratingRoomQuality: ((string | number) | null) | null;
+            submittedAt: ((Record<string, never> | string | number) | null) | null;
+            dorm: {
+              name: string;
+              slug: string;
+            };
+          }[];
+        };
+      };
+      /** @description Response for status 401 */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  getApiMeReviewsBySlug: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            body: (string | null) | null;
+            id: string | number;
+            livedTerm: (string | null) | null;
+            livedYear: (string | null) | null;
+            ratingAmenities: ((string | number) | null) | null;
+            ratingAtmosphere: ((string | number) | null) | null;
+            ratingOverall: ((string | number) | null) | null;
+            ratingRoomQuality: ((string | number) | null) | null;
+            submittedAt: ((Record<string, never> | string | number) | null) | null;
+            dorm: {
+              name: string;
+              slug: string;
+            };
+          } | null;
+        };
+      };
+      /** @description Response for status 401 */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+      /** @description Response for status 404 */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  putApiMeReviewsBySlug: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          body?: (string | null) | null;
+          livedTerm?: (string | null) | null;
+          livedYear?: (string | null) | null;
+          ratingAmenities: string | number;
+          ratingAtmosphere: string | number;
+          ratingOverall: string | number;
+          ratingRoomQuality: string | number;
+        };
+        "application/x-www-form-urlencoded": {
+          body?: (string | null) | null;
+          livedTerm?: (string | null) | null;
+          livedYear?: (string | null) | null;
+          ratingAmenities: string | number;
+          ratingAtmosphere: string | number;
+          ratingOverall: string | number;
+          ratingRoomQuality: string | number;
+        };
+        "multipart/form-data": {
+          body?: (string | null) | null;
+          livedTerm?: (string | null) | null;
+          livedYear?: (string | null) | null;
+          ratingAmenities: string | number;
+          ratingAtmosphere: string | number;
+          ratingOverall: string | number;
+          ratingRoomQuality: string | number;
+        };
+      };
+    };
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            body: (string | null) | null;
+            id: string | number;
+            livedTerm: (string | null) | null;
+            livedYear: (string | null) | null;
+            ratingAmenities: ((string | number) | null) | null;
+            ratingAtmosphere: ((string | number) | null) | null;
+            ratingOverall: ((string | number) | null) | null;
+            ratingRoomQuality: ((string | number) | null) | null;
+            submittedAt: ((Record<string, never> | string | number) | null) | null;
+            dorm: {
+              name: string;
+              slug: string;
+            };
+          };
+        };
+      };
+      /** @description Response for status 401 */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+      /** @description Response for status 404 */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  deleteApiMeReviewsBySlug: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            deleted: boolean;
+          };
+        };
+      };
+      /** @description Response for status 401 */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            error: string;
+          };
+        };
+      };
+      /** @description Response for status 404 */
+      404: {
         headers: {
           [name: string]: unknown;
         };
