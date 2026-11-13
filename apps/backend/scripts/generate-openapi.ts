@@ -25,7 +25,7 @@ async function getSpec(): Promise<unknown> {
   // 2. Server not running: spawn index.ts in a temporary background subprocess to fetch spec
   const command = new Deno.Command("deno", {
     args: ["run", "--allow-all", "src/index.ts"],
-    env: { PORT: "3001", PGHOST: "localhost", PGDATABASE: "cmu-housing", SKIP_MIGRATIONS: "1" },
+    env: { PORT: "3001", PGHOST: "localhost", PGDATABASE: "housing", SKIP_MIGRATIONS: "1" },
     stdout: "null",
     stderr: "null",
   });

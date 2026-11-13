@@ -36,7 +36,7 @@
         in
         {
           scottylabs = {
-            project.name = "cmu-housing";
+            project.name = "housing";
 
             deno = {
               enable = true;
