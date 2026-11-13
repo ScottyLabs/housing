@@ -52,7 +52,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-bold text-[24px]">{building.name}</h2>
         <Link
-          to={`/rating?building=${encodeURIComponent(building.id)}`}
+          to={`/reviews/${encodeURIComponent(building.id)}`}
           className="rounded-2xl bg-brand-primary px-5 py-3 font-medium text-white hover:bg-[#f1872c]"
         >
           Write a Review

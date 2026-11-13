@@ -17,6 +17,7 @@ import {
   OAUTH_PKCE_COOKIE_NAME,
   OAUTH_STATE_COOKIE_NAME,
   oauthStateCookieOptions,
+  POST_LOGIN_PATH_COOKIE_NAME,
   SESSION_COOKIE_NAME,
   sessionCookieOptions,
 } from "./auth/session.ts";
@@ -29,6 +30,7 @@ import { meRoute } from "./routes/me.ts";
 import { myReviewsRoute } from "./routes/my-reviews.ts";
 import { reviewsRoute } from "./routes/reviews.ts";
 import { configureLogger, logger, nodeError } from "./utils/log.ts";
+import { safeRedirectPath } from "./utils/redirect.ts";
 
 const portStr = Deno.env.get("PORT");
 let port = 0;
@@ -80,24 +82,35 @@ const api = new Elysia({ prefix: "/api" })
   .use(reviewsRoute)
   .use(myReviewsRoute)
   .use(sessionAuth)
-  .get("/auth/login", async ({ cookie, redirect }) => {
-    if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
+  .get(
+    "/auth/login",
+    async ({ cookie, query, redirect }) => {
+      if (!oidcConfig || !oidcSettings || !appUrl) return toHome(redirect);
 
-    const callbackUrl = `${appUrl}/api/auth/callback`;
-    const state = createRelayState(callbackUrl);
-    cookie[OAUTH_STATE_COOKIE_NAME].set({
-      value: state,
-      ...oauthStateCookieOptions,
-    });
+      const nextPath = safeRedirectPath(query.next);
+      if (nextPath) {
+        cookie[POST_LOGIN_PATH_COOKIE_NAME].set({ value: nextPath, ...oauthStateCookieOptions });
+      } else {
+        cookie[POST_LOGIN_PATH_COOKIE_NAME].remove();
+      }
 
-    const { codeChallenge, codeVerifier } = await createPkce();
-    cookie[OAUTH_PKCE_COOKIE_NAME].set({
-      value: codeVerifier,
-      ...oauthStateCookieOptions,
-    });
+      const callbackUrl = `${appUrl}/api/auth/callback`;
+      const state = createRelayState(callbackUrl);
+      cookie[OAUTH_STATE_COOKIE_NAME].set({
+        value: state,
+        ...oauthStateCookieOptions,
+      });
 
-    return redirect(buildLoginUrl(oidcConfig, oidcSettings, state, codeChallenge).href);
-  })
+      const { codeChallenge, codeVerifier } = await createPkce();
+      cookie[OAUTH_PKCE_COOKIE_NAME].set({
+        value: codeVerifier,
+        ...oauthStateCookieOptions,
+      });
+
+      return redirect(buildLoginUrl(oidcConfig, oidcSettings, state, codeChallenge).href);
+    },
+    { query: t.Object({ next: t.Optional(t.String()) }) },
+  )
   .get("/auth/callback", async ({ cookie, redirect, request }) => {
     if (!oidcConfig) return toHome(redirect);
 
@@ -105,6 +118,8 @@ const api = new Elysia({ prefix: "/api" })
     const codeVerifier = cookie[OAUTH_PKCE_COOKIE_NAME].value;
     cookie[OAUTH_STATE_COOKIE_NAME].remove();
     cookie[OAUTH_PKCE_COOKIE_NAME].remove();
+    const nextPath = safeRedirectPath(cookie[POST_LOGIN_PATH_COOKIE_NAME].value);
+    cookie[POST_LOGIN_PATH_COOKIE_NAME].remove();
     if (typeof expectedState !== "string" || expectedState === "") {
       logger.warn("OIDC callback hit without a matching oauth_state cookie (expired or CSRF)");
       return toHome(redirect);
@@ -132,7 +147,7 @@ const api = new Elysia({ prefix: "/api" })
       return toHome(redirect);
     }
 
-    return toPath(redirect, "/survey");
+    return toPath(redirect, nextPath ?? "/survey");
   })
   .get("/auth/logout", async ({ cookie, redirect }) => {
     const sessionId = cookie[SESSION_COOKIE_NAME].value;

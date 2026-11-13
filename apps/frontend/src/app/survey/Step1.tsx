@@ -1,4 +1,5 @@
-import DropdownButton, { type SelectOption } from "@/components/DropdownButton";
+import type { SelectOption } from "@/components/DropdownButton";
+import SurveyField from "@/components/SurveyField";
 import { MAJORS } from "@/data/majors";
 
 const GENDER_OPTIONS: SelectOption[] = [
@@ -27,45 +28,6 @@ interface Step1Props {
   setMajor: (val: string) => void;
 }
 
-function Field({
-  icon,
-  label,
-  helper,
-  placeholder,
-  options,
-  value,
-  onChangeAction,
-  searchable = false,
-}: {
-  icon: string;
-  label: string;
-  helper: string;
-  placeholder: string;
-  options: SelectOption[];
-  value: string;
-  onChangeAction: (value: string) => void;
-  searchable?: boolean;
-}) {
-  return (
-    <div className="flex items-start gap-[18px]">
-      <img src={icon} alt="" aria-hidden="true" className="h-12 w-12 flex-shrink-0" />
-      <div className="flex w-full max-w-[600px] flex-col gap-2">
-        <span className="text-[20px] font-semibold leading-none">{label}</span>
-        <span className="text-[14px] leading-none text-black">{helper}</span>
-        <div className="mt-2 w-full max-w-[423px]">
-          <DropdownButton
-            options={options}
-            placeholder={placeholder}
-            value={value}
-            onChangeAction={onChangeAction}
-            searchable={searchable}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function SurveyInfo() {
   return (
     <div className="flex items-center gap-4 rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-6">
@@ -89,7 +51,7 @@ export default function Step1({ gender, setGender, year, setYear, major, setMajo
       <div className="rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-8">
         <h2 className="text-[24px] font-semibold leading-none">Who are you?</h2>
         <div className="mt-8 flex flex-col gap-8">
-          <Field
+          <SurveyField
             icon="/survey-gender.svg"
             label="Gender"
             helper="Some buildings are limited to certain genders"
@@ -98,7 +60,7 @@ export default function Step1({ gender, setGender, year, setYear, major, setMajo
             value={gender}
             onChangeAction={setGender}
           />
-          <Field
+          <SurveyField
             icon="/unsorted-icons/year.svg"
             label="Year"
             helper="The options for first-years and upperclassmen are different"
@@ -107,7 +69,7 @@ export default function Step1({ gender, setGender, year, setYear, major, setMajo
             value={year}
             onChangeAction={setYear}
           />
-          <Field
+          <SurveyField
             icon="/unsorted-icons/degree.svg"
             label="Major"
             helper="This lets us know where most of your classes will probably be"

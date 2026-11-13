@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import BuildingComparison from "@/app/building-comparison/page";
 import BuildingCategoryPage from "@/app/building-options/BuildingCategoryPage";
 import BuildingOptions from "@/app/building-options/page";
@@ -8,12 +8,12 @@ import MapPage from "@/app/map-page";
 import NotFound from "@/app/not-found";
 import Home from "@/app/page";
 import Survey from "@/app/survey/page";
-import Rating from "@/app/rating/page";
 import { BuildingProvider } from "@/components/BuildingContext";
 import { FilterProvider } from "@/components/FilterContext";
 import Navbar from "@/components/Navbar";
 import BuildingDetails from "./components/BuildingDetails";
 import ReviewsPage from "./app/reviews/page";
+import WriteReviewPage from "./app/reviews/write/page";
 
 function AppLayout({ children, showNavbar }: { children: React.ReactNode; showNavbar: boolean }) {
   return (
@@ -37,6 +37,15 @@ function ScrollToTop() {
   return null;
 }
 
+// The review form used to live at /rating?building=<id>; keep those links working.
+function OldRatingLink() {
+  const [searchParams] = useSearchParams();
+  const building = searchParams.get("building");
+  const to =
+    building === null || building === "" ? "/reviews" : `/reviews/${encodeURIComponent(building)}`;
+  return <Navigate replace to={to} />;
+}
+
 export default function App() {
   const location = useLocation();
   return (
@@ -46,13 +55,14 @@ export default function App() {
           <Route path="/" element={<LaunchPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/survey" element={<Survey />} />
-          <Route path="/rating" element={<Rating />} />
+          <Route path="/rating" element={<OldRatingLink />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/building-options" element={<BuildingOptions />} />
           <Route path="/building-options/:category" element={<BuildingCategoryPage />} />
           <Route path="/building-comparison" element={<BuildingComparison />} />
           <Route path="/building/:id" element={<BuildingDetails />} />
           <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/reviews/:id" element={<WriteReviewPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ScrollToTop />

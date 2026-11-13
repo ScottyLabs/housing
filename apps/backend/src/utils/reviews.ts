@@ -12,13 +12,11 @@ export function displayName(fullName: string, andrewId?: string): string {
   return `${first} ${last.charAt(0).toUpperCase()}.`;
 }
 
-/** Postgres returns averages as numeric strings; round them to two decimals. */
 export function toAverage(value: string | null): number | null {
   if (value === null) return null;
   return Math.round(Number(value) * 100) / 100;
 }
 
-/** Trims optional text, storing blank or missing values as null. */
 export function cleanText(value?: string | null): string | null {
   const trimmed = value?.trim() ?? "";
   return trimmed === "" ? null : trimmed;

@@ -14,7 +14,7 @@ export default function Navbar() {
   const onHome = pathname === "/home";
   const onComparison = pathname === "/building-comparison";
   const onMap = pathname === "/map";
-  const onReviews = pathname === "/reviews" || pathname === "/rating";
+  const onReviews = pathname === "/reviews" || pathname.startsWith("/reviews/");
 
   return (
     <>
@@ -102,12 +102,7 @@ export default function Navbar() {
           isActive={pathname === "/building-comparison"}
         />
         <NavButton href="/map" name="Map" icon="/map.svg" isActive={pathname === "/map"} />
-        <NavButton
-          href="/reviews"
-          name="Reviews"
-          icon="/write-review.svg"
-          isActive={pathname === "/reviews" || pathname === "/rating"}
-        />
+        <NavButton href="/reviews" name="Reviews" icon="/write-review.svg" isActive={onReviews} />
       </nav>
     </>
   );

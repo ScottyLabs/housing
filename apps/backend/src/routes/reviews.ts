@@ -22,7 +22,6 @@ import {
   toSummary,
 } from "./review-shared.ts";
 
-/** Public, read-only review data. Signing in is optional; it only sets `isMine`. */
 export const reviewsRoute = new Elysia()
   .use(dbPlugin)
   .use(sessionAuth)

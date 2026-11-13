@@ -717,7 +717,9 @@ export interface operations {
   };
   getApiAuthLogin: {
     parameters: {
-      query?: never;
+      query?: {
+        next?: string;
+      };
       header?: never;
       path?: never;
       cookie?: never;

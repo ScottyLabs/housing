@@ -15,7 +15,6 @@ import {
   toReview,
 } from "./review-shared.ts";
 
-// The signed-in user's own reviews: list, read, write (one per dorm) and delete.
 export const myReviewsRoute = new Elysia({ prefix: "/me" })
   .use(dbPlugin)
   .use(sessionAuth)
@@ -42,7 +41,6 @@ export const myReviewsRoute = new Elysia({ prefix: "/me" })
     { response: { 200: t.Array(ownReview), 401: errorResponse } },
   )
 
-  // The user's review of one dorm, or null if they have not reviewed it (used to prefill the form).
   .get(
     "/reviews/:slug",
     async ({ db, params, set, user }) => {
@@ -75,7 +73,6 @@ export const myReviewsRoute = new Elysia({ prefix: "/me" })
     },
   )
 
-  // Creates the user's review of a dorm, or replaces it if they already wrote one.
   .put(
     "/reviews/:slug",
     async ({ body, db, params, set, user }) => {

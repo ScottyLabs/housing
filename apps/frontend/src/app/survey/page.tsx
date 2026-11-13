@@ -1,69 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import client from "@/api/client";
+import StepFooter from "@/components/StepFooter";
 import useFitToViewport from "@/hooks/useFitToViewport";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 
 const TOTAL_STEPS = 3;
-
-interface SurveyFooterProps {
-  step: number;
-  onNext: () => void;
-  onBack: () => void;
-  onSkip: () => void;
-  isSubmitting: boolean;
-}
-
-function FooterProgress({ step }: { step: number }) {
-  const progress = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
-  return (
-    <div className="flex flex-1 items-center gap-[14px]">
-      <span className="whitespace-nowrap text-[18px] font-medium">
-        Part {step} of {TOTAL_STEPS}
-      </span>
-      <div className="relative h-[4px] flex-1 rounded-full bg-[#DADEE0]">
-        <div
-          className="absolute left-0 top-0 h-full rounded-full bg-brand-primary transition-all"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function FooterButtons({ step, onNext, onBack, onSkip, isSubmitting }: SurveyFooterProps) {
-  return (
-    <div className="flex gap-4">
-      <button
-        type="button"
-        onClick={onNext}
-        disabled={isSubmitting}
-        className="h-[56px] w-[204px] rounded-2xl bg-brand-primary text-[18px] font-medium text-white transition-colors hover:bg-[#f1872c] disabled:opacity-50"
-      >
-        {step === TOTAL_STEPS ? (isSubmitting ? "Submitting..." : "Submit survey") : "Next"}
-      </button>
-      <button
-        type="button"
-        onClick={step === 1 ? onSkip : onBack}
-        disabled={isSubmitting}
-        className="h-[56px] w-[204px] rounded-2xl bg-brand-buttongray font-['Inter'] text-[18px] font-medium text-black transition-colors hover:bg-[#d7dfe3] disabled:opacity-50"
-      >
-        {step === 1 ? "Skip Survey" : "Back"}
-      </button>
-    </div>
-  );
-}
-
-function SurveyFooter(props: SurveyFooterProps) {
-  return (
-    <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-      <FooterProgress step={props.step} />
-      <FooterButtons {...props} />
-    </div>
-  );
-}
 
 interface SurveyData {
   gender: string;
@@ -247,6 +191,11 @@ function useSurveyData() {
   return { data, updateData };
 }
 
+function nextLabel(step: number, isSubmitting: boolean): string {
+  if (step < TOTAL_STEPS) return "Next";
+  return isSubmitting ? "Submitting..." : "Submit survey";
+}
+
 export default function Survey() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -274,16 +223,17 @@ export default function Survey() {
     >
       <h1 className="text-[32px] font-bold leading-none">Survey</h1>
       <SurveySteps step={step} data={data} update={updateData} />
-      <SurveyFooter
+      <StepFooter
         step={step}
+        totalSteps={TOTAL_STEPS}
+        nextLabel={nextLabel(step, isSubmitting)}
+        backLabel={step === 1 ? "Skip Survey" : "Back"}
         onNext={handleNext}
         onBack={() => {
-          if (step > 1) setStep(step - 1);
+          if (step === 1) navigate("/home");
+          else setStep(step - 1);
         }}
-        onSkip={() => {
-          navigate("/home");
-        }}
-        isSubmitting={isSubmitting}
+        disabled={isSubmitting}
       />
     </div>
   );

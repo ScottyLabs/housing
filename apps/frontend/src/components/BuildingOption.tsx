@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, type To } from "react-router-dom";
 import type { Building } from "./BuildingContext";
 
 export default function BuildingOption({
@@ -6,14 +6,16 @@ export default function BuildingOption({
   width,
   height,
   className,
+  to = `/building/${building.id}`,
 }: {
   building: Building;
   width?: number;
   height?: number;
   className?: string;
+  to?: To;
 }) {
   return (
-    <Link to={`/building/${building.id}`}>
+    <Link to={to}>
       <div
         className={`relative overflow-hidden rounded-[18px] ${className ?? ""}`}
         style={className ? undefined : { width: width, height: height }}

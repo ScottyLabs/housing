@@ -2800,6 +2800,16 @@
     },
     "/api/auth/login": {
       "get": {
+        "parameters": [
+          {
+            "name": "next",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "operationId": "getApiAuthLogin"
       }
     },

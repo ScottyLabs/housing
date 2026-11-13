@@ -8,6 +8,7 @@ const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
 
 export const OAUTH_STATE_COOKIE_NAME = "oauth_state";
 export const OAUTH_PKCE_COOKIE_NAME = "oauth_pkce";
+export const POST_LOGIN_PATH_COOKIE_NAME = "post_login_path";
 const OAUTH_STATE_DURATION_S = 10 * 60;
 
 const isProd = (Deno.env.get("APP_URL") ?? "").startsWith("https://");
