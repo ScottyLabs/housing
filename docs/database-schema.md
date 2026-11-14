@@ -252,7 +252,7 @@ One-to-one extension of `user` holding the public-facing roommate-matching profi
 
 ### `dorm`
 
-Reference data for CMU residence halls, shared across all users (not tied to a `user_id`). One row per entry in `apps/frontend/src/data/buildings.json`, loaded by `deno task db:seed` (see [Seeding dorm data](#seeding-dorm-data)). The frontend reads these rows through `GET /api/buildings`, which nests the columns into the `Building` shape from [data-codebook.md](data-codebook.md) and attaches each dorm's review summary (`reviews.count` and the four rating averages).
+Reference data for CMU residence halls, shared across all users (not tied to a `user_id`). One row per entry in `apps/frontend/src/data/buildings.json`, loaded by migration `0009_dorm_data` and by `deno task db:seed` (see [Seeding dorm data](#seeding-dorm-data)). The frontend reads these rows through `GET /api/buildings`, which nests the columns into the `Building` shape from [data-codebook.md](data-codebook.md) and attaches each dorm's review summary (`reviews.count` and the four rating averages).
 
 | Column | DB type | Nullable | Notes |
 | -- | -- | -- | -- |
@@ -293,7 +293,7 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 
 ### `campus_building`
 
-Reference data for academic and other non-residential buildings, shared across all users. One row per entry in `apps/frontend/src/data/campusBuildings.json`, loaded by `deno task db:seed` and served by `GET /api/campus-buildings`. They are the map's origin picker, the "Distance from" filter options and the targets of `dorm.close_buildings`.
+Reference data for academic and other non-residential buildings, shared across all users. One row per entry in `apps/frontend/src/data/campusBuildings.json`, loaded by migration `0008_building_data` and by `deno task db:seed`, and served by `GET /api/campus-buildings`. They are the map's origin picker, the "Distance from" filter options and the targets of `dorm.close_buildings`.
 
 | Column | DB type | Nullable | Notes |
 | -- | -- | -- | -- |
@@ -344,7 +344,7 @@ deno task db:seed
 
 It is safe to re-run: rows are upserted on `slug`, so existing dorms are updated in place and keep their `id` (reviews point at it). Rows that were removed from the JSON files are not deleted. The script validates every enum value against the Postgres enums, and that every `closeBuildings` entry is a listed campus building, and stops without writing anything if one is wrong.
 
-Migration `0008_building_data` already fills `dorm.code`, `dorm.housing_classes` and the `campus_building` rows for the buildings that existed when it was written, so a database that was seeded before it keeps working without a re-seed. Changing a building after that (or adding one) still means editing the JSON and running the seed, because the database is what the app reads.
+The migrations carry this data too, so a new database (a local one, a PR preview) comes up populated without running the seed. `0008_building_data` inserts the campus buildings and backfills `dorm.code` and `dorm.housing_classes`. `0009_dorm_data` upserts the 26 dorms from `buildings.json` as it stood when it was written. It matches on `slug`, so an existing row keeps its `id` (reviews point at it) and takes the JSON values, and a dorm that is not in the file is left alone. Migrations run once, when the server starts. A later change to a building (or a new one) reaches a database only through `deno task db:seed` or a new data migration, because the database is what the app reads.
 
 ## TypeScript types
 
