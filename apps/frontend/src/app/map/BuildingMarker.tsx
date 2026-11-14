@@ -1,11 +1,6 @@
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
-import type { MapMarker, MarkerState } from "./places";
-
-const CHIP_STYLES: Record<MarkerState, string> = {
-  default: "bg-[#0c8987] text-white",
-  origin: "bg-brand-primary text-white",
-  selected: "bg-brand-primary text-white ring-2 ring-white",
-};
+import MarkerBody from "./MarkerBody";
+import type { MapMarker } from "./places";
 
 export default function BuildingMarker({
   marker,
@@ -33,11 +28,7 @@ export default function BuildingMarker({
             {marker.name}
           </span>
         )}
-        <span
-          className={`flex h-9 min-w-9 items-center justify-center rounded-full px-1 text-[10px] font-semibold shadow ${CHIP_STYLES[marker.state]}`}
-        >
-          {marker.code}
-        </span>
+        <MarkerBody marker={marker} />
       </div>
     </AdvancedMarker>
   );
