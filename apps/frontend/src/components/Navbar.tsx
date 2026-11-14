@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { logoLinkState } from "@/app/launch-page/launchLink";
+import useCurrentUser from "@/hooks/useCurrentUser";
 import NavButton from "./NavButton";
 import NavbarSpacer from "./NavbarSpacer";
 import ProfileMenu from "./ProfileMenu";
@@ -8,6 +9,7 @@ import ShareDropdown from "./ShareDropdown";
 
 export default function Navbar() {
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const user = useCurrentUser();
   const location = useLocation();
   const pathname = location.pathname;
   // Stays highlighted on the "See More" pages, which are part of the building options.
@@ -24,7 +26,7 @@ export default function Navbar() {
         <Link to="/" state={logoLinkState} className="flex items-center gap-2">
           <img src="/logo.svg" alt="CMU Housing" className="h-8" />
         </Link>
-        <ProfileMenu />
+        <ProfileMenu user={user} />
       </div>
 
       <div className="hidden w-full border-b-2 border-gray-200 md:block">
@@ -81,7 +83,7 @@ export default function Navbar() {
               </button>
               <ShareDropdown isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
             </div>
-            <ProfileMenu />
+            <ProfileMenu user={user} />
           </div>
         </div>
       </div>

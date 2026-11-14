@@ -1,8 +1,6 @@
 import { type RefObject, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-
-// Temporary: stands in for the profile page until it is built.
-const itemClass = "block rounded-xl px-4 py-2 text-[14px] whitespace-nowrap hover:bg-gray-100";
+import type { CurrentUser } from "@/hooks/useCurrentUser";
+import ProfilePanel from "./ProfilePanel";
 
 function useDismiss(container: RefObject<HTMLDivElement | null>, onDismiss: () => void) {
   useEffect(() => {
@@ -22,7 +20,7 @@ function useDismiss(container: RefObject<HTMLDivElement | null>, onDismiss: () =
   }, [container, onDismiss]);
 }
 
-export default function ProfileMenu() {
+export default function ProfileMenu({ user }: { user: CurrentUser | undefined }) {
   const [isOpen, setIsOpen] = useState(false);
   const container = useRef<HTMLDivElement>(null);
   const close = () => {
@@ -42,16 +40,7 @@ export default function ProfileMenu() {
       >
         <img src="/profile.svg" alt="Profile menu" className="rounded-full w-10 h-10 mx-2" />
       </button>
-      {isOpen && (
-        <div className="absolute right-0 top-full z-50 mt-2 rounded-2xl border border-black/10 bg-white p-2 shadow-xl">
-          <Link to="/survey" onClick={close} className={itemClass}>
-            Redo survey
-          </Link>
-          <a href="/api/auth/logout" className={itemClass}>
-            Sign out
-          </a>
-        </div>
-      )}
+      {isOpen && <ProfilePanel user={user} onClose={close} />}
     </div>
   );
 }
