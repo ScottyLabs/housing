@@ -66,7 +66,7 @@ export function AtmosphereSection({ filters, onChangeAction }: SectionProps) {
           />
         </div>
         <div className="flex flex-col w-full">
-          <h2 className="text-[18px]">Noise (5 - Quiet)</h2>
+          <h2 className="text-[18px]">Quietness</h2>
           <Slider
             min={1}
             max={5}

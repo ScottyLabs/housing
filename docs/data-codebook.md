@@ -166,7 +166,7 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 | Single room | `amenities.roomTypes` has a single-occupant type |
 | Service Animal | `accessibility.serviceAnimalFriendly` |
 | Wheelchair accessible | `accessibility.wheelchairAccessible` |
-| Social Life, Noise (5 - Quiet) | `atmosphere.socialness`, `atmosphere.noiseLevel` (review averages, closest value scores highest) |
+| Social Life, Quietness | `atmosphere.socialness`, `atmosphere.noiseLevel` (review averages, closest value scores highest) |
 | Distance from | straight-line distance from the dorm's coordinates to the chosen campus building in `campusBuildings.json`; full points at 0 m, fading to 0 at 800 m |
 
 `atmosphere` and `accessibility` flags are empty so those score 0. `groupBuildings` sorts by score into `bestFit`, `decentFit`, and `wildCard`, three per row.

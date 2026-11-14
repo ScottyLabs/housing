@@ -1,25 +1,24 @@
 import { Link } from "react-router-dom";
 import RatingBar from "@/components/reviews/RatingBar";
 import {
-  AVERAGE_KEYS,
+  CARD_ROWS,
+  type CardRatings,
   type DormReview,
   formatReviewDate,
   livedHereText,
-  RATING_LABELS,
   type RatingAverages,
-  type RatingKey,
+  reviewCardRatings,
+  summaryCardRatings,
 } from "@/data/reviews";
 
-function RatingRows({ value }: { value: (key: RatingKey) => number | null }) {
+function RatingRows({ ratings }: { ratings: CardRatings }) {
   return (
     <dl className="mt-4 flex flex-col gap-2.5">
-      {RATING_LABELS.map(({ key, label }) => (
+      {CARD_ROWS.map(({ key, label }) => (
         <div key={key} className="grid grid-cols-[130px_1fr] items-center gap-3">
-          <dt className={`text-[14px] ${key === "ratingOverall" ? "font-semibold" : ""}`}>
-            {label}
-          </dt>
+          <dt className={`text-[14px] ${key === "overall" ? "font-semibold" : ""}`}>{label}</dt>
           <dd>
-            <RatingBar label={label} value={value(key)} />
+            <RatingBar label={label} value={ratings[key]} />
           </dd>
         </div>
       ))}
@@ -50,7 +49,7 @@ export function SummaryCard({
         <h3 className="text-[16px] font-semibold">Summary</h3>
       </div>
       <p className="mt-3 text-[14px] leading-snug">{summaryText(buildingName, count)}</p>
-      {count > 0 && <RatingRows value={(key) => averages[AVERAGE_KEYS[key]]} />}
+      {count > 0 && <RatingRows ratings={summaryCardRatings(averages)} />}
     </div>
   );
 }
@@ -66,7 +65,7 @@ function ReviewHeader({ review, buildingId }: { review: DormReview; buildingId: 
           {review.submittedAt && ` on ${formatReviewDate(review.submittedAt)}`}
           {review.isMine && (
             <>
-              {" · "}
+              {" \u00B7 "}
               <Link to={`/reviews/${buildingId}`} className="text-brand-primary hover:underline">
                 Edit yours
               </Link>
@@ -99,7 +98,7 @@ export function ReviewCard({
         </p>
       )}
       <div className="mt-auto">
-        <RatingRows value={(key) => review.ratings[key]} />
+        <RatingRows ratings={reviewCardRatings(review.ratings)} />
       </div>
     </article>
   );

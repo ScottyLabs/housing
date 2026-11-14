@@ -74,24 +74,27 @@ export const RATING_QUESTIONS: Array<{
   },
   {
     key: "ratingSocialLife",
-    icon: "/unsorted-icons/social-high.svg",
+    icon: "/atmosphere.svg",
     question: "Social Life",
   },
   {
     key: "ratingNoise",
-    icon: "/unsorted-icons/noisy-quiet.svg",
-    question: "Noise (5 - Quiet)",
+    icon: "/atmosphere.svg",
+    question: "Quietness",
     low: "Loud",
     high: "Quiet",
   },
 ];
 
-export const RATING_LABELS: Array<{ key: RatingKey; label: string }> = [
-  { key: "ratingOverall", label: "Overall Experience" },
-  { key: "ratingAmenities", label: "Amenities" },
-  { key: "ratingRoomQuality", label: "Room Quality" },
-  { key: "ratingSocialLife", label: "Social Life" },
-  { key: "ratingNoise", label: "Noise (5 - Quiet)" },
+export type CardRow = "overall" | "amenities" | "roomQuality" | "atmosphere";
+
+export type CardRatings = Record<CardRow, number | null>;
+
+export const CARD_ROWS: Array<{ key: CardRow; label: string }> = [
+  { key: "overall", label: "Overall Experience" },
+  { key: "amenities", label: "Amenities" },
+  { key: "roomQuality", label: "Room Quality" },
+  { key: "atmosphere", label: "Atmosphere" },
 ];
 
 export const DEFAULT_RATING = 3;
@@ -208,10 +211,27 @@ export function livedHereText(
   return parts.length === 0 ? undefined : `Lived here ${parts.join(", ")}`;
 }
 
-export const AVERAGE_KEYS: Record<RatingKey, keyof RatingAverages> = {
-  ratingAmenities: "amenities",
-  ratingNoise: "noise",
-  ratingOverall: "overall",
-  ratingRoomQuality: "roomQuality",
-  ratingSocialLife: "socialLife",
-};
+function atmosphereOf(socialLife: number | null, noise: number | null): number | null {
+  return socialLife === null || noise === null ? null : (socialLife + noise) / 2;
+}
+
+/** One review's card rows; Atmosphere is the average of Social Life and Quietness, rounded up. */
+export function reviewCardRatings(ratings: Record<RatingKey, number | null>): CardRatings {
+  const atmosphere = atmosphereOf(ratings.ratingSocialLife, ratings.ratingNoise);
+  return {
+    amenities: ratings.ratingAmenities,
+    atmosphere: atmosphere === null ? null : Math.ceil(atmosphere),
+    overall: ratings.ratingOverall,
+    roomQuality: ratings.ratingRoomQuality,
+  };
+}
+
+/** The summary card's rows; like the other averages, Atmosphere is not rounded. */
+export function summaryCardRatings(averages: RatingAverages): CardRatings {
+  return {
+    amenities: averages.amenities,
+    atmosphere: atmosphereOf(averages.socialLife, averages.noise),
+    overall: averages.overall,
+    roomQuality: averages.roomQuality,
+  };
+}
