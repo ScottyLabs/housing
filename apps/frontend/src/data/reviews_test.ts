@@ -70,18 +70,20 @@ void test("toDormReview converts loosely typed API values", () => {
     livedTerm: "junior",
     livedYear: "2024/2025",
     ratingAmenities: "4",
-    ratingAtmosphere: 5,
+    ratingNoise: 5,
     ratingOverall: null,
     ratingRoomQuality: 2,
+    ratingSocialLife: "3",
     submittedAt: "2025-02-05T12:00:00.000Z",
   });
   strictEqual(review.id, 7);
   strictEqual(review.body, "");
   deepStrictEqual(review.ratings, {
     ratingAmenities: 4,
-    ratingAtmosphere: 5,
+    ratingNoise: 5,
     ratingOverall: null,
     ratingRoomQuality: 2,
+    ratingSocialLife: 3,
   });
   strictEqual(review.submittedAt?.toISOString(), "2025-02-05T12:00:00.000Z");
   const undated = toDormReview({
@@ -92,9 +94,10 @@ void test("toDormReview converts loosely typed API values", () => {
     livedTerm: null,
     livedYear: null,
     ratingAmenities: null,
-    ratingAtmosphere: null,
+    ratingNoise: null,
     ratingOverall: null,
     ratingRoomQuality: null,
+    ratingSocialLife: null,
     submittedAt: {},
   });
   strictEqual(undated.submittedAt, null);

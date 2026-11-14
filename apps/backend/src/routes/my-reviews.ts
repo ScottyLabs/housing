@@ -91,9 +91,10 @@ export const myReviewsRoute = new Elysia({ prefix: "/me" })
         livedTerm: cleanText(body.livedTerm),
         livedYear: cleanText(body.livedYear),
         ratingAmenities: body.ratingAmenities,
-        ratingAtmosphere: body.ratingAtmosphere,
+        ratingNoise: body.ratingNoise,
         ratingOverall: body.ratingOverall,
         ratingRoomQuality: body.ratingRoomQuality,
+        ratingSocialLife: body.ratingSocialLife,
       };
 
       const rows = await db

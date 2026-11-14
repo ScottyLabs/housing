@@ -202,9 +202,13 @@ export const reviewTable = pgTable(
     livedTerm: text("lived_term"),
     livedYear: text("lived_year"),
     ratingAmenities: integer("rating_amenities"),
+    // Replaced by ratingSocialLife and ratingNoise; kept so older reviews keep their value.
     ratingAtmosphere: integer("rating_atmosphere"),
+    // 1 is loud, 5 is quiet.
+    ratingNoise: integer("rating_noise"),
     ratingOverall: integer("rating_overall"),
     ratingRoomQuality: integer("rating_room_quality"),
+    ratingSocialLife: integer("rating_social_life"),
     submittedAt: timestamp("submitted_at").defaultNow(),
     userId: integer("user_id")
       .notNull()

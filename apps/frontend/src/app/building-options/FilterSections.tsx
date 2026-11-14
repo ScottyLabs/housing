@@ -55,7 +55,7 @@ export function AtmosphereSection({ filters, onChangeAction }: SectionProps) {
     <StaticSection name="Atmosphere" desc="Data based on what students say" icon="/atmosphere.svg">
       <div className="flex w-full flex-col gap-[24px]">
         <div className="flex flex-col w-full">
-          <h2 className="text-[18px]">Socialness</h2>
+          <h2 className="text-[18px]">Social Life</h2>
           <Slider
             min={1}
             max={5}
@@ -66,7 +66,7 @@ export function AtmosphereSection({ filters, onChangeAction }: SectionProps) {
           />
         </div>
         <div className="flex flex-col w-full">
-          <h2 className="text-[18px]">Noise Level</h2>
+          <h2 className="text-[18px]">Noise (5 - Quiet)</h2>
           <Slider
             min={1}
             max={5}

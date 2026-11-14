@@ -62,10 +62,11 @@ Building
       ├─ overall       number | null
       ├─ amenities     number | null
       ├─ roomQuality   number | null
-      └─ atmosphere    number | null
+      ├─ socialLife    number | null
+      └─ noise         number | null
 ```
 
-`reviews` is the average rating (1-5) for each review question and how many students answered. An average is `null` while the building has no reviews. It refreshes when the building data is loaded again, which the review form does after a review is saved.
+`reviews` is the average rating (1-5) for each review question and how many students answered. An average is `null` while the building has no reviews. Reviews written before the Social Life and Noise questions have no value for those two, so `count` can be higher than the number of ratings behind them. It refreshes when the building data is loaded again, which the review form does after a review is saved.
 
 ## Enums
 
@@ -144,7 +145,7 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 
 - **`AmenityData`** holds everything the filter/survey/comparison UI reads: room types, bathrooms, AC, kitchen, laundry, common areas, gym, gender housing.
 - **`Accessibility`** holds `wheelchairAccessible`, `serviceAnimalFriendly`, `groundFloorRooms`, `strobeAlarm` (strobe fire alarm & doorbell). Filled in per building as data becomes available.
-- **`Atmosphere`** holds `socialness` / `noiseLevel`, 1-5 scales matching the survey sliders and review table. Both are optional since a building may not have data yet.
+- **`Atmosphere`** holds `socialness` / `noiseLevel`, both 1-5. They come from student reviews: `socialness` is the average Social Life rating and `noiseLevel` the average Noise rating, where 5 is quiet. A building with no ratings yet falls back to the value stored in `dorm.socialness` / `dorm.noise_level`, which is empty for every building today, so both are optional.
 - **`Location`** holds `latitude`/`longitude` for a "distance from landmark" filter (no distance value is stored on the building itself), `closeBuildings` (ids of the four nearest academic or non-residential campus buildings, nearest first, for the "Closest Buildings" detail card; they are listed in `campusBuildings.json`, not in `buildings.json`), and an optional `note` for a human-written blurb.
 - **`CampusBuilding`** is `id` + `code` (short label shown on the map marker) + `name` + optional `subtitle` (department or function, shown under the name in the map's origin picker) + `latitude` + `longitude`, one per academic or non-residential building in `campusBuildings.json` (plus Resnik, which is also a food hall). It feeds the "Distance from" filter options and the `closeBuildings` ids; add a row there to offer a new landmark.
 - **`GalleryImage`** is `link` + `description`, one per photo.
@@ -165,7 +166,7 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 | Single room | `amenities.roomTypes` has a single-occupant type |
 | Service Animal | `accessibility.serviceAnimalFriendly` |
 | Wheelchair accessible | `accessibility.wheelchairAccessible` |
-| Socialness, Noise Level | `atmosphere.socialness`, `atmosphere.noiseLevel` |
+| Social Life, Noise (5 - Quiet) | `atmosphere.socialness`, `atmosphere.noiseLevel` (review averages, closest value scores highest) |
 | Distance from | straight-line distance from the dorm's coordinates to the chosen campus building in `campusBuildings.json`; full points at 0 m, fading to 0 at 800 m |
 
 `atmosphere` and `accessibility` flags are empty so those score 0. `groupBuildings` sorts by score into `bestFit`, `decentFit`, and `wildCard`, three per row.

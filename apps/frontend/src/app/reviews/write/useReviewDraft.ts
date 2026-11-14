@@ -9,9 +9,10 @@ interface SavedReview {
   livedTerm: string | null;
   livedYear: string | null;
   ratingAmenities: SavedRating;
-  ratingAtmosphere: SavedRating;
+  ratingNoise: SavedRating;
   ratingOverall: SavedRating;
   ratingRoomQuality: SavedRating;
+  ratingSocialLife: SavedRating;
 }
 
 function toRating(value: SavedRating): number {
@@ -24,9 +25,10 @@ function draftFromSaved(saved: SavedReview): ReviewDraft {
     classYear: saved.livedTerm ?? "",
     ratings: {
       ratingAmenities: toRating(saved.ratingAmenities),
-      ratingAtmosphere: toRating(saved.ratingAtmosphere),
+      ratingNoise: toRating(saved.ratingNoise),
       ratingOverall: toRating(saved.ratingOverall),
       ratingRoomQuality: toRating(saved.ratingRoomQuality),
+      ratingSocialLife: toRating(saved.ratingSocialLife),
     },
     schoolYear: saved.livedYear ?? "",
   };
@@ -65,9 +67,10 @@ export async function saveReview(slug: string, draft: ReviewDraft): Promise<Save
         livedTerm: draft.classYear,
         livedYear: draft.schoolYear,
         ratingAmenities: draft.ratings.ratingAmenities,
-        ratingAtmosphere: draft.ratings.ratingAtmosphere,
+        ratingNoise: draft.ratings.ratingNoise,
         ratingOverall: draft.ratings.ratingOverall,
         ratingRoomQuality: draft.ratings.ratingRoomQuality,
+        ratingSocialLife: draft.ratings.ratingSocialLife,
       },
       params: { path: { slug } },
     });

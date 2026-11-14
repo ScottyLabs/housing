@@ -438,9 +438,10 @@ export interface operations {
           "application/json": {
             averages: {
               amenities: (number | null) | null;
-              atmosphere: (number | null) | null;
+              noise: (number | null) | null;
               overall: (number | null) | null;
               roomQuality: (number | null) | null;
+              socialLife: (number | null) | null;
             };
             count: string | number;
             dorm: {
@@ -483,9 +484,10 @@ export interface operations {
               livedTerm: (string | null) | null;
               livedYear: (string | null) | null;
               ratingAmenities: ((string | number) | null) | null;
-              ratingAtmosphere: ((string | number) | null) | null;
+              ratingNoise: ((string | number) | null) | null;
               ratingOverall: ((string | number) | null) | null;
               ratingRoomQuality: ((string | number) | null) | null;
+              ratingSocialLife: ((string | number) | null) | null;
               submittedAt: ((Record<string, never> | string | number) | null) | null;
               authorName: string;
               isMine: boolean;
@@ -493,9 +495,10 @@ export interface operations {
             summary: {
               averages: {
                 amenities: (number | null) | null;
-                atmosphere: (number | null) | null;
+                noise: (number | null) | null;
                 overall: (number | null) | null;
                 roomQuality: (number | null) | null;
+                socialLife: (number | null) | null;
               };
               count: string | number;
             };
@@ -536,9 +539,10 @@ export interface operations {
             livedTerm: (string | null) | null;
             livedYear: (string | null) | null;
             ratingAmenities: ((string | number) | null) | null;
-            ratingAtmosphere: ((string | number) | null) | null;
+            ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
+            ratingSocialLife: ((string | number) | null) | null;
             submittedAt: ((Record<string, never> | string | number) | null) | null;
             dorm: {
               name: string;
@@ -583,9 +587,10 @@ export interface operations {
             livedTerm: (string | null) | null;
             livedYear: (string | null) | null;
             ratingAmenities: ((string | number) | null) | null;
-            ratingAtmosphere: ((string | number) | null) | null;
+            ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
+            ratingSocialLife: ((string | number) | null) | null;
             submittedAt: ((Record<string, never> | string | number) | null) | null;
             dorm: {
               name: string;
@@ -634,27 +639,30 @@ export interface operations {
           livedTerm?: (string | null) | null;
           livedYear?: (string | null) | null;
           ratingAmenities: string | number;
-          ratingAtmosphere: string | number;
+          ratingNoise: string | number;
           ratingOverall: string | number;
           ratingRoomQuality: string | number;
+          ratingSocialLife: string | number;
         };
         "application/x-www-form-urlencoded": {
           body?: (string | null) | null;
           livedTerm?: (string | null) | null;
           livedYear?: (string | null) | null;
           ratingAmenities: string | number;
-          ratingAtmosphere: string | number;
+          ratingNoise: string | number;
           ratingOverall: string | number;
           ratingRoomQuality: string | number;
+          ratingSocialLife: string | number;
         };
         "multipart/form-data": {
           body?: (string | null) | null;
           livedTerm?: (string | null) | null;
           livedYear?: (string | null) | null;
           ratingAmenities: string | number;
-          ratingAtmosphere: string | number;
+          ratingNoise: string | number;
           ratingOverall: string | number;
           ratingRoomQuality: string | number;
+          ratingSocialLife: string | number;
         };
       };
     };
@@ -671,9 +679,10 @@ export interface operations {
             livedTerm: (string | null) | null;
             livedYear: (string | null) | null;
             ratingAmenities: ((string | number) | null) | null;
-            ratingAtmosphere: ((string | number) | null) | null;
+            ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
+            ratingSocialLife: ((string | number) | null) | null;
             submittedAt: ((Record<string, never> | string | number) | null) | null;
             dorm: {
               name: string;
@@ -864,9 +873,10 @@ export interface operations {
             reviews: {
               averages: {
                 amenities: (number | null) | null;
-                atmosphere: (number | null) | null;
+                noise: (number | null) | null;
                 overall: (number | null) | null;
                 roomQuality: (number | null) | null;
+                socialLife: (number | null) | null;
               };
               count: string | number;
             };

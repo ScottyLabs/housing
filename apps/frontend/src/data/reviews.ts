@@ -32,11 +32,18 @@ export type RatingKey =
   | "ratingOverall"
   | "ratingAmenities"
   | "ratingRoomQuality"
-  | "ratingAtmosphere";
+  | "ratingSocialLife"
+  | "ratingNoise";
 
 export type Ratings = Record<RatingKey, number>;
 
-export const RATING_QUESTIONS: Array<{ key: RatingKey; icon: string; question: string }> = [
+export const RATING_QUESTIONS: Array<{
+  key: RatingKey;
+  icon: string;
+  question: string;
+  low?: string;
+  high?: string;
+}> = [
   {
     key: "ratingOverall",
     icon: "/unsorted-icons/ranking.svg",
@@ -53,9 +60,16 @@ export const RATING_QUESTIONS: Array<{ key: RatingKey; icon: string; question: s
     question: "Room quality",
   },
   {
-    key: "ratingAtmosphere",
-    icon: "/atmosphere.svg",
-    question: "Atmosphere (community, noise, social life)",
+    key: "ratingSocialLife",
+    icon: "/unsorted-icons/social-high.svg",
+    question: "Social Life",
+  },
+  {
+    key: "ratingNoise",
+    icon: "/unsorted-icons/noisy-quiet.svg",
+    question: "Noise (5 - Quiet)",
+    low: "Loud",
+    high: "Quiet",
   },
 ];
 
@@ -63,16 +77,18 @@ export const RATING_LABELS: Array<{ key: RatingKey; label: string }> = [
   { key: "ratingOverall", label: "Overall Experience" },
   { key: "ratingAmenities", label: "Amenities" },
   { key: "ratingRoomQuality", label: "Room Quality" },
-  { key: "ratingAtmosphere", label: "Atmosphere" },
+  { key: "ratingSocialLife", label: "Social Life" },
+  { key: "ratingNoise", label: "Noise (5 - Quiet)" },
 ];
 
 export const DEFAULT_RATING = 3;
 
 export const defaultRatings: Ratings = {
   ratingAmenities: DEFAULT_RATING,
-  ratingAtmosphere: DEFAULT_RATING,
+  ratingNoise: DEFAULT_RATING,
   ratingOverall: DEFAULT_RATING,
   ratingRoomQuality: DEFAULT_RATING,
+  ratingSocialLife: DEFAULT_RATING,
 };
 
 export interface ReviewDraft {
@@ -102,9 +118,10 @@ export function stepProblem(step: number, draft: ReviewDraft): string | undefine
 
 export interface RatingAverages {
   amenities: number | null;
-  atmosphere: number | null;
+  noise: number | null;
   overall: number | null;
   roomQuality: number | null;
+  socialLife: number | null;
 }
 
 export interface DormReview {
@@ -128,9 +145,10 @@ export interface ApiReview {
   livedTerm: string | null;
   livedYear: string | null;
   ratingAmenities: LooseNumber;
-  ratingAtmosphere: LooseNumber;
+  ratingNoise: LooseNumber;
   ratingOverall: LooseNumber;
   ratingRoomQuality: LooseNumber;
+  ratingSocialLife: LooseNumber;
   submittedAt: unknown;
 }
 
@@ -154,9 +172,10 @@ export function toDormReview(review: ApiReview): DormReview {
     livedYear: review.livedYear,
     ratings: {
       ratingAmenities: toNumber(review.ratingAmenities),
-      ratingAtmosphere: toNumber(review.ratingAtmosphere),
+      ratingNoise: toNumber(review.ratingNoise),
       ratingOverall: toNumber(review.ratingOverall),
       ratingRoomQuality: toNumber(review.ratingRoomQuality),
+      ratingSocialLife: toNumber(review.ratingSocialLife),
     },
     submittedAt: toDate(review.submittedAt),
   };
@@ -178,7 +197,8 @@ export function livedHereText(
 
 export const AVERAGE_KEYS: Record<RatingKey, keyof RatingAverages> = {
   ratingAmenities: "amenities",
-  ratingAtmosphere: "atmosphere",
+  ratingNoise: "noise",
   ratingOverall: "overall",
   ratingRoomQuality: "roomQuality",
+  ratingSocialLife: "socialLife",
 };

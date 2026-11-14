@@ -113,6 +113,8 @@ erDiagram
         int rating_overall
         int rating_amenities
         int rating_room_quality
+        int rating_social_life
+        int rating_noise
         int rating_atmosphere
         string lived_year
         string lived_term
@@ -281,11 +283,11 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 | `longitude` | `numeric` | Yes | Geographic longitude. |
 | `lounge_description` | `text` | Yes | Description of lounge/common space. |
 | `name` | `text` | No | Dorm name. |
-| `noise_level` | `integer` | Yes | Noise level scale used by the building ranking in `scoring.ts`. |
+| `noise_level` | `integer` | Yes | Fallback for `atmosphere.noiseLevel` (5 is quiet), used only while no review has a noise rating. Null for every dorm today. |
 | `photo_gallery` | `json` | Yes | Array of `GalleryImage` (`link`, `description`). |
 | `room_types` | `room_type[]` | No | Room configurations offered. |
 | `service_animal_friendly` | `boolean` | No | Accessibility: service animals allowed. |
-| `socialness` | `integer` | Yes | Social atmosphere scale used by the building ranking in `scoring.ts`. |
+| `socialness` | `integer` | Yes | Fallback for `atmosphere.socialness`, used only while no review has a social life rating. Null for every dorm today. |
 | `strobe_alarm` | `boolean` | No | Accessibility: strobe fire alarms. |
 | `tags` | `text[]` | Yes | Freeform editorial tags (`editorialTags` in `buildings.json`). |
 | `updated_at` | `timestamp` | Yes | Last time the dorm record was edited. |
@@ -318,10 +320,14 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 | `lived_term` | `text` | Yes | Term the reviewer lived there (e.g. Fall). |
 | `lived_year` | `text` | Yes | Year the reviewer lived there. |
 | `rating_amenities` | `integer` | Yes | Amenities rating. |
-| `rating_atmosphere` | `integer` | Yes | Atmosphere rating. |
+| `rating_atmosphere` | `integer` | Yes | Legacy atmosphere rating from reviews written before it was split into social life and noise. Nothing reads or writes it now. |
+| `rating_noise` | `integer` | Yes | Noise rating, 1 to 5, where 5 is quiet. Null on reviews that predate the split. |
 | `rating_overall` | `integer` | Yes | Overall rating. |
 | `rating_room_quality` | `integer` | Yes | Room quality rating. |
+| `rating_social_life` | `integer` | Yes | Social life rating, 1 to 5. Null on reviews that predate the split. |
 | `submitted_at` | `timestamp` | Yes | When the review was submitted. |
+
+The average `rating_social_life` and `rating_noise` of a dorm's reviews become that building's `atmosphere.socialness` and `atmosphere.noiseLevel` in `GET /api/buildings`, so the atmosphere filter follows what students report. The averages are calculated on every request and ignore reviews that have no value for them.
 
 ## Relationships
 
@@ -470,8 +476,10 @@ type Review = {
   livedYear: string | null;
   ratingAmenities: number | null;
   ratingAtmosphere: number | null;
+  ratingNoise: number | null;
   ratingOverall: number | null;
   ratingRoomQuality: number | null;
+  ratingSocialLife: number | null;
   submittedAt: Date | null;
 };
 ```

@@ -21,9 +21,10 @@ interface Result {
 
 const noAverages: RatingAverages = {
   amenities: null,
-  atmosphere: null,
+  noise: null,
   overall: null,
   roomQuality: null,
+  socialLife: null,
 };
 
 async function fetchPage(slug: string, limit: number, offset: number) {

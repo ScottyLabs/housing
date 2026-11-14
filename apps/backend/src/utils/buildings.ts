@@ -4,9 +4,10 @@ import type { CampusBuilding, Dorm } from "../db/schema.ts";
 export interface BuildingReviews {
   averages: {
     amenities: number | null;
-    atmosphere: number | null;
+    noise: number | null;
     overall: number | null;
     roomQuality: number | null;
+    socialLife: number | null;
   };
   count: number;
 }
@@ -28,10 +29,12 @@ function toAmenities(dorm: Dorm) {
   };
 }
 
-function toAtmosphere(dorm: Dorm) {
+function toAtmosphere(dorm: Dorm, reviews: BuildingReviews) {
   const atmosphere: { noiseLevel?: number; socialness?: number } = {};
-  if (dorm.noiseLevel !== null) atmosphere.noiseLevel = dorm.noiseLevel;
-  if (dorm.socialness !== null) atmosphere.socialness = dorm.socialness;
+  const noiseLevel = reviews.averages.noise ?? dorm.noiseLevel;
+  const socialness = reviews.averages.socialLife ?? dorm.socialness;
+  if (noiseLevel !== null) atmosphere.noiseLevel = noiseLevel;
+  if (socialness !== null) atmosphere.socialness = socialness;
   return atmosphere;
 }
 
@@ -57,7 +60,7 @@ export function toBuilding(dorm: Dorm, reviews: BuildingReviews) {
       wheelchairAccessible: dorm.wheelchairAccessible,
     },
     amenities: toAmenities(dorm),
-    atmosphere: toAtmosphere(dorm),
+    atmosphere: toAtmosphere(dorm, reviews),
     code: dorm.code,
     editorialTags: dorm.tags ?? [],
     housingClasses: dorm.housingClasses,

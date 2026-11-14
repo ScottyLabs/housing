@@ -61,11 +61,15 @@ export function StayStep({ building, draft, update }: StepProps) {
 function RatingRow({
   icon,
   question,
+  low,
+  high,
   value,
   onChange,
 }: {
   icon: string;
   question: string;
+  low: string;
+  high: string;
   value: number;
   onChange: (value: number) => void;
 }) {
@@ -75,7 +79,7 @@ function RatingRow({
       <div className="flex flex-1 flex-col gap-3">
         <span className="text-[18px] font-medium leading-none">{question}</span>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-[14px]">
-          <span className="hidden w-[52px] text-[18px] font-medium sm:inline">Poor</span>
+          <span className="hidden w-[52px] text-[18px] font-medium sm:inline">{low}</span>
           <div className="flex-1">
             <Slider
               min={1}
@@ -87,11 +91,11 @@ function RatingRow({
             />
           </div>
           <span className="hidden w-[52px] text-right text-[18px] font-medium sm:inline">
-            Great
+            {high}
           </span>
           <div className="flex justify-between text-[18px] font-medium sm:hidden">
-            <span>Poor</span>
-            <span>Great</span>
+            <span>{low}</span>
+            <span>{high}</span>
           </div>
         </div>
       </div>
@@ -104,11 +108,13 @@ export function RatingsStep({ draft, update }: StepProps) {
     <div className="rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-8">
       <h2 className="text-[24px] font-semibold leading-none">Rate your experience</h2>
       <div className="mt-8 flex flex-col gap-8">
-        {RATING_QUESTIONS.map(({ key, icon, question }) => (
+        {RATING_QUESTIONS.map(({ key, icon, question, low, high }) => (
           <RatingRow
             key={key}
             icon={icon}
             question={question}
+            low={low ?? "Poor"}
+            high={high ?? "Great"}
             value={draft.ratings[key]}
             onChange={(value) => {
               update({ ratings: { ...draft.ratings, [key]: value } });

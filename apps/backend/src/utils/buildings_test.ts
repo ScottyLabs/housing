@@ -7,7 +7,7 @@ import type { CampusBuilding, Dorm } from "../db/schema.ts";
 import { toBuilding, toCampusBuilding } from "./buildings.ts";
 
 const noReviews = {
-  averages: { amenities: null, atmosphere: null, overall: null, roomQuality: null },
+  averages: { amenities: null, noise: null, overall: null, roomQuality: null, socialLife: null },
   count: 0,
 };
 
@@ -76,9 +76,27 @@ void test("toBuilding leaves out details and atmosphere values that are null", (
   });
 });
 
+void test("toBuilding takes atmosphere from the review averages and falls back to the stored values", () => {
+  const reviewed = {
+    averages: { amenities: null, noise: 4.5, overall: null, roomQuality: null, socialLife: 2.5 },
+    count: 2,
+  };
+  deepStrictEqual(toBuilding(dorm, reviewed).atmosphere, { noiseLevel: 4.5, socialness: 2.5 });
+
+  const onlyNoise = { ...noReviews, averages: { ...noReviews.averages, noise: 3 }, count: 1 };
+  deepStrictEqual(toBuilding({ ...dorm, noiseLevel: 5 }, onlyNoise).atmosphere, {
+    noiseLevel: 3,
+    socialness: 4,
+  });
+  deepStrictEqual(toBuilding({ ...dorm, noiseLevel: 5 }, noReviews).atmosphere, {
+    noiseLevel: 5,
+    socialness: 4,
+  });
+});
+
 void test("toBuilding falls back to empty lists and carries the review summary", () => {
   const reviews = {
-    averages: { amenities: 4, atmosphere: 3.5, overall: 4.25, roomQuality: 3 },
+    averages: { amenities: 4, noise: 4.5, overall: 4.25, roomQuality: 3, socialLife: 3.5 },
     count: 4,
   };
   const sparse: Dorm = {

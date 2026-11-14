@@ -1338,7 +1338,7 @@
                     "properties": {
                       "averages": {
                         "type": "object",
-                        "required": ["amenities", "atmosphere", "overall", "roomQuality"],
+                        "required": ["amenities", "noise", "overall", "roomQuality", "socialLife"],
                         "properties": {
                           "amenities": {
                             "nullable": true,
@@ -1351,7 +1351,7 @@
                               }
                             ]
                           },
-                          "atmosphere": {
+                          "noise": {
                             "nullable": true,
                             "anyOf": [
                               {
@@ -1374,6 +1374,17 @@
                             ]
                           },
                           "roomQuality": {
+                            "nullable": true,
+                            "anyOf": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "socialLife": {
                             "nullable": true,
                             "anyOf": [
                               {
@@ -1503,9 +1514,10 @@
                           "livedTerm",
                           "livedYear",
                           "ratingAmenities",
-                          "ratingAtmosphere",
+                          "ratingNoise",
                           "ratingOverall",
                           "ratingRoomQuality",
+                          "ratingSocialLife",
                           "submittedAt",
                           "authorName",
                           "isMine"
@@ -1576,7 +1588,7 @@
                               }
                             ]
                           },
-                          "ratingAtmosphere": {
+                          "ratingNoise": {
                             "nullable": true,
                             "anyOf": [
                               {
@@ -1617,6 +1629,26 @@
                             ]
                           },
                           "ratingRoomQuality": {
+                            "nullable": true,
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "format": "integer",
+                                    "default": 0,
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "ratingSocialLife": {
                             "nullable": true,
                             "anyOf": [
                               {
@@ -1677,7 +1709,13 @@
                       "properties": {
                         "averages": {
                           "type": "object",
-                          "required": ["amenities", "atmosphere", "overall", "roomQuality"],
+                          "required": [
+                            "amenities",
+                            "noise",
+                            "overall",
+                            "roomQuality",
+                            "socialLife"
+                          ],
                           "properties": {
                             "amenities": {
                               "nullable": true,
@@ -1690,7 +1728,7 @@
                                 }
                               ]
                             },
-                            "atmosphere": {
+                            "noise": {
                               "nullable": true,
                               "anyOf": [
                                 {
@@ -1713,6 +1751,17 @@
                               ]
                             },
                             "roomQuality": {
+                              "nullable": true,
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "socialLife": {
                               "nullable": true,
                               "anyOf": [
                                 {
@@ -1781,9 +1830,10 @@
                       "livedTerm",
                       "livedYear",
                       "ratingAmenities",
-                      "ratingAtmosphere",
+                      "ratingNoise",
                       "ratingOverall",
                       "ratingRoomQuality",
+                      "ratingSocialLife",
                       "submittedAt",
                       "dorm"
                     ],
@@ -1853,7 +1903,7 @@
                           }
                         ]
                       },
-                      "ratingAtmosphere": {
+                      "ratingNoise": {
                         "nullable": true,
                         "anyOf": [
                           {
@@ -1894,6 +1944,26 @@
                         ]
                       },
                       "ratingRoomQuality": {
+                        "nullable": true,
+                        "anyOf": [
+                          {
+                            "anyOf": [
+                              {
+                                "format": "integer",
+                                "default": 0,
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "ratingSocialLife": {
                         "nullable": true,
                         "anyOf": [
                           {
@@ -2004,9 +2074,10 @@
                         "livedTerm",
                         "livedYear",
                         "ratingAmenities",
-                        "ratingAtmosphere",
+                        "ratingNoise",
                         "ratingOverall",
                         "ratingRoomQuality",
+                        "ratingSocialLife",
                         "submittedAt",
                         "dorm"
                       ],
@@ -2076,7 +2147,7 @@
                             }
                           ]
                         },
-                        "ratingAtmosphere": {
+                        "ratingNoise": {
                           "nullable": true,
                           "anyOf": [
                             {
@@ -2117,6 +2188,26 @@
                           ]
                         },
                         "ratingRoomQuality": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "ratingSocialLife": {
                           "nullable": true,
                           "anyOf": [
                             {
@@ -2238,9 +2329,10 @@
                 "type": "object",
                 "required": [
                   "ratingAmenities",
-                  "ratingAtmosphere",
+                  "ratingNoise",
                   "ratingOverall",
-                  "ratingRoomQuality"
+                  "ratingRoomQuality",
+                  "ratingSocialLife"
                 ],
                 "properties": {
                   "body": {
@@ -2295,7 +2387,7 @@
                       }
                     ]
                   },
-                  "ratingAtmosphere": {
+                  "ratingNoise": {
                     "minimum": 1,
                     "maximum": 5,
                     "anyOf": [
@@ -2328,6 +2420,22 @@
                     ]
                   },
                   "ratingRoomQuality": {
+                    "minimum": 1,
+                    "maximum": 5,
+                    "anyOf": [
+                      {
+                        "format": "integer",
+                        "default": 0,
+                        "type": "string"
+                      },
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "ratingSocialLife": {
                     "minimum": 1,
                     "maximum": 5,
                     "anyOf": [
@@ -2351,9 +2459,10 @@
                 "type": "object",
                 "required": [
                   "ratingAmenities",
-                  "ratingAtmosphere",
+                  "ratingNoise",
                   "ratingOverall",
-                  "ratingRoomQuality"
+                  "ratingRoomQuality",
+                  "ratingSocialLife"
                 ],
                 "properties": {
                   "body": {
@@ -2408,7 +2517,7 @@
                       }
                     ]
                   },
-                  "ratingAtmosphere": {
+                  "ratingNoise": {
                     "minimum": 1,
                     "maximum": 5,
                     "anyOf": [
@@ -2441,6 +2550,22 @@
                     ]
                   },
                   "ratingRoomQuality": {
+                    "minimum": 1,
+                    "maximum": 5,
+                    "anyOf": [
+                      {
+                        "format": "integer",
+                        "default": 0,
+                        "type": "string"
+                      },
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "ratingSocialLife": {
                     "minimum": 1,
                     "maximum": 5,
                     "anyOf": [
@@ -2464,9 +2589,10 @@
                 "type": "object",
                 "required": [
                   "ratingAmenities",
-                  "ratingAtmosphere",
+                  "ratingNoise",
                   "ratingOverall",
-                  "ratingRoomQuality"
+                  "ratingRoomQuality",
+                  "ratingSocialLife"
                 ],
                 "properties": {
                   "body": {
@@ -2521,7 +2647,7 @@
                       }
                     ]
                   },
-                  "ratingAtmosphere": {
+                  "ratingNoise": {
                     "minimum": 1,
                     "maximum": 5,
                     "anyOf": [
@@ -2554,6 +2680,22 @@
                     ]
                   },
                   "ratingRoomQuality": {
+                    "minimum": 1,
+                    "maximum": 5,
+                    "anyOf": [
+                      {
+                        "format": "integer",
+                        "default": 0,
+                        "type": "string"
+                      },
+                      {
+                        "minimum": 1,
+                        "maximum": 5,
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "ratingSocialLife": {
                     "minimum": 1,
                     "maximum": 5,
                     "anyOf": [
@@ -2587,9 +2729,10 @@
                     "livedTerm",
                     "livedYear",
                     "ratingAmenities",
-                    "ratingAtmosphere",
+                    "ratingNoise",
                     "ratingOverall",
                     "ratingRoomQuality",
+                    "ratingSocialLife",
                     "submittedAt",
                     "dorm"
                   ],
@@ -2659,7 +2802,7 @@
                         }
                       ]
                     },
-                    "ratingAtmosphere": {
+                    "ratingNoise": {
                       "nullable": true,
                       "anyOf": [
                         {
@@ -2700,6 +2843,26 @@
                       ]
                     },
                     "ratingRoomQuality": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "ratingSocialLife": {
                       "nullable": true,
                       "anyOf": [
                         {
@@ -3139,7 +3302,13 @@
                         "properties": {
                           "averages": {
                             "type": "object",
-                            "required": ["amenities", "atmosphere", "overall", "roomQuality"],
+                            "required": [
+                              "amenities",
+                              "noise",
+                              "overall",
+                              "roomQuality",
+                              "socialLife"
+                            ],
                             "properties": {
                               "amenities": {
                                 "nullable": true,
@@ -3152,7 +3321,7 @@
                                   }
                                 ]
                               },
-                              "atmosphere": {
+                              "noise": {
                                 "nullable": true,
                                 "anyOf": [
                                   {
@@ -3175,6 +3344,17 @@
                                 ]
                               },
                               "roomQuality": {
+                                "nullable": true,
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "socialLife": {
                                 "nullable": true,
                                 "anyOf": [
                                   {
