@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { buildings } from "@/data/buildings";
+import { useBuildings, useCampusBuildings } from "@/components/BuildingContext";
 import type { CampusBuilding, HousingClass } from "@/data/buildingTypes";
 import { buildingsForClass } from "@/data/housing";
 import useHousingClass from "@/hooks/useHousingClass";
@@ -37,8 +37,10 @@ export default function useMapSelection(): MapSelection {
   const location = useLocation();
 
   const { housingClass, setHousingClass, ready } = useHousingClass(usePreferences());
+  const buildings = useBuildings();
+  const campusBuildings = useCampusBuildings();
 
-  const origin = findOrigin(originId);
+  const origin = findOrigin(campusBuildings, originId);
   const available = ready ? buildingsForClass(buildings, housingClass) : [];
   const entries = housingByDistance(origin, query, available);
   const selected = entries.find((entry) => entry.building.id === pickedId) ?? entries.at(0);
@@ -59,7 +61,7 @@ export default function useMapSelection(): MapSelection {
   return {
     origin,
     entries,
-    markers: buildMarkers(entries, origin, selectedId, query),
+    markers: buildMarkers(entries, origin, { campusBuildings, query, selectedId }),
     selectedId,
     focus: selected?.position,
     housingClass,

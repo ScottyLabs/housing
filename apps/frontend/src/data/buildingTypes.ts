@@ -1,3 +1,5 @@
+import type { RatingAverages } from "./reviews";
+
 export enum RoomType {
   TradSingle = "trad_single",
   TradDouble = "trad_double",
@@ -131,6 +133,11 @@ export interface Media {
   floorPlans: FloorPlan[];
 }
 
+export interface ReviewSummary {
+  averages: RatingAverages;
+  count: number;
+}
+
 export interface Building {
   id: string;
   code: string;
@@ -142,6 +149,8 @@ export interface Building {
   atmosphere: Atmosphere;
   location: Location;
   editorialTags?: string[];
+  /** Student ratings for this building, zero reviews until someone writes one. */
+  reviews: ReviewSummary;
 }
 
 export const featureFilters = [

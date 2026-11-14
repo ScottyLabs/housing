@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { type Building, useBuildingById } from "@/components/BuildingContext";
+import { type Building, useBuildingById, useCampusBuildings } from "@/components/BuildingContext";
 import { ACLevel, BathroomType, RoomType, acText, kitchenText } from "@/data/buildingTypes";
-import { campusBuildings } from "@/data/campusBuildings";
 import StudentReviews from "@/components/reviews/StudentReviews";
 import MapBackLink from "@/components/MapBackLink";
 
@@ -15,6 +14,7 @@ const bathroomTypeLabel: Record<BathroomType, string> = {
 export default function BuildingDetails({ buildingID }: { buildingID?: string }) {
   const { id } = useParams();
   const building: Building = useBuildingById(buildingID ?? id ?? "");
+  const campusBuildings = useCampusBuildings();
 
   type GalleryItem = { link: string; description: string; virtualTourLink?: string };
   const [lightbox, setLightbox] = useState<{ items: GalleryItem[]; index: number } | null>(null);

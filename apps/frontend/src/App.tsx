@@ -10,20 +10,31 @@ import NotFound from "@/app/not-found";
 import Home from "@/app/page";
 import Survey from "@/app/survey/page";
 import { BuildingProvider } from "@/components/BuildingContext";
+import BuildingGate from "@/components/BuildingGate";
 import { FilterProvider } from "@/components/FilterContext";
 import Navbar from "@/components/Navbar";
 import BuildingDetails from "./components/BuildingDetails";
 import ReviewsPage from "./app/reviews/page";
 import WriteReviewPage from "./app/reviews/write/page";
 
-function AppLayout({ children, showNavbar }: { children: React.ReactNode; showNavbar: boolean }) {
+function AppLayout({
+  children,
+  needsBuildings,
+  showNavbar,
+}: {
+  children: React.ReactNode;
+  needsBuildings: boolean;
+  showNavbar: boolean;
+}) {
   return (
     <div className="antialiased min-h-screen flex flex-col bg-white">
       {showNavbar && <Navbar />}
       <div>
         <BuildingProvider>
           <FilterProvider>
-            <main className="flex-1 overflow-hidden pb-20 md:pb-0">{children}</main>
+            <main className="flex-1 overflow-hidden pb-20 md:pb-0">
+              {needsBuildings ? <BuildingGate>{children}</BuildingGate> : children}
+            </main>
           </FilterProvider>
         </BuildingProvider>
       </div>
@@ -50,7 +61,7 @@ function OldRatingLink() {
 export default function App() {
   const location = useLocation();
   return (
-    <AppLayout showNavbar={location.pathname !== "/"}>
+    <AppLayout showNavbar={location.pathname !== "/"} needsBuildings={location.pathname !== "/"}>
       <div key={location.pathname}>
         <Routes location={location}>
           <Route path="/" element={<LaunchPage />} />

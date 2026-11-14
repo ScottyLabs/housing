@@ -15,7 +15,7 @@ export default function BuildingColumn({
   building: Building;
   onChangeAction: (id: string) => void;
 }) {
-  const buildings: Building[] = useBuildings().sort((b1, b2) =>
+  const buildings: Building[] = useBuildings().toSorted((b1, b2) =>
     b1.name.toLowerCase().localeCompare(b2.name.toLowerCase()),
   );
   const buildingOptions: SelectOption[] = buildings.map((b) => ({ value: b.id, label: b.name }));

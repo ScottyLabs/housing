@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import { DEFAULT_ORIGIN_ID, originOptions } from "./places";
+import { useCampusBuildings } from "@/components/BuildingContext";
+import { DEFAULT_ORIGIN_ID } from "./places";
 
 export interface MapParams {
   originId: string;
@@ -16,9 +17,10 @@ const QUERY_KEY = "q";
 
 export default function useMapParams(): MapParams {
   const [params, setParams] = useSearchParams();
+  const campusBuildings = useCampusBuildings();
 
   const rawOrigin = params.get(ORIGIN_KEY) ?? "";
-  const known = originOptions.some((option) => option.id === rawOrigin);
+  const known = campusBuildings.some((campus) => campus.id === rawOrigin);
 
   const setParam = (key: string, value: string) => {
     setParams(

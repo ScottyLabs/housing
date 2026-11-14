@@ -1,3 +1,4 @@
+import { useCampusBuildings } from "../../components/BuildingContext.tsx";
 import Checkbox from "../../components/Checkbox.tsx";
 import DropdownButton, { type SelectOption } from "../../components/DropdownButton.tsx";
 import HousingClassToggle from "../../components/HousingClassToggle.tsx";
@@ -8,7 +9,6 @@ import {
   GenderHousing,
   type HousingClass,
 } from "../../data/buildingTypes.ts";
-import { campusBuildings } from "../../data/campusBuildings.ts";
 import CollapsibleSection, { StaticSection } from "./CollapsibleSection.tsx";
 
 interface SectionProps {
@@ -31,6 +31,7 @@ export function ClassStandingSection({
 }
 
 export function DistanceSection({ filters, onChangeAction }: SectionProps) {
+  const campusBuildings = useCampusBuildings();
   const buildings = campusBuildings.toSorted((b1, b2) =>
     b1.name.toLowerCase().localeCompare(b2.name.toLowerCase()),
   );

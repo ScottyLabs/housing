@@ -1,5 +1,4 @@
 import type { Building, CampusBuilding } from "@/data/buildingTypes";
-import { campusBuildings } from "@/data/campusBuildings";
 import { estimateTravel, metersBetween, type TravelMinutes } from "@/data/distance";
 
 export interface LatLng {
@@ -27,9 +26,11 @@ export interface MapMarker {
 
 export const DEFAULT_ORIGIN_ID = "margaret-morrison-hall";
 
-export const originOptions = campusBuildings.toSorted((a, b) => a.name.localeCompare(b.name));
+export function sortedCampus(campusBuildings: CampusBuilding[]): CampusBuilding[] {
+  return campusBuildings.toSorted((a, b) => a.name.localeCompare(b.name));
+}
 
-export function findOrigin(id: string): CampusBuilding {
+export function findOrigin(campusBuildings: CampusBuilding[], id: string): CampusBuilding {
   const found = campusBuildings.find((campus) => campus.id === id);
   if (found === undefined) throw new Error(`Unknown campus building "${id}"`);
   return found;
@@ -98,11 +99,16 @@ function campusMarker(campus: CampusBuilding, originId: string): MapMarker {
   };
 }
 
+export interface MarkerOptions {
+  campusBuildings: CampusBuilding[];
+  query: string;
+  selectedId: string;
+}
+
 export function buildMarkers(
   entries: HousingEntry[],
   origin: CampusBuilding,
-  selectedId: string,
-  query: string,
+  { campusBuildings, query, selectedId }: MarkerOptions,
 ): MapMarker[] {
   const needle = normalize(query);
   const shownHousing = new Set(entries.map((entry) => entry.building.id));

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useBuildings } from "@/components/BuildingContext";
+import { useBuildings, useCampusBuildings } from "@/components/BuildingContext";
 import { HousingClass } from "@/data/buildingTypes";
 import { buildingsForClass, housingClassForYear } from "@/data/housing";
 import { preferencesToFilters } from "@/data/preferences";
@@ -10,6 +10,7 @@ import RecommendedBuildings from "./RecommendedBuildings";
 
 export default function Home() {
   const buildings = useBuildings();
+  const campusBuildings = useCampusBuildings();
   const { loaded, preferences } = usePreferences();
   const { ref, scale } = useFitToViewport();
   const recommended = useMemo(() => {
@@ -18,8 +19,8 @@ export default function Home() {
     if (preferences === null) {
       return inClass.toSorted((b1, b2) => b1.name.localeCompare(b2.name)).slice(0, 5);
     }
-    return rankBuildings(inClass, preferencesToFilters(preferences)).slice(0, 5);
-  }, [buildings, preferences]);
+    return rankBuildings(inClass, preferencesToFilters(preferences), campusBuildings).slice(0, 5);
+  }, [buildings, campusBuildings, preferences]);
 
   return (
     <div className="flex justify-center md:h-full px-4 md:px-0 mt-[26px]">

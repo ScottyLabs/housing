@@ -1,5 +1,10 @@
-import { type Building, type FilterState, featureFilters, GenderHousing } from "./buildingTypes";
-import { campusBuildings } from "./campusBuildings";
+import {
+  type Building,
+  type CampusBuilding,
+  type FilterState,
+  featureFilters,
+  GenderHousing,
+} from "./buildingTypes";
 import { metersBetween } from "./distance";
 import { buildingHasFeature } from "./features";
 
@@ -60,19 +65,22 @@ function atmosphereScore(building: Building, filters: FilterState): number {
   return social + noise;
 }
 
-function proximityScore(building: Building, filters: FilterState): number {
-  const place = campusBuildings.find((campus) => campus.id === filters.distanceFrom);
+function proximityScore(building: Building, place: CampusBuilding | undefined): number {
   const { latitude, longitude } = building.location;
   if (place === undefined || latitude === undefined || longitude === undefined) return 0;
   const meters = metersBetween(latitude, longitude, place.latitude, place.longitude);
   return PROXIMITY_MAX_SCORE * Math.max(0, 1 - meters / PROXIMITY_RANGE_METERS);
 }
 
-export function scoreBuilding(building: Building, filters: FilterState): number {
+export function scoreBuilding(
+  building: Building,
+  filters: FilterState,
+  place: CampusBuilding | undefined,
+): number {
   return (
     amenityScore(building, filters) +
     atmosphereScore(building, filters) +
-    proximityScore(building, filters)
+    proximityScore(building, place)
   );
 }
 
@@ -83,18 +91,27 @@ function isEligible(building: Building, filters: FilterState): boolean {
   return housing === filters.genderHousing;
 }
 
-export function rankBuildings(buildings: Building[], filters: FilterState): Building[] {
+export function rankBuildings(
+  buildings: Building[],
+  filters: FilterState,
+  campusBuildings: CampusBuilding[],
+): Building[] {
+  const place = campusBuildings.find((campus) => campus.id === filters.distanceFrom);
   const eligible = buildings.filter((building) => isEligible(building, filters));
   const scored = eligible.map((building) => ({
     building: building,
-    score: scoreBuilding(building, filters),
+    score: scoreBuilding(building, filters, place),
   }));
   scored.sort((a, b) => b.score - a.score);
   return scored.map((entry) => entry.building);
 }
 
-export function groupBuildings(buildings: Building[], filters: FilterState): BuildingGroups {
-  const ranked = rankBuildings(buildings, filters);
+export function groupBuildings(
+  buildings: Building[],
+  filters: FilterState,
+  campusBuildings: CampusBuilding[],
+): BuildingGroups {
+  const ranked = rankBuildings(buildings, filters, campusBuildings);
 
   return {
     bestFit: ranked.slice(0, BEST_FIT_COUNT),

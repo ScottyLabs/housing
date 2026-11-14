@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { type Building, useBuildings } from "@/components/BuildingContext";
+import { type Building, useBuildings, useReloadBuildings } from "@/components/BuildingContext";
 import StepFooter from "@/components/StepFooter";
 import StatusMessage from "@/components/StatusMessage";
 import { stepProblem } from "@/data/reviews";
@@ -47,13 +47,16 @@ function useReviewFlow(building: Building, onSignedOut: () => void) {
   const [posted, setPosted] = useState(false);
   const { draft, isEditing, update } = useReviewDraft(building.id);
   const navigate = useNavigate();
+  const reloadBuildings = useReloadBuildings();
 
   const save = () => {
     setIsSaving(true);
     void saveReview(building.id, draft).then((result) => {
       setIsSaving(false);
-      if (result === "saved") setPosted(true);
-      else if (result === "signed-out") onSignedOut();
+      if (result === "saved") {
+        reloadBuildings();
+        setPosted(true);
+      } else if (result === "signed-out") onSignedOut();
       else setProblem("We couldn't save your review. Please try again.");
     });
   };

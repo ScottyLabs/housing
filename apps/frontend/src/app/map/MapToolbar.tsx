@@ -1,12 +1,9 @@
+import { useMemo } from "react";
+import { useCampusBuildings } from "@/components/BuildingContext";
 import DropdownButton, { type SelectOption } from "@/components/DropdownButton";
 import HousingClassToggle from "@/components/HousingClassToggle";
 import type { CampusBuilding, HousingClass } from "@/data/buildingTypes";
-import { originOptions } from "./places";
-
-const originSelectOptions: SelectOption[] = originOptions.map((campus) => ({
-  value: campus.id,
-  label: campus.name,
-}));
+import { sortedCampus } from "./places";
 
 function SearchField({
   query,
@@ -59,6 +56,12 @@ export default function MapToolbar({
   onQueryChange: (query: string) => void;
   onHousingClassChange: (housingClass: HousingClass) => void;
 }) {
+  const campusBuildings = useCampusBuildings();
+  const originSelectOptions = useMemo<SelectOption[]>(
+    () => sortedCampus(campusBuildings).map((campus) => ({ value: campus.id, label: campus.name })),
+    [campusBuildings],
+  );
+
   return (
     <div className="flex flex-col gap-2 md:flex-row md:items-center">
       <div className="w-full md:mr-auto md:w-72">
