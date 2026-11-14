@@ -316,9 +316,9 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 | `id` | `serial` | No (PK) | Auto-incrementing primary key. |
 | `dorm_id` | `integer` | No (FK -> `dorm.id`) | Dorm being reviewed. |
 | `user_id` | `integer` | No (FK -> `user.id`) | Author of the review. |
-| `body` | `text` | Yes | Free-text review content. |
-| `lived_term` | `text` | Yes | Term the reviewer lived there (e.g. Fall). |
-| `lived_year` | `text` | Yes | Year the reviewer lived there. |
+| `body` | `text` | Yes | Free-text review content, trimmed. The API requires it and allows up to 5000 characters. |
+| `lived_term` | `text` | Yes | The reviewer's year of school while living there: `first-year`, `sophomore`, `junior`, `senior` or `graduate`. |
+| `lived_year` | `text` | Yes | School year the reviewer lived there, written like `2024/2025`. |
 | `rating_amenities` | `integer` | Yes | Amenities rating. |
 | `rating_atmosphere` | `integer` | Yes | Legacy atmosphere rating from reviews written before it was split into social life and noise. Nothing reads or writes it now. |
 | `rating_noise` | `integer` | Yes | Noise rating, 1 to 5, where 5 is quiet. Null on reviews that predate the split. |
@@ -326,6 +326,8 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 | `rating_room_quality` | `integer` | Yes | Room quality rating. |
 | `rating_social_life` | `integer` | Yes | Social life rating, 1 to 5. Null on reviews that predate the split. |
 | `submitted_at` | `timestamp` | Yes | When the review was submitted. |
+
+The columns are nullable for older rows, but the review API only saves a review when every field is present and valid: ratings are whole numbers from 1 to 5, and `lived_term` and `lived_year` use the values above. The schemas are zod schemas in `apps/backend/src/routes/review-input.ts`. The database does not enforce these rules, so a row written outside the API can hold anything. Editing a review in the app replaces every field with valid values.
 
 The average `rating_social_life` and `rating_noise` of a dorm's reviews become that building's `atmosphere.socialness` and `atmosphere.noiseLevel` in `GET /api/buildings`, so the atmosphere filter follows what students report. The averages are calculated on every request and ignore reviews that have no value for them.
 

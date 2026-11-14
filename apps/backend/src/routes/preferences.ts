@@ -3,24 +3,7 @@ import { eq } from "drizzle-orm";
 import { dbPlugin } from "../plugins/db.ts";
 import { sessionAuth } from "../auth/middleware.ts";
 import { userPreferencesTable } from "../db/schema.ts";
-
-/**
- * Body schema for PUT /preferences.
- */
-const preferencesBody = t.Object({
-  accommodations: t.Optional(t.Nullable(t.Array(t.String()))),
-  completed: t.Optional(t.Boolean()),
-  cookingFrequency: t.Optional(t.Nullable(t.Integer({ minimum: 1, maximum: 5 }))),
-  goals: t.Optional(t.Nullable(t.Array(t.String()))),
-  gymFrequency: t.Optional(t.Nullable(t.Integer({ minimum: 1, maximum: 5 }))),
-  major: t.Optional(t.Nullable(t.String())),
-  needsAloneTime: t.Optional(t.Nullable(t.Integer({ minimum: 1, maximum: 5 }))),
-  preferredAmenities: t.Optional(t.Nullable(t.Array(t.String()))),
-  preferredGenderHousing: t.Optional(t.Nullable(t.String())),
-  productiveAroundOthers: t.Optional(t.Nullable(t.Integer({ minimum: 1, maximum: 5 }))),
-  socialFrequency: t.Optional(t.Nullable(t.Integer({ minimum: 1, maximum: 5 }))),
-  year: t.Optional(t.Nullable(t.String())),
-});
+import { preferencesBody } from "./preferences-input.ts";
 
 const preferencesResponse = t.Object({
   id: t.Integer(),

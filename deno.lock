@@ -33,7 +33,8 @@
     "npm:tailwindcss@^4.2.1": "4.3.2",
     "npm:typescript@5.9.3": "5.9.3",
     "npm:typescript@^5.9.3": "5.9.3",
-    "npm:vite@^5.4.8": "5.4.21_@types+node@20.19.43"
+    "npm:vite@^5.4.8": "5.4.21_@types+node@20.19.43",
+    "npm:zod@^4.6.7": "4.6.7"
   },
   "jsr": {
     "@std/assert@1.0.19": {
@@ -1788,6 +1789,9 @@
     },
     "yargs-parser@21.1.1": {
       "integrity": "sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw=="
+    },
+    "zod@4.6.7": {
+      "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="
     }
   },
   "workspace": {
@@ -1805,7 +1809,8 @@
           "npm:drizzle-typebox@~0.3.3",
           "npm:elysia@^1.4.29",
           "npm:openid-client@^6.8.4",
-          "npm:postgres@^3.4.9"
+          "npm:postgres@^3.4.9",
+          "npm:zod@^4.6.7"
         ]
       },
       "apps/frontend": {

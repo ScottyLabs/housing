@@ -10,6 +10,7 @@ import {
   livedHereText,
   schoolYearOptions,
   stepProblem,
+  toClassYear,
   toDormReview,
 } from "./reviews.ts";
 
@@ -36,6 +37,14 @@ void test("classYearLabel shows the label for a stored class year", () => {
   strictEqual(classYearLabel("first-year"), "First Year");
   strictEqual(classYearLabel("graduate"), "Graduate");
   strictEqual(classYearLabel(null), undefined);
+});
+
+void test("toClassYear only accepts the values the server takes", () => {
+  for (const year of ["first-year", "sophomore", "junior", "senior", "graduate"]) {
+    strictEqual(toClassYear(year), year);
+  }
+  strictEqual(toClassYear("Junior"), undefined);
+  strictEqual(toClassYear(""), undefined);
 });
 
 void test("stepProblem needs both years before part 2 and some text before posting", () => {

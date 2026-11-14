@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import client from "@/api/client";
-import { DEFAULT_RATING, emptyDraft, type ReviewDraft } from "@/data/reviews";
+import { DEFAULT_RATING, emptyDraft, type ReviewDraft, toClassYear } from "@/data/reviews";
 
 type SavedRating = string | number | null;
 
@@ -60,11 +60,13 @@ export function useReviewDraft(slug: string) {
 export type SaveResult = "saved" | "signed-out" | "failed";
 
 export async function saveReview(slug: string, draft: ReviewDraft): Promise<SaveResult> {
+  const livedTerm = toClassYear(draft.classYear);
+  if (livedTerm === undefined) return "failed";
   try {
     const { response } = await client.PUT("/api/me/reviews/{slug}", {
       body: {
         body: draft.body,
-        livedTerm: draft.classYear,
+        livedTerm,
         livedYear: draft.schoolYear,
         ratingAmenities: draft.ratings.ratingAmenities,
         ratingNoise: draft.ratings.ratingNoise,

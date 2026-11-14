@@ -3,15 +3,13 @@ import { and, eq } from "drizzle-orm";
 import { dbPlugin } from "../plugins/db.ts";
 import { sessionAuth } from "../auth/middleware.ts";
 import { dormTable, reviewTable } from "../db/schema.ts";
-import { cleanText } from "../utils/reviews.ts";
+import { reviewBody, slugParams } from "./review-input.ts";
 import {
   errorResponse,
   findDorm,
   newestFirst,
   ownReview,
-  reviewBody,
   reviewColumns,
-  slugParams,
   toReview,
 } from "./review-shared.ts";
 
@@ -87,9 +85,9 @@ export const myReviewsRoute = new Elysia({ prefix: "/me" })
       }
 
       const values = {
-        body: cleanText(body.body),
-        livedTerm: cleanText(body.livedTerm),
-        livedYear: cleanText(body.livedYear),
+        body: body.body,
+        livedTerm: body.livedTerm,
+        livedYear: body.livedYear,
         ratingAmenities: body.ratingAmenities,
         ratingNoise: body.ratingNoise,
         ratingOverall: body.ratingOverall,

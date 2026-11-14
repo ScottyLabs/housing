@@ -4,20 +4,18 @@ import { dbPlugin } from "../plugins/db.ts";
 import { sessionAuth } from "../auth/middleware.ts";
 import { dormTable, reviewTable, userTable } from "../db/schema.ts";
 import { displayName } from "../utils/reviews.ts";
+import { DEFAULT_PAGE_SIZE, pageQuery, slugParams } from "./review-input.ts";
 import {
-  DEFAULT_PAGE_SIZE,
   dormRef,
   dormSummary,
   errorResponse,
   findDorm,
   newestFirst,
   noReviews,
-  pageQuery,
   publicReview,
   ratingAverages,
   ratingSummary,
   reviewColumns,
-  slugParams,
   toReview,
   toSummary,
 } from "./review-shared.ts";

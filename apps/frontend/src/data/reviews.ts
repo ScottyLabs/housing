@@ -3,14 +3,27 @@ import type { SelectOption } from "@/components/DropdownButton";
 /** Longest written review the server accepts. */
 export const REVIEW_MAX_LENGTH = 5000;
 
-/** Stored in the review's `livedTerm`; matches the survey's year values, plus graduate students. */
-export const CLASS_YEAR_OPTIONS: SelectOption[] = [
-  { value: "first-year", label: "First Year" },
-  { value: "sophomore", label: "Sophomore" },
-  { value: "junior", label: "Junior" },
-  { value: "senior", label: "Senior" },
-  { value: "graduate", label: "Graduate" },
-];
+const CLASS_YEARS = ["first-year", "sophomore", "junior", "senior", "graduate"] as const;
+
+export type ClassYear = (typeof CLASS_YEARS)[number];
+
+const CLASS_YEAR_LABELS: Record<ClassYear, string> = {
+  "first-year": "First Year",
+  graduate: "Graduate",
+  junior: "Junior",
+  senior: "Senior",
+  sophomore: "Sophomore",
+};
+
+/** Stored in the review's `livedTerm`; the server accepts only these values. */
+export const CLASS_YEAR_OPTIONS: SelectOption[] = CLASS_YEARS.map((value) => ({
+  label: CLASS_YEAR_LABELS[value],
+  value,
+}));
+
+export function toClassYear(value: string): ClassYear | undefined {
+  return CLASS_YEARS.find((year) => year === value);
+}
 
 export function classYearLabel(value: string | null): string | undefined {
   return CLASS_YEAR_OPTIONS.find((option) => option.value === value)?.label;

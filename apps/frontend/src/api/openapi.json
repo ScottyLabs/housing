@@ -332,15 +332,27 @@
           "content": {
             "application/json": {
               "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
                 "properties": {
                   "accommodations": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Service Animal",
+                            "En suite kitchen",
+                            "Ground floor room",
+                            "Strobe fire alarm & doorbell",
+                            "Wheelchair accessible",
+                            "Climate control: AC",
+                            "En suite bathroom",
+                            "Elevator access",
+                            "Single room",
+                            "Personal care assistant"
+                          ]
                         }
                       },
                       {
@@ -352,23 +364,11 @@
                     "type": "boolean"
                   },
                   "cookingFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -376,12 +376,12 @@
                     ]
                   },
                   "goals": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": ["Exercise", "Cook", "Meet new people", "Study hard"]
                         }
                       },
                       {
@@ -390,23 +390,11 @@
                     ]
                   },
                   "gymFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -414,10 +402,11 @@
                     ]
                   },
                   "major": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
                       },
                       {
                         "type": "null"
@@ -425,23 +414,11 @@
                     ]
                   },
                   "needsAloneTime": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -449,12 +426,18 @@
                     ]
                   },
                   "preferredAmenities": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Air conditioning",
+                            "En suite bathroom",
+                            "En suite kitchen",
+                            "Common areas",
+                            "Kitchen access"
+                          ]
                         }
                       },
                       {
@@ -463,10 +446,10 @@
                     ]
                   },
                   "preferredGenderHousing": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["male", "female", "nb-male", "nb-female", "nb-inclusive"]
                       },
                       {
                         "type": "null"
@@ -474,23 +457,11 @@
                     ]
                   },
                   "productiveAroundOthers": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -498,23 +469,11 @@
                     ]
                   },
                   "socialFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -522,30 +481,43 @@
                     ]
                   },
                   "year": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["first-year", "sophomore", "junior", "senior"]
                       },
                       {
                         "type": "null"
                       }
                     ]
                   }
-                }
+                },
+                "additionalProperties": false
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
                 "properties": {
                   "accommodations": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Service Animal",
+                            "En suite kitchen",
+                            "Ground floor room",
+                            "Strobe fire alarm & doorbell",
+                            "Wheelchair accessible",
+                            "Climate control: AC",
+                            "En suite bathroom",
+                            "Elevator access",
+                            "Single room",
+                            "Personal care assistant"
+                          ]
                         }
                       },
                       {
@@ -557,23 +529,11 @@
                     "type": "boolean"
                   },
                   "cookingFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -581,12 +541,12 @@
                     ]
                   },
                   "goals": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": ["Exercise", "Cook", "Meet new people", "Study hard"]
                         }
                       },
                       {
@@ -595,23 +555,11 @@
                     ]
                   },
                   "gymFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -619,10 +567,11 @@
                     ]
                   },
                   "major": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
                       },
                       {
                         "type": "null"
@@ -630,23 +579,11 @@
                     ]
                   },
                   "needsAloneTime": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -654,12 +591,18 @@
                     ]
                   },
                   "preferredAmenities": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Air conditioning",
+                            "En suite bathroom",
+                            "En suite kitchen",
+                            "Common areas",
+                            "Kitchen access"
+                          ]
                         }
                       },
                       {
@@ -668,10 +611,10 @@
                     ]
                   },
                   "preferredGenderHousing": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["male", "female", "nb-male", "nb-female", "nb-inclusive"]
                       },
                       {
                         "type": "null"
@@ -679,23 +622,11 @@
                     ]
                   },
                   "productiveAroundOthers": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -703,23 +634,11 @@
                     ]
                   },
                   "socialFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -727,30 +646,43 @@
                     ]
                   },
                   "year": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["first-year", "sophomore", "junior", "senior"]
                       },
                       {
                         "type": "null"
                       }
                     ]
                   }
-                }
+                },
+                "additionalProperties": false
               }
             },
             "multipart/form-data": {
               "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
                 "properties": {
                   "accommodations": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Service Animal",
+                            "En suite kitchen",
+                            "Ground floor room",
+                            "Strobe fire alarm & doorbell",
+                            "Wheelchair accessible",
+                            "Climate control: AC",
+                            "En suite bathroom",
+                            "Elevator access",
+                            "Single room",
+                            "Personal care assistant"
+                          ]
                         }
                       },
                       {
@@ -762,23 +694,11 @@
                     "type": "boolean"
                   },
                   "cookingFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -786,12 +706,12 @@
                     ]
                   },
                   "goals": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": ["Exercise", "Cook", "Meet new people", "Study hard"]
                         }
                       },
                       {
@@ -800,23 +720,11 @@
                     ]
                   },
                   "gymFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -824,10 +732,11 @@
                     ]
                   },
                   "major": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 100
                       },
                       {
                         "type": "null"
@@ -835,23 +744,11 @@
                     ]
                   },
                   "needsAloneTime": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -859,12 +756,18 @@
                     ]
                   },
                   "preferredAmenities": {
-                    "nullable": true,
                     "anyOf": [
                       {
                         "type": "array",
                         "items": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Air conditioning",
+                            "En suite bathroom",
+                            "En suite kitchen",
+                            "Common areas",
+                            "Kitchen access"
+                          ]
                         }
                       },
                       {
@@ -873,10 +776,10 @@
                     ]
                   },
                   "preferredGenderHousing": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["male", "female", "nb-male", "nb-female", "nb-inclusive"]
                       },
                       {
                         "type": "null"
@@ -884,23 +787,11 @@
                     ]
                   },
                   "productiveAroundOthers": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -908,23 +799,11 @@
                     ]
                   },
                   "socialFrequency": {
-                    "nullable": true,
                     "anyOf": [
                       {
+                        "type": "integer",
                         "minimum": 1,
-                        "maximum": 5,
-                        "anyOf": [
-                          {
-                            "format": "integer",
-                            "default": 0,
-                            "type": "string"
-                          },
-                          {
-                            "minimum": 1,
-                            "maximum": 5,
-                            "type": "integer"
-                          }
-                        ]
+                        "maximum": 5
                       },
                       {
                         "type": "null"
@@ -932,17 +811,18 @@
                     ]
                   },
                   "year": {
-                    "nullable": true,
                     "anyOf": [
                       {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["first-year", "sophomore", "junior", "senior"]
                       },
                       {
                         "type": "null"
                       }
                     ]
                   }
-                }
+                },
+                "additionalProperties": false
               }
             }
           }
@@ -1447,20 +1327,9 @@
             "in": "query",
             "required": false,
             "schema": {
-              "maximum": 50,
+              "type": "integer",
               "minimum": 1,
-              "anyOf": [
-                {
-                  "format": "integer",
-                  "default": 0,
-                  "type": "string"
-                },
-                {
-                  "maximum": 50,
-                  "minimum": 1,
-                  "type": "integer"
-                }
-              ]
+              "maximum": 50
             }
           },
           {
@@ -1468,18 +1337,9 @@
             "in": "query",
             "required": false,
             "schema": {
+              "type": "integer",
               "minimum": 0,
-              "anyOf": [
-                {
-                  "format": "integer",
-                  "default": 0,
-                  "type": "string"
-                },
-                {
-                  "minimum": 0,
-                  "type": "integer"
-                }
-              ]
+              "maximum": 9007199254740991
             }
           }
         ],
@@ -2326,392 +2186,173 @@
           "content": {
             "application/json": {
               "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  },
+                  "livedTerm": {
+                    "type": "string",
+                    "enum": ["first-year", "sophomore", "junior", "senior", "graduate"]
+                  },
+                  "livedYear": {
+                    "type": "string",
+                    "pattern": "^(20\\d{2})\\/(20\\d{2})$"
+                  },
+                  "ratingAmenities": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingNoise": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingOverall": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingRoomQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingSocialLife": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  }
+                },
                 "required": [
+                  "body",
+                  "livedTerm",
+                  "livedYear",
                   "ratingAmenities",
                   "ratingNoise",
                   "ratingOverall",
                   "ratingRoomQuality",
                   "ratingSocialLife"
                 ],
-                "properties": {
-                  "body": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 5000,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "livedTerm": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "livedYear": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "ratingAmenities": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingNoise": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingOverall": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingRoomQuality": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingSocialLife": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  }
-                }
+                "additionalProperties": false
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  },
+                  "livedTerm": {
+                    "type": "string",
+                    "enum": ["first-year", "sophomore", "junior", "senior", "graduate"]
+                  },
+                  "livedYear": {
+                    "type": "string",
+                    "pattern": "^(20\\d{2})\\/(20\\d{2})$"
+                  },
+                  "ratingAmenities": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingNoise": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingOverall": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingRoomQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingSocialLife": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  }
+                },
                 "required": [
+                  "body",
+                  "livedTerm",
+                  "livedYear",
                   "ratingAmenities",
                   "ratingNoise",
                   "ratingOverall",
                   "ratingRoomQuality",
                   "ratingSocialLife"
                 ],
-                "properties": {
-                  "body": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 5000,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "livedTerm": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "livedYear": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "ratingAmenities": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingNoise": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingOverall": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingRoomQuality": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingSocialLife": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  }
-                }
+                "additionalProperties": false
               }
             },
             "multipart/form-data": {
               "schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 5000
+                  },
+                  "livedTerm": {
+                    "type": "string",
+                    "enum": ["first-year", "sophomore", "junior", "senior", "graduate"]
+                  },
+                  "livedYear": {
+                    "type": "string",
+                    "pattern": "^(20\\d{2})\\/(20\\d{2})$"
+                  },
+                  "ratingAmenities": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingNoise": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingOverall": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingRoomQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingSocialLife": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  }
+                },
                 "required": [
+                  "body",
+                  "livedTerm",
+                  "livedYear",
                   "ratingAmenities",
                   "ratingNoise",
                   "ratingOverall",
                   "ratingRoomQuality",
                   "ratingSocialLife"
                 ],
-                "properties": {
-                  "body": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 5000,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "livedTerm": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "livedYear": {
-                    "nullable": true,
-                    "anyOf": [
-                      {
-                        "maxLength": 50,
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "ratingAmenities": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingNoise": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingOverall": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingRoomQuality": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  },
-                  "ratingSocialLife": {
-                    "minimum": 1,
-                    "maximum": 5,
-                    "anyOf": [
-                      {
-                        "format": "integer",
-                        "default": 0,
-                        "type": "string"
-                      },
-                      {
-                        "minimum": 1,
-                        "maximum": 5,
-                        "type": "integer"
-                      }
-                    ]
-                  }
-                }
+                "additionalProperties": false
               }
             }
           }

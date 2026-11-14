@@ -301,46 +301,115 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": {
-          accommodations?: (string[] | null) | null;
+          accommodations?:
+            | (
+                | "Service Animal"
+                | "En suite kitchen"
+                | "Ground floor room"
+                | "Strobe fire alarm & doorbell"
+                | "Wheelchair accessible"
+                | "Climate control: AC"
+                | "En suite bathroom"
+                | "Elevator access"
+                | "Single room"
+                | "Personal care assistant"
+              )[]
+            | null;
           completed?: boolean;
-          cookingFrequency?: ((string | number) | null) | null;
-          goals?: (string[] | null) | null;
-          gymFrequency?: ((string | number) | null) | null;
-          major?: (string | null) | null;
-          needsAloneTime?: ((string | number) | null) | null;
-          preferredAmenities?: (string[] | null) | null;
-          preferredGenderHousing?: (string | null) | null;
-          productiveAroundOthers?: ((string | number) | null) | null;
-          socialFrequency?: ((string | number) | null) | null;
-          year?: (string | null) | null;
+          cookingFrequency?: number | null;
+          goals?: ("Exercise" | "Cook" | "Meet new people" | "Study hard")[] | null;
+          gymFrequency?: number | null;
+          major?: string | null;
+          needsAloneTime?: number | null;
+          preferredAmenities?:
+            | (
+                | "Air conditioning"
+                | "En suite bathroom"
+                | "En suite kitchen"
+                | "Common areas"
+                | "Kitchen access"
+              )[]
+            | null;
+          preferredGenderHousing?:
+            | ("male" | "female" | "nb-male" | "nb-female" | "nb-inclusive")
+            | null;
+          productiveAroundOthers?: number | null;
+          socialFrequency?: number | null;
+          year?: ("first-year" | "sophomore" | "junior" | "senior") | null;
         };
         "application/x-www-form-urlencoded": {
-          accommodations?: (string[] | null) | null;
+          accommodations?:
+            | (
+                | "Service Animal"
+                | "En suite kitchen"
+                | "Ground floor room"
+                | "Strobe fire alarm & doorbell"
+                | "Wheelchair accessible"
+                | "Climate control: AC"
+                | "En suite bathroom"
+                | "Elevator access"
+                | "Single room"
+                | "Personal care assistant"
+              )[]
+            | null;
           completed?: boolean;
-          cookingFrequency?: ((string | number) | null) | null;
-          goals?: (string[] | null) | null;
-          gymFrequency?: ((string | number) | null) | null;
-          major?: (string | null) | null;
-          needsAloneTime?: ((string | number) | null) | null;
-          preferredAmenities?: (string[] | null) | null;
-          preferredGenderHousing?: (string | null) | null;
-          productiveAroundOthers?: ((string | number) | null) | null;
-          socialFrequency?: ((string | number) | null) | null;
-          year?: (string | null) | null;
+          cookingFrequency?: number | null;
+          goals?: ("Exercise" | "Cook" | "Meet new people" | "Study hard")[] | null;
+          gymFrequency?: number | null;
+          major?: string | null;
+          needsAloneTime?: number | null;
+          preferredAmenities?:
+            | (
+                | "Air conditioning"
+                | "En suite bathroom"
+                | "En suite kitchen"
+                | "Common areas"
+                | "Kitchen access"
+              )[]
+            | null;
+          preferredGenderHousing?:
+            | ("male" | "female" | "nb-male" | "nb-female" | "nb-inclusive")
+            | null;
+          productiveAroundOthers?: number | null;
+          socialFrequency?: number | null;
+          year?: ("first-year" | "sophomore" | "junior" | "senior") | null;
         };
         "multipart/form-data": {
-          accommodations?: (string[] | null) | null;
+          accommodations?:
+            | (
+                | "Service Animal"
+                | "En suite kitchen"
+                | "Ground floor room"
+                | "Strobe fire alarm & doorbell"
+                | "Wheelchair accessible"
+                | "Climate control: AC"
+                | "En suite bathroom"
+                | "Elevator access"
+                | "Single room"
+                | "Personal care assistant"
+              )[]
+            | null;
           completed?: boolean;
-          cookingFrequency?: ((string | number) | null) | null;
-          goals?: (string[] | null) | null;
-          gymFrequency?: ((string | number) | null) | null;
-          major?: (string | null) | null;
-          needsAloneTime?: ((string | number) | null) | null;
-          preferredAmenities?: (string[] | null) | null;
-          preferredGenderHousing?: (string | null) | null;
-          productiveAroundOthers?: ((string | number) | null) | null;
-          socialFrequency?: ((string | number) | null) | null;
-          year?: (string | null) | null;
+          cookingFrequency?: number | null;
+          goals?: ("Exercise" | "Cook" | "Meet new people" | "Study hard")[] | null;
+          gymFrequency?: number | null;
+          major?: string | null;
+          needsAloneTime?: number | null;
+          preferredAmenities?:
+            | (
+                | "Air conditioning"
+                | "En suite bathroom"
+                | "En suite kitchen"
+                | "Common areas"
+                | "Kitchen access"
+              )[]
+            | null;
+          preferredGenderHousing?:
+            | ("male" | "female" | "nb-male" | "nb-female" | "nb-inclusive")
+            | null;
+          productiveAroundOthers?: number | null;
+          socialFrequency?: number | null;
+          year?: ("first-year" | "sophomore" | "junior" | "senior") | null;
         };
       };
     };
@@ -456,8 +525,8 @@ export interface operations {
   getApiDormsBySlugReviews: {
     parameters: {
       query?: {
-        limit?: string | number;
-        offset?: string | number;
+        limit?: number;
+        offset?: number;
       };
       header?: never;
       path: {
@@ -635,34 +704,37 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": {
-          body?: (string | null) | null;
-          livedTerm?: (string | null) | null;
-          livedYear?: (string | null) | null;
-          ratingAmenities: string | number;
-          ratingNoise: string | number;
-          ratingOverall: string | number;
-          ratingRoomQuality: string | number;
-          ratingSocialLife: string | number;
+          body: string;
+          /** @enum {string} */
+          livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
+          livedYear: string;
+          ratingAmenities: number;
+          ratingNoise: number;
+          ratingOverall: number;
+          ratingRoomQuality: number;
+          ratingSocialLife: number;
         };
         "application/x-www-form-urlencoded": {
-          body?: (string | null) | null;
-          livedTerm?: (string | null) | null;
-          livedYear?: (string | null) | null;
-          ratingAmenities: string | number;
-          ratingNoise: string | number;
-          ratingOverall: string | number;
-          ratingRoomQuality: string | number;
-          ratingSocialLife: string | number;
+          body: string;
+          /** @enum {string} */
+          livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
+          livedYear: string;
+          ratingAmenities: number;
+          ratingNoise: number;
+          ratingOverall: number;
+          ratingRoomQuality: number;
+          ratingSocialLife: number;
         };
         "multipart/form-data": {
-          body?: (string | null) | null;
-          livedTerm?: (string | null) | null;
-          livedYear?: (string | null) | null;
-          ratingAmenities: string | number;
-          ratingNoise: string | number;
-          ratingOverall: string | number;
-          ratingRoomQuality: string | number;
-          ratingSocialLife: string | number;
+          body: string;
+          /** @enum {string} */
+          livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
+          livedYear: string;
+          ratingAmenities: number;
+          ratingNoise: number;
+          ratingOverall: number;
+          ratingRoomQuality: number;
+          ratingSocialLife: number;
         };
       };
     };

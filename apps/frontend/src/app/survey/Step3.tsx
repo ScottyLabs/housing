@@ -1,25 +1,5 @@
 import Checkbox from "@/components/Checkbox";
-
-const ACCOMMODATIONS = [
-  "Service Animal",
-  "En suite kitchen",
-  "Ground floor room",
-  "Strobe fire alarm & doorbell",
-  "Wheelchair accessible",
-  "Climate control: AC",
-  "En suite bathroom",
-  "Elevator access",
-  "Single room",
-  "Personal care assistant",
-];
-
-const AMENITIES = [
-  "Air conditioning",
-  "En suite bathroom",
-  "En suite kitchen",
-  "Common areas",
-  "Kitchen access",
-];
+import { ACCOMMODATIONS, AMENITIES } from "@/data/survey";
 
 interface Step3Props {
   accommodations: string[];

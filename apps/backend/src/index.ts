@@ -2,6 +2,7 @@ import { staticPlugin } from "@elysia/static";
 import { fromTypes, openapi } from "@elysiajs/openapi";
 import { elysiaLogger } from "@logtape/elysia";
 import { Elysia, t } from "elysia";
+import { z } from "zod";
 import { sessionAuth } from "./auth/middleware.ts";
 import {
   buildLoginUrl,
@@ -75,7 +76,7 @@ function toHome(redirect: (url: string) => Response): Response {
 
 const api = new Elysia({ prefix: "/api" })
   .use(elysiaLogger({ category: "housing-backend" }))
-  .use(openapi({ path: "/docs", references: fromTypes() }))
+  .use(openapi({ mapJsonSchema: { zod: z.toJSONSchema }, path: "/docs", references: fromTypes() }))
   .use(healthRoute)
   .use(mapsRoute)
   .use(preferencesRoute)

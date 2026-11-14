@@ -3,7 +3,7 @@
 
 import { strictEqual } from "node:assert/strict";
 import { test } from "node:test";
-import { cleanText, displayName, toAverage } from "./reviews.ts";
+import { displayName, isSchoolYear, toAverage } from "./reviews.ts";
 
 void test("displayName shortens the last name to an initial", () => {
   strictEqual(displayName("Jane Q. Doe"), "Jane D.");
@@ -23,10 +23,13 @@ void test("toAverage rounds Postgres numeric strings to two decimals", () => {
   strictEqual(toAverage(null), null);
 });
 
-void test("cleanText trims text and turns blanks into null", () => {
-  strictEqual(cleanText("  great dorm  "), "great dorm");
-  strictEqual(cleanText("   "), null);
-  strictEqual(cleanText(""), null);
-  strictEqual(cleanText(null), null);
-  strictEqual(cleanText(), null);
+void test("isSchoolYear accepts two consecutive years up to the current one", () => {
+  const today = new Date(2026, 10, 14);
+  strictEqual(isSchoolYear("2026/2027", today), true);
+  strictEqual(isSchoolYear("2025/2026", today), true);
+  strictEqual(isSchoolYear("2027/2028", today), false);
+  strictEqual(isSchoolYear("2025/2027", today), false);
+  strictEqual(isSchoolYear("2026-2027", today), false);
+  strictEqual(isSchoolYear("1999/2000", today), false);
+  strictEqual(isSchoolYear("max is the best", today), false);
 });

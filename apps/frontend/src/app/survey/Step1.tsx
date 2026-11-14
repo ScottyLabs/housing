@@ -1,21 +1,7 @@
 import type { SelectOption } from "@/components/DropdownButton";
 import SurveyField from "@/components/SurveyField";
 import { MAJORS } from "@/data/majors";
-
-const GENDER_OPTIONS: SelectOption[] = [
-  { value: "male", label: "Male" },
-  { value: "female", label: "Female" },
-  { value: "nb-male", label: "Non-Binary (male dorms)" },
-  { value: "nb-female", label: "Non-Binary (female dorms)" },
-  { value: "nb-inclusive", label: "Non-Binary (gender inclusive)" },
-];
-
-const YEAR_OPTIONS: SelectOption[] = [
-  { value: "first-year", label: "First-Year" },
-  { value: "sophomore", label: "Sophomore" },
-  { value: "junior", label: "Junior" },
-  { value: "senior", label: "Senior" },
-];
+import { GENDER_OPTIONS, YEAR_OPTIONS } from "@/data/survey";
 
 const MAJOR_OPTIONS: SelectOption[] = MAJORS.map((major) => ({ value: major, label: major }));
 

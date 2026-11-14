@@ -1,5 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import client from "@/api/client";
+import {
+  ACCOMMODATIONS,
+  AMENITIES,
+  GENDER_ANSWERS,
+  GOALS,
+  keepOptions,
+  pickOption,
+  YEAR_ANSWERS,
+} from "@/data/survey";
 
 // debounce slider drags
 const AUTOSAVE_DELAY_MS = 500;
@@ -79,17 +88,17 @@ function orNull(value: string | undefined): string | null | undefined {
 
 function toPreferencesBody(fields: Partial<SurveyData>) {
   return {
-    accommodations: fields.accommodations,
+    accommodations: keepOptions(ACCOMMODATIONS, fields.accommodations),
     cookingFrequency: fields.cookingFrequency,
-    goals: fields.goals,
+    goals: keepOptions(GOALS, fields.goals),
     gymFrequency: fields.gymFrequency,
     major: orNull(fields.major),
     needsAloneTime: fields.needsAloneTime,
-    preferredAmenities: fields.preferredAmenities,
-    preferredGenderHousing: orNull(fields.gender),
+    preferredAmenities: keepOptions(AMENITIES, fields.preferredAmenities),
+    preferredGenderHousing: pickOption(GENDER_ANSWERS, fields.gender),
     productiveAroundOthers: fields.productiveAroundOthers,
     socialFrequency: fields.socialFrequency,
-    year: orNull(fields.year),
+    year: pickOption(YEAR_ANSWERS, fields.year),
   };
 }
 

@@ -17,7 +17,11 @@ export function toAverage(value: string | null): number | null {
   return Math.round(Number(value) * 100) / 100;
 }
 
-export function cleanText(value?: string | null): string | null {
-  const trimmed = value?.trim() ?? "";
-  return trimmed === "" ? null : trimmed;
+export const SCHOOL_YEAR_PATTERN = /^(20\d{2})\/(20\d{2})$/u;
+
+export function isSchoolYear(value: string, today: Date): boolean {
+  const match = SCHOOL_YEAR_PATTERN.exec(value);
+  if (match === null) return false;
+  const start = Number(match[1]);
+  return Number(match[2]) === start + 1 && start <= today.getFullYear();
 }

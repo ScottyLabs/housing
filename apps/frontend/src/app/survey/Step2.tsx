@@ -1,5 +1,6 @@
 import Checkbox from "@/components/Checkbox";
 import Slider from "@/components/Slider";
+import { GOALS } from "@/data/survey";
 
 export interface Step2Props {
   cookingFrequency: number;
@@ -52,8 +53,6 @@ const QUESTIONS: Array<{
     question: "How often do you make friend plans?",
   },
 ];
-
-const GOALS = ["Exercise", "Cook", "Meet new people", "Study hard"];
 
 function SliderRow({
   icon,

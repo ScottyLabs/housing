@@ -7,23 +7,7 @@ import { toAverage } from "../utils/reviews.ts";
 
 type Db = typeof database;
 
-export const DEFAULT_PAGE_SIZE = 20;
-export const MAX_PAGE_SIZE = 50;
-
-// Schemas
-
-const rating = t.Integer({ minimum: 1, maximum: 5 });
-
-export const reviewBody = t.Object({
-  body: t.Optional(t.Nullable(t.String({ maxLength: 5000 }))),
-  livedTerm: t.Optional(t.Nullable(t.String({ maxLength: 50 }))),
-  livedYear: t.Optional(t.Nullable(t.String({ maxLength: 50 }))),
-  ratingAmenities: rating,
-  ratingNoise: rating,
-  ratingOverall: rating,
-  ratingRoomQuality: rating,
-  ratingSocialLife: rating,
-});
+// Response schemas. Request schemas are in review-input.ts.
 
 export const dormRef = t.Object({ name: t.String(), slug: t.String() });
 
@@ -62,13 +46,6 @@ export const ratingSummary = t.Object({
 export const dormSummary = t.Object({ ...ratingSummary.properties, dorm: dormRef });
 
 export const errorResponse = t.Object({ error: t.String() });
-
-export const slugParams = t.Object({ slug: t.String() });
-
-export const pageQuery = t.Object({
-  limit: t.Optional(t.Integer({ maximum: MAX_PAGE_SIZE, minimum: 1 })),
-  offset: t.Optional(t.Integer({ minimum: 0 })),
-});
 
 // Queries
 
