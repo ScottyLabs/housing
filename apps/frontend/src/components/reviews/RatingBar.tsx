@@ -4,7 +4,7 @@ const MAX_RATING = 5;
 function EndMarker({ side }: { side: "left" | "right" }) {
   return (
     <span
-      className={`absolute top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full border-2 border-brand-primary bg-white ${side === "left" ? "left-0" : "right-0"}`}
+      className={`absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-brand-primary bg-white ${side === "left" ? "left-0" : "left-full"}`}
     />
   );
 }
@@ -22,7 +22,7 @@ export default function RatingBar({ label, value }: { label: string; value: numb
       <span className="sr-only">
         {label}: {shown} out of {MAX_RATING}
       </span>
-      <span aria-hidden="true">
+      <span aria-hidden="true" className="absolute inset-y-0 inset-x-[7px]">
         <span className="absolute left-0 right-0 top-1/2 h-[3px] -translate-y-1/2 rounded-full bg-[#d1d5db]" />
         <span
           className="absolute left-0 top-1/2 h-[3px] -translate-y-1/2 rounded-full bg-brand-primary"
