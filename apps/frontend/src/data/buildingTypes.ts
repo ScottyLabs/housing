@@ -107,7 +107,9 @@ export interface Location {
 
 export interface CampusBuilding {
   id: string;
+  code: string;
   name: string;
+  subtitle?: string;
   latitude: number;
   longitude: number;
 }
@@ -131,6 +133,7 @@ export interface Media {
 
 export interface Building {
   id: string;
+  code: string;
   name: string;
   housingClasses: HousingClass[];
   media: Media;
