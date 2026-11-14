@@ -24,7 +24,7 @@ export interface MapMarker {
   state: MarkerState;
 }
 
-export const DEFAULT_ORIGIN_ID = "margaret-morrison-hall";
+export const DEFAULT_ORIGIN_ID = "cohon-center";
 
 export function sortedCampus(campusBuildings: CampusBuilding[]): CampusBuilding[] {
   return campusBuildings.toSorted((a, b) => a.name.localeCompare(b.name));
