@@ -6,10 +6,12 @@ export default function BuildingList({
   entries,
   selectedId,
   onSelect,
+  onOpen,
 }: {
   entries: HousingEntry[];
   selectedId: string;
   onSelect: (id: string) => void;
+  onOpen: (id: string) => void;
 }) {
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -33,6 +35,7 @@ export default function BuildingList({
             entry={entry}
             selected={entry.building.id === selectedId}
             onSelect={onSelect}
+            onOpen={onOpen}
           />
         </li>
       ))}

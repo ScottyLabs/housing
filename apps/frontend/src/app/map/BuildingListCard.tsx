@@ -1,30 +1,12 @@
 import TravelTimes from "./TravelTimes";
 import type { HousingEntry } from "./places";
 
-export default function BuildingListCard({
-  entry,
-  selected,
-  onSelect,
-}: {
-  entry: HousingEntry;
-  selected: boolean;
-  onSelect: (id: string) => void;
-}) {
+function CardContent({ entry, selected }: { entry: HousingEntry; selected: boolean }) {
   const { building, travel } = entry;
-  const tone = selected
-    ? "border-brand-primary bg-brand-primary text-white"
-    : "border-black/10 bg-brand-menugray hover:bg-brand-buttongray";
   const chipTone = selected ? "bg-white text-black" : "bg-[#0c8987] text-white";
 
   return (
-    <button
-      type="button"
-      aria-pressed={selected}
-      onClick={() => {
-        onSelect(building.id);
-      }}
-      className={`flex w-full cursor-pointer items-center gap-4 rounded-2xl border p-3 text-left transition-colors ${tone}`}
-    >
+    <>
       <img
         src={building.media.mainImage}
         alt=""
@@ -40,6 +22,43 @@ export default function BuildingListCard({
         </span>
         <TravelTimes travel={travel} />
       </span>
+    </>
+  );
+}
+
+export default function BuildingListCard({
+  entry,
+  selected,
+  onSelect,
+  onOpen,
+}: {
+  entry: HousingEntry;
+  selected: boolean;
+  onSelect: (id: string) => void;
+  onOpen: (id: string) => void;
+}) {
+  const id = entry.building.id;
+  const tone = selected
+    ? "border-brand-primary bg-brand-primary text-white"
+    : "border-black/10 bg-brand-menugray hover:bg-brand-buttongray";
+
+  return (
+    <button
+      type="button"
+      aria-pressed={selected}
+      title="Double-click to view details"
+      onClick={() => {
+        onSelect(id);
+      }}
+      onDoubleClick={() => {
+        onOpen(id);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" && selected) onOpen(id);
+      }}
+      className={`flex w-full cursor-pointer items-center gap-4 rounded-2xl border p-3 text-left transition-colors ${tone}`}
+    >
+      <CardContent entry={entry} selected={selected} />
     </button>
   );
 }

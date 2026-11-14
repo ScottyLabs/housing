@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { buildings } from "@/data/buildings";
 import type { CampusBuilding, HousingClass } from "@/data/buildingTypes";
 import { buildingsForClass } from "@/data/housing";
 import useHousingClass from "@/hooks/useHousingClass";
 import usePreferences from "@/hooks/usePreferences";
+import useMapParams from "./useMapParams";
 import {
   buildMarkers,
-  DEFAULT_ORIGIN_ID,
   findOrigin,
   housingByDistance,
   type HousingEntry,
@@ -27,13 +27,14 @@ export interface MapSelection {
   setQuery: (query: string) => void;
   setOriginId: (id: string) => void;
   selectHousing: (id: string) => void;
+  openDetails: (id: string) => void;
   clickMarker: (marker: MapMarker) => void;
 }
 
 export default function useMapSelection(): MapSelection {
-  const [originId, setOriginId] = useState(DEFAULT_ORIGIN_ID);
-  const [pickedId, setPickedId] = useState("");
-  const [query, setQuery] = useState("");
+  const { originId, pickedId, query, setOriginId, setPickedId, setQuery } = useMapParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { housingClass, setHousingClass, ready } = useHousingClass(usePreferences());
 
@@ -51,6 +52,10 @@ export default function useMapSelection(): MapSelection {
     }
   };
 
+  const openDetails = (id: string) => {
+    navigate(`/building/${id}`, { state: { from: `${location.pathname}${location.search}` } });
+  };
+
   return {
     origin,
     entries,
@@ -64,6 +69,7 @@ export default function useMapSelection(): MapSelection {
     setQuery,
     setOriginId,
     selectHousing: setPickedId,
+    openDetails,
     clickMarker,
   };
 }

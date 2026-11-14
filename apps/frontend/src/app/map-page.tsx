@@ -51,6 +51,7 @@ export default function MapPage() {
               entries={selection.entries}
               selectedId={selection.selectedId}
               onSelect={selection.selectHousing}
+              onOpen={selection.openDetails}
             />
           ) : (
             <StatusMessage message="Loading buildings" />
