@@ -8,6 +8,16 @@ export const buildingTags: Tag[] = [
   { id: "girlsOnly", label: "Girls only", icon: "/building-tags/girlsOnly.svg" },
   { id: "lgbtqInclusive", label: "LGBTQ+ inclusive", icon: "/building-tags/workWithOthers.svg" },
   { id: "offline", label: "Offline", icon: "/unsorted-icons/info.svg" },
+  {
+    id: "groupsUpToEight",
+    label: "Supports groups of up to 8",
+    icon: "/unsorted-icons/roomates.svg",
+  },
+  {
+    id: "separateSelection",
+    label: "Separate selection process",
+    icon: "/unsorted-icons/info.svg",
+  },
 ];
 
 export function deriveTags(b: Building): string[] {

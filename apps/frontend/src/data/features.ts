@@ -28,11 +28,17 @@ const featureChecks: Record<FeatureFilter, (building: Building) => boolean> = {
     hasRoom(b, [
       RoomType.TradTriple,
       RoomType.SemiSuiteTriple,
+      RoomType.SemiSuiteDoubleAsTriple,
       RoomType.SemiSuiteQuad,
       RoomType.ApartmentTriple,
+      RoomType.StudioApartmentTriple,
     ]),
   studioApartment: (b) =>
-    hasRoom(b, [RoomType.StudioApartmentSingle, RoomType.StudioApartmentDouble]),
+    hasRoom(b, [
+      RoomType.StudioApartmentSingle,
+      RoomType.StudioApartmentDouble,
+      RoomType.StudioApartmentTriple,
+    ]),
   airConditioning: (b) =>
     b.amenities.ac.level === ACLevel.Window || b.amenities.ac.level === ACLevel.Central,
   centralAC: (b) => b.amenities.ac.level === ACLevel.Central,

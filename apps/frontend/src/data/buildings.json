@@ -282,7 +282,7 @@
         "types": ["shared_suite"]
       },
       "ac": {
-        "level": "central"
+        "level": "window"
       },
       "kitchen": {
         "scope": "shared"
@@ -379,7 +379,7 @@
       ]
     },
     "amenities": {
-      "roomTypes": ["studio_apartment_double"],
+      "roomTypes": ["studio_apartment_double", "studio_apartment_triple"],
       "bathrooms": {
         "types": ["private"]
       },
@@ -504,7 +504,7 @@
       ]
     },
     "amenities": {
-      "roomTypes": ["trad_single", "trad_double", "trad_triple"],
+      "roomTypes": ["trad_single", "trad_double", "trad_triple", "semi_suite_double_as_triple"],
       "bathrooms": {
         "types": ["communal"],
         "details": "Shared per floor"
@@ -641,7 +641,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Wellness room and study room"
+        "details": "Wellness room, lounge, game room, and study room"
       },
       "gym": {
         "available": false
@@ -899,7 +899,7 @@
     "atmosphere": {},
     "location": {
       "closeBuildings": ["warner-hall", "cyert-hall", "tepper-quad", "purnell-center"],
-      "note": "Morewood Gardens is right on top of UG, next to UHS and CAPS, close to campus",
+      "note": "Morewood Gardens is right on top of UG, close to campus",
       "latitude": 40.445069937572704,
       "longitude": -79.94324961565809
     }
@@ -1076,7 +1076,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Large lounge with a public grand piano, large study lounge, pool table room, and large courtyard"
+        "details": "Large lounge with a public grand piano, large study lounge, pool table room, and large courtyard with a koi pond"
       },
       "gym": {
         "available": false
@@ -1180,7 +1180,7 @@
       ]
     },
     "amenities": {
-      "roomTypes": ["apartment_triple", "studio_apartment_double"],
+      "roomTypes": ["apartment_triple", "studio_apartment_double", "studio_apartment_triple"],
       "bathrooms": {
         "types": ["private"]
       },
@@ -1197,7 +1197,7 @@
       },
       "commonAreas": {
         "hasLounge": true,
-        "details": "Den, TV room"
+        "details": "Movie lounge, TV room, computer lounge, and community space"
       },
       "gym": {
         "available": true,
@@ -1609,12 +1609,13 @@
       ]
     },
     "amenities": {
-      "roomTypes": ["semi_suite_single", "semi_suite_double"],
+      "roomTypes": ["semi_suite_single", "semi_suite_double", "semi_suite_double_as_triple"],
       "bathrooms": {
         "types": ["shared_suite"]
       },
       "ac": {
-        "level": "central"
+        "level": "window",
+        "details": "Window units, per unit"
       },
       "kitchen": {
         "scope": "shared"
@@ -1921,7 +1922,8 @@
       "latitude": 40.4442596456125,
       "longitude": -79.9391293033433,
       "closeBuildings": ["resnik", "cohon-center", "margaret-morrison-hall", "warner-hall"]
-    }
+    },
+    "editorialTags": ["separateSelection"]
   },
   {
     "id": "highlands",
@@ -2543,7 +2545,8 @@
         "posner-hall",
         "college-of-fine-arts"
       ]
-    }
+    },
+    "editorialTags": ["groupsUpToEight"]
   },
   {
     "id": "spirit",

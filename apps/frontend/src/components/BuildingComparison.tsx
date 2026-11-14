@@ -125,6 +125,20 @@ export default function BuildingColumn({
             </div>
           </div>
         )}
+        {building.amenities.roomTypes.includes(RoomType.SemiSuiteDoubleAsTriple) && (
+          <div className="flex gap-3 pt-2.5 pb-1 items-center">
+            <img
+              src={"/unsorted-icons/room-type/trad-triple.svg"}
+              alt={"semi-suite double-as-triple"}
+              width={36}
+              height={36}
+              className="w-9 h-9"
+            />
+            <div className="text-[16px] whitespace-normal break-words">
+              <span className="font-normal">Semi-Suite</span> Double-as-Triple
+            </div>
+          </div>
+        )}
         {building.amenities.roomTypes.includes(RoomType.SemiSuiteQuad) && (
           <div className="flex gap-3 pt-2.5 pb-1 items-center">
             <img
@@ -178,6 +192,20 @@ export default function BuildingColumn({
             />
             <div className="text-[16px] whitespace-normal break-words">
               <span className="font-normal">Studio Apartment</span> Double
+            </div>
+          </div>
+        )}
+        {building.amenities.roomTypes.includes(RoomType.StudioApartmentTriple) && (
+          <div className="flex gap-3 pt-2.5 pb-1 items-center">
+            <img
+              src={"/unsorted-icons/room-type/trad-triple.svg"}
+              alt={"studio apartment triple"}
+              width={36}
+              height={36}
+              className="w-9 h-9"
+            />
+            <div className="text-[16px] whitespace-normal break-words">
+              <span className="font-normal">Studio Apartment</span> Triple
             </div>
           </div>
         )}

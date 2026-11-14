@@ -82,10 +82,12 @@ All enums below are string enums. The `Value` column is the string stored in `bu
 | `semi_suite_single` | `SemiSuiteSingle` | Semi-suite single, bathroom shared with an adjacent suite. |
 | `semi_suite_double` | `SemiSuiteDouble` | Semi-suite double, bathroom shared with an adjacent suite. |
 | `semi_suite_triple` | `SemiSuiteTriple` | Semi-suite triple, bathroom shared with an adjacent suite. |
+| `semi_suite_double_as_triple` | `SemiSuiteDoubleAsTriple` | Semi-suite double that can house three occupants. |
 | `semi_suite_quad` | `SemiSuiteQuad` | Semi-suite, four occupants. |
 | `apartment_triple` | `ApartmentTriple` | Apartment-style triple. |
 | `studio_apartment_single` | `StudioApartmentSingle` | Studio apartment, single occupant. |
 | `studio_apartment_double` | `StudioApartmentDouble` | Studio apartment, two occupants. |
+| `studio_apartment_triple` | `StudioApartmentTriple` | Studio apartment, three occupants. |
 
 ### `BathroomType`
 

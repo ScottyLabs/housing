@@ -23,10 +23,12 @@ export const roomTypeEnum = pgEnum("room_type", [
   "semi_suite_single",
   "semi_suite_double",
   "semi_suite_triple",
+  "semi_suite_double_as_triple",
   "semi_suite_quad",
   "apartment_triple",
   "studio_apartment_single",
   "studio_apartment_double",
+  "studio_apartment_triple",
 ]);
 export const bathroomTypeEnum = pgEnum("bathroom_type", ["communal", "shared_suite", "private"]);
 export const acLevelEnum = pgEnum("ac_level", ["none", "by_necessity", "window", "central"]);

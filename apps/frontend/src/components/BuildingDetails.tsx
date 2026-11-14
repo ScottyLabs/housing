@@ -164,6 +164,21 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
               </div>
             </div>
           )}
+          {building.amenities.roomTypes.includes(RoomType.SemiSuiteDoubleAsTriple) && (
+            <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
+              <img
+                src={"/unsorted-icons/room-type/trad-triple.svg"}
+                alt={"info"}
+                width={36}
+                height={36}
+                className="w-9 h-9"
+              />
+
+              <div className="text-[16px] whitespace-normal break-words">
+                <span className="font-normal">Semi-Suite</span> Double-as-Triple
+              </div>
+            </div>
+          )}
           {building.amenities.roomTypes.includes(RoomType.SemiSuiteQuad) && (
             <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
               <img
@@ -221,6 +236,21 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
 
               <div className="text-[16px] whitespace-normal break-words">
                 <span className="font-normal">Studio Apartment</span> Double
+              </div>
+            </div>
+          )}
+          {building.amenities.roomTypes.includes(RoomType.StudioApartmentTriple) && (
+            <div className="flex gap-3 pt-2.5 pb-1 items-center rounded-2xl">
+              <img
+                src={"/unsorted-icons/room-type/trad-triple.svg"}
+                alt={"info"}
+                width={36}
+                height={36}
+                className="w-9 h-9"
+              />
+
+              <div className="text-[16px] whitespace-normal break-words">
+                <span className="font-normal">Studio Apartment</span> Triple
               </div>
             </div>
           )}

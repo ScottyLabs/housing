@@ -1,0 +1,879 @@
+{
+  "id": "34166b44-28a3-4d70-a27c-9ea20dcade95",
+  "prevId": "bb38dc68-bd85-406b-94ef-d1865019b86a",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.campus_building": {
+      "name": "campus_building",
+      "schema": "",
+      "columns": {
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "subtitle": {
+          "name": "subtitle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "campus_building_slug_unique": {
+          "name": "campus_building_slug_unique",
+          "columns": ["slug"],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.dorm": {
+      "name": "dorm",
+      "schema": "",
+      "columns": {
+        "ac_details": {
+          "name": "ac_details",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ac_level": {
+          "name": "ac_level",
+          "type": "ac_level",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bathroom_details": {
+          "name": "bathroom_details",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bathroom_types": {
+          "name": "bathroom_types",
+          "type": "bathroom_type[]",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "close_buildings": {
+          "name": "close_buildings",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "floor_plans": {
+          "name": "floor_plans",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[]'::json"
+        },
+        "gender_housing": {
+          "name": "gender_housing",
+          "type": "gender_housing",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ground_floor_rooms": {
+          "name": "ground_floor_rooms",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gym_available": {
+          "name": "gym_available",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gym_details": {
+          "name": "gym_details",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "has_lounge": {
+          "name": "has_lounge",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "housing_classes": {
+          "name": "housing_classes",
+          "type": "housing_class[]",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kitchen_description": {
+          "name": "kitchen_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "kitchen_scope": {
+          "name": "kitchen_scope",
+          "type": "kitchen_scope",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "laundry_details": {
+          "name": "laundry_details",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "laundry_location": {
+          "name": "laundry_location",
+          "type": "laundry_location",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_note": {
+          "name": "location_note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lounge_description": {
+          "name": "lounge_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "noise_level": {
+          "name": "noise_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "photo_gallery": {
+          "name": "photo_gallery",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "room_types": {
+          "name": "room_types",
+          "type": "room_type[]",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "service_animal_friendly": {
+          "name": "service_animal_friendly",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "socialness": {
+          "name": "socialness",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "strobe_alarm": {
+          "name": "strobe_alarm",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tags": {
+          "name": "tags",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wheelchair_accessible": {
+          "name": "wheelchair_accessible",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "dorm_slug_unique": {
+          "name": "dorm_slug_unique",
+          "columns": ["slug"],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.review": {
+      "name": "review",
+      "schema": "",
+      "columns": {
+        "body": {
+          "name": "body",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dorm_id": {
+          "name": "dorm_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "lived_term": {
+          "name": "lived_term",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lived_year": {
+          "name": "lived_year",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating_amenities": {
+          "name": "rating_amenities",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating_atmosphere": {
+          "name": "rating_atmosphere",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating_noise": {
+          "name": "rating_noise",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating_overall": {
+          "name": "rating_overall",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating_room_quality": {
+          "name": "rating_room_quality",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rating_social_life": {
+          "name": "rating_social_life",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "submitted_at": {
+          "name": "submitted_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "review_dorm_id_dorm_id_fk": {
+          "name": "review_dorm_id_dorm_id_fk",
+          "tableFrom": "review",
+          "columnsFrom": ["dorm_id"],
+          "tableTo": "dorm",
+          "columnsTo": ["id"],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "review_user_id_user_id_fk": {
+          "name": "review_user_id_user_id_fk",
+          "tableFrom": "review",
+          "columnsFrom": ["user_id"],
+          "tableTo": "user",
+          "columnsTo": ["id"],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "review_user_dorm_unique": {
+          "name": "review_user_dorm_unique",
+          "columns": ["user_id", "dorm_id"],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.roommate_profile": {
+      "name": "roommate_profile",
+      "schema": "",
+      "columns": {
+        "alcohol": {
+          "name": "alcohol",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "assigned_sex": {
+          "name": "assigned_sex",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bathroom_preference": {
+          "name": "bathroom_preference",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "committed": {
+          "name": "committed",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "drugs": {
+          "name": "drugs",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "extras": {
+          "name": "extras",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "intended_major": {
+          "name": "intended_major",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_visible": {
+          "name": "is_visible",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "morning_prep_time": {
+          "name": "morning_prep_time",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "neatness": {
+          "name": "neatness",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "party_frequency": {
+          "name": "party_frequency",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preferred_roommate_school": {
+          "name": "preferred_roommate_school",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preferred_shower_time": {
+          "name": "preferred_shower_time",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pronouns": {
+          "name": "pronouns",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "school": {
+          "name": "school",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sleep_time": {
+          "name": "sleep_time",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "snores": {
+          "name": "snores",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "social_energy": {
+          "name": "social_energy",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "roommate_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "volume_preference": {
+          "name": "volume_preference",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wake_time": {
+          "name": "wake_time",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "where_from": {
+          "name": "where_from",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "roommate_profile_user_id_user_id_fk": {
+          "name": "roommate_profile_user_id_user_id_fk",
+          "tableFrom": "roommate_profile",
+          "columnsFrom": ["user_id"],
+          "tableTo": "user",
+          "columnsTo": ["id"],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "roommate_profile_user_id_unique": {
+          "name": "roommate_profile_user_id_unique",
+          "columns": ["user_id"],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.session": {
+      "name": "session",
+      "schema": "",
+      "columns": {
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "session_user_id_user_id_fk": {
+          "name": "session_user_id_user_id_fk",
+          "tableFrom": "session",
+          "columnsFrom": ["user_id"],
+          "tableTo": "user",
+          "columnsTo": ["id"],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.user_preferences": {
+      "name": "user_preferences",
+      "schema": "",
+      "columns": {
+        "accommodations": {
+          "name": "accommodations",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cooking_frequency": {
+          "name": "cooking_frequency",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "goals": {
+          "name": "goals",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gym_frequency": {
+          "name": "gym_frequency",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "major": {
+          "name": "major",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "needs_alone_time": {
+          "name": "needs_alone_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preferred_amenities": {
+          "name": "preferred_amenities",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preferred_gender_housing": {
+          "name": "preferred_gender_housing",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "productive_around_others": {
+          "name": "productive_around_others",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "social_frequency": {
+          "name": "social_frequency",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "year": {
+          "name": "year",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_preferences_user_id_user_id_fk": {
+          "name": "user_preferences_user_id_user_id_fk",
+          "tableFrom": "user_preferences",
+          "columnsFrom": ["user_id"],
+          "tableTo": "user",
+          "columnsTo": ["id"],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_preferences_user_id_unique": {
+          "name": "user_preferences_user_id_unique",
+          "columns": ["user_id"],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.user": {
+      "name": "user",
+      "schema": "",
+      "columns": {
+        "andrew_id": {
+          "name": "andrew_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "oidc_subject": {
+          "name": "oidc_subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_oidc_subject_unique": {
+          "name": "user_oidc_subject_unique",
+          "columns": ["oidc_subject"],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.ac_level": {
+      "name": "ac_level",
+      "schema": "public",
+      "values": ["none", "by_necessity", "window", "central"]
+    },
+    "public.bathroom_type": {
+      "name": "bathroom_type",
+      "schema": "public",
+      "values": ["communal", "shared_suite", "private"]
+    },
+    "public.gender_housing": {
+      "name": "gender_housing",
+      "schema": "public",
+      "values": ["co_ed", "women_only", "men_only", "gender_inclusive"]
+    },
+    "public.housing_class": {
+      "name": "housing_class",
+      "schema": "public",
+      "values": ["first_year", "upperclass"]
+    },
+    "public.kitchen_scope": {
+      "name": "kitchen_scope",
+      "schema": "public",
+      "values": ["none", "shared", "in_unit"]
+    },
+    "public.laundry_location": {
+      "name": "laundry_location",
+      "schema": "public",
+      "values": ["none", "basement", "each_floor", "in_unit"]
+    },
+    "public.room_type": {
+      "name": "room_type",
+      "schema": "public",
+      "values": [
+        "trad_single",
+        "trad_double",
+        "trad_triple",
+        "semi_suite_single",
+        "semi_suite_double",
+        "semi_suite_triple",
+        "semi_suite_double_as_triple",
+        "semi_suite_quad",
+        "apartment_triple",
+        "studio_apartment_single",
+        "studio_apartment_double",
+        "studio_apartment_triple"
+      ]
+    },
+    "public.roommate_status": {
+      "name": "roommate_status",
+      "schema": "public",
+      "values": ["searching", "committed", "inactive"]
+    }
+  },
+  "schemas": {},
+  "views": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

@@ -177,7 +177,7 @@ Backing types for the `dorm` columns below. Each one mirrors the string enum of 
 
 | Postgres enum | Used by | Values |
 | -- | -- | -- |
-| `room_type` | `dorm.room_types` (array) | `trad_single`, `trad_double`, `trad_triple`, `semi_suite_single`, `semi_suite_double`, `semi_suite_triple`, `semi_suite_quad`, `apartment_triple`, `studio_apartment_single`, `studio_apartment_double` |
+| `room_type` | `dorm.room_types` (array) | `trad_single`, `trad_double`, `trad_triple`, `semi_suite_single`, `semi_suite_double`, `semi_suite_triple`, `semi_suite_double_as_triple`, `semi_suite_quad`, `apartment_triple`, `studio_apartment_single`, `studio_apartment_double`, `studio_apartment_triple` |
 | `bathroom_type` | `dorm.bathroom_types` (array) | `communal`, `shared_suite`, `private` |
 | `ac_level` | `dorm.ac_level` | `none`, `by_necessity`, `window`, `central` |
 | `laundry_location` | `dorm.laundry_location` | `none`, `basement`, `each_floor`, `in_unit` |

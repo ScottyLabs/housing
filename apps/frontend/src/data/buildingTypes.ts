@@ -7,10 +7,12 @@ export enum RoomType {
   SemiSuiteSingle = "semi_suite_single",
   SemiSuiteDouble = "semi_suite_double",
   SemiSuiteTriple = "semi_suite_triple",
+  SemiSuiteDoubleAsTriple = "semi_suite_double_as_triple",
   SemiSuiteQuad = "semi_suite_quad",
   ApartmentTriple = "apartment_triple",
   StudioApartmentSingle = "studio_apartment_single",
   StudioApartmentDouble = "studio_apartment_double",
+  StudioApartmentTriple = "studio_apartment_triple",
 }
 
 export enum BathroomType {
