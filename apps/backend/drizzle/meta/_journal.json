@@ -57,6 +57,13 @@
       "when": 1794611004870,
       "tag": "0007_survey_completed_at",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794630047068,
+      "tag": "0008_building_data",
+      "breakpoints": true
     }
   ]
 }

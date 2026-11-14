@@ -43,6 +43,7 @@ export const genderHousingEnum = pgEnum("gender_housing", [
   "men_only",
   "gender_inclusive",
 ]);
+export const housingClassEnum = pgEnum("housing_class", ["first_year", "upperclass"]);
 
 export type RoomType = (typeof roomTypeEnum.enumValues)[number];
 export type BathroomType = (typeof bathroomTypeEnum.enumValues)[number];
@@ -50,6 +51,7 @@ export type ACLevel = (typeof acLevelEnum.enumValues)[number];
 export type LaundryLocation = (typeof laundryLocationEnum.enumValues)[number];
 export type KitchenScope = (typeof kitchenScopeEnum.enumValues)[number];
 export type GenderHousing = (typeof genderHousingEnum.enumValues)[number];
+export type HousingClass = (typeof housingClassEnum.enumValues)[number];
 
 // JSON column shapes. These mirror GalleryImage and FloorPlan in apps/frontend/src/data/buildingTypes.ts
 export interface GalleryImage {
@@ -140,12 +142,14 @@ export const dormTable = pgTable("dorm", {
   bathroomDetails: text("bathroom_details"),
   bathroomTypes: bathroomTypeEnum("bathroom_types").array().notNull(),
   closeBuildings: text("close_buildings").array(),
+  code: text("code").notNull(),
   floorPlans: json("floor_plans").$type<FloorPlan[]>().notNull().default([]),
   genderHousing: genderHousingEnum("gender_housing").notNull(),
   groundFloorRooms: boolean("ground_floor_rooms").notNull(),
   gymAvailable: boolean("gym_available").notNull(),
   gymDetails: text("gym_details"),
   hasLounge: boolean("has_lounge").notNull(),
+  housingClasses: housingClassEnum("housing_classes").array().notNull(),
   id: serial("id").primaryKey(),
   imageUrl: text("image_url"),
   kitchenDescription: text("kitchen_description"),
@@ -172,6 +176,20 @@ export const dormTable = pgTable("dorm", {
 
 export type Dorm = typeof dormTable.$inferSelect;
 export type NewDorm = typeof dormTable.$inferInsert;
+
+export const campusBuildingTable = pgTable("campus_building", {
+  code: text("code").notNull(),
+  id: serial("id").primaryKey(),
+  latitude: numeric("latitude", { mode: "number" }).notNull(),
+  longitude: numeric("longitude", { mode: "number" }).notNull(),
+  name: text("name").notNull(),
+  // Stable URL-safe identifier (e.g. "baker-hall"). Dorms list these in `close_buildings`.
+  slug: text("slug").notNull().unique(),
+  subtitle: text("subtitle"),
+});
+
+export type CampusBuilding = typeof campusBuildingTable.$inferSelect;
+export type NewCampusBuilding = typeof campusBuildingTable.$inferInsert;
 
 export const reviewTable = pgTable(
   "review",
