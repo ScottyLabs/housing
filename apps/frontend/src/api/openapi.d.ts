@@ -132,6 +132,38 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/api/buildings": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["getApiBuildings"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/campus-buildings": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["getApiCampus-buildings"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/api/auth/login": {
     parameters: {
       query?: never;
@@ -716,6 +748,156 @@ export interface operations {
           "application/json": {
             error: string;
           };
+        };
+      };
+    };
+  };
+  getApiBuildings: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            accessibility: {
+              groundFloorRooms: boolean;
+              serviceAnimalFriendly: boolean;
+              strobeAlarm: boolean;
+              wheelchairAccessible: boolean;
+            };
+            amenities: {
+              ac: {
+                details?: string;
+                /**
+                 * @default none
+                 * @enum {string}
+                 */
+                level: "none" | "by_necessity" | "window" | "central";
+              };
+              bathrooms: {
+                details?: string;
+                types: ("communal" | "shared_suite" | "private")[];
+              };
+              commonAreas: {
+                details?: string;
+                hasLounge: boolean;
+              };
+              /**
+               * @default co_ed
+               * @enum {string}
+               */
+              genderHousing: "co_ed" | "women_only" | "men_only" | "gender_inclusive";
+              gym: {
+                available: boolean;
+                details?: string;
+              };
+              kitchen: {
+                details?: string;
+                /**
+                 * @default none
+                 * @enum {string}
+                 */
+                scope: "none" | "shared" | "in_unit";
+              };
+              laundry: {
+                details?: string;
+                /**
+                 * @default none
+                 * @enum {string}
+                 */
+                location: "none" | "basement" | "each_floor" | "in_unit";
+              };
+              roomTypes: (
+                | "trad_single"
+                | "trad_double"
+                | "trad_triple"
+                | "semi_suite_single"
+                | "semi_suite_double"
+                | "semi_suite_triple"
+                | "semi_suite_quad"
+                | "apartment_triple"
+                | "studio_apartment_single"
+                | "studio_apartment_double"
+              )[];
+            };
+            atmosphere: {
+              noiseLevel?: number;
+              socialness?: number;
+            };
+            code: string;
+            editorialTags: string[];
+            housingClasses: ("first_year" | "upperclass")[];
+            id: string;
+            location: {
+              closeBuildings: string[];
+              latitude?: number;
+              longitude?: number;
+              note?: string;
+            };
+            media: {
+              floorPlans: {
+                /**
+                 * @default roomType
+                 * @enum {string}
+                 */
+                category: "roomType" | "floor";
+                description: string;
+                link: string;
+                virtualTourLink?: string;
+              }[];
+              mainImage: string;
+              photos: {
+                description: string;
+                link: string;
+              }[];
+            };
+            name: string;
+            reviews: {
+              averages: {
+                amenities: (number | null) | null;
+                atmosphere: (number | null) | null;
+                overall: (number | null) | null;
+                roomQuality: (number | null) | null;
+              };
+              count: string | number;
+            };
+          }[];
+        };
+      };
+    };
+  };
+  "getApiCampus-buildings": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Response for status 200 */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            code: string;
+            id: string;
+            latitude: number;
+            longitude: number;
+            name: string;
+            subtitle?: string;
+          }[];
         };
       };
     };

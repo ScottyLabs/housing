@@ -2861,6 +2861,397 @@
         "operationId": "deleteApiMeReviewsBySlug"
       }
     },
+    "/api/buildings": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "accessibility",
+                      "amenities",
+                      "atmosphere",
+                      "code",
+                      "editorialTags",
+                      "housingClasses",
+                      "id",
+                      "location",
+                      "media",
+                      "name",
+                      "reviews"
+                    ],
+                    "properties": {
+                      "accessibility": {
+                        "type": "object",
+                        "required": [
+                          "groundFloorRooms",
+                          "serviceAnimalFriendly",
+                          "strobeAlarm",
+                          "wheelchairAccessible"
+                        ],
+                        "properties": {
+                          "groundFloorRooms": {
+                            "type": "boolean"
+                          },
+                          "serviceAnimalFriendly": {
+                            "type": "boolean"
+                          },
+                          "strobeAlarm": {
+                            "type": "boolean"
+                          },
+                          "wheelchairAccessible": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "amenities": {
+                        "type": "object",
+                        "required": [
+                          "ac",
+                          "bathrooms",
+                          "commonAreas",
+                          "genderHousing",
+                          "gym",
+                          "kitchen",
+                          "laundry",
+                          "roomTypes"
+                        ],
+                        "properties": {
+                          "ac": {
+                            "type": "object",
+                            "required": ["level"],
+                            "properties": {
+                              "details": {
+                                "type": "string"
+                              },
+                              "level": {
+                                "default": "none",
+                                "type": "string",
+                                "enum": ["none", "by_necessity", "window", "central"]
+                              }
+                            }
+                          },
+                          "bathrooms": {
+                            "type": "object",
+                            "required": ["types"],
+                            "properties": {
+                              "details": {
+                                "type": "string"
+                              },
+                              "types": {
+                                "type": "array",
+                                "items": {
+                                  "default": "communal",
+                                  "type": "string",
+                                  "enum": ["communal", "shared_suite", "private"]
+                                }
+                              }
+                            }
+                          },
+                          "commonAreas": {
+                            "type": "object",
+                            "required": ["hasLounge"],
+                            "properties": {
+                              "details": {
+                                "type": "string"
+                              },
+                              "hasLounge": {
+                                "type": "boolean"
+                              }
+                            }
+                          },
+                          "genderHousing": {
+                            "default": "co_ed",
+                            "type": "string",
+                            "enum": ["co_ed", "women_only", "men_only", "gender_inclusive"]
+                          },
+                          "gym": {
+                            "type": "object",
+                            "required": ["available"],
+                            "properties": {
+                              "available": {
+                                "type": "boolean"
+                              },
+                              "details": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "kitchen": {
+                            "type": "object",
+                            "required": ["scope"],
+                            "properties": {
+                              "details": {
+                                "type": "string"
+                              },
+                              "scope": {
+                                "default": "none",
+                                "type": "string",
+                                "enum": ["none", "shared", "in_unit"]
+                              }
+                            }
+                          },
+                          "laundry": {
+                            "type": "object",
+                            "required": ["location"],
+                            "properties": {
+                              "details": {
+                                "type": "string"
+                              },
+                              "location": {
+                                "default": "none",
+                                "type": "string",
+                                "enum": ["none", "basement", "each_floor", "in_unit"]
+                              }
+                            }
+                          },
+                          "roomTypes": {
+                            "type": "array",
+                            "items": {
+                              "default": "trad_single",
+                              "type": "string",
+                              "enum": [
+                                "trad_single",
+                                "trad_double",
+                                "trad_triple",
+                                "semi_suite_single",
+                                "semi_suite_double",
+                                "semi_suite_triple",
+                                "semi_suite_quad",
+                                "apartment_triple",
+                                "studio_apartment_single",
+                                "studio_apartment_double"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "atmosphere": {
+                        "type": "object",
+                        "properties": {
+                          "noiseLevel": {
+                            "type": "number"
+                          },
+                          "socialness": {
+                            "type": "number"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "string"
+                      },
+                      "editorialTags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "housingClasses": {
+                        "type": "array",
+                        "items": {
+                          "default": "first_year",
+                          "type": "string",
+                          "enum": ["first_year", "upperclass"]
+                        }
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "location": {
+                        "type": "object",
+                        "required": ["closeBuildings"],
+                        "properties": {
+                          "closeBuildings": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "latitude": {
+                            "type": "number"
+                          },
+                          "longitude": {
+                            "type": "number"
+                          },
+                          "note": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "media": {
+                        "type": "object",
+                        "required": ["floorPlans", "mainImage", "photos"],
+                        "properties": {
+                          "floorPlans": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": ["category", "description", "link"],
+                              "properties": {
+                                "category": {
+                                  "default": "roomType",
+                                  "type": "string",
+                                  "enum": ["roomType", "floor"]
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "link": {
+                                  "type": "string"
+                                },
+                                "virtualTourLink": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "mainImage": {
+                            "type": "string"
+                          },
+                          "photos": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": ["description", "link"],
+                              "properties": {
+                                "description": {
+                                  "type": "string"
+                                },
+                                "link": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "reviews": {
+                        "type": "object",
+                        "required": ["averages", "count"],
+                        "properties": {
+                          "averages": {
+                            "type": "object",
+                            "required": ["amenities", "atmosphere", "overall", "roomQuality"],
+                            "properties": {
+                              "amenities": {
+                                "nullable": true,
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "atmosphere": {
+                                "nullable": true,
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "overall": {
+                                "nullable": true,
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "roomQuality": {
+                                "nullable": true,
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "count": {
+                            "anyOf": [
+                              {
+                                "format": "integer",
+                                "default": 0,
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiBuildings"
+      }
+    },
+    "/api/campus-buildings": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["code", "id", "latitude", "longitude", "name"],
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "latitude": {
+                        "type": "number"
+                      },
+                      "longitude": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "subtitle": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getApiCampus-buildings"
+      }
+    },
     "/api/auth/login": {
       "get": {
         "parameters": [

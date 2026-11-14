@@ -23,6 +23,7 @@ import {
 } from "./auth/session.ts";
 import { getOrCreateUser, hasCompletedSurvey } from "./auth/user.ts";
 import { runMigrations } from "./db/migrations.ts";
+import { buildingsRoute } from "./routes/buildings.ts";
 import { healthRoute } from "./routes/health.ts";
 import { mapsRoute } from "./routes/maps-config.ts";
 import { preferencesRoute } from "./routes/preferences.ts";
@@ -81,6 +82,7 @@ const api = new Elysia({ prefix: "/api" })
   .use(meRoute)
   .use(reviewsRoute)
   .use(myReviewsRoute)
+  .use(buildingsRoute)
   .use(sessionAuth)
   .get(
     "/auth/login",
