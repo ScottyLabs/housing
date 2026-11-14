@@ -1,41 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import client from "@/api/client";
+import StatusMessage from "@/components/StatusMessage";
 import StepFooter from "@/components/StepFooter";
 import useFitToViewport from "@/hooks/useFitToViewport";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import { type SaveStatus, type SurveyData, useSurveyData } from "./useSurveyData";
 
 const TOTAL_STEPS = 3;
-
-interface SurveyData {
-  gender: string;
-  year: string;
-  major: string;
-  cookingFrequency: number;
-  gymFrequency: number;
-  productiveAroundOthers: number;
-  needsAloneTime: number;
-  socialFrequency: number;
-  goals: string[];
-  accommodations: string[];
-  preferredAmenities: string[];
-}
-
-const initialSurveyData: SurveyData = {
-  gender: "",
-  year: "",
-  major: "",
-  cookingFrequency: 3,
-  gymFrequency: 3,
-  productiveAroundOthers: 3,
-  needsAloneTime: 3,
-  socialFrequency: 3,
-  goals: [],
-  accommodations: [],
-  preferredAmenities: [],
-};
 
 interface StepProps {
   data: SurveyData;
@@ -130,76 +103,39 @@ function SurveySteps({ step, data, update }: StepProps & { step: number }) {
   );
 }
 
-async function sendPreferences(data: SurveyData): Promise<boolean> {
-  const { response } = await client.PUT("/api/me/preferences", {
-    body: {
-      accommodations: data.accommodations,
-      cookingFrequency: data.cookingFrequency,
-      goals: data.goals,
-      gymFrequency: data.gymFrequency,
-      major: data.major || null,
-      needsAloneTime: data.needsAloneTime,
-      preferredAmenities: data.preferredAmenities,
-      preferredGenderHousing: data.gender || null,
-      productiveAroundOthers: data.productiveAroundOthers,
-      socialFrequency: data.socialFrequency,
-      year: data.year || null,
-    },
-  });
-  return response.ok;
-}
-
-function useSurveyData() {
-  const [data, setData] = useState<SurveyData>(initialSurveyData);
-
-  useEffect(() => {
-    void client.GET("/api/me/preferences").then(({ data: prefs }) => {
-      if (!prefs) return;
-      setData({
-        gender: prefs.preferredGenderHousing ?? "",
-        year: prefs.year ?? "",
-        major: prefs.major ?? "",
-        cookingFrequency:
-          prefs.cookingFrequency === null
-            ? initialSurveyData.cookingFrequency
-            : Number(prefs.cookingFrequency),
-        gymFrequency:
-          prefs.gymFrequency === null ? initialSurveyData.gymFrequency : Number(prefs.gymFrequency),
-        productiveAroundOthers:
-          prefs.productiveAroundOthers === null
-            ? initialSurveyData.productiveAroundOthers
-            : Number(prefs.productiveAroundOthers),
-        needsAloneTime:
-          prefs.needsAloneTime === null
-            ? initialSurveyData.needsAloneTime
-            : Number(prefs.needsAloneTime),
-        socialFrequency:
-          prefs.socialFrequency === null
-            ? initialSurveyData.socialFrequency
-            : Number(prefs.socialFrequency),
-        goals: prefs.goals ?? [],
-        accommodations: prefs.accommodations ?? [],
-        preferredAmenities: prefs.preferredAmenities ?? [],
-      });
-    });
-  }, []);
-
-  const updateData = (fields: Partial<SurveyData>) => {
-    setData((prev) => ({ ...prev, ...fields }));
-  };
-
-  return { data, updateData };
-}
+const SAVE_MESSAGES: Record<SaveStatus, string | undefined> = {
+  idle: undefined,
+  saving: "Saving...",
+  saved: "Answers saved",
+  "signed-out": "Sign in to save your answers",
+  failed: "Couldn't save your answers",
+};
 
 function nextLabel(step: number, isSubmitting: boolean): string {
   if (step < TOTAL_STEPS) return "Next";
   return isSubmitting ? "Submitting..." : "Submit survey";
 }
 
+const STEP_KEY = "survey-step";
+
+function useSavedStep() {
+  const [step, setStepState] = useState(() => {
+    const saved = Number(globalThis.localStorage.getItem(STEP_KEY));
+    return Number.isInteger(saved) && saved >= 1 && saved <= TOTAL_STEPS ? saved : 1;
+  });
+
+  const setStep = (next: number) => {
+    setStepState(next);
+    globalThis.localStorage.setItem(STEP_KEY, String(next));
+  };
+
+  return [step, setStep] as const;
+}
+
 export default function Survey() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useSavedStep();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { data, updateData } = useSurveyData();
+  const { data, updateData, submit, saveStatus } = useSurveyData();
   const navigate = useNavigate();
   const { ref, scale } = useFitToViewport();
 
@@ -208,7 +144,8 @@ export default function Survey() {
       setStep(step + 1);
     } else {
       setIsSubmitting(true);
-      void sendPreferences(data).finally(() => {
+      void submit().finally(() => {
+        globalThis.localStorage.removeItem(STEP_KEY);
         setIsSubmitting(false);
         navigate("/home");
       });
@@ -223,6 +160,11 @@ export default function Survey() {
     >
       <h1 className="text-[32px] font-bold leading-none">Survey</h1>
       <SurveySteps step={step} data={data} update={updateData} />
+      <StatusMessage
+        className="mt-4"
+        message={SAVE_MESSAGES[saveStatus]}
+        error={saveStatus === "failed"}
+      />
       <StepFooter
         step={step}
         totalSteps={TOTAL_STEPS}

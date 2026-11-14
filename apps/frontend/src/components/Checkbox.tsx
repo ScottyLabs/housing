@@ -4,10 +4,12 @@ export default function Checkbox({
   label,
   checked: controlledChecked,
   onChange: controlledOnChange,
+  disabled = false,
 }: {
   label: string;
   checked?: boolean;
   onChange?: (checked: boolean) => void;
+  disabled?: boolean;
 }) {
   const [internalChecked, setInternalChecked] = useState(false);
   const isChecked = controlledChecked !== undefined ? controlledChecked : internalChecked;
@@ -21,19 +23,22 @@ export default function Checkbox({
   };
 
   return (
-    <label className="flex items-center gap-[10px] cursor-pointer w-full">
+    <label
+      className={`flex items-center gap-[10px] w-full ${disabled ? "cursor-default opacity-50" : "cursor-pointer"}`}
+    >
       <div className="relative">
         <input
           type="checkbox"
           checked={isChecked}
+          disabled={disabled}
           onChange={(e) => handleChange(e.target.checked)}
           className="sr-only"
         />
         <div
-          className={`w-[24px] h-[24px] rounded-[8px] transition-transform duration-75 active:scale-90 ${
+          className={`w-[24px] h-[24px] rounded-[8px] ${disabled ? "" : "transition-transform duration-75 active:scale-90"} ${
             isChecked
               ? "bg-brand-primary"
-              : "bg-brand-buttongray border-[1.5px] border-black/20 hover:border-brand-primary"
+              : `bg-brand-buttongray border-[1.5px] border-black/20 ${disabled ? "" : "hover:border-brand-primary"}`
           }`}
         >
           {isChecked && (

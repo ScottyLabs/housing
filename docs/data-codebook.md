@@ -152,6 +152,7 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 | Air conditioning | `amenities.ac.level` is `Window` or `Central` |
 | Laundry on each floor | `amenities.laundry.location` is `EachFloor` |
 | En suite bathroom | `amenities.bathrooms.types` has `SharedSuite` or `Private` |
+| En suite kitchen | `amenities.kitchen.scope` is `InUnit` |
 | Single room | `amenities.roomTypes` has a single-occupant type |
 | Service Animal | `accessibility.serviceAnimalFriendly` |
 | Wheelchair accessible | `accessibility.wheelchairAccessible` |

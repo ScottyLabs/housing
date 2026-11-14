@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { type Building, useBuildings } from "@/components/BuildingContext";
 import StepFooter from "@/components/StepFooter";
+import StatusMessage from "@/components/StatusMessage";
 import { stepProblem } from "@/data/reviews";
 import useFitToViewport from "@/hooks/useFitToViewport";
 import useSignInStatus from "@/hooks/useSignInStatus";
@@ -98,11 +99,7 @@ function ReviewForm({ building, onSignedOut }: { building: Building; onSignedOut
         title={flow.isEditing ? `Edit your ${building.name} review` : `Review ${building.name}`}
       />
       <ReviewSteps step={flow.step} building={building} draft={flow.draft} update={flow.edit} />
-      {flow.problem !== undefined && (
-        <p role="alert" className="mt-4 text-[16px] font-medium text-red-700">
-          {flow.problem}
-        </p>
-      )}
+      <StatusMessage className="mt-4" message={flow.problem} error />
       <StepFooter
         step={flow.step}
         totalSteps={TOTAL_STEPS}

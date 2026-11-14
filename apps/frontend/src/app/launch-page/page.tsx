@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import { cameFromLogo } from "@/app/launch-page/launchLink";
+import useSignInStatus from "@/hooks/useSignInStatus";
 
 export default function LaunchPage() {
+  const fromLogo = cameFromLogo(useLocation().state);
+  const [status] = useSignInStatus();
+  if (!fromLogo && status === "signed-in") return <Navigate replace to="/home" />;
+  if (!fromLogo && status === "loading") return null;
+
   return (
     <div className="relative h-screen overflow-hidden bg-white">
       <div className="mx-auto flex h-full max-w-[1404px] flex-col px-6 pt-24 sm:px-10 lg:pt-[126px]">

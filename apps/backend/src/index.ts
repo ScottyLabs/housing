@@ -21,7 +21,7 @@ import {
   SESSION_COOKIE_NAME,
   sessionCookieOptions,
 } from "./auth/session.ts";
-import { getOrCreateUser } from "./auth/user.ts";
+import { getOrCreateUser, hasPreferences } from "./auth/user.ts";
 import { runMigrations } from "./db/migrations.ts";
 import { healthRoute } from "./routes/health.ts";
 import { mapsRoute } from "./routes/maps-config.ts";
@@ -129,6 +129,7 @@ const api = new Elysia({ prefix: "/api" })
       return toHome(redirect);
     }
 
+    let defaultPath = "/survey";
     try {
       const claims = await exchangeCodeForClaims(oidcConfig, request, expectedState, codeVerifier);
       if (!claims) {
@@ -142,12 +143,13 @@ const api = new Elysia({ prefix: "/api" })
         value: sessionId,
         ...sessionCookieOptions,
       });
+      if (await hasPreferences(user.id)) defaultPath = "/home";
     } catch (error) {
       logger.error("OIDC callback failed:", nodeError(error));
       return toHome(redirect);
     }
 
-    return toPath(redirect, nextPath ?? "/survey");
+    return toPath(redirect, nextPath ?? defaultPath);
   })
   .get("/auth/logout", async ({ cookie, redirect }) => {
     const sessionId = cookie[SESSION_COOKIE_NAME].value;

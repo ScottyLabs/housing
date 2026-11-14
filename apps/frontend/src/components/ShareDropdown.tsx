@@ -1,4 +1,6 @@
 import { useState } from "react";
+import StatusMessage from "@/components/StatusMessage";
+
 export default function ShareDropdown({
   isOpen,
   onClose,
@@ -70,7 +72,10 @@ export default function ShareDropdown({
             <div className="w-full mt-2 h-28 p-2 text-xs border border-black/10 rounded-lg font-mono whitespace-normal">
               {`<iframe src="${globalThis.location.href}" width="100%" height="600"></iframe>`}
             </div>
-            <div className="flex justify-end mt-1">
+            <div className="flex items-center justify-between gap-2 mt-1">
+              <StatusMessage
+                message={copiedName === "Embed Code" ? "Copied embed code" : undefined}
+              />
               <button
                 type="button"
                 onClick={async () => {
@@ -82,7 +87,7 @@ export default function ShareDropdown({
                 }}
                 className="px-3 py-2 rounded-xl border border-black/10 text-sm hover:bg-gray-100 cursor-pointer"
               >
-                {copiedName === "Embed Code" ? "Copied!" : "Copy embed code"}
+                Copy embed code
               </button>
             </div>
           </div>
@@ -98,7 +103,7 @@ export default function ShareDropdown({
           ×
         </button>
       </div>
-      <div className="flex gap-1 pb-4">
+      <div className="flex gap-1">
         {options.map((option) => (
           <button
             key={option.name}
@@ -111,10 +116,11 @@ export default function ShareDropdown({
               alt={"This is the logo for " + option.name}
               className="w-6 h-6"
             />
-            {copiedName === option.name ? "Copied!" : option.name}
+            {option.name}
           </button>
         ))}
       </div>
+      <StatusMessage className="mt-2" message={copiedName === "URL" ? "Copied URL" : undefined} />
     </div>
   );
 }

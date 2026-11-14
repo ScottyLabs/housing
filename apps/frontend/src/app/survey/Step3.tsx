@@ -65,9 +65,11 @@ function AccommodationsSection({
 function AmenitiesSection({
   preferredAmenities,
   setPreferredAmenities,
+  kitchenImplied,
 }: {
   preferredAmenities: string[];
   setPreferredAmenities: (val: string[]) => void;
+  kitchenImplied: boolean;
 }) {
   const toggleAmenity = (item: string, checked: boolean) => {
     if (checked) {
@@ -86,16 +88,20 @@ function AmenitiesSection({
         We&apos;ll try to recommend buildings with everything you want.
       </p>
       <div className="mt-6 flex flex-col gap-[18px]">
-        {AMENITIES.map((label) => (
-          <Checkbox
-            key={label}
-            label={label}
-            checked={preferredAmenities.includes(label)}
-            onChange={(checked) => {
-              toggleAmenity(label, checked);
-            }}
-          />
-        ))}
+        {AMENITIES.map((label) => {
+          const implied = kitchenImplied && label === "Kitchen access";
+          return (
+            <Checkbox
+              key={label}
+              label={label}
+              checked={implied || preferredAmenities.includes(label)}
+              disabled={implied}
+              onChange={(checked) => {
+                toggleAmenity(label, checked);
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -116,6 +122,10 @@ export default function Step3({
       <AmenitiesSection
         preferredAmenities={preferredAmenities}
         setPreferredAmenities={setPreferredAmenities}
+        kitchenImplied={
+          accommodations.includes("En suite kitchen") ||
+          preferredAmenities.includes("En suite kitchen")
+        }
       />
     </>
   );
