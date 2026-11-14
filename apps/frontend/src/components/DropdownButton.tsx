@@ -13,6 +13,7 @@ export default function DropdownButton({
   subtitle,
   maxHeight = "max-h-38",
   searchable = false,
+  compact = false,
 }: {
   options: SelectOption[];
   placeholder?: string;
@@ -21,7 +22,13 @@ export default function DropdownButton({
   subtitle?: string;
   maxHeight?: string;
   searchable?: boolean;
+  compact?: boolean;
 }) {
+  const triggerSize = compact ? "h-[44px] px-3 rounded-xl" : "h-[68px] px-4 rounded-2xl";
+  const innerSize = compact ? "h-[32px] gap-[2px]" : "h-[37px] gap-[4px]";
+  const labelSize = compact ? "text-[14px]" : "text-[18px]";
+  const subtitleSize = compact ? "text-[11px]" : "text-[12px]";
+  const arrowSize = compact ? "w-[10px] h-[6px]" : "w-[14px] h-[8px]";
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [filtering, setFiltering] = useState(false);
@@ -100,13 +107,9 @@ export default function DropdownButton({
     <div ref={dropdownRef} className="relative w-full">
       <div
         onClick={handleTriggerClick}
-        className={
-          "px-4 h-[68px] rounded-2xl bg-brand-buttongray border border-black/10 w-full flex items-center justify-between select-none cursor-pointer focus-within:border-brand-primary"
-        }
+        className={`${triggerSize} bg-brand-buttongray border border-black/10 w-full flex items-center justify-between select-none cursor-pointer focus-within:border-brand-primary`}
       >
-        <div
-          className={`flex flex-col h-[37px] justify-center gap-[4px] ${searchable ? "flex-1" : ""}`}
-        >
+        <div className={`flex flex-col justify-center ${innerSize} ${searchable ? "flex-1" : ""}`}>
           {searchable ? (
             <input
               ref={inputRef}
@@ -126,16 +129,18 @@ export default function DropdownButton({
                 setIsOpen(true);
               }}
               onKeyDown={handleSearchKeyDown}
-              className="w-full bg-transparent outline-none select-text font-semibold text-[18px] leading-none placeholder:text-black"
+              className={`w-full bg-transparent outline-none select-text font-semibold ${labelSize} leading-none placeholder:text-black`}
             />
           ) : (
-            <span className="font-semibold text-[18px] leading-none">
+            <span className={`font-semibold ${labelSize} leading-none`}>
               {selectedOption ? selectedOption.label : placeholder}
             </span>
           )}
-          {subtitle && <span className="text-[12px] text-gray-500 leading-none">{subtitle}</span>}
+          {subtitle && (
+            <span className={`${subtitleSize} text-gray-500 leading-none`}>{subtitle}</span>
+          )}
         </div>
-        <img src="/dropdown-closed.svg" alt="dropdown closed" className="w-[14px] h-[8px]" />
+        <img src="/dropdown-closed.svg" alt="dropdown closed" className={arrowSize} />
       </div>
       {isOpen && visibleOptions.length > 0 && (
         <div

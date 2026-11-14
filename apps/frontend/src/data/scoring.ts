@@ -1,5 +1,6 @@
 import { type Building, type FilterState, featureFilters, GenderHousing } from "./buildingTypes";
 import { campusBuildings } from "./campusBuildings";
+import { metersBetween } from "./distance";
 import { buildingHasFeature } from "./features";
 
 export const defaultFilters: FilterState = {
@@ -31,7 +32,6 @@ const DECENT_FIT_COUNT = 6;
 
 const PROXIMITY_MAX_SCORE = 2;
 const PROXIMITY_RANGE_METERS = 800;
-const EARTH_RADIUS_METERS = 6_371_000;
 
 export interface BuildingGroups {
   bestFit: Building[];
@@ -58,20 +58,6 @@ function atmosphereScore(building: Building, filters: FilterState): number {
   const social = preferenceScore(building.atmosphere.socialness, filters.socialness);
   const noise = preferenceScore(building.atmosphere.noiseLevel, filters.noiseLevel);
   return social + noise;
-}
-
-function toRadians(degrees: number): number {
-  return (degrees * Math.PI) / 180;
-}
-
-// Straight-line distance between two coordinates (haversine formula).
-function metersBetween(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const dLat = toRadians(lat2 - lat1);
-  const dLng = toRadians(lng2 - lng1);
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLng / 2) ** 2;
-  return 2 * EARTH_RADIUS_METERS * Math.asin(Math.sqrt(a));
 }
 
 function proximityScore(building: Building, filters: FilterState): number {

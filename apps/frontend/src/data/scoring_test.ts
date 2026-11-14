@@ -67,6 +67,22 @@ void test("every close building is a listed campus building", () => {
   }
 });
 
+void test("every building has a short code, unique apart from housing that is also a campus building", () => {
+  const housingIds = new Set(buildings.map((building) => building.id));
+  const seen = new Map<string, string>();
+  const entries = [
+    ...buildings.map((building) => ({ id: building.id, code: building.code })),
+    ...campusBuildings
+      .filter((campus) => !housingIds.has(campus.id))
+      .map((campus) => ({ id: campus.id, code: campus.code })),
+  ];
+  for (const { id, code } of entries) {
+    ok(code !== "", `${id} has no code`);
+    ok(!seen.has(code), `${id} reuses code "${code}" of ${seen.get(code) ?? ""}`);
+    seen.set(code, id);
+  }
+});
+
 void test("every feature filter is held by some building and ranks one first", () => {
   for (const feature of featureFilters) {
     ok(
