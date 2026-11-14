@@ -1,6 +1,6 @@
 # Building Data Codebook
 
-Field-by-field reference for `apps/frontend/src/data/buildingTypes.ts`, `buildings.json`, and `tags.tsx`.
+Field-by-field reference for `apps/frontend/src/data/buildingTypes.ts`, `buildings.json`, and `tags.tsx`. The app reads buildings from the database through the API, not from the JSON files (see [Data loading](#data-loading)).
 
 ## Building data tree
 
@@ -55,8 +55,17 @@ Building
 │  ├─ longitude?       number
 │  ├─ closeBuildings[] string (campus building ids)
 │  └─ note?            string
-└─ editorialTags?[]    string
+├─ editorialTags?[]    string
+└─ reviews             (added by the API, not in buildings.json)
+   ├─ count            number
+   └─ averages
+      ├─ overall       number | null
+      ├─ amenities     number | null
+      ├─ roomQuality   number | null
+      └─ atmosphere    number | null
 ```
+
+`reviews` is the average rating (1-5) for each review question and how many students answered. An average is `null` while the building has no reviews. It refreshes when the building data is loaded again, which the review form does after a review is saved.
 
 ## Enums
 
@@ -178,4 +187,6 @@ Floor-vs-building distinctions for `Shared` live in the `details` string, not as
 
 ## Data loading
 
-`buildings.ts` imports `buildings.json` and casts it to `Building[]`. `buildingTypes.ts` holds every type and enum above, and is the single import source for the context, filter, survey, and comparison consumers.
+Buildings and campus buildings come from the database, not from the JSON files. `GET /api/buildings` and `GET /api/campus-buildings` return them in the shapes above. `hooks/useBuildingData.ts` fetches both once when the app opens, `data/apiBuildings.ts` turns the response into `Building[]` (checking each enum string against the enums in `buildingTypes.ts` and throwing on one it does not know), and `BuildingContext` hands the result to components through `useBuildings()` and `useCampusBuildings()`. Pages other than the launch page wait for that load (`BuildingGate`). `buildingTypes.ts` holds every type and enum above, and is the single import source for the context, filter, survey, and comparison consumers.
+
+`buildings.json` and `campusBuildings.json` are now seed data for `deno task db:seed` and fixtures for the tests in `data/`. To change a building, edit the JSON and re-run the seed.

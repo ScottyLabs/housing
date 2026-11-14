@@ -63,7 +63,9 @@ erDiagram
     dorm {
         int id PK
         string slug UK
+        string code
         string name
+        enum_array housing_classes
         string image_url
         string_array close_buildings
         numeric latitude
@@ -93,6 +95,15 @@ erDiagram
         json photo_gallery
         json floor_plans
         timestamp updated_at
+    }
+    campus_building {
+        int id PK
+        string slug UK
+        string code
+        string name
+        string subtitle
+        numeric latitude
+        numeric longitude
     }
     review {
         int id PK
@@ -144,7 +155,7 @@ erDiagram
     user ||--o{ invitation : receives
 ```
 
-> **Note:** `connection`, `group`, `membership`, and `invitation` are not yet defined in `apps/backend/src/db/schema.ts` or in this documentation as they will be made and used when we create the Roomies.live OpenAPI. They're included above to match the current [lucid chart diagram](https://lucid.app/lucidchart/cb169728-397a-4993-801b-1c5beeed62b9/edit?viewport_loc=-1247%2C-628%2C2856%2C1716%2C0_0&invitationId=inv_0eebfa91-3957-4426-a47b-316f727e67d6), but the **Tables** and **TypeScript types** sections below only cover the five tables that actually exist in the Drizzle schema currently (`user`, `user_preferences`, `roommate_profile`, `dorm`, `review`). Once those four tables are added to `schema.ts`, this doc will be updated with their column/type details too.
+> **Note:** `connection`, `group`, `membership`, and `invitation` are not yet defined in `apps/backend/src/db/schema.ts` or in this documentation as they will be made and used when we create the Roomies.live OpenAPI. They're included above to match the current [lucid chart diagram](https://lucid.app/lucidchart/cb169728-397a-4993-801b-1c5beeed62b9/edit?viewport_loc=-1247%2C-628%2C2856%2C1716%2C0_0&invitationId=inv_0eebfa91-3957-4426-a47b-316f727e67d6), but the **Tables** and **TypeScript types** sections below only cover the six tables that actually exist in the Drizzle schema currently (`user`, `user_preferences`, `roommate_profile`, `dorm`, `campus_building`, `review`). Once those four tables are added to `schema.ts`, this doc will be updated with their column/type details too.
 
 ## Enums
 
@@ -170,6 +181,7 @@ Backing types for the `dorm` columns below. Each one mirrors the string enum of 
 | `laundry_location` | `dorm.laundry_location` | `none`, `basement`, `each_floor`, `in_unit` |
 | `kitchen_scope` | `dorm.kitchen_scope` | `none`, `shared`, `in_unit` |
 | `gender_housing` | `dorm.gender_housing` | `co_ed`, `women_only`, `men_only`, `gender_inclusive` |
+| `housing_class` | `dorm.housing_classes` (array) | `first_year`, `upperclass` |
 
 ## Tables
 
@@ -240,7 +252,7 @@ One-to-one extension of `user` holding the public-facing roommate-matching profi
 
 ### `dorm`
 
-Reference data for CMU residence halls, shared across all users (not tied to a `user_id`). One row per entry in `apps/frontend/src/data/buildings.json`, loaded by `deno task db:seed` (see [Seeding dorm data](#seeding-dorm-data)).
+Reference data for CMU residence halls, shared across all users (not tied to a `user_id`). One row per entry in `apps/frontend/src/data/buildings.json`, loaded by `deno task db:seed` (see [Seeding dorm data](#seeding-dorm-data)). The frontend reads these rows through `GET /api/buildings`, which nests the columns into the `Building` shape from [data-codebook.md](data-codebook.md) and attaches each dorm's review summary (`reviews.count` and the four rating averages).
 
 | Column | DB type | Nullable | Notes |
 | -- | -- | -- | -- |
@@ -250,13 +262,15 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 | `ac_level` | `ac_level` | No | Level of air conditioning. |
 | `bathroom_details` | `text` | Yes | Description of bathroom facilities. |
 | `bathroom_types` | `bathroom_type[]` | No | Every bathroom style the building offers. |
-| `close_buildings` | `text[]` | Yes | Ids of the nearest academic or non-residential campus buildings (see `campusBuildings.json`). |
+| `close_buildings` | `text[]` | Yes | Slugs of the nearest academic or non-residential campus buildings (see [`campus_building`](#campus_building)). Not a foreign key. |
+| `code` | `text` | No | Short label shown on the map marker (e.g. `MOE`). Not unique: a dorm can share its code with a campus building (Resnik). |
 | `floor_plans` | `json` | No (default `[]`) | Array of `FloorPlan` (`link`, `description`, `category`, optional `virtualTourLink`). |
 | `gender_housing` | `gender_housing` | No | Gender housing policy. |
 | `ground_floor_rooms` | `boolean` | No | Whether the building has ground-floor rooms. |
 | `gym_available` | `boolean` | No | Whether there is a gym. |
 | `gym_details` | `text` | Yes | Description of the gym. |
 | `has_lounge` | `boolean` | No | Whether the building has a lounge. |
+| `housing_classes` | `housing_class[]` | No | Which students the building houses: first-year, upperclass, or both. |
 | `image_url` | `text` | Yes | Primary/cover image for the dorm. |
 | `kitchen_description` | `text` | Yes | Description of kitchen facilities. |
 | `kitchen_scope` | `kitchen_scope` | No | Who has access to a kitchen. |
@@ -276,6 +290,20 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 | `tags` | `text[]` | Yes | Freeform editorial tags (`editorialTags` in `buildings.json`). |
 | `updated_at` | `timestamp` | Yes | Last time the dorm record was edited. |
 | `wheelchair_accessible` | `boolean` | No | Accessibility: wheelchair accessible. |
+
+### `campus_building`
+
+Reference data for academic and other non-residential buildings, shared across all users. One row per entry in `apps/frontend/src/data/campusBuildings.json`, loaded by `deno task db:seed` and served by `GET /api/campus-buildings`. They are the map's origin picker, the "Distance from" filter options and the targets of `dorm.close_buildings`.
+
+| Column | DB type | Nullable | Notes |
+| -- | -- | -- | -- |
+| `id` | `serial` | No (PK) | Auto-incrementing primary key. |
+| `slug` | `text` | No (unique) | Stable URL-safe identifier, the `id` string from `campusBuildings.json` (e.g. `baker-hall`). |
+| `code` | `text` | No | Short label shown on the map marker. |
+| `latitude` | `numeric` | No | Geographic latitude (typed as `number`). |
+| `longitude` | `numeric` | No | Geographic longitude (typed as `number`). |
+| `name` | `text` | No | Building name. |
+| `subtitle` | `text` | Yes | Department or function, shown under the name in the map's origin picker. |
 
 ### `review`
 
@@ -301,19 +329,22 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 - `user (1) -> (1) roommate_profile` via `roommate_profile.user_id`
 - `user (1) -> (many) review` via `review.user_id`
 - `dorm (1) -> (many) review` via `review.dorm_id`
+- `dorm.close_buildings` lists `campus_building.slug` values. It is a plain `text[]`, so the database does not enforce it; `deno task db:seed` checks it.
 
 No `relations()` helpers are defined in `schema.ts` yet, so joins are written manually with Drizzle's query builder rather than the relational query API.
 
 ## Seeding dorm data
 
-`apps/backend/scripts/seed-dorms.ts` copies every building in `apps/frontend/src/data/buildings.json` into the `dorm` table. Run it from `apps/backend` after the migrations have been applied:
+`apps/backend/scripts/seed-dorms.ts` copies every building in `apps/frontend/src/data/buildings.json` into the `dorm` table and every entry in `campusBuildings.json` into the `campus_building` table. Run it from `apps/backend` after the migrations have been applied:
 
 ```sh
 deno task db:migrate
 deno task db:seed
 ```
 
-It is safe to re-run: rows are upserted on `slug`, so existing dorms are updated in place and keep their `id` (reviews point at it). Dorms that were removed from `buildings.json` are not deleted. The script validates every enum value against the Postgres enums and stops without writing anything if one is wrong.
+It is safe to re-run: rows are upserted on `slug`, so existing dorms are updated in place and keep their `id` (reviews point at it). Rows that were removed from the JSON files are not deleted. The script validates every enum value against the Postgres enums, and that every `closeBuildings` entry is a listed campus building, and stops without writing anything if one is wrong.
+
+Migration `0008_building_data` already fills `dorm.code`, `dorm.housing_classes` and the `campus_building` rows for the buildings that existed when it was written, so a database that was seeded before it keeps working without a re-seed. Changing a building after that (or adding one) still means editing the JSON and running the seed, because the database is what the app reads.
 
 ## TypeScript types
 
@@ -449,4 +480,4 @@ A couple of notes worth knowing when consuming these types on the frontend:
 
 - `numeric` columns are typed as `string` by default, because Drizzle/postgres-js don't coerce them, to avoid floating-point precision loss. `dorm.latitude` and `dorm.longitude` opt in to `{ mode: "number" }`, so they come back as `number`.
 - `json` columns type as `unknown` unless you supply a generic (`json("extras").$type<MyShape>()`), so cast/validate before use. `dorm.photo_gallery` and `dorm.floor_plans` are typed with `$type<GalleryImage[]>()` and `$type<FloorPlan[]>()`; `roommate_profile.extras` is still `unknown`.
-- Almost every non-PK, non-FK column is nullable today. The exception is the `dorm` building fields (`slug`, `name`, the enum and boolean columns, `floor_plans`), which are `NOT NULL` because every building in `buildings.json` has them. Treat every other profile/preference/review field as optional when rendering the frontend.
+- Almost every non-PK, non-FK column is nullable today. The exceptions are the `dorm` building fields (`slug`, `code`, `name`, `housing_classes`, the enum and boolean columns, `floor_plans`) and every `campus_building` column except `subtitle`, which are `NOT NULL` because every entry in the JSON files has them. Treat every other profile/preference/review field as optional when rendering the frontend.
