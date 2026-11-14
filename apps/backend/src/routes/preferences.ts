@@ -9,6 +9,7 @@ import { userPreferencesTable } from "../db/schema.ts";
  */
 const preferencesBody = t.Object({
   accommodations: t.Optional(t.Nullable(t.Array(t.String()))),
+  completed: t.Optional(t.Boolean()),
   cookingFrequency: t.Optional(t.Nullable(t.Integer({ minimum: 1, maximum: 5 }))),
   goals: t.Optional(t.Nullable(t.Array(t.String()))),
   gymFrequency: t.Optional(t.Nullable(t.Integer({ minimum: 1, maximum: 5 }))),
@@ -25,6 +26,7 @@ const preferencesResponse = t.Object({
   id: t.Integer(),
   userId: t.Integer(),
   accommodations: t.Nullable(t.Array(t.String())),
+  completedAt: t.Nullable(t.Date()),
   cookingFrequency: t.Nullable(t.Integer()),
   goals: t.Nullable(t.Array(t.String())),
   gymFrequency: t.Nullable(t.Integer()),
@@ -75,16 +77,18 @@ export const preferencesRoute = new Elysia({ prefix: "/me" })
         return { error: "Unauthorized" };
       }
 
+      const { completed, ...fields } = body;
+      const values = completed === true ? { ...fields, completedAt: new Date() } : fields;
       const [saved] = await db
         .insert(userPreferencesTable)
         .values({
           userId: user.id,
-          ...body,
+          ...values,
         })
         .onConflictDoUpdate({
           target: userPreferencesTable.userId,
           set: {
-            ...body,
+            ...values,
             updatedAt: new Date(),
           },
         })

@@ -32,6 +32,7 @@
                         "id",
                         "userId",
                         "accommodations",
+                        "completedAt",
                         "cookingFrequency",
                         "goals",
                         "gymFrequency",
@@ -77,6 +78,32 @@
                               "items": {
                                 "type": "string"
                               }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "completedAt": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "type": "Date"
+                                },
+                                {
+                                  "format": "date-time",
+                                  "type": "string"
+                                },
+                                {
+                                  "format": "date",
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "number"
+                                }
+                              ]
                             },
                             {
                               "type": "null"
@@ -321,6 +348,9 @@
                       }
                     ]
                   },
+                  "completed": {
+                    "type": "boolean"
+                  },
                   "cookingFrequency": {
                     "nullable": true,
                     "anyOf": [
@@ -522,6 +552,9 @@
                         "type": "null"
                       }
                     ]
+                  },
+                  "completed": {
+                    "type": "boolean"
                   },
                   "cookingFrequency": {
                     "nullable": true,
@@ -725,6 +758,9 @@
                       }
                     ]
                   },
+                  "completed": {
+                    "type": "boolean"
+                  },
                   "cookingFrequency": {
                     "nullable": true,
                     "anyOf": [
@@ -922,6 +958,7 @@
                     "id",
                     "userId",
                     "accommodations",
+                    "completedAt",
                     "cookingFrequency",
                     "goals",
                     "gymFrequency",
@@ -967,6 +1004,32 @@
                           "items": {
                             "type": "string"
                           }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "completedAt": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "Date"
+                            },
+                            {
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            {
+                              "format": "date",
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
                         },
                         {
                           "type": "null"

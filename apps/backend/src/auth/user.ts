@@ -1,5 +1,5 @@
 import type { IDToken } from "@panva/openid-client";
-import { eq } from "drizzle-orm";
+import { and, eq, isNotNull } from "drizzle-orm";
 import { db } from "../db/index.ts";
 import { userPreferencesTable, userTable } from "../db/schema.ts";
 
@@ -24,11 +24,13 @@ export async function getOrCreateUser(auth: IDToken) {
   return user;
 }
 
-export async function hasPreferences(userId: number): Promise<boolean> {
+export async function hasCompletedSurvey(userId: number): Promise<boolean> {
   const rows = await db
     .select({ id: userPreferencesTable.id })
     .from(userPreferencesTable)
-    .where(eq(userPreferencesTable.userId, userId))
+    .where(
+      and(eq(userPreferencesTable.userId, userId), isNotNull(userPreferencesTable.completedAt)),
+    )
     .limit(1);
   return rows.length > 0;
 }

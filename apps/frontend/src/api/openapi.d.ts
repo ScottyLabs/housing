@@ -231,6 +231,7 @@ export interface operations {
             id: string | number;
             userId: string | number;
             accommodations: (string[] | null) | null;
+            completedAt: ((Record<string, never> | string | number) | null) | null;
             cookingFrequency: ((string | number) | null) | null;
             goals: (string[] | null) | null;
             gymFrequency: ((string | number) | null) | null;
@@ -269,6 +270,7 @@ export interface operations {
       content: {
         "application/json": {
           accommodations?: (string[] | null) | null;
+          completed?: boolean;
           cookingFrequency?: ((string | number) | null) | null;
           goals?: (string[] | null) | null;
           gymFrequency?: ((string | number) | null) | null;
@@ -282,6 +284,7 @@ export interface operations {
         };
         "application/x-www-form-urlencoded": {
           accommodations?: (string[] | null) | null;
+          completed?: boolean;
           cookingFrequency?: ((string | number) | null) | null;
           goals?: (string[] | null) | null;
           gymFrequency?: ((string | number) | null) | null;
@@ -295,6 +298,7 @@ export interface operations {
         };
         "multipart/form-data": {
           accommodations?: (string[] | null) | null;
+          completed?: boolean;
           cookingFrequency?: ((string | number) | null) | null;
           goals?: (string[] | null) | null;
           gymFrequency?: ((string | number) | null) | null;
@@ -319,6 +323,7 @@ export interface operations {
             id: string | number;
             userId: string | number;
             accommodations: (string[] | null) | null;
+            completedAt: ((Record<string, never> | string | number) | null) | null;
             cookingFrequency: ((string | number) | null) | null;
             goals: (string[] | null) | null;
             gymFrequency: ((string | number) | null) | null;

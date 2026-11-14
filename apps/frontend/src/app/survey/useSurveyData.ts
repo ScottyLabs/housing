@@ -93,11 +93,14 @@ function toPreferencesBody(fields: Partial<SurveyData>) {
   };
 }
 
-async function sendPreferences(fields: Partial<SurveyData>): Promise<SaveStatus> {
+async function sendPreferences(
+  fields: Partial<SurveyData>,
+  completed?: boolean,
+): Promise<SaveStatus> {
   try {
     // survive page unload
     const { response } = await client.PUT("/api/me/preferences", {
-      body: toPreferencesBody(fields),
+      body: { ...toPreferencesBody(fields), completed },
       keepalive: true,
     });
     if (response.ok) return "saved";
@@ -167,7 +170,7 @@ export function useSurveyData() {
 
   const submit = () => {
     autosave.cancel();
-    return sendPreferences(data);
+    return sendPreferences(data, true);
   };
 
   return { data, updateData, submit, saveStatus: autosave.saveStatus };

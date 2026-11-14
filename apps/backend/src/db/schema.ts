@@ -84,6 +84,7 @@ export const sessionTable = pgTable("session", {
 
 export const userPreferencesTable = pgTable("user_preferences", {
   accommodations: text("accommodations").array(),
+  completedAt: timestamp("completed_at"),
   cookingFrequency: integer("cooking_frequency"),
   goals: text("goals").array(),
   gymFrequency: integer("gym_frequency"),
