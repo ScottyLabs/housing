@@ -144,14 +144,6 @@
     "longitude": -79.945596
   },
   {
-    "id": "planetary-robotics",
-    "code": "PRB",
-    "name": "Planetary Robotics Building",
-    "subtitle": "Research",
-    "latitude": 40.444465,
-    "longitude": -79.945786
-  },
-  {
     "id": "porter-hall",
     "code": "PH",
     "name": "Porter Hall",
