@@ -1218,9 +1218,39 @@
                     "properties": {
                       "averages": {
                         "type": "object",
-                        "required": ["amenities", "noise", "overall", "roomQuality", "socialLife"],
+                        "required": [
+                          "amenities",
+                          "bathroomQuality",
+                          "commonSpaceQuality",
+                          "noise",
+                          "overall",
+                          "roomQuality",
+                          "socialLife"
+                        ],
                         "properties": {
                           "amenities": {
+                            "nullable": true,
+                            "anyOf": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "bathroomQuality": {
+                            "nullable": true,
+                            "anyOf": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "commonSpaceQuality": {
                             "nullable": true,
                             "anyOf": [
                               {
@@ -1374,6 +1404,8 @@
                           "livedTerm",
                           "livedYear",
                           "ratingAmenities",
+                          "ratingBathroomQuality",
+                          "ratingCommonSpaceQuality",
                           "ratingNoise",
                           "ratingOverall",
                           "ratingRoomQuality",
@@ -1429,6 +1461,46 @@
                             ]
                           },
                           "ratingAmenities": {
+                            "nullable": true,
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "format": "integer",
+                                    "default": 0,
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "ratingBathroomQuality": {
+                            "nullable": true,
+                            "anyOf": [
+                              {
+                                "anyOf": [
+                                  {
+                                    "format": "integer",
+                                    "default": 0,
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "ratingCommonSpaceQuality": {
                             "nullable": true,
                             "anyOf": [
                               {
@@ -1571,6 +1643,8 @@
                           "type": "object",
                           "required": [
                             "amenities",
+                            "bathroomQuality",
+                            "commonSpaceQuality",
                             "noise",
                             "overall",
                             "roomQuality",
@@ -1578,6 +1652,28 @@
                           ],
                           "properties": {
                             "amenities": {
+                              "nullable": true,
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "bathroomQuality": {
+                              "nullable": true,
+                              "anyOf": [
+                                {
+                                  "type": "number"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "commonSpaceQuality": {
                               "nullable": true,
                               "anyOf": [
                                 {
@@ -1690,6 +1786,8 @@
                       "livedTerm",
                       "livedYear",
                       "ratingAmenities",
+                      "ratingBathroomQuality",
+                      "ratingCommonSpaceQuality",
                       "ratingNoise",
                       "ratingOverall",
                       "ratingRoomQuality",
@@ -1744,6 +1842,46 @@
                         ]
                       },
                       "ratingAmenities": {
+                        "nullable": true,
+                        "anyOf": [
+                          {
+                            "anyOf": [
+                              {
+                                "format": "integer",
+                                "default": 0,
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "ratingBathroomQuality": {
+                        "nullable": true,
+                        "anyOf": [
+                          {
+                            "anyOf": [
+                              {
+                                "format": "integer",
+                                "default": 0,
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "ratingCommonSpaceQuality": {
                         "nullable": true,
                         "anyOf": [
                           {
@@ -1934,6 +2072,8 @@
                         "livedTerm",
                         "livedYear",
                         "ratingAmenities",
+                        "ratingBathroomQuality",
+                        "ratingCommonSpaceQuality",
                         "ratingNoise",
                         "ratingOverall",
                         "ratingRoomQuality",
@@ -1988,6 +2128,46 @@
                           ]
                         },
                         "ratingAmenities": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "ratingBathroomQuality": {
+                          "nullable": true,
+                          "anyOf": [
+                            {
+                              "anyOf": [
+                                {
+                                  "format": "integer",
+                                  "default": 0,
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "ratingCommonSpaceQuality": {
                           "nullable": true,
                           "anyOf": [
                             {
@@ -2207,6 +2387,16 @@
                     "minimum": 1,
                     "maximum": 5
                   },
+                  "ratingBathroomQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingCommonSpaceQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
                   "ratingNoise": {
                     "type": "integer",
                     "minimum": 1,
@@ -2235,8 +2425,7 @@
                   "ratingAmenities",
                   "ratingNoise",
                   "ratingOverall",
-                  "ratingRoomQuality",
-                  "ratingSocialLife"
+                  "ratingRoomQuality"
                 ],
                 "additionalProperties": false
               }
@@ -2264,6 +2453,16 @@
                     "minimum": 1,
                     "maximum": 5
                   },
+                  "ratingBathroomQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingCommonSpaceQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
                   "ratingNoise": {
                     "type": "integer",
                     "minimum": 1,
@@ -2292,8 +2491,7 @@
                   "ratingAmenities",
                   "ratingNoise",
                   "ratingOverall",
-                  "ratingRoomQuality",
-                  "ratingSocialLife"
+                  "ratingRoomQuality"
                 ],
                 "additionalProperties": false
               }
@@ -2321,6 +2519,16 @@
                     "minimum": 1,
                     "maximum": 5
                   },
+                  "ratingBathroomQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "ratingCommonSpaceQuality": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
                   "ratingNoise": {
                     "type": "integer",
                     "minimum": 1,
@@ -2349,8 +2557,7 @@
                   "ratingAmenities",
                   "ratingNoise",
                   "ratingOverall",
-                  "ratingRoomQuality",
-                  "ratingSocialLife"
+                  "ratingRoomQuality"
                 ],
                 "additionalProperties": false
               }
@@ -2370,6 +2577,8 @@
                     "livedTerm",
                     "livedYear",
                     "ratingAmenities",
+                    "ratingBathroomQuality",
+                    "ratingCommonSpaceQuality",
                     "ratingNoise",
                     "ratingOverall",
                     "ratingRoomQuality",
@@ -2424,6 +2633,46 @@
                       ]
                     },
                     "ratingAmenities": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "ratingBathroomQuality": {
+                      "nullable": true,
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "format": "integer",
+                              "default": 0,
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "ratingCommonSpaceQuality": {
                       "nullable": true,
                       "anyOf": [
                         {
@@ -2947,6 +3196,8 @@
                             "type": "object",
                             "required": [
                               "amenities",
+                              "bathroomQuality",
+                              "commonSpaceQuality",
                               "noise",
                               "overall",
                               "roomQuality",
@@ -2954,6 +3205,28 @@
                             ],
                             "properties": {
                               "amenities": {
+                                "nullable": true,
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "bathroomQuality": {
+                                "nullable": true,
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "commonSpaceQuality": {
                                 "nullable": true,
                                 "anyOf": [
                                   {

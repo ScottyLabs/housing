@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import client from "@/api/client";
-import { type DormReview, type RatingAverages, toDormReview } from "@/data/reviews";
+import { type DormReview, noRatings, type RatingAverages, toDormReview } from "@/data/reviews";
 
 export interface DormReviews {
   status: "loading" | "loaded" | "failed";
@@ -18,14 +18,6 @@ interface Result {
   averages: RatingAverages;
   reviews: DormReview[];
 }
-
-const noAverages: RatingAverages = {
-  amenities: null,
-  noise: null,
-  overall: null,
-  roomQuality: null,
-  socialLife: null,
-};
 
 async function fetchPage(slug: string, limit: number, offset: number) {
   const { data } = await client.GET("/api/dorms/{slug}/reviews", {
@@ -53,7 +45,7 @@ function useFirstPage(
       },
       () => {
         if (active) {
-          setResult({ averages: noAverages, count: 0, key, reviews: [], status: "failed" });
+          setResult({ averages: noRatings, count: 0, key, reviews: [], status: "failed" });
         }
       },
     );
@@ -90,7 +82,7 @@ export default function useDormReviews(slug: string, pageSize: number): DormRevi
   }, [key, slug, pageSize, loadedCount]);
 
   return {
-    averages: current?.averages ?? noAverages,
+    averages: current?.averages ?? noRatings,
     count: current?.count ?? 0,
     isLoadingMore,
     loadMore,

@@ -3,7 +3,8 @@ import Slider from "@/components/Slider";
 import SurveyField from "@/components/SurveyField";
 import {
   CLASS_YEAR_OPTIONS,
-  RATING_QUESTIONS,
+  EXPERIENCE_QUESTIONS,
+  type RatingQuestion,
   REVIEW_MAX_LENGTH,
   type ReviewDraft,
   schoolYearOptions,
@@ -58,7 +59,7 @@ export function StayStep({ building, draft, update }: StepProps) {
   );
 }
 
-export function RatingRow({
+function RatingRow({
   icon,
   question,
   low,
@@ -103,16 +104,20 @@ export function RatingRow({
   );
 }
 
-const STEP_TWO_KEYS = new Set<string>(["ratingOverall", "ratingAmenities", "ratingNoise"]);
-
-const STEP_TWO_QUESTIONS = RATING_QUESTIONS.filter(({ key }) => STEP_TWO_KEYS.has(key));
-
-export function RatingsStep({ draft, update }: StepProps) {
+export function RatingsCard({
+  title,
+  questions,
+  draft,
+  update,
+}: Pick<StepProps, "draft" | "update"> & {
+  title: string;
+  questions: RatingQuestion[];
+}) {
   return (
     <div className="rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-8">
-      <h2 className="text-[24px] font-semibold leading-none">Rate your experience</h2>
+      <h2 className="text-[24px] font-semibold leading-none">{title}</h2>
       <div className="mt-8 flex flex-col gap-8">
-        {STEP_TWO_QUESTIONS.map(({ key, icon, question, low, high }) => (
+        {questions.map(({ key, icon, question, low, high }) => (
           <RatingRow
             key={key}
             icon={icon}
@@ -127,6 +132,17 @@ export function RatingsStep({ draft, update }: StepProps) {
         ))}
       </div>
     </div>
+  );
+}
+
+export function RatingsStep({ draft, update }: StepProps) {
+  return (
+    <RatingsCard
+      title="Rate your experience"
+      questions={EXPERIENCE_QUESTIONS}
+      draft={draft}
+      update={update}
+    />
   );
 }
 

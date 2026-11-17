@@ -9,6 +9,8 @@ import {
   GenderHousing,
   type HousingClass,
 } from "../../data/buildingTypes.ts";
+import { BUILDING_CARD_ROWS, type CardRowSpec, EXPERIENCE_CARD_ROWS } from "../../data/reviews.ts";
+import { withMinRating } from "../../data/scoring.ts";
 import CollapsibleSection, { StaticSection } from "./CollapsibleSection.tsx";
 
 interface SectionProps {
@@ -50,34 +52,54 @@ export function DistanceSection({ filters, onChangeAction }: SectionProps) {
   );
 }
 
-export function AtmosphereSection({ filters, onChangeAction }: SectionProps) {
+function RatingFiltersSection({
+  name,
+  icon,
+  rows,
+  filters,
+  onChangeAction,
+}: SectionProps & { name: string; icon: string; rows: CardRowSpec[] }) {
   return (
-    <StaticSection name="Atmosphere" desc="Data based on what students say" icon="/atmosphere.svg">
+    <StaticSection name={name} desc="Minimum student rating" icon={icon}>
       <div className="flex w-full flex-col gap-[24px]">
-        <div className="flex flex-col w-full">
-          <h2 className="text-[18px]">Social Life</h2>
-          <Slider
-            min={1}
-            max={5}
-            value={filters.socialness ?? 3}
-            onChange={(socialness) => {
-              onChangeAction({ ...filters, socialness });
-            }}
-          />
-        </div>
-        <div className="flex flex-col w-full">
-          <h2 className="text-[18px]">Quietness</h2>
-          <Slider
-            min={1}
-            max={5}
-            value={filters.noiseLevel ?? 3}
-            onChange={(noiseLevel) => {
-              onChangeAction({ ...filters, noiseLevel });
-            }}
-          />
-        </div>
+        {rows.map(({ key, label }) => (
+          <div key={key} className="flex flex-col w-full">
+            <h2 className="text-[18px]">{label}</h2>
+            <Slider
+              min={1}
+              max={5}
+              value={filters.minRatings[key] ?? 3}
+              ariaLabel={label}
+              onChange={(value) => {
+                onChangeAction(withMinRating(filters, key, value));
+              }}
+            />
+          </div>
+        ))}
       </div>
     </StaticSection>
+  );
+}
+
+export function ExperienceRatingsSection(props: SectionProps) {
+  return (
+    <RatingFiltersSection
+      {...props}
+      name="Experience Ratings"
+      icon="/unsorted-icons/ranking.svg"
+      rows={EXPERIENCE_CARD_ROWS}
+    />
+  );
+}
+
+export function BuildingRatingsSection(props: SectionProps) {
+  return (
+    <RatingFiltersSection
+      {...props}
+      name="Building Ratings"
+      icon="/unsorted-icons/lounge.svg"
+      rows={BUILDING_CARD_ROWS}
+    />
   );
 }
 

@@ -17,7 +17,7 @@ const PAGE_CLASS = "mx-auto w-full max-w-[1140px] px-6 pb-12 pt-[26px]";
 function StepContent({ step, ...props }: StepProps & { step: number }) {
   if (step === 1) return <StayStep {...props} />;
   if (step === 2) return <RatingsStep {...props} />;
-  if (step === 3) return <BuildingStep />;
+  if (step === 3) return <BuildingStep {...props} />;
   return <WrittenStep {...props} />;
 }
 

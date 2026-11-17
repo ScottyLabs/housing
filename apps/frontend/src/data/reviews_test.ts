@@ -4,14 +4,19 @@
 import { deepStrictEqual, strictEqual } from "node:assert/strict";
 import { test } from "node:test";
 import {
+  BUILDING_CARD_ROWS,
+  BUILDING_QUESTIONS,
+  CARD_ROWS,
   classYearLabel,
+  defaultRatings,
   emptyDraft,
+  EXPERIENCE_CARD_ROWS,
+  EXPERIENCE_QUESTIONS,
   formatReviewDate,
   livedHereText,
   reviewCardRatings,
   schoolYearOptions,
   stepProblem,
-  summaryCardRatings,
   toClassYear,
   toDormReview,
 } from "./reviews.ts";
@@ -43,39 +48,55 @@ void test("classYearLabel shows the label for a stored class year", () => {
 
 const rated = {
   ratingAmenities: 4,
-  ratingNoise: 2,
+  ratingBathroomQuality: 2,
+  ratingCommonSpaceQuality: 5,
+  ratingNoise: 1,
   ratingOverall: 5,
   ratingRoomQuality: 3,
-  ratingSocialLife: 5,
 };
 
-void test("reviewCardRatings shows Atmosphere as the average of Social Life and Quietness, rounded up", () => {
+void test("reviewCardRatings maps each rating to its card row", () => {
   deepStrictEqual(reviewCardRatings(rated), {
     amenities: 4,
-    atmosphere: 4,
+    bathroomQuality: 2,
+    commonSpaceQuality: 5,
+    noise: 1,
     overall: 5,
     roomQuality: 3,
   });
-  strictEqual(reviewCardRatings({ ...rated, ratingNoise: 1, ratingSocialLife: 1 }).atmosphere, 1);
-  strictEqual(reviewCardRatings({ ...rated, ratingNoise: 4, ratingSocialLife: 4 }).atmosphere, 4);
-  strictEqual(reviewCardRatings({ ...rated, ratingNoise: 2, ratingSocialLife: 3 }).atmosphere, 3);
 });
 
-void test("reviewCardRatings has no Atmosphere for a review without both ratings", () => {
-  strictEqual(reviewCardRatings({ ...rated, ratingNoise: null }).atmosphere, null);
-  strictEqual(reviewCardRatings({ ...rated, ratingSocialLife: null }).atmosphere, null);
-});
-
-void test("summaryCardRatings averages the two Atmosphere averages without rounding", () => {
-  const averages = { amenities: 4, noise: 2.5, overall: 4.5, roomQuality: 3, socialLife: 3.5 };
-  deepStrictEqual(summaryCardRatings(averages), {
-    amenities: 4,
-    atmosphere: 3,
-    overall: 4.5,
-    roomQuality: 3,
+void test("reviewCardRatings leaves a row empty for a rating the review never gave", () => {
+  const older = reviewCardRatings({
+    ...rated,
+    ratingBathroomQuality: null,
+    ratingCommonSpaceQuality: null,
   });
-  strictEqual(summaryCardRatings({ ...averages, noise: 2, socialLife: 3.5 }).atmosphere, 2.75);
-  strictEqual(summaryCardRatings({ ...averages, noise: null, socialLife: null }).atmosphere, null);
+  strictEqual(older.bathroomQuality, null);
+  strictEqual(older.commonSpaceQuality, null);
+  strictEqual(older.noise, 1);
+});
+
+void test("the card has a row for every rating it computes", () => {
+  deepStrictEqual(
+    new Set(CARD_ROWS.map(({ key }) => key)),
+    new Set(Object.keys(reviewCardRatings(rated))),
+  );
+  strictEqual(CARD_ROWS.find(({ key }) => key === "noise")?.label, "Quietness");
+});
+
+void test("the rating filters have three sliders in each of their two sections", () => {
+  strictEqual(EXPERIENCE_CARD_ROWS.length, 3);
+  strictEqual(BUILDING_CARD_ROWS.length, 3);
+  deepStrictEqual(CARD_ROWS, [...EXPERIENCE_CARD_ROWS, ...BUILDING_CARD_ROWS]);
+});
+
+void test("the two rating pages ask for every rating once, three to a page", () => {
+  const asked = [...EXPERIENCE_QUESTIONS, ...BUILDING_QUESTIONS].map(({ key }) => key);
+  strictEqual(EXPERIENCE_QUESTIONS.length, 3);
+  strictEqual(BUILDING_QUESTIONS.length, 3);
+  strictEqual(new Set(asked).size, asked.length);
+  deepStrictEqual(new Set(asked), new Set(Object.keys(defaultRatings)));
 });
 
 void test("toClassYear only accepts the values the server takes", () => {
@@ -119,20 +140,22 @@ void test("toDormReview converts loosely typed API values", () => {
     livedTerm: "junior",
     livedYear: "2024/2025",
     ratingAmenities: "4",
+    ratingBathroomQuality: "3",
+    ratingCommonSpaceQuality: null,
     ratingNoise: 5,
     ratingOverall: null,
     ratingRoomQuality: 2,
-    ratingSocialLife: "3",
     submittedAt: "2025-02-05T12:00:00.000Z",
   });
   strictEqual(review.id, 7);
   strictEqual(review.body, "");
   deepStrictEqual(review.ratings, {
     ratingAmenities: 4,
+    ratingBathroomQuality: 3,
+    ratingCommonSpaceQuality: null,
     ratingNoise: 5,
     ratingOverall: null,
     ratingRoomQuality: 2,
-    ratingSocialLife: 3,
   });
   strictEqual(review.submittedAt?.toISOString(), "2025-02-05T12:00:00.000Z");
   const undated = toDormReview({
@@ -143,10 +166,11 @@ void test("toDormReview converts loosely typed API values", () => {
     livedTerm: null,
     livedYear: null,
     ratingAmenities: null,
+    ratingBathroomQuality: null,
+    ratingCommonSpaceQuality: null,
     ratingNoise: null,
     ratingOverall: null,
     ratingRoomQuality: null,
-    ratingSocialLife: null,
     submittedAt: {},
   });
   strictEqual(undated.submittedAt, null);

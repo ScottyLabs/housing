@@ -44,19 +44,22 @@ export function schoolYearOptions(today: Date): SelectOption[] {
 export type RatingKey =
   | "ratingOverall"
   | "ratingAmenities"
+  | "ratingNoise"
   | "ratingRoomQuality"
-  | "ratingSocialLife"
-  | "ratingNoise";
+  | "ratingBathroomQuality"
+  | "ratingCommonSpaceQuality";
 
 export type Ratings = Record<RatingKey, number>;
 
-export const RATING_QUESTIONS: Array<{
+export interface RatingQuestion {
   key: RatingKey;
   icon: string;
   question: string;
   low?: string;
   high?: string;
-}> = [
+}
+
+export const EXPERIENCE_QUESTIONS: RatingQuestion[] = [
   {
     key: "ratingOverall",
     icon: "/unsorted-icons/ranking.svg",
@@ -68,16 +71,6 @@ export const RATING_QUESTIONS: Array<{
     question: "Amenities (kitchen, laundry, air conditioning)",
   },
   {
-    key: "ratingRoomQuality",
-    icon: "/unsorted-icons/room-type/trad-single.svg",
-    question: "Room quality",
-  },
-  {
-    key: "ratingSocialLife",
-    icon: "/atmosphere.svg",
-    question: "Social Life",
-  },
-  {
     key: "ratingNoise",
     icon: "/unsorted-icons/noise.svg",
     question: "Noise (street, thin walls, hallway sounds)",
@@ -86,25 +79,62 @@ export const RATING_QUESTIONS: Array<{
   },
 ];
 
-export type CardRow = "overall" | "amenities" | "roomQuality" | "atmosphere";
+export const BUILDING_QUESTIONS: RatingQuestion[] = [
+  {
+    key: "ratingRoomQuality",
+    icon: "/unsorted-icons/room-type/trad-single.svg",
+    question: "Room Quality (size, condition)",
+  },
+  {
+    key: "ratingBathroomQuality",
+    icon: "/unsorted-icons/showerhead.svg",
+    question: "Bathroom Quality (cleanliness, condition)",
+  },
+  {
+    key: "ratingCommonSpaceQuality",
+    icon: "/unsorted-icons/lounge.svg",
+    question: "Common Space Quality (lounges, study rooms, game rooms)",
+  },
+];
+
+export type CardRow =
+  | "overall"
+  | "amenities"
+  | "noise"
+  | "roomQuality"
+  | "bathroomQuality"
+  | "commonSpaceQuality";
 
 export type CardRatings = Record<CardRow, number | null>;
 
-export const CARD_ROWS: Array<{ key: CardRow; label: string }> = [
+export interface CardRowSpec {
+  key: CardRow;
+  label: string;
+}
+
+export const EXPERIENCE_CARD_ROWS: CardRowSpec[] = [
   { key: "overall", label: "Overall Experience" },
   { key: "amenities", label: "Amenities" },
-  { key: "roomQuality", label: "Room Quality" },
-  { key: "atmosphere", label: "Atmosphere" },
+  { key: "noise", label: "Quietness" },
 ];
+
+export const BUILDING_CARD_ROWS: CardRowSpec[] = [
+  { key: "roomQuality", label: "Room Quality" },
+  { key: "bathroomQuality", label: "Bathroom Quality" },
+  { key: "commonSpaceQuality", label: "Common Space Quality" },
+];
+
+export const CARD_ROWS: CardRowSpec[] = [...EXPERIENCE_CARD_ROWS, ...BUILDING_CARD_ROWS];
 
 export const DEFAULT_RATING = 3;
 
 export const defaultRatings: Ratings = {
   ratingAmenities: DEFAULT_RATING,
+  ratingBathroomQuality: DEFAULT_RATING,
+  ratingCommonSpaceQuality: DEFAULT_RATING,
   ratingNoise: DEFAULT_RATING,
   ratingOverall: DEFAULT_RATING,
   ratingRoomQuality: DEFAULT_RATING,
-  ratingSocialLife: DEFAULT_RATING,
 };
 
 export interface ReviewDraft {
@@ -132,13 +162,16 @@ export function stepProblem(step: number, draft: ReviewDraft): string | undefine
   return undefined;
 }
 
-export interface RatingAverages {
-  amenities: number | null;
-  noise: number | null;
-  overall: number | null;
-  roomQuality: number | null;
-  socialLife: number | null;
-}
+export type RatingAverages = CardRatings;
+
+export const noRatings: RatingAverages = {
+  amenities: null,
+  bathroomQuality: null,
+  commonSpaceQuality: null,
+  noise: null,
+  overall: null,
+  roomQuality: null,
+};
 
 export interface DormReview {
   authorName: string;
@@ -161,10 +194,11 @@ export interface ApiReview {
   livedTerm: string | null;
   livedYear: string | null;
   ratingAmenities: LooseNumber;
+  ratingBathroomQuality: LooseNumber;
+  ratingCommonSpaceQuality: LooseNumber;
   ratingNoise: LooseNumber;
   ratingOverall: LooseNumber;
   ratingRoomQuality: LooseNumber;
-  ratingSocialLife: LooseNumber;
   submittedAt: unknown;
 }
 
@@ -188,10 +222,11 @@ export function toDormReview(review: ApiReview): DormReview {
     livedYear: review.livedYear,
     ratings: {
       ratingAmenities: toNumber(review.ratingAmenities),
+      ratingBathroomQuality: toNumber(review.ratingBathroomQuality),
+      ratingCommonSpaceQuality: toNumber(review.ratingCommonSpaceQuality),
       ratingNoise: toNumber(review.ratingNoise),
       ratingOverall: toNumber(review.ratingOverall),
       ratingRoomQuality: toNumber(review.ratingRoomQuality),
-      ratingSocialLife: toNumber(review.ratingSocialLife),
     },
     submittedAt: toDate(review.submittedAt),
   };
@@ -211,27 +246,13 @@ export function livedHereText(
   return parts.length === 0 ? undefined : `Lived here ${parts.join(", ")}`;
 }
 
-function atmosphereOf(socialLife: number | null, noise: number | null): number | null {
-  return socialLife === null || noise === null ? null : (socialLife + noise) / 2;
-}
-
-/** One review's card rows; Atmosphere is the average of Social Life and Quietness, rounded up. */
 export function reviewCardRatings(ratings: Record<RatingKey, number | null>): CardRatings {
-  const atmosphere = atmosphereOf(ratings.ratingSocialLife, ratings.ratingNoise);
   return {
     amenities: ratings.ratingAmenities,
-    atmosphere: atmosphere === null ? null : Math.ceil(atmosphere),
+    bathroomQuality: ratings.ratingBathroomQuality,
+    commonSpaceQuality: ratings.ratingCommonSpaceQuality,
+    noise: ratings.ratingNoise,
     overall: ratings.ratingOverall,
     roomQuality: ratings.ratingRoomQuality,
-  };
-}
-
-/** The summary card's rows; like the other averages, Atmosphere is not rounded. */
-export function summaryCardRatings(averages: RatingAverages): CardRatings {
-  return {
-    amenities: averages.amenities,
-    atmosphere: atmosphereOf(averages.socialLife, averages.noise),
-    overall: averages.overall,
-    roomQuality: averages.roomQuality,
   };
 }

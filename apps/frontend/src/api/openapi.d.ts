@@ -507,6 +507,8 @@ export interface operations {
           "application/json": {
             averages: {
               amenities: (number | null) | null;
+              bathroomQuality: (number | null) | null;
+              commonSpaceQuality: (number | null) | null;
               noise: (number | null) | null;
               overall: (number | null) | null;
               roomQuality: (number | null) | null;
@@ -553,6 +555,8 @@ export interface operations {
               livedTerm: (string | null) | null;
               livedYear: (string | null) | null;
               ratingAmenities: ((string | number) | null) | null;
+              ratingBathroomQuality: ((string | number) | null) | null;
+              ratingCommonSpaceQuality: ((string | number) | null) | null;
               ratingNoise: ((string | number) | null) | null;
               ratingOverall: ((string | number) | null) | null;
               ratingRoomQuality: ((string | number) | null) | null;
@@ -564,6 +568,8 @@ export interface operations {
             summary: {
               averages: {
                 amenities: (number | null) | null;
+                bathroomQuality: (number | null) | null;
+                commonSpaceQuality: (number | null) | null;
                 noise: (number | null) | null;
                 overall: (number | null) | null;
                 roomQuality: (number | null) | null;
@@ -608,6 +614,8 @@ export interface operations {
             livedTerm: (string | null) | null;
             livedYear: (string | null) | null;
             ratingAmenities: ((string | number) | null) | null;
+            ratingBathroomQuality: ((string | number) | null) | null;
+            ratingCommonSpaceQuality: ((string | number) | null) | null;
             ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
@@ -656,6 +664,8 @@ export interface operations {
             livedTerm: (string | null) | null;
             livedYear: (string | null) | null;
             ratingAmenities: ((string | number) | null) | null;
+            ratingBathroomQuality: ((string | number) | null) | null;
+            ratingCommonSpaceQuality: ((string | number) | null) | null;
             ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
@@ -709,10 +719,12 @@ export interface operations {
           livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
           livedYear: string;
           ratingAmenities: number;
+          ratingBathroomQuality?: number;
+          ratingCommonSpaceQuality?: number;
           ratingNoise: number;
           ratingOverall: number;
           ratingRoomQuality: number;
-          ratingSocialLife: number;
+          ratingSocialLife?: number;
         };
         "application/x-www-form-urlencoded": {
           body: string;
@@ -720,10 +732,12 @@ export interface operations {
           livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
           livedYear: string;
           ratingAmenities: number;
+          ratingBathroomQuality?: number;
+          ratingCommonSpaceQuality?: number;
           ratingNoise: number;
           ratingOverall: number;
           ratingRoomQuality: number;
-          ratingSocialLife: number;
+          ratingSocialLife?: number;
         };
         "multipart/form-data": {
           body: string;
@@ -731,10 +745,12 @@ export interface operations {
           livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
           livedYear: string;
           ratingAmenities: number;
+          ratingBathroomQuality?: number;
+          ratingCommonSpaceQuality?: number;
           ratingNoise: number;
           ratingOverall: number;
           ratingRoomQuality: number;
-          ratingSocialLife: number;
+          ratingSocialLife?: number;
         };
       };
     };
@@ -751,6 +767,8 @@ export interface operations {
             livedTerm: (string | null) | null;
             livedYear: (string | null) | null;
             ratingAmenities: ((string | number) | null) | null;
+            ratingBathroomQuality: ((string | number) | null) | null;
+            ratingCommonSpaceQuality: ((string | number) | null) | null;
             ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
@@ -947,6 +965,8 @@ export interface operations {
             reviews: {
               averages: {
                 amenities: (number | null) | null;
+                bathroomQuality: (number | null) | null;
+                commonSpaceQuality: (number | null) | null;
                 noise: (number | null) | null;
                 overall: (number | null) | null;
                 roomQuality: (number | null) | null;

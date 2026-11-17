@@ -3,9 +3,10 @@ import type { FilterState, HousingClass } from "../../data/buildingTypes.ts";
 import {
   AccommodationsSection,
   AmenitiesSection,
-  AtmosphereSection,
+  BuildingRatingsSection,
   ClassStandingSection,
   DistanceSection,
+  ExperienceRatingsSection,
   HousingTypeSection,
   RoomTypeSection,
 } from "./FilterSections.tsx";
@@ -60,7 +61,16 @@ function CollapsedRail({ onOpenAction }: { onOpenAction: () => void }) {
         className="w-[38.4px] h-[38.4px]"
       />
       <img src="/distance.svg" alt="distance from" className="w-[38.4px] h-[38.4px]" />
-      <img src="/atmosphere.svg" alt="atmosphere" className="w-[38.4px] h-[38.4px]" />
+      <img
+        src="/unsorted-icons/ranking.svg"
+        alt="experience ratings"
+        className="w-[38.4px] h-[38.4px]"
+      />
+      <img
+        src="/unsorted-icons/lounge.svg"
+        alt="building ratings"
+        className="w-[38.4px] h-[38.4px]"
+      />
       <img src="/survey-gender.svg" alt="housing type" className="w-[38.4px] h-[38.4px]" />
       <img src="/accomadations.svg" alt="accomadations" className="w-[38.4px] h-[38.4px]" />
       <img
@@ -106,7 +116,8 @@ export default function BuildingFilter({
               onChangeAction={onChangeHousingClassAction}
             />
             <DistanceSection filters={filters} onChangeAction={onChangeAction} />
-            <AtmosphereSection filters={filters} onChangeAction={onChangeAction} />
+            <ExperienceRatingsSection filters={filters} onChangeAction={onChangeAction} />
+            <BuildingRatingsSection filters={filters} onChangeAction={onChangeAction} />
             <HousingTypeSection filters={filters} onChangeAction={onChangeAction} />
             <AccommodationsSection filters={filters} onChangeAction={onChangeAction} />
             <RoomTypeSection filters={filters} onChangeAction={onChangeAction} />

@@ -7,7 +7,15 @@ import { type ApiBuilding, toBuilding } from "./apiBuildings.ts";
 import buildingsData from "./buildings.json" with { type: "json" };
 
 const noReviews = {
-  averages: { amenities: null, noise: null, overall: null, roomQuality: null, socialLife: null },
+  averages: {
+    amenities: null,
+    bathroomQuality: null,
+    commonSpaceQuality: null,
+    noise: null,
+    overall: null,
+    roomQuality: null,
+    socialLife: null,
+  },
   count: 0,
 };
 

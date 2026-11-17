@@ -97,7 +97,6 @@ export interface Accessibility {
 }
 
 export interface Atmosphere {
-  socialness?: number;
   noiseLevel?: number;
 }
 
@@ -178,8 +177,7 @@ export type FeatureFilter = (typeof featureFilters)[number];
 
 export interface FilterState extends Record<FeatureFilter, boolean> {
   distanceFrom: string;
-  socialness: number | null;
-  noiseLevel: number | null;
+  minRatings: RatingAverages;
   genderHousing: GenderHousing | null;
 }
 
