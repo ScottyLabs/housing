@@ -4,6 +4,8 @@ import type { CampusBuilding, Dorm } from "../db/schema.ts";
 export interface BuildingReviews {
   averages: {
     amenities: number | null;
+    bathroomQuality: number | null;
+    commonSpaceQuality: number | null;
     noise: number | null;
     overall: number | null;
     roomQuality: number | null;

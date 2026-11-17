@@ -89,6 +89,8 @@ export const myReviewsRoute = new Elysia({ prefix: "/me" })
         livedTerm: body.livedTerm,
         livedYear: body.livedYear,
         ratingAmenities: body.ratingAmenities,
+        ratingBathroomQuality: body.ratingBathroomQuality,
+        ratingCommonSpaceQuality: body.ratingCommonSpaceQuality,
         ratingNoise: body.ratingNoise,
         ratingOverall: body.ratingOverall,
         ratingRoomQuality: body.ratingRoomQuality,

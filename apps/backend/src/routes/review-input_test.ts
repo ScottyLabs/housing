@@ -10,11 +10,19 @@ const valid = {
   livedTerm: "junior",
   livedYear: "2025/2026",
   ratingAmenities: 4,
+  ratingBathroomQuality: 2,
+  ratingCommonSpaceQuality: 5,
   ratingNoise: 2,
   ratingOverall: 5,
   ratingRoomQuality: 3,
   ratingSocialLife: 1,
 };
+
+const OPTIONAL_RATINGS = new Set([
+  "ratingBathroomQuality",
+  "ratingCommonSpaceQuality",
+  "ratingSocialLife",
+]);
 
 function accepts(changes: Record<string, unknown>): boolean {
   return reviewBody.safeParse({ ...valid, ...changes }).success;
@@ -64,11 +72,21 @@ void test("reviewBody needs a written review within the length limit", () => {
   }
 });
 
-void test("reviewBody needs every field", () => {
+function without(...keys: string[]): Record<string, unknown> {
+  return Object.fromEntries(Object.entries(valid).filter(([name]) => !keys.includes(name)));
+}
+
+void test("reviewBody needs every field except the ratings still being phased in", () => {
   for (const key of Object.keys(valid)) {
-    const rest = Object.fromEntries(Object.entries(valid).filter(([name]) => name !== key));
-    strictEqual(reviewBody.safeParse(rest).success, false);
+    strictEqual(reviewBody.safeParse(without(key)).success, OPTIONAL_RATINGS.has(key));
   }
+});
+
+void test("reviewBody takes reviews with or without the new ratings", () => {
+  const beforeNewRatings = without("ratingBathroomQuality", "ratingCommonSpaceQuality");
+  deepStrictEqual(reviewBody.parse(beforeNewRatings), beforeNewRatings);
+  const withoutSocialLife = without("ratingSocialLife");
+  deepStrictEqual(reviewBody.parse(withoutSocialLife), withoutSocialLife);
 });
 
 void test("pageQuery reads numbers from the query string and limits them", () => {
