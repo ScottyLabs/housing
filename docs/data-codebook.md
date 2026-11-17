@@ -59,11 +59,10 @@ Building
       ├─ overall       number | null
       ├─ amenities     number | null
       ├─ roomQuality   number | null
-      ├─ socialLife    number | null
       └─ noise         number | null
 ```
 
-`reviews` is the average rating (1-5) for each review question and how many students answered. An average is `null` while the building has no reviews. Reviews written before the Social Life and Noise questions have no value for those two, so `count` can be higher than the number of ratings behind them. It refreshes when the building data is loaded again, which the review form does after a review is saved.
+`reviews` is the average rating (1-5) for each review question and how many students answered. An average is `null` while the building has no reviews. Older reviews can lack a value for some questions, so `count` can be higher than the number of ratings behind an average. It refreshes when the building data is loaded again, which the review form does after a review is saved.
 
 ## Enums
 

@@ -512,7 +512,6 @@ export interface operations {
               noise: (number | null) | null;
               overall: (number | null) | null;
               roomQuality: (number | null) | null;
-              socialLife: (number | null) | null;
             };
             count: string | number;
             dorm: {
@@ -560,7 +559,6 @@ export interface operations {
               ratingNoise: ((string | number) | null) | null;
               ratingOverall: ((string | number) | null) | null;
               ratingRoomQuality: ((string | number) | null) | null;
-              ratingSocialLife: ((string | number) | null) | null;
               submittedAt: ((Record<string, never> | string | number) | null) | null;
               authorName: string;
               isMine: boolean;
@@ -573,7 +571,6 @@ export interface operations {
                 noise: (number | null) | null;
                 overall: (number | null) | null;
                 roomQuality: (number | null) | null;
-                socialLife: (number | null) | null;
               };
               count: string | number;
             };
@@ -619,7 +616,6 @@ export interface operations {
             ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
-            ratingSocialLife: ((string | number) | null) | null;
             submittedAt: ((Record<string, never> | string | number) | null) | null;
             dorm: {
               name: string;
@@ -669,7 +665,6 @@ export interface operations {
             ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
-            ratingSocialLife: ((string | number) | null) | null;
             submittedAt: ((Record<string, never> | string | number) | null) | null;
             dorm: {
               name: string;
@@ -719,12 +714,11 @@ export interface operations {
           livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
           livedYear: string;
           ratingAmenities: number;
-          ratingBathroomQuality?: number;
-          ratingCommonSpaceQuality?: number;
+          ratingBathroomQuality: number;
+          ratingCommonSpaceQuality: number;
           ratingNoise: number;
           ratingOverall: number;
           ratingRoomQuality: number;
-          ratingSocialLife?: number;
         };
         "application/x-www-form-urlencoded": {
           body: string;
@@ -732,12 +726,11 @@ export interface operations {
           livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
           livedYear: string;
           ratingAmenities: number;
-          ratingBathroomQuality?: number;
-          ratingCommonSpaceQuality?: number;
+          ratingBathroomQuality: number;
+          ratingCommonSpaceQuality: number;
           ratingNoise: number;
           ratingOverall: number;
           ratingRoomQuality: number;
-          ratingSocialLife?: number;
         };
         "multipart/form-data": {
           body: string;
@@ -745,12 +738,11 @@ export interface operations {
           livedTerm: "first-year" | "sophomore" | "junior" | "senior" | "graduate";
           livedYear: string;
           ratingAmenities: number;
-          ratingBathroomQuality?: number;
-          ratingCommonSpaceQuality?: number;
+          ratingBathroomQuality: number;
+          ratingCommonSpaceQuality: number;
           ratingNoise: number;
           ratingOverall: number;
           ratingRoomQuality: number;
-          ratingSocialLife?: number;
         };
       };
     };
@@ -772,7 +764,6 @@ export interface operations {
             ratingNoise: ((string | number) | null) | null;
             ratingOverall: ((string | number) | null) | null;
             ratingRoomQuality: ((string | number) | null) | null;
-            ratingSocialLife: ((string | number) | null) | null;
             submittedAt: ((Record<string, never> | string | number) | null) | null;
             dorm: {
               name: string;
@@ -966,7 +957,6 @@ export interface operations {
                 noise: (number | null) | null;
                 overall: (number | null) | null;
                 roomQuality: (number | null) | null;
-                socialLife: (number | null) | null;
               };
               count: string | number;
             };

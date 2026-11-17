@@ -14,7 +14,6 @@ const noReviews = {
     noise: null,
     overall: null,
     roomQuality: null,
-    socialLife: null,
   },
   count: 0,
 };

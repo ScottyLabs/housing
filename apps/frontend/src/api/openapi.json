@@ -1224,8 +1224,7 @@
                           "commonSpaceQuality",
                           "noise",
                           "overall",
-                          "roomQuality",
-                          "socialLife"
+                          "roomQuality"
                         ],
                         "properties": {
                           "amenities": {
@@ -1284,17 +1283,6 @@
                             ]
                           },
                           "roomQuality": {
-                            "nullable": true,
-                            "anyOf": [
-                              {
-                                "type": "number"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "socialLife": {
                             "nullable": true,
                             "anyOf": [
                               {
@@ -1409,7 +1397,6 @@
                           "ratingNoise",
                           "ratingOverall",
                           "ratingRoomQuality",
-                          "ratingSocialLife",
                           "submittedAt",
                           "authorName",
                           "isMine"
@@ -1580,26 +1567,6 @@
                               }
                             ]
                           },
-                          "ratingSocialLife": {
-                            "nullable": true,
-                            "anyOf": [
-                              {
-                                "anyOf": [
-                                  {
-                                    "format": "integer",
-                                    "default": 0,
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "integer"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
                           "submittedAt": {
                             "nullable": true,
                             "anyOf": [
@@ -1647,8 +1614,7 @@
                             "commonSpaceQuality",
                             "noise",
                             "overall",
-                            "roomQuality",
-                            "socialLife"
+                            "roomQuality"
                           ],
                           "properties": {
                             "amenities": {
@@ -1707,17 +1673,6 @@
                               ]
                             },
                             "roomQuality": {
-                              "nullable": true,
-                              "anyOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "null"
-                                }
-                              ]
-                            },
-                            "socialLife": {
                               "nullable": true,
                               "anyOf": [
                                 {
@@ -1791,7 +1746,6 @@
                       "ratingNoise",
                       "ratingOverall",
                       "ratingRoomQuality",
-                      "ratingSocialLife",
                       "submittedAt",
                       "dorm"
                     ],
@@ -1961,26 +1915,6 @@
                           }
                         ]
                       },
-                      "ratingSocialLife": {
-                        "nullable": true,
-                        "anyOf": [
-                          {
-                            "anyOf": [
-                              {
-                                "format": "integer",
-                                "default": 0,
-                                "type": "string"
-                              },
-                              {
-                                "type": "integer"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
-                      },
                       "submittedAt": {
                         "nullable": true,
                         "anyOf": [
@@ -2077,7 +2011,6 @@
                         "ratingNoise",
                         "ratingOverall",
                         "ratingRoomQuality",
-                        "ratingSocialLife",
                         "submittedAt",
                         "dorm"
                       ],
@@ -2247,26 +2180,6 @@
                             }
                           ]
                         },
-                        "ratingSocialLife": {
-                          "nullable": true,
-                          "anyOf": [
-                            {
-                              "anyOf": [
-                                {
-                                  "format": "integer",
-                                  "default": 0,
-                                  "type": "string"
-                                },
-                                {
-                                  "type": "integer"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
                         "submittedAt": {
                           "nullable": true,
                           "anyOf": [
@@ -2411,11 +2324,6 @@
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 5
-                  },
-                  "ratingSocialLife": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 5
                   }
                 },
                 "required": [
@@ -2423,6 +2331,8 @@
                   "livedTerm",
                   "livedYear",
                   "ratingAmenities",
+                  "ratingBathroomQuality",
+                  "ratingCommonSpaceQuality",
                   "ratingNoise",
                   "ratingOverall",
                   "ratingRoomQuality"
@@ -2477,11 +2387,6 @@
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 5
-                  },
-                  "ratingSocialLife": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 5
                   }
                 },
                 "required": [
@@ -2489,6 +2394,8 @@
                   "livedTerm",
                   "livedYear",
                   "ratingAmenities",
+                  "ratingBathroomQuality",
+                  "ratingCommonSpaceQuality",
                   "ratingNoise",
                   "ratingOverall",
                   "ratingRoomQuality"
@@ -2543,11 +2450,6 @@
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 5
-                  },
-                  "ratingSocialLife": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 5
                   }
                 },
                 "required": [
@@ -2555,6 +2457,8 @@
                   "livedTerm",
                   "livedYear",
                   "ratingAmenities",
+                  "ratingBathroomQuality",
+                  "ratingCommonSpaceQuality",
                   "ratingNoise",
                   "ratingOverall",
                   "ratingRoomQuality"
@@ -2582,7 +2486,6 @@
                     "ratingNoise",
                     "ratingOverall",
                     "ratingRoomQuality",
-                    "ratingSocialLife",
                     "submittedAt",
                     "dorm"
                   ],
@@ -2733,26 +2636,6 @@
                       ]
                     },
                     "ratingRoomQuality": {
-                      "nullable": true,
-                      "anyOf": [
-                        {
-                          "anyOf": [
-                            {
-                              "format": "integer",
-                              "default": 0,
-                              "type": "string"
-                            },
-                            {
-                              "type": "integer"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "null"
-                        }
-                      ]
-                    },
-                    "ratingSocialLife": {
                       "nullable": true,
                       "anyOf": [
                         {
@@ -3188,8 +3071,7 @@
                               "commonSpaceQuality",
                               "noise",
                               "overall",
-                              "roomQuality",
-                              "socialLife"
+                              "roomQuality"
                             ],
                             "properties": {
                               "amenities": {
@@ -3248,17 +3130,6 @@
                                 ]
                               },
                               "roomQuality": {
-                                "nullable": true,
-                                "anyOf": [
-                                  {
-                                    "type": "number"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              },
-                              "socialLife": {
                                 "nullable": true,
                                 "anyOf": [
                                   {
