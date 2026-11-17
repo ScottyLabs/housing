@@ -67,7 +67,7 @@ function CollapsedRail({ onOpenAction }: { onOpenAction: () => void }) {
         className="w-[38.4px] h-[38.4px]"
       />
       <img
-        src="/unsorted-icons/lounge.svg"
+        src="/unsorted-icons/ranking.svg"
         alt="building ratings"
         className="w-[38.4px] h-[38.4px]"
       />

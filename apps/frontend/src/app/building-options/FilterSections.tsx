@@ -59,8 +59,16 @@ function RatingFiltersSection({
   filters,
   onChangeAction,
 }: SectionProps & { name: string; icon: string; rows: CardRowSpec[] }) {
+  const activeCount = rows.filter(({ key }) => filters.minRatings[key] !== null).length;
+
   return (
-    <StaticSection name={name} desc="Minimum student rating" icon={icon}>
+    <CollapsibleSection
+      name={name}
+      desc="Minimum student rating"
+      icon={icon}
+      activeCount={activeCount}
+      startOpen
+    >
       <div className="flex w-full flex-col gap-[24px]">
         {rows.map(({ key, label }) => (
           <div key={key} className="flex flex-col w-full">
@@ -77,7 +85,7 @@ function RatingFiltersSection({
           </div>
         ))}
       </div>
-    </StaticSection>
+    </CollapsibleSection>
   );
 }
 
@@ -97,7 +105,7 @@ export function BuildingRatingsSection(props: SectionProps) {
     <RatingFiltersSection
       {...props}
       name="Building Ratings"
-      icon="/unsorted-icons/lounge.svg"
+      icon="/unsorted-icons/ranking.svg"
       rows={BUILDING_CARD_ROWS}
     />
   );
