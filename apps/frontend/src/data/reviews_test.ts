@@ -94,8 +94,9 @@ void test("stepProblem needs both years before part 2 and some text before posti
     undefined,
   );
   strictEqual(stepProblem(2, emptyDraft), undefined);
-  strictEqual(typeof stepProblem(3, { ...emptyDraft, body: "   " }), "string");
-  strictEqual(stepProblem(3, { ...emptyDraft, body: "Loved it" }), undefined);
+  strictEqual(stepProblem(3, emptyDraft), undefined);
+  strictEqual(typeof stepProblem(4, { ...emptyDraft, body: "   " }), "string");
+  strictEqual(stepProblem(4, { ...emptyDraft, body: "Loved it" }), undefined);
 });
 
 void test("livedHereText combines the class year label and school year", () => {

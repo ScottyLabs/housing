@@ -65,7 +65,7 @@ export const RATING_QUESTIONS: Array<{
   {
     key: "ratingAmenities",
     icon: "/unsorted-icons/amenities.svg",
-    question: "Amenities (kitchen, laundry, lounges, air conditioning)",
+    question: "Amenities (kitchen, laundry, air conditioning)",
   },
   {
     key: "ratingRoomQuality",
@@ -79,8 +79,8 @@ export const RATING_QUESTIONS: Array<{
   },
   {
     key: "ratingNoise",
-    icon: "/atmosphere.svg",
-    question: "Quietness",
+    icon: "/unsorted-icons/noise.svg",
+    question: "Noise (street, thin walls, hallway sounds)",
     low: "Loud",
     high: "Quiet",
   },
@@ -126,7 +126,7 @@ export function stepProblem(step: number, draft: ReviewDraft): string | undefine
   if (step === 1 && (draft.classYear === "" || draft.schoolYear === "")) {
     return "Pick your year and the school year you lived here.";
   }
-  if (step === 3 && draft.body.trim() === "") {
+  if (step === 4 && draft.body.trim() === "") {
     return "Write a few sentences about living here.";
   }
   return undefined;

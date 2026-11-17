@@ -58,7 +58,7 @@ export function StayStep({ building, draft, update }: StepProps) {
   );
 }
 
-function RatingRow({
+export function RatingRow({
   icon,
   question,
   low,
@@ -103,12 +103,16 @@ function RatingRow({
   );
 }
 
+const STEP_TWO_KEYS = new Set<string>(["ratingOverall", "ratingAmenities", "ratingNoise"]);
+
+const STEP_TWO_QUESTIONS = RATING_QUESTIONS.filter(({ key }) => STEP_TWO_KEYS.has(key));
+
 export function RatingsStep({ draft, update }: StepProps) {
   return (
     <div className="rounded-[18px] border border-black/10 bg-brand-menugray px-8 py-8">
       <h2 className="text-[24px] font-semibold leading-none">Rate your experience</h2>
       <div className="mt-8 flex flex-col gap-8">
-        {RATING_QUESTIONS.map(({ key, icon, question, low, high }) => (
+        {STEP_TWO_QUESTIONS.map(({ key, icon, question, low, high }) => (
           <RatingRow
             key={key}
             icon={icon}
