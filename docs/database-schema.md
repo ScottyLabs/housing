@@ -89,8 +89,6 @@ erDiagram
         boolean service_animal_friendly
         boolean ground_floor_rooms
         boolean strobe_alarm
-        int socialness
-        int noise_level
         string_array tags
         json photo_gallery
         json floor_plans
@@ -113,9 +111,9 @@ erDiagram
         int rating_overall
         int rating_amenities
         int rating_room_quality
-        int rating_social_life
+        int rating_bathroom_quality
+        int rating_common_space_quality
         int rating_noise
-        int rating_atmosphere
         string lived_year
         string lived_term
         timestamp submitted_at
@@ -283,11 +281,9 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 | `longitude` | `numeric` | Yes | Geographic longitude. |
 | `lounge_description` | `text` | Yes | Description of lounge/common space. |
 | `name` | `text` | No | Dorm name. |
-| `noise_level` | `integer` | Yes | Unused. It was the fallback for the removed `atmosphere.noiseLevel`; the seed nulls it and the API ignores it. Dropped by a later migration. |
 | `photo_gallery` | `json` | Yes | Array of `GalleryImage` (`link`, `description`). |
 | `room_types` | `room_type[]` | No | Room configurations offered. |
 | `service_animal_friendly` | `boolean` | No | Accessibility: service animals allowed. |
-| `socialness` | `integer` | Yes | Unused. It was the fallback for the removed `atmosphere.socialness`; the seed nulls it and the API ignores it. Dropped by a later migration. |
 | `strobe_alarm` | `boolean` | No | Accessibility: strobe fire alarms. |
 | `tags` | `text[]` | Yes | Freeform editorial tags (`editorialTags` in `buildings.json`). |
 | `updated_at` | `timestamp` | Yes | Last time the dorm record was edited. |
@@ -320,11 +316,11 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 | `lived_term` | `text` | Yes | The reviewer's year of school while living there: `first-year`, `sophomore`, `junior`, `senior` or `graduate`. |
 | `lived_year` | `text` | Yes | School year the reviewer lived there, written like `2024/2025`. |
 | `rating_amenities` | `integer` | Yes | Amenities rating. |
-| `rating_atmosphere` | `integer` | Yes | Legacy atmosphere rating from reviews written before it was split into social life and noise. Nothing reads or writes it now. |
-| `rating_noise` | `integer` | Yes | Noise rating, 1 to 5, where 5 is quiet. Null on reviews that predate the split. |
+| `rating_bathroom_quality` | `integer` | Yes | Bathroom quality rating. Null on reviews written before the question was added. |
+| `rating_common_space_quality` | `integer` | Yes | Common space quality rating. Null on reviews written before the question was added. |
+| `rating_noise` | `integer` | Yes | Noise rating, 1 to 5, where 5 is quiet. Null on reviews written before the question was added. |
 | `rating_overall` | `integer` | Yes | Overall rating. |
 | `rating_room_quality` | `integer` | Yes | Room quality rating. |
-| `rating_social_life` | `integer` | Yes | Social life rating, 1 to 5. Null on reviews that predate the split. |
 | `submitted_at` | `timestamp` | Yes | When the review was submitted. |
 
 The columns are nullable for older rows, but the review API only saves a review when every field is present and valid: ratings are whole numbers from 1 to 5, and `lived_term` and `lived_year` use the values above. The schemas are zod schemas in `apps/backend/src/routes/review-input.ts`. The database does not enforce these rules, so a row written outside the API can hold anything. Editing a review in the app replaces every field with valid values.
@@ -458,11 +454,9 @@ type Dorm = {
   longitude: number | null;
   loungeDescription: string | null;
   name: string;
-  noiseLevel: number | null;
   photoGallery: GalleryImage[] | null; // json
   roomTypes: RoomType[];
   serviceAnimalFriendly: boolean;
-  socialness: number | null;
   strobeAlarm: boolean;
   tags: string[] | null;
   updatedAt: Date | null;
@@ -477,11 +471,11 @@ type Review = {
   livedTerm: string | null;
   livedYear: string | null;
   ratingAmenities: number | null;
-  ratingAtmosphere: number | null;
+  ratingBathroomQuality: number | null;
+  ratingCommonSpaceQuality: number | null;
   ratingNoise: number | null;
   ratingOverall: number | null;
   ratingRoomQuality: number | null;
-  ratingSocialLife: number | null;
   submittedAt: Date | null;
 };
 ```

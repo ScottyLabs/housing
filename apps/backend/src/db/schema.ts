@@ -163,13 +163,11 @@ export const dormTable = pgTable("dorm", {
   longitude: numeric("longitude", { mode: "number" }),
   loungeDescription: text("lounge_description"),
   name: text("name").notNull(),
-  noiseLevel: integer("noise_level"),
   photoGallery: json("photo_gallery").$type<GalleryImage[]>(),
   roomTypes: roomTypeEnum("room_types").array().notNull(),
   serviceAnimalFriendly: boolean("service_animal_friendly").notNull(),
   // Stable URL-safe identifier (e.g. "etower"). The frontend routes on this, not on the integer id.
   slug: text("slug").notNull().unique(),
-  socialness: integer("socialness"),
   strobeAlarm: boolean("strobe_alarm").notNull(),
   tags: text("tags").array(),
   updatedAt: timestamp("updated_at"),
@@ -204,15 +202,12 @@ export const reviewTable = pgTable(
     livedTerm: text("lived_term"),
     livedYear: text("lived_year"),
     ratingAmenities: integer("rating_amenities"),
-    // Replaced by ratingSocialLife and ratingNoise; kept so older reviews keep their value.
-    ratingAtmosphere: integer("rating_atmosphere"),
     ratingBathroomQuality: integer("rating_bathroom_quality"),
     ratingCommonSpaceQuality: integer("rating_common_space_quality"),
     // 1 is loud, 5 is quiet.
     ratingNoise: integer("rating_noise"),
     ratingOverall: integer("rating_overall"),
     ratingRoomQuality: integer("rating_room_quality"),
-    ratingSocialLife: integer("rating_social_life"),
     submittedAt: timestamp("submitted_at").defaultNow(),
     userId: integer("user_id")
       .notNull()
