@@ -31,15 +31,6 @@ function toAmenities(dorm: Dorm) {
   };
 }
 
-function toAtmosphere(dorm: Dorm, reviews: BuildingReviews) {
-  const atmosphere: { noiseLevel?: number; socialness?: number } = {};
-  const noiseLevel = reviews.averages.noise ?? dorm.noiseLevel;
-  const socialness = reviews.averages.socialLife ?? dorm.socialness;
-  if (noiseLevel !== null) atmosphere.noiseLevel = noiseLevel;
-  if (socialness !== null) atmosphere.socialness = socialness;
-  return atmosphere;
-}
-
 function toLocation(dorm: Dorm) {
   const location: {
     closeBuildings: string[];
@@ -62,7 +53,6 @@ export function toBuilding(dorm: Dorm, reviews: BuildingReviews) {
       wheelchairAccessible: dorm.wheelchairAccessible,
     },
     amenities: toAmenities(dorm),
-    atmosphere: toAtmosphere(dorm, reviews),
     code: dorm.code,
     editorialTags: dorm.tags ?? [],
     housingClasses: dorm.housingClasses,

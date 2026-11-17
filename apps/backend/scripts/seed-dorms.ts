@@ -51,7 +51,6 @@ interface BuildingJson {
     laundry: { details?: string; location: string };
     roomTypes: string[];
   };
-  atmosphere: { noiseLevel?: number; socialness?: number };
   code: string;
   editorialTags?: string[];
   housingClasses: string[];
@@ -89,16 +88,6 @@ function parseEnum<T extends string>(allowed: readonly T[], value: unknown, labe
   throw new Error(
     `${label}: invalid value ${JSON.stringify(value)} (expected one of: ${allowed.join(", ")})`,
   );
-}
-
-function parseOptionalInteger(value: number | undefined, label: string): number | null {
-  if (value === undefined) {
-    return null;
-  }
-  if (!Number.isInteger(value)) {
-    throw new TypeError(`${label}: must be an integer, got ${value}`);
-  }
-  return value;
 }
 
 function assertValidSlugs(buildings: Array<{ id: string }>, file: string): Set<string> {
@@ -155,13 +144,6 @@ function accessibilityColumns({ accessibility }: BuildingJson) {
     serviceAnimalFriendly: accessibility.serviceAnimalFriendly,
     strobeAlarm: accessibility.strobeAlarm,
     wheelchairAccessible: accessibility.wheelchairAccessible,
-  };
-}
-
-function atmosphereColumns({ atmosphere, id }: BuildingJson) {
-  return {
-    noiseLevel: parseOptionalInteger(atmosphere.noiseLevel, `${id} atmosphere.noiseLevel`),
-    socialness: parseOptionalInteger(atmosphere.socialness, `${id} atmosphere.socialness`),
   };
 }
 
@@ -227,7 +209,6 @@ function serviceColumns({ amenities, id }: BuildingJson) {
 function toDorm(building: BuildingJson, updatedAt: Date): NewDorm {
   return {
     ...accessibilityColumns(building),
-    ...atmosphereColumns(building),
     ...locationColumns(building),
     ...mediaColumns(building),
     ...serviceColumns(building),

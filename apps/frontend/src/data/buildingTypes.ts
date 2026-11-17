@@ -96,10 +96,6 @@ export interface Accessibility {
   strobeAlarm: boolean;
 }
 
-export interface Atmosphere {
-  noiseLevel?: number;
-}
-
 export interface Location {
   latitude?: number;
   longitude?: number;
@@ -147,7 +143,6 @@ export interface Building {
   media: Media;
   amenities: AmenityData;
   accessibility: Accessibility;
-  atmosphere: Atmosphere;
   location: Location;
   editorialTags?: string[];
   /** Student ratings for this building, zero reviews until someone writes one. */

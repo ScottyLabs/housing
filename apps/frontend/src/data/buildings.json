@@ -101,7 +101,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["warner-hall", "cyert-hall", "purnell-center", "tepper-quad"],
       "note": "E Tower is right on top of UG, close to campus and Tepper.",
@@ -204,7 +203,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["warner-hall", "cyert-hall", "tepper-quad", "cohon-center"],
       "note": "Stever is located on Morewood Ave, and buggies are built in the basement",
@@ -306,7 +304,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
@@ -409,7 +406,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": [
         "information-networking-institute",
@@ -536,7 +532,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located close to Margaret Morrison and CFA",
@@ -654,7 +649,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
@@ -768,7 +762,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "cohon-center"],
       "note": "Located on Margaret Morrison St",
@@ -896,7 +889,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["warner-hall", "cyert-hall", "tepper-quad", "purnell-center"],
       "note": "Morewood Gardens is right on top of UG, close to campus",
@@ -1089,7 +1081,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["tepper-quad", "warner-hall", "cyert-hall", "cohon-center"],
       "note": "Located on Morewood Ave, slightly farther from campus",
@@ -1211,7 +1202,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": [
         "information-networking-institute",
@@ -1322,7 +1312,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
@@ -1427,7 +1416,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
@@ -1536,7 +1524,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "college-of-fine-arts"],
       "note": "Located on Margaret Morrison St",
@@ -1639,7 +1626,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "closeBuildings": ["resnik", "margaret-morrison-hall", "posner-hall", "cohon-center"],
       "note": "Located on Margaret Morrison St",
@@ -1728,7 +1714,6 @@
       "groundFloorRooms": true,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4469460962968,
       "longitude": -79.9476919479028,
@@ -1828,7 +1813,6 @@
       "groundFloorRooms": true,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4474131149012,
       "longitude": -79.9464846772549,
@@ -1917,7 +1901,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4442596456125,
       "longitude": -79.9391293033433,
@@ -2015,7 +1998,6 @@
       "groundFloorRooms": true,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4484537838169,
       "longitude": -79.9461284844631,
@@ -2149,7 +2131,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4420310449421,
       "longitude": -79.9387146784535,
@@ -2247,7 +2228,6 @@
       "groundFloorRooms": true,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.447513309255,
       "longitude": -79.9471739625741,
@@ -2352,7 +2332,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4420051579668,
       "longitude": -79.9382277473254,
@@ -2436,7 +2415,6 @@
       "groundFloorRooms": true,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4425032938329,
       "longitude": -79.9377985797988,
@@ -2535,7 +2513,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4425418764762,
       "longitude": -79.9400374897439,
@@ -2635,7 +2612,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4419102553918,
       "longitude": -79.9378610932361,
@@ -2747,7 +2723,6 @@
       "groundFloorRooms": false,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.4426985572609,
       "longitude": -79.9408768021358,
@@ -2859,7 +2834,6 @@
       "groundFloorRooms": true,
       "strobeAlarm": false
     },
-    "atmosphere": {},
     "location": {
       "latitude": 40.447675388038,
       "longitude": -79.9456133896324,

@@ -930,10 +930,6 @@ export interface operations {
                 | "studio_apartment_triple"
               )[];
             };
-            atmosphere: {
-              noiseLevel?: number;
-              socialness?: number;
-            };
             code: string;
             editorialTags: string[];
             housingClasses: ("first_year" | "upperclass")[];

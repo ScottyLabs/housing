@@ -283,11 +283,11 @@ Reference data for CMU residence halls, shared across all users (not tied to a `
 | `longitude` | `numeric` | Yes | Geographic longitude. |
 | `lounge_description` | `text` | Yes | Description of lounge/common space. |
 | `name` | `text` | No | Dorm name. |
-| `noise_level` | `integer` | Yes | Fallback for `atmosphere.noiseLevel` (5 is quiet), used only while no review has a noise rating. Null for every dorm today. |
+| `noise_level` | `integer` | Yes | Unused. It was the fallback for the removed `atmosphere.noiseLevel`; the seed nulls it and the API ignores it. Dropped by a later migration. |
 | `photo_gallery` | `json` | Yes | Array of `GalleryImage` (`link`, `description`). |
 | `room_types` | `room_type[]` | No | Room configurations offered. |
 | `service_animal_friendly` | `boolean` | No | Accessibility: service animals allowed. |
-| `socialness` | `integer` | Yes | Fallback for `atmosphere.socialness`, used only while no review has a social life rating. Null for every dorm today. |
+| `socialness` | `integer` | Yes | Unused. It was the fallback for the removed `atmosphere.socialness`; the seed nulls it and the API ignores it. Dropped by a later migration. |
 | `strobe_alarm` | `boolean` | No | Accessibility: strobe fire alarms. |
 | `tags` | `text[]` | Yes | Freeform editorial tags (`editorialTags` in `buildings.json`). |
 | `updated_at` | `timestamp` | Yes | Last time the dorm record was edited. |
@@ -329,7 +329,7 @@ User-submitted reviews of a dorm. Many-to-one against both `user` and `dorm`.
 
 The columns are nullable for older rows, but the review API only saves a review when every field is present and valid: ratings are whole numbers from 1 to 5, and `lived_term` and `lived_year` use the values above. The schemas are zod schemas in `apps/backend/src/routes/review-input.ts`. The database does not enforce these rules, so a row written outside the API can hold anything. Editing a review in the app replaces every field with valid values.
 
-The average `rating_social_life` and `rating_noise` of a dorm's reviews become that building's `atmosphere.socialness` and `atmosphere.noiseLevel` in `GET /api/buildings`, so the atmosphere filter follows what students report. The averages are calculated on every request and ignore reviews that have no value for them.
+The average of each rating over a dorm's reviews is returned as `reviews.averages` in `GET /api/buildings`, and the building filters rank on those averages, so they follow what students report. The averages are calculated on every request and ignore reviews that have no value for a rating.
 
 ## Relationships
 

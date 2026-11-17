@@ -72,33 +72,14 @@ void test("toBuilding nests the dorm columns and uses the slug as the id", () =>
   deepStrictEqual(building.editorialTags, ["quiet"]);
 });
 
-void test("toBuilding leaves out details and atmosphere values that are null", () => {
+void test("toBuilding leaves out details and location values that are null", () => {
   const building = toBuilding(dorm, noReviews);
 
   deepStrictEqual(building.amenities.ac, { level: "window" });
-  deepStrictEqual(building.atmosphere, { socialness: 4 });
   deepStrictEqual(building.location, {
     closeBuildings: ["baker-hall"],
     latitude: 40.4,
     longitude: -79.9,
-  });
-});
-
-void test("toBuilding takes atmosphere from the review averages and falls back to the stored values", () => {
-  const reviewed = {
-    averages: { ...noReviews.averages, noise: 4.5, socialLife: 2.5 },
-    count: 2,
-  };
-  deepStrictEqual(toBuilding(dorm, reviewed).atmosphere, { noiseLevel: 4.5, socialness: 2.5 });
-
-  const onlyNoise = { ...noReviews, averages: { ...noReviews.averages, noise: 3 }, count: 1 };
-  deepStrictEqual(toBuilding({ ...dorm, noiseLevel: 5 }, onlyNoise).atmosphere, {
-    noiseLevel: 3,
-    socialness: 4,
-  });
-  deepStrictEqual(toBuilding({ ...dorm, noiseLevel: 5 }, noReviews).atmosphere, {
-    noiseLevel: 5,
-    socialness: 4,
   });
 });
 

@@ -53,10 +53,6 @@ const location = t.Object({
 export const buildingSchema = t.Object({
   accessibility,
   amenities,
-  atmosphere: t.Object({
-    noiseLevel: t.Optional(t.Number()),
-    socialness: t.Optional(t.Number()),
-  }),
   code: t.String(),
   editorialTags: t.Array(t.String()),
   housingClasses: t.Array(t.UnionEnum([...housingClassEnum.enumValues])),

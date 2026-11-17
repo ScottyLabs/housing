@@ -2928,7 +2928,6 @@
                     "required": [
                       "accessibility",
                       "amenities",
-                      "atmosphere",
                       "code",
                       "editorialTags",
                       "housingClasses",
@@ -3083,17 +3082,6 @@
                                 "studio_apartment_triple"
                               ]
                             }
-                          }
-                        }
-                      },
-                      "atmosphere": {
-                        "type": "object",
-                        "properties": {
-                          "noiseLevel": {
-                            "type": "number"
-                          },
-                          "socialness": {
-                            "type": "number"
                           }
                         }
                       },
