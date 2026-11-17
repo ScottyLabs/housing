@@ -22,7 +22,6 @@ const reviewFields = {
   ratingNoise: t.Nullable(t.Integer()),
   ratingOverall: t.Nullable(t.Integer()),
   ratingRoomQuality: t.Nullable(t.Integer()),
-  ratingSocialLife: t.Nullable(t.Integer()),
   submittedAt: t.Nullable(t.Date()),
 };
 
@@ -42,7 +41,6 @@ export const ratingSummary = t.Object({
     noise: t.Nullable(t.Number()),
     overall: t.Nullable(t.Number()),
     roomQuality: t.Nullable(t.Number()),
-    socialLife: t.Nullable(t.Number()),
   }),
   count: t.Integer(),
 });
@@ -64,7 +62,6 @@ export const reviewColumns = {
   ratingNoise: reviewTable.ratingNoise,
   ratingOverall: reviewTable.ratingOverall,
   ratingRoomQuality: reviewTable.ratingRoomQuality,
-  ratingSocialLife: reviewTable.ratingSocialLife,
   submittedAt: reviewTable.submittedAt,
 };
 
@@ -77,7 +74,6 @@ export const ratingAverages = {
   noise: avg(reviewTable.ratingNoise),
   overall: avg(reviewTable.ratingOverall),
   roomQuality: avg(reviewTable.ratingRoomQuality),
-  socialLife: avg(reviewTable.ratingSocialLife),
 };
 
 type ReviewRow = Pick<
@@ -92,7 +88,6 @@ type ReviewRow = Pick<
   | "ratingNoise"
   | "ratingOverall"
   | "ratingRoomQuality"
-  | "ratingSocialLife"
   | "submittedAt"
 >;
 
@@ -108,7 +103,6 @@ export function toReview(row: ReviewRow): ReviewRow {
     ratingNoise: row.ratingNoise,
     ratingOverall: row.ratingOverall,
     ratingRoomQuality: row.ratingRoomQuality,
-    ratingSocialLife: row.ratingSocialLife,
     submittedAt: row.submittedAt,
   };
 }
@@ -121,7 +115,6 @@ interface AverageRow {
   noise: string | null;
   overall: string | null;
   roomQuality: string | null;
-  socialLife: string | null;
 }
 
 export const noReviews: AverageRow = {
@@ -132,7 +125,6 @@ export const noReviews: AverageRow = {
   noise: null,
   overall: null,
   roomQuality: null,
-  socialLife: null,
 };
 
 export function toSummary(row: AverageRow) {
@@ -144,7 +136,6 @@ export function toSummary(row: AverageRow) {
       noise: toAverage(row.noise),
       overall: toAverage(row.overall),
       roomQuality: toAverage(row.roomQuality),
-      socialLife: toAverage(row.socialLife),
     },
     count: row.count,
   };

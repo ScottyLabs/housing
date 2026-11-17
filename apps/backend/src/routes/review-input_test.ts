@@ -15,14 +15,7 @@ const valid = {
   ratingNoise: 2,
   ratingOverall: 5,
   ratingRoomQuality: 3,
-  ratingSocialLife: 1,
 };
-
-const OPTIONAL_RATINGS = new Set([
-  "ratingBathroomQuality",
-  "ratingCommonSpaceQuality",
-  "ratingSocialLife",
-]);
 
 function accepts(changes: Record<string, unknown>): boolean {
   return reviewBody.safeParse({ ...valid, ...changes }).success;
@@ -34,8 +27,13 @@ void test("reviewBody accepts a complete review and trims the text", () => {
   strictEqual(result.data?.body, "Great dorm");
 });
 
-void test("reviewBody drops fields it does not know", () => {
-  const result = reviewBody.safeParse({ ...valid, extra: "x", ratingAtmosphere: 3 });
+void test("reviewBody drops fields it does not know, including the old social life rating", () => {
+  const result = reviewBody.safeParse({
+    ...valid,
+    extra: "x",
+    ratingAtmosphere: 3,
+    ratingSocialLife: 4,
+  });
   deepStrictEqual(result.data, valid);
 });
 
@@ -76,17 +74,10 @@ function without(...keys: string[]): Record<string, unknown> {
   return Object.fromEntries(Object.entries(valid).filter(([name]) => !keys.includes(name)));
 }
 
-void test("reviewBody needs every field except the ratings still being phased in", () => {
+void test("reviewBody needs every field, including all six ratings", () => {
   for (const key of Object.keys(valid)) {
-    strictEqual(reviewBody.safeParse(without(key)).success, OPTIONAL_RATINGS.has(key));
+    strictEqual(reviewBody.safeParse(without(key)).success, false);
   }
-});
-
-void test("reviewBody takes reviews with or without the new ratings", () => {
-  const beforeNewRatings = without("ratingBathroomQuality", "ratingCommonSpaceQuality");
-  deepStrictEqual(reviewBody.parse(beforeNewRatings), beforeNewRatings);
-  const withoutSocialLife = without("ratingSocialLife");
-  deepStrictEqual(reviewBody.parse(withoutSocialLife), withoutSocialLife);
 });
 
 void test("pageQuery reads numbers from the query string and limits them", () => {

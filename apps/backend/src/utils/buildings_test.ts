@@ -14,7 +14,6 @@ const noReviews = {
     noise: null,
     overall: null,
     roomQuality: null,
-    socialLife: null,
   },
   count: 0,
 };
@@ -92,7 +91,6 @@ void test("toBuilding falls back to empty lists and carries the review summary",
       noise: 4.5,
       overall: 4.25,
       roomQuality: 3,
-      socialLife: 3.5,
     },
     count: 4,
   };

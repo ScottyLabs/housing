@@ -9,7 +9,6 @@ export interface BuildingReviews {
     noise: number | null;
     overall: number | null;
     roomQuality: number | null;
-    socialLife: number | null;
   };
   count: number;
 }

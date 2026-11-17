@@ -94,7 +94,6 @@ export const myReviewsRoute = new Elysia({ prefix: "/me" })
         ratingNoise: body.ratingNoise,
         ratingOverall: body.ratingOverall,
         ratingRoomQuality: body.ratingRoomQuality,
-        ratingSocialLife: body.ratingSocialLife,
       };
 
       const rows = await db
