@@ -206,6 +206,8 @@ export const reviewTable = pgTable(
     ratingAmenities: integer("rating_amenities"),
     // Replaced by ratingSocialLife and ratingNoise; kept so older reviews keep their value.
     ratingAtmosphere: integer("rating_atmosphere"),
+    ratingBathroomQuality: integer("rating_bathroom_quality"),
+    ratingCommonSpaceQuality: integer("rating_common_space_quality"),
     // 1 is loud, 5 is quiet.
     ratingNoise: integer("rating_noise"),
     ratingOverall: integer("rating_overall"),
