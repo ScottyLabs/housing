@@ -5,7 +5,6 @@ export interface Preferences {
   accommodations: string[] | null;
   preferredAmenities: string[] | null;
   preferredGenderHousing: string | null;
-  socialFrequency: string | number | null;
   year: string | null;
 }
 
@@ -36,7 +35,6 @@ export function preferencesToFilters(prefs: Preferences): FilterState {
     enSuiteKitchen: wanted.has("En suite kitchen"),
     kitchenAccess: wanted.has("Kitchen access"),
     commonAreas: wanted.has("Common areas"),
-    socialness: prefs.socialFrequency === null ? null : Number(prefs.socialFrequency),
     genderHousing: toGenderHousing(prefs.preferredGenderHousing),
   };
 }

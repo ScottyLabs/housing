@@ -96,11 +96,6 @@ export interface Accessibility {
   strobeAlarm: boolean;
 }
 
-export interface Atmosphere {
-  socialness?: number;
-  noiseLevel?: number;
-}
-
 export interface Location {
   latitude?: number;
   longitude?: number;
@@ -148,7 +143,6 @@ export interface Building {
   media: Media;
   amenities: AmenityData;
   accessibility: Accessibility;
-  atmosphere: Atmosphere;
   location: Location;
   editorialTags?: string[];
   /** Student ratings for this building, zero reviews until someone writes one. */
@@ -178,8 +172,7 @@ export type FeatureFilter = (typeof featureFilters)[number];
 
 export interface FilterState extends Record<FeatureFilter, boolean> {
   distanceFrom: string;
-  socialness: number | null;
-  noiseLevel: number | null;
+  minRatings: RatingAverages;
   genderHousing: GenderHousing | null;
 }
 

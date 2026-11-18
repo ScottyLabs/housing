@@ -7,11 +7,11 @@ import {
 } from "./buildingTypes";
 import { metersBetween } from "./distance";
 import { buildingHasFeature } from "./features";
+import { CARD_ROWS, type CardRow, noRatings } from "./reviews";
 
 export const defaultFilters: FilterState = {
   distanceFrom: "",
-  socialness: null,
-  noiseLevel: null,
+  minRatings: noRatings,
   genderHousing: null,
   serviceAnimal: false,
   wheelchairAccessible: false,
@@ -35,6 +35,7 @@ export const defaultFilters: FilterState = {
 const BEST_FIT_COUNT = 3;
 const DECENT_FIT_COUNT = 6;
 
+const RATING_MAX_SCORE = 2;
 const PROXIMITY_MAX_SCORE = 2;
 const PROXIMITY_RANGE_METERS = 800;
 
@@ -53,16 +54,21 @@ function amenityScore(building: Building, filters: FilterState): number {
   return matched.length + (genderMatch ? 1 : 0);
 }
 
-function preferenceScore(actual: number | undefined, wanted: number | null): number {
-  if (actual === undefined || wanted === null) return 0;
-  const difference = Math.abs(actual - wanted);
-  return Math.max(0, 2 - difference);
+export function withMinRating(filters: FilterState, row: CardRow, value: number): FilterState {
+  return { ...filters, minRatings: { ...filters.minRatings, [row]: value } };
 }
 
-function atmosphereScore(building: Building, filters: FilterState): number {
-  const social = preferenceScore(building.atmosphere.socialness, filters.socialness);
-  const noise = preferenceScore(building.atmosphere.noiseLevel, filters.noiseLevel);
-  return social + noise;
+function ratingScore(actual: number | null, minimum: number | null): number {
+  if (actual === null || minimum === null) return 0;
+  return Math.max(0, RATING_MAX_SCORE - Math.max(0, minimum - actual));
+}
+
+function ratingsScore(building: Building, filters: FilterState): number {
+  return CARD_ROWS.reduce(
+    (total, { key }) =>
+      total + ratingScore(building.reviews.averages[key], filters.minRatings[key]),
+    0,
+  );
 }
 
 function proximityScore(building: Building, place: CampusBuilding | undefined): number {
@@ -79,7 +85,7 @@ export function scoreBuilding(
 ): number {
   return (
     amenityScore(building, filters) +
-    atmosphereScore(building, filters) +
+    ratingsScore(building, filters) +
     proximityScore(building, place)
   );
 }

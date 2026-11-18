@@ -8,14 +8,13 @@ import {
   livedHereText,
   type RatingAverages,
   reviewCardRatings,
-  summaryCardRatings,
 } from "@/data/reviews";
 
 function RatingRows({ ratings }: { ratings: CardRatings }) {
   return (
     <dl className="mt-4 flex flex-col gap-2.5">
       {CARD_ROWS.map(({ key, label }) => (
-        <div key={key} className="grid grid-cols-[130px_1fr] items-center gap-3">
+        <div key={key} className="grid grid-cols-[160px_1fr] items-center gap-3">
           <dt className={`text-[14px] ${key === "overall" ? "font-semibold" : ""}`}>{label}</dt>
           <dd>
             <RatingBar label={label} value={ratings[key]} />
@@ -49,7 +48,7 @@ export function SummaryCard({
         <h3 className="text-[16px] font-semibold">Summary</h3>
       </div>
       <p className="mt-3 text-[14px] leading-snug">{summaryText(buildingName, count)}</p>
-      {count > 0 && <RatingRows ratings={summaryCardRatings(averages)} />}
+      {count > 0 && <RatingRows ratings={averages} />}
     </div>
   );
 }

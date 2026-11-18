@@ -10,10 +10,11 @@ const valid = {
   livedTerm: "junior",
   livedYear: "2025/2026",
   ratingAmenities: 4,
+  ratingBathroomQuality: 2,
+  ratingCommonSpaceQuality: 5,
   ratingNoise: 2,
   ratingOverall: 5,
   ratingRoomQuality: 3,
-  ratingSocialLife: 1,
 };
 
 function accepts(changes: Record<string, unknown>): boolean {
@@ -26,8 +27,13 @@ void test("reviewBody accepts a complete review and trims the text", () => {
   strictEqual(result.data?.body, "Great dorm");
 });
 
-void test("reviewBody drops fields it does not know", () => {
-  const result = reviewBody.safeParse({ ...valid, extra: "x", ratingAtmosphere: 3 });
+void test("reviewBody drops fields it does not know, including the old social life rating", () => {
+  const result = reviewBody.safeParse({
+    ...valid,
+    extra: "x",
+    ratingAtmosphere: 3,
+    ratingSocialLife: 4,
+  });
   deepStrictEqual(result.data, valid);
 });
 
@@ -64,10 +70,13 @@ void test("reviewBody needs a written review within the length limit", () => {
   }
 });
 
-void test("reviewBody needs every field", () => {
+function without(...keys: string[]): Record<string, unknown> {
+  return Object.fromEntries(Object.entries(valid).filter(([name]) => !keys.includes(name)));
+}
+
+void test("reviewBody needs every field, including all six ratings", () => {
   for (const key of Object.keys(valid)) {
-    const rest = Object.fromEntries(Object.entries(valid).filter(([name]) => name !== key));
-    strictEqual(reviewBody.safeParse(rest).success, false);
+    strictEqual(reviewBody.safeParse(without(key)).success, false);
   }
 });
 

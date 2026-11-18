@@ -4,10 +4,11 @@ import type { CampusBuilding, Dorm } from "../db/schema.ts";
 export interface BuildingReviews {
   averages: {
     amenities: number | null;
+    bathroomQuality: number | null;
+    commonSpaceQuality: number | null;
     noise: number | null;
     overall: number | null;
     roomQuality: number | null;
-    socialLife: number | null;
   };
   count: number;
 }
@@ -27,15 +28,6 @@ function toAmenities(dorm: Dorm) {
     laundry: { location: dorm.laundryLocation, ...withDetails(dorm.laundryDetails) },
     roomTypes: dorm.roomTypes,
   };
-}
-
-function toAtmosphere(dorm: Dorm, reviews: BuildingReviews) {
-  const atmosphere: { noiseLevel?: number; socialness?: number } = {};
-  const noiseLevel = reviews.averages.noise ?? dorm.noiseLevel;
-  const socialness = reviews.averages.socialLife ?? dorm.socialness;
-  if (noiseLevel !== null) atmosphere.noiseLevel = noiseLevel;
-  if (socialness !== null) atmosphere.socialness = socialness;
-  return atmosphere;
 }
 
 function toLocation(dorm: Dorm) {
@@ -60,7 +52,6 @@ export function toBuilding(dorm: Dorm, reviews: BuildingReviews) {
       wheelchairAccessible: dorm.wheelchairAccessible,
     },
     amenities: toAmenities(dorm),
-    atmosphere: toAtmosphere(dorm, reviews),
     code: dorm.code,
     editorialTags: dorm.tags ?? [],
     housingClasses: dorm.housingClasses,

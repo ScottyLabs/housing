@@ -1,7 +1,7 @@
 // oxlint-disable-next-line typescript/triple-slash-reference -- Deno needs a file reference for the local Node types.
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 
-import { deepStrictEqual, ok } from "node:assert/strict";
+import { deepStrictEqual, ok, strictEqual } from "node:assert/strict";
 import { test } from "node:test";
 import buildingsData from "./buildings.json" with { type: "json" };
 import {
@@ -12,10 +12,22 @@ import {
 } from "./buildingTypes.ts";
 import campusBuildingsData from "./campusBuildings.json" with { type: "json" };
 import { buildingHasFeature } from "./features.ts";
-import { defaultFilters, groupBuildings, rankBuildings, scoreBuilding } from "./scoring.ts";
+import { CARD_ROWS, noRatings, type RatingAverages } from "./reviews.ts";
+import {
+  defaultFilters,
+  groupBuildings,
+  rankBuildings,
+  scoreBuilding,
+  withMinRating,
+} from "./scoring.ts";
+
+function withRatings(building: Building, averages: Partial<RatingAverages>): Building {
+  return { ...building, reviews: { averages: { ...noRatings, ...averages }, count: 1 } };
+}
 
 // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- Same JSON cast as data/buildings.ts.
-const buildings = buildingsData as Building[];
+const catalog = buildingsData as Building[];
+const buildings = catalog.map((building) => withRatings(building, {}));
 // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- Same JSON cast as data/buildings.json above.
 const campusBuildings = campusBuildingsData as CampusBuilding[];
 const ids = (list: Building[]) => list.map((building) => building.id);
@@ -33,7 +45,6 @@ const preferences: FilterState = {
   ...defaultFilters,
   airConditioning: true,
   laundryEachFloor: true,
-  socialness: 4,
 };
 
 // "See More" lists a whole category, so its order has to match the ranking behind the previews.
@@ -116,4 +127,47 @@ void test("turning on more filters never lowers a matching building's score", ()
   const all: FilterState = { ...defaultFilters };
   for (const feature of featureFilters) all[feature] = true;
   ok(scoreFor(building, all) >= scoreFor(building, defaultFilters));
+});
+
+void test("a minimum rating ranks the better rated building first", () => {
+  const strong = withRatings(buildings[0], { overall: 4.6 });
+  const weak = withRatings(buildings[1], { overall: 2.1 });
+  const filters = withMinRating(defaultFilters, "overall", 4);
+
+  deepStrictEqual(ids(rankFor([weak, strong], filters)), [strong.id, weak.id]);
+});
+
+void test("a rating above the minimum scores the same as one that meets it", () => {
+  const filters = withMinRating(defaultFilters, "noise", 4);
+  const meets = scoreFor(withRatings(buildings[0], { noise: 4 }), filters);
+
+  strictEqual(scoreFor(withRatings(buildings[0], { noise: 5 }), filters), meets);
+  ok(scoreFor(withRatings(buildings[0], { noise: 3 }), filters) < meets);
+});
+
+void test("a building without ratings scores nothing for a rating filter", () => {
+  const unrated = withRatings(buildings[0], {});
+
+  strictEqual(
+    scoreFor(unrated, withMinRating(defaultFilters, "overall", 5)),
+    scoreFor(unrated, defaultFilters),
+  );
+});
+
+void test("each rating filter reads only its own average", () => {
+  const allFives = Object.fromEntries(CARD_ROWS.map(({ key }) => [key, 5]));
+  for (const { key } of CARD_ROWS) {
+    const filters = withMinRating(defaultFilters, key, 5);
+    const rated = scoreFor(withRatings(buildings[0], { [key]: 5 }), filters);
+    const others = scoreFor(withRatings(buildings[0], { ...allFives, [key]: null }), filters);
+
+    ok(rated > others, `${key} should only count its own average`);
+  }
+});
+
+void test("withMinRating sets one row and leaves the filters it was given alone", () => {
+  const filters = withMinRating(withMinRating(defaultFilters, "noise", 4), "overall", 2);
+
+  deepStrictEqual(filters.minRatings, { ...noRatings, noise: 4, overall: 2 });
+  deepStrictEqual(defaultFilters.minRatings, noRatings);
 });

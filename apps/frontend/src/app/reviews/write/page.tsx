@@ -6,16 +6,18 @@ import StatusMessage from "@/components/StatusMessage";
 import { stepProblem } from "@/data/reviews";
 import useFitToViewport from "@/hooks/useFitToViewport";
 import useSignInStatus from "@/hooks/useSignInStatus";
+import { BuildingStep } from "./BuildingStep";
 import { BuildingNotFound, ReviewPageHeader, ReviewPosted, SignInPrompt } from "./ReviewMessages";
 import { RatingsStep, StayStep, type StepProps, WrittenStep } from "./ReviewSteps";
 import { saveReview, useReviewDraft } from "./useReviewDraft";
 
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 4;
 const PAGE_CLASS = "mx-auto w-full max-w-[1140px] px-6 pb-12 pt-[26px]";
 
 function StepContent({ step, ...props }: StepProps & { step: number }) {
   if (step === 1) return <StayStep {...props} />;
   if (step === 2) return <RatingsStep {...props} />;
+  if (step === 3) return <BuildingStep {...props} />;
   return <WrittenStep {...props} />;
 }
 

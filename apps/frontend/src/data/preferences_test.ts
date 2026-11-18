@@ -10,7 +10,6 @@ const none = {
   accommodations: null,
   preferredAmenities: null,
   preferredGenderHousing: null,
-  socialFrequency: null,
   year: null,
 };
 

@@ -17,10 +17,11 @@ const reviewFields = {
   livedTerm: t.Nullable(t.String()),
   livedYear: t.Nullable(t.String()),
   ratingAmenities: t.Nullable(t.Integer()),
+  ratingBathroomQuality: t.Nullable(t.Integer()),
+  ratingCommonSpaceQuality: t.Nullable(t.Integer()),
   ratingNoise: t.Nullable(t.Integer()),
   ratingOverall: t.Nullable(t.Integer()),
   ratingRoomQuality: t.Nullable(t.Integer()),
-  ratingSocialLife: t.Nullable(t.Integer()),
   submittedAt: t.Nullable(t.Date()),
 };
 
@@ -35,10 +36,11 @@ export const ownReview = t.Object({ ...reviewFields, dorm: dormRef });
 export const ratingSummary = t.Object({
   averages: t.Object({
     amenities: t.Nullable(t.Number()),
+    bathroomQuality: t.Nullable(t.Number()),
+    commonSpaceQuality: t.Nullable(t.Number()),
     noise: t.Nullable(t.Number()),
     overall: t.Nullable(t.Number()),
     roomQuality: t.Nullable(t.Number()),
-    socialLife: t.Nullable(t.Number()),
   }),
   count: t.Integer(),
 });
@@ -55,10 +57,11 @@ export const reviewColumns = {
   livedTerm: reviewTable.livedTerm,
   livedYear: reviewTable.livedYear,
   ratingAmenities: reviewTable.ratingAmenities,
+  ratingBathroomQuality: reviewTable.ratingBathroomQuality,
+  ratingCommonSpaceQuality: reviewTable.ratingCommonSpaceQuality,
   ratingNoise: reviewTable.ratingNoise,
   ratingOverall: reviewTable.ratingOverall,
   ratingRoomQuality: reviewTable.ratingRoomQuality,
-  ratingSocialLife: reviewTable.ratingSocialLife,
   submittedAt: reviewTable.submittedAt,
 };
 
@@ -66,10 +69,11 @@ export const newestFirst = [desc(reviewTable.submittedAt), desc(reviewTable.id)]
 
 export const ratingAverages = {
   amenities: avg(reviewTable.ratingAmenities),
+  bathroomQuality: avg(reviewTable.ratingBathroomQuality),
+  commonSpaceQuality: avg(reviewTable.ratingCommonSpaceQuality),
   noise: avg(reviewTable.ratingNoise),
   overall: avg(reviewTable.ratingOverall),
   roomQuality: avg(reviewTable.ratingRoomQuality),
-  socialLife: avg(reviewTable.ratingSocialLife),
 };
 
 type ReviewRow = Pick<
@@ -79,10 +83,11 @@ type ReviewRow = Pick<
   | "livedTerm"
   | "livedYear"
   | "ratingAmenities"
+  | "ratingBathroomQuality"
+  | "ratingCommonSpaceQuality"
   | "ratingNoise"
   | "ratingOverall"
   | "ratingRoomQuality"
-  | "ratingSocialLife"
   | "submittedAt"
 >;
 
@@ -93,40 +98,44 @@ export function toReview(row: ReviewRow): ReviewRow {
     livedTerm: row.livedTerm,
     livedYear: row.livedYear,
     ratingAmenities: row.ratingAmenities,
+    ratingBathroomQuality: row.ratingBathroomQuality,
+    ratingCommonSpaceQuality: row.ratingCommonSpaceQuality,
     ratingNoise: row.ratingNoise,
     ratingOverall: row.ratingOverall,
     ratingRoomQuality: row.ratingRoomQuality,
-    ratingSocialLife: row.ratingSocialLife,
     submittedAt: row.submittedAt,
   };
 }
 
 interface AverageRow {
   amenities: string | null;
+  bathroomQuality: string | null;
+  commonSpaceQuality: string | null;
   count: number;
   noise: string | null;
   overall: string | null;
   roomQuality: string | null;
-  socialLife: string | null;
 }
 
 export const noReviews: AverageRow = {
   amenities: null,
+  bathroomQuality: null,
+  commonSpaceQuality: null,
   count: 0,
   noise: null,
   overall: null,
   roomQuality: null,
-  socialLife: null,
 };
 
 export function toSummary(row: AverageRow) {
   return {
     averages: {
       amenities: toAverage(row.amenities),
+      bathroomQuality: toAverage(row.bathroomQuality),
+      commonSpaceQuality: toAverage(row.commonSpaceQuality),
       noise: toAverage(row.noise),
       overall: toAverage(row.overall),
       roomQuality: toAverage(row.roomQuality),
-      socialLife: toAverage(row.socialLife),
     },
     count: row.count,
   };

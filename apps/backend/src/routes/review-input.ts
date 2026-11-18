@@ -20,10 +20,11 @@ export const reviewBody = z.object({
   livedTerm,
   livedYear,
   ratingAmenities: rating,
+  ratingBathroomQuality: rating,
+  ratingCommonSpaceQuality: rating,
   ratingNoise: rating,
   ratingOverall: rating,
   ratingRoomQuality: rating,
-  ratingSocialLife: rating,
 });
 
 export const slugParams = z.object({ slug: z.string() });

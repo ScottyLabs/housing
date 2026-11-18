@@ -68,7 +68,6 @@ export function toBuilding(api: ApiBuilding): Building {
   return {
     accessibility: api.accessibility,
     amenities: toAmenities(api.id, api.amenities),
-    atmosphere: api.atmosphere,
     code: api.code,
     editorialTags: api.editorialTags,
     housingClasses: api.housingClasses.map((housingClass) =>
