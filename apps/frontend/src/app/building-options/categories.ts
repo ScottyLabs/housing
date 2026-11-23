@@ -2,7 +2,7 @@ import type { Building } from "../../components/BuildingContext.tsx";
 import type { BuildingGroups } from "../../data/scoring.ts";
 
 /** How many buildings a category row previews before its "See More" tile. */
-export const PREVIEW_COUNT = 3;
+export const PREVIEW_COUNT = Number.POSITIVE_INFINITY;
 
 export interface BuildingCategory {
   /** Identifies the category in the URL of its "See More" page. */

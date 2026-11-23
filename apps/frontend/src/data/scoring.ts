@@ -32,7 +32,7 @@ export const defaultFilters: FilterState = {
 };
 
 // Best Fit is the top of the ranking, Decent Fit the next few, and Wild Card everything after.
-const BEST_FIT_COUNT = 3;
+const BEST_FIT_COUNT = 4;
 const DECENT_FIT_COUNT = 6;
 
 const RATING_MAX_SCORE = 2;

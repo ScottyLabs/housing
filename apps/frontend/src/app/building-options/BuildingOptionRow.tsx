@@ -28,7 +28,7 @@ export default function BuildingOptionRow({
   const showSeeMore = category.seeMore && buildings.length > PREVIEW_COUNT;
 
   return (
-    <div className="w-full min-w-[300px] overflow-x-auto @md:overflow-visible">
+    <div className="w-full min-w-[300px] overflow-x-auto border-b border-black/10 pb-[36px] last:border-b-0 last:pb-0 @md:overflow-visible">
       <div className="flex gap-[12px] items-center pb-[23px]">
         <img src={category.icon} alt={category.iconAlt} className="w-[37px] h-[37px]" />
         <h2 className="font-semibold text-[24px]">{category.title}</h2>
