@@ -25,7 +25,7 @@ export default function Home() {
         className="grid gap-x-4 gap-y-2 justify-center min-w-full w-max mx-auto"
         style={{
           gridAutoFlow: "column",
-          gridTemplateRows: "repeat(7, auto)",
+          gridTemplateRows: "repeat(8, auto)",
           gridAutoColumns: "280px",
         }}
       >

@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { type Building, useBuildingById, useCampusBuildings } from "@/components/BuildingContext";
 import { ACLevel, BathroomType, RoomType, acText, kitchenText } from "@/data/buildingTypes";
 import StudentReviews from "@/components/reviews/StudentReviews";
 import MapBackLink from "@/components/MapBackLink";
+import Lightbox, { type LightboxState } from "@/components/Lightbox";
 
 const bathroomTypeLabel: Record<BathroomType, string> = {
   [BathroomType.Communal]: "Communal",
@@ -17,31 +18,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
   const campusBuildings = useCampusBuildings();
 
   type GalleryItem = { link: string; description: string; virtualTourLink?: string };
-  const [lightbox, setLightbox] = useState<{ items: GalleryItem[]; index: number } | null>(null);
-
-  const closeLightbox = useCallback(() => setLightbox(null), []);
-  const prev = useCallback(
-    () =>
-      setLightbox(
-        (lb) => lb && { ...lb, index: (lb.index - 1 + lb.items.length) % lb.items.length },
-      ),
-    [],
-  );
-  const next = useCallback(
-    () => setLightbox((lb) => lb && { ...lb, index: (lb.index + 1) % lb.items.length }),
-    [],
-  );
-
-  useEffect(() => {
-    if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightbox, closeLightbox, prev, next]);
+  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
 
   if (!building) return <div>Not found</div>;
 
@@ -487,70 +464,15 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
           );
         })()}
 
-      {lightbox &&
-        (() => {
-          const item = lightbox.items[lightbox.index];
-          const hasMultiple = lightbox.items.length > 1;
-          return (
-            <div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-              onClick={closeLightbox}
-            >
-              {hasMultiple && (
-                <button
-                  className="absolute left-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    prev();
-                  }}
-                  aria-label="Previous"
-                >
-                  &lt;
-                </button>
-              )}
-
-              <div
-                className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center gap-3"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <img
-                  src={item.link}
-                  alt={item.description}
-                  className="h-[80vh] w-auto max-w-[90vw] rounded-2xl object-contain shadow-2xl"
-                />
-                <div className="text-white text-[15px]">
-                  {item.description}
-                  {hasMultiple && (
-                    <span className="ml-2 text-white/50 text-[13px]">
-                      {lightbox.index + 1} / {lightbox.items.length}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {hasMultiple && (
-                <button
-                  className="absolute right-4 text-white text-3xl px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    next();
-                  }}
-                  aria-label="Next"
-                >
-                  &gt;
-                </button>
-              )}
-
-              <button
-                className="absolute top-4 right-4 text-white text-2xl px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
-                onClick={closeLightbox}
-                aria-label="Close"
-              >
-                &times;
-              </button>
-            </div>
-          );
-        })()}
+      {lightbox !== null && (
+        <Lightbox
+          state={lightbox}
+          onChangeAction={setLightbox}
+          onCloseAction={() => {
+            setLightbox(null);
+          }}
+        />
+      )}
     </div>
   );
 }

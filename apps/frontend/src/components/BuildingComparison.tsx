@@ -1,5 +1,6 @@
 import { Building, useBuildings } from "./BuildingContext";
 import DropdownButton, { SelectOption } from "@/components/DropdownButton";
+import GalleryButtons from "@/components/GalleryButtons";
 import { ACLevel, BathroomType, RoomType, acText, kitchenText } from "@/data/buildingTypes";
 
 const bathroomTypeLabel: Record<BathroomType, string> = {
@@ -270,6 +271,8 @@ export default function BuildingColumn({
           <div className="text-[16px] pt-1 pb-1">{acText(building.amenities.ac)}</div>
         </div>
       </div>
+
+      <GalleryButtons building={building} />
     </>
   );
 }
