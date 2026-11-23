@@ -516,7 +516,7 @@ export default function BuildingDetails({ buildingID }: { buildingID?: string })
                 <img
                   src={item.link}
                   alt={item.description}
-                  className="max-w-[90vw] max-h-[80vh] rounded-2xl object-contain shadow-2xl"
+                  className="h-[80vh] w-auto max-w-[90vw] rounded-2xl object-contain shadow-2xl"
                 />
                 <div className="text-white text-[15px]">
                   {item.description}
