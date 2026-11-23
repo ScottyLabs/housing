@@ -69,14 +69,18 @@ function RatingFiltersSection({
       activeCount={activeCount}
       startOpen
     >
-      <div className="flex w-full flex-col gap-[24px]">
-        {rows.map(({ key, label }) => (
+      <div className="flex w-full flex-col gap-[8px]">
+        {rows.map(({ key, label, low, high }) => (
           <div key={key} className="flex flex-col w-full">
             <h2 className="text-[18px]">{label}</h2>
+            <div className="mt-1 flex justify-between text-[14px] text-black/60">
+              <span>{low ?? "Poor"}</span>
+              <span>{high ?? "Great"}</span>
+            </div>
             <Slider
-              min={1}
+              min={0}
               max={5}
-              value={filters.minRatings[key] ?? 3}
+              value={filters.minRatings[key] ?? 0}
               ariaLabel={label}
               onChange={(value) => {
                 onChangeAction(withMinRating(filters, key, value));

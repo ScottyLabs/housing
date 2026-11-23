@@ -110,12 +110,14 @@ export type CardRatings = Record<CardRow, number | null>;
 export interface CardRowSpec {
   key: CardRow;
   label: string;
+  low?: string;
+  high?: string;
 }
 
 export const EXPERIENCE_CARD_ROWS: CardRowSpec[] = [
   { key: "overall", label: "Overall Experience" },
   { key: "amenities", label: "Amenities" },
-  { key: "noise", label: "Quietness" },
+  { key: "noise", label: "Quietness", low: "Loud", high: "Quiet" },
 ];
 
 export const BUILDING_CARD_ROWS: CardRowSpec[] = [

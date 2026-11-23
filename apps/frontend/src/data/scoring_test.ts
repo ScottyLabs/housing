@@ -171,3 +171,9 @@ void test("withMinRating sets one row and leaves the filters it was given alone"
   deepStrictEqual(filters.minRatings, { ...noRatings, noise: 4, overall: 2 });
   deepStrictEqual(defaultFilters.minRatings, noRatings);
 });
+
+void test("a minimum of 0 clears the rating filter", () => {
+  const filters = withMinRating(withMinRating(defaultFilters, "noise", 4), "noise", 0);
+
+  deepStrictEqual(filters.minRatings, noRatings);
+});

@@ -55,7 +55,7 @@ function amenityScore(building: Building, filters: FilterState): number {
 }
 
 export function withMinRating(filters: FilterState, row: CardRow, value: number): FilterState {
-  return { ...filters, minRatings: { ...filters.minRatings, [row]: value } };
+  return { ...filters, minRatings: { ...filters.minRatings, [row]: value === 0 ? null : value } };
 }
 
 function ratingScore(actual: number | null, minimum: number | null): number {
